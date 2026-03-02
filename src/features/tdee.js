@@ -17,14 +17,14 @@ const mafflinSuffix = {
 
 const formulas = {
   mifflin: (weight, height, sex, age) => {
-    return 10 * weight + 6.25 * height - 5 * age + mafflinSuffix[sex];
+    return 10 * weight + 6.25 * height - 5 * age + mafflinSuffix[sex]
   },
   katchMcArdle: (weight, bfat) => {
-    return 370 + 21.6 * (weight * (100 - bfat) / 100);
+    return 370 + 21.6 * ((weight * (100 - bfat)) / 100)
   },
   calcBMI: (weight, height) => {
-    return weight / ((height / 100) ** 2);
-  }
+    return weight / (height / 100) ** 2
+  },
 }
 
 const athleteThresholds = {
@@ -58,7 +58,7 @@ function getAthleteScore(bmi, bfat, sex) {
   //   bfat = maxFat     → 0 (тучна людина)
   //   bfat = athleteFat → 1 (спортивний % жиру)
   //   bfat < athleteFat → затиснутий у 1 через Math.max
-  const bfatScore = Math.max(0, (maxFat - bfat) / (maxFat - athleteFat))
+  const bfatScore = Math.min(1, Math.max(0, (maxFat - bfat) / (maxFat - athleteFat)))
 
   // Спецкейс: високий BMI (≥30) — обходимо градієнт, рішення бінарне.
   // Такий BMI може бути або реальним ожирінням, або результатом великої м'язової маси.
@@ -87,25 +87,25 @@ function getAthleteScore(bmi, bfat, sex) {
 }
 
 function calculateBMR(obj) {
-  const { weight, height, sex, age, bfat } = obj;
+  const { weight, height, sex, age, bfat } = obj
 
   // немає даних по % жиру - рахуємо міффліном
   if (!bfat) {
-    return formulas.mifflin(weight, height, sex, age);
+    return formulas.mifflin(weight, height, sex, age)
   }
 
   // рахуємо бмі
-  const bmi = formulas.calcBMI(weight, height);
+  const bmi = formulas.calcBMI(weight, height)
 
   // отримуємо градієнт з попередньої формули
-  const athleteCoeff = getAthleteScore(bmi, bfat, sex);
+  const athleteCoeff = getAthleteScore(bmi, bfat, sex)
 
   // рахуємо БМР за обома формулами
-  const mifflinBMR = formulas.mifflin(weight, height, sex, age);
-  const mcArdleBMR = formulas.katchMcArdle(weight, bfat);
+  const mifflinBMR = formulas.mifflin(weight, height, sex, age)
+  const mcArdleBMR = formulas.katchMcArdle(weight, bfat)
 
   // повертаємо значення, усереднене за градієнтом
-  return mifflinBMR * (1 - athleteCoeff) + mcArdleBMR * athleteCoeff;
+  return mifflinBMR * (1 - athleteCoeff) + mcArdleBMR * athleteCoeff
 }
 
 const activityMultipliers = {
@@ -117,11 +117,18 @@ const activityMultipliers = {
 }
 
 function calculateTDEE(obj) {
-  const bmr = calculateBMR(obj);
+  const bmr = calculateBMR(obj)
 
-  const activityMult = activityMultipliers[obj.activity];
+  const activityMult = activityMultipliers[obj.activity]
 
-  return bmr * activityMult;
+  return bmr * activityMult
 }
 
-export { calculateTDEE, calculateBMR, formulas, getAthleteScore, activityMultipliers, athleteThresholds };
+export {
+  calculateTDEE,
+  calculateBMR,
+  formulas,
+  getAthleteScore,
+  activityMultipliers,
+  athleteThresholds,
+}

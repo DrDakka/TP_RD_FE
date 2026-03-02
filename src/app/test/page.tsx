@@ -85,9 +85,9 @@ export default function TestPage() {
             onChange={e => setForm(f => ({ ...f, sex: e.target.value as Sex }))}
             style={inputStyle}
           >
-            <option value="male">Чоловік</option>
-            <option value="female">Жінка</option>
-            <option value="na">Не вказано</option>
+            <option value="male" style={{ color: '#fff' }}>Чоловік</option>
+            <option value="female" style={{ color: '#fff' }}>Жінка</option>
+            <option value="na" style={{ color: '#fff' }}>Не вказано</option>
           </select>
         </label>
 
@@ -204,6 +204,7 @@ const inputStyle: React.CSSProperties = {
   borderRadius: 6,
   boxSizing: 'border-box',
   color: '#111',
+  background: '#fff',
 };
 
 const btnStyle: React.CSSProperties = {

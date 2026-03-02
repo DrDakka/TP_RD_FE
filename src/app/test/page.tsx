@@ -78,20 +78,20 @@ export default function TestPage() {
       <h1 style={{ marginBottom: 14, fontSize: 22, color: '#fff' }}>TDEE Calculator — Test</h1>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
-        <label style={{ color: '#fff' }}>
+        <label>
           Стать
           <select
             value={form.sex}
             onChange={e => setForm(f => ({ ...f, sex: e.target.value as Sex }))}
             style={inputStyle}
           >
-            <option value="male" style={{ color: '#fff' }}>Чоловік</option>
-            <option value="female" style={{ color: '#fff' }}>Жінка</option>
-            <option value="na" style={{ color: '#fff' }}>Не вказано</option>
+            <option value="male">Чоловік</option>
+            <option value="female">Жінка</option>
+            <option value="na">Не вказано</option>
           </select>
         </label>
 
-        <label style={{ color: '#fff' }}>
+        <label>
           Вік (роки)
           <input
             type="number" min={1} max={120}
@@ -101,7 +101,7 @@ export default function TestPage() {
           />
         </label>
 
-        <label style={{ color: '#fff' }}>
+        <label>
           Вага (кг)
           <input
             type="number" min={1}
@@ -111,7 +111,7 @@ export default function TestPage() {
           />
         </label>
 
-        <label style={{ color: '#fff' }}>
+        <label>
           Зріст (см)
           <input
             type="number" min={1}
@@ -121,7 +121,7 @@ export default function TestPage() {
           />
         </label>
 
-        <label style={{ color: '#fff' }}>
+        <label>
           % жиру (bfat) — <em>опціонально</em>
           <input
             type="number" min={1} max={70} placeholder="не вказано"
@@ -131,7 +131,7 @@ export default function TestPage() {
           />
         </label>
 
-        <label style={{ color: '#fff' }}>
+        <label>
           Рівень активності
           <select
             value={form.activity}

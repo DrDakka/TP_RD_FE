@@ -74,10 +74,10 @@ export default function TestPage() {
   }
 
   return (
-    <main style={{ maxWidth: 520, margin: '48px auto', padding: '0 16px', fontFamily: 'sans-serif' }}>
-      <h1 style={{ marginBottom: 24 }}>TDEE Calculator — Test</h1>
+    <main style={{ maxWidth: 520, margin: '24px auto', padding: '0 16px', fontFamily: 'sans-serif', color: '#111' }}>
+      <h1 style={{ marginBottom: 14, fontSize: 22 }}>TDEE Calculator — Test</h1>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
         <label>
           Стать
           <select
@@ -154,8 +154,8 @@ export default function TestPage() {
       )}
 
       {result && (
-        <div style={{ marginTop: 28, background: '#f5f5f5', borderRadius: 12, padding: '20px 24px' }}>
-          <h2 style={{ marginTop: 0, marginBottom: 16 }}>Результати</h2>
+        <div style={{ marginTop: 16, background: '#f5f5f5', borderRadius: 12, padding: '14px 18px', color: '#111' }}>
+          <h2 style={{ marginTop: 0, marginBottom: 10, fontSize: 16, color: '#111' }}>Результати</h2>
 
           <Row label="BMI" value={result.bmi.toFixed(2)} />
           <Row label="BMR Mifflin" value={`${result.mifflinBMR.toFixed(1)} ккал`} />
@@ -184,12 +184,12 @@ export default function TestPage() {
 
 function Row({ label, value, hint, bold }: { label: string; value: string; hint?: string; bold?: boolean }) {
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '5px 0' }}>
-      <span style={{ color: '#222', fontSize: 14 }}>
+    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '3px 0' }}>
+      <span style={{ color: '#111', fontSize: 13 }}>
         {label}
-        {hint && <span style={{ fontSize: 11, color: '#666', marginLeft: 6 }}>({hint})</span>}
+        {hint && <span style={{ fontSize: 10, color: '#555', marginLeft: 6 }}>({hint})</span>}
       </span>
-      <span style={{ fontWeight: bold ? 700 : 400, fontSize: bold ? 17 : 15 }}>{value}</span>
+      <span style={{ fontWeight: bold ? 700 : 400, fontSize: bold ? 15 : 13, color: '#111' }}>{value}</span>
     </div>
   );
 }
@@ -197,18 +197,18 @@ function Row({ label, value, hint, bold }: { label: string; value: string; hint?
 const inputStyle: React.CSSProperties = {
   display: 'block',
   width: '100%',
-  marginTop: 4,
-  padding: '8px 10px',
-  fontSize: 15,
+  marginTop: 2,
+  padding: '5px 8px',
+  fontSize: 13,
   border: '1px solid #ccc',
   borderRadius: 6,
   boxSizing: 'border-box',
 };
 
 const btnStyle: React.CSSProperties = {
-  marginTop: 8,
-  padding: '10px 0',
-  fontSize: 15,
+  marginTop: 4,
+  padding: '7px 0',
+  fontSize: 13,
   fontWeight: 600,
   background: '#0070f3',
   color: '#fff',

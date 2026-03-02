@@ -57,8 +57,8 @@ function getAthleteScore(bmi, bfat, sex) {
   // bfatScore — лінійна шкала по % жиру:
   //   bfat = maxFat     → 0 (тучна людина)
   //   bfat = athleteFat → 1 (спортивний % жиру)
-  //   bfat < athleteFat → затиснутий у 1 через Math.max
-  const bfatScore = Math.min(1, Math.max(0, (maxFat - bfat) / (maxFat - athleteFat)))
+  //   bfat < athleteFat → > 1, обмеження відкладено до кінцевих return
+  const bfatScore = Math.max(0, (maxFat - bfat) / (maxFat - athleteFat))
 
   // Спецкейс: високий BMI (≥30) — обходимо градієнт, рішення бінарне.
   // Такий BMI може бути або реальним ожирінням, або результатом великої м'язової маси.
@@ -72,17 +72,17 @@ function getAthleteScore(bmi, bfat, sex) {
   // Спецкейс: дуже худий (BMI < minBmi) — м'язової маси об'єктивно мало,
   // тому навіть при низькому % жиру обмежуємо score через leanCap
   if (bmi < minBmi) {
-    return bfatScore * leanCap
+    return Math.min(1, bfatScore * leanCap)
   }
 
   // Основний градієнт: добуток двох незалежних шкал.
   // bmiScore — лінійна шкала по BMI:
-  //   bmi = minBmi     → 0
-  //   bmi = athleteBmi → 1 (затиснутий через Math.min)
+  //   bmi = minBmi     → leanCap  (стикується з leanCap-гілкою → немає стрибка)
+  //   bmi = athleteBmi → 1        (затиснутий через Math.min)
   // Підсумковий score = bfatScore × bmiScore:
   // обидва показники мають бути "спортивними" одночасно,
   // щоб людина отримала високий score.
-  const bmiScore = Math.min(1, (bmi - minBmi) / (athleteBmi - minBmi))
+  const bmiScore = Math.min(1, leanCap + (1 - leanCap) * (bmi - minBmi) / (athleteBmi - minBmi))
   return Math.min(1, bfatScore * bmiScore)
 }
 

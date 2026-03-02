@@ -75,10 +75,10 @@ export default function TestPage() {
 
   return (
     <main style={{ maxWidth: 520, margin: '24px auto', padding: '0 16px', fontFamily: 'sans-serif', color: '#111' }}>
-      <h1 style={{ marginBottom: 14, fontSize: 22 }}>TDEE Calculator — Test</h1>
+      <h1 style={{ marginBottom: 14, fontSize: 22, color: '#fff' }}>TDEE Calculator — Test</h1>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
-        <label>
+        <label style={{ color: '#fff' }}>
           Стать
           <select
             value={form.sex}
@@ -91,7 +91,7 @@ export default function TestPage() {
           </select>
         </label>
 
-        <label>
+        <label style={{ color: '#fff' }}>
           Вік (роки)
           <input
             type="number" min={1} max={120}
@@ -101,7 +101,7 @@ export default function TestPage() {
           />
         </label>
 
-        <label>
+        <label style={{ color: '#fff' }}>
           Вага (кг)
           <input
             type="number" min={1}
@@ -111,7 +111,7 @@ export default function TestPage() {
           />
         </label>
 
-        <label>
+        <label style={{ color: '#fff' }}>
           Зріст (см)
           <input
             type="number" min={1}
@@ -121,7 +121,7 @@ export default function TestPage() {
           />
         </label>
 
-        <label>
+        <label style={{ color: '#fff' }}>
           % жиру (bfat) — <em>опціонально</em>
           <input
             type="number" min={1} max={70} placeholder="не вказано"
@@ -131,7 +131,7 @@ export default function TestPage() {
           />
         </label>
 
-        <label>
+        <label style={{ color: '#fff' }}>
           Рівень активності
           <select
             value={form.activity}
@@ -203,6 +203,7 @@ const inputStyle: React.CSSProperties = {
   border: '1px solid #ccc',
   borderRadius: 6,
   boxSizing: 'border-box',
+  color: '#111',
 };
 
 const btnStyle: React.CSSProperties = {

@@ -1,16 +1,16 @@
-import type { Metadata } from 'next'
-import './globals.scss'
-import Header from '@/components/header/Header'
+import type { Metadata } from 'next';
+import './globals.scss';
+import Header from '@widgets/header/Header';
 
 export const metadata: Metadata = {
   title: 'TP RD',
   description: '',
-}
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="uk">
@@ -20,5 +20,5 @@ export default function RootLayout({
         <footer></footer>
       </body>
     </html>
-  )
+  );
 }

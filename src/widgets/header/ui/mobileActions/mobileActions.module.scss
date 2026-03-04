@@ -1,0 +1,31 @@
+@use '../../../../shared/styles' as *;
+
+.mobile-actions {
+  display: none;
+  align-items: center;
+  gap: 2px;
+}
+
+.mobile-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: rgba($clr-slate-light, 0.7);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.mobile-icon-btn:hover {
+  color: $clr-accent;
+  background: rgba($clr-accent, 0.08);
+}
+
+@media (max-width: 720px) {
+  .mobile-actions {
+    display: flex;
+  }
+}

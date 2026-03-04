@@ -1,0 +1,38 @@
+@use '../../../../shared/styles' as *;
+
+.nav-desktop {
+  display: flex;
+  gap: 2px;
+}
+
+.nav-link {
+  font-size: 13.5px;
+  font-weight: 400;
+  color: rgba($clr-slate-light, 0.7);
+  text-decoration: none;
+  padding: 7px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+  color: $clr-text-light;
+  background: rgba($clr-white, 0.04);
+}
+
+.nav-link--active {
+  font-weight: 500;
+  color: $clr-accent;
+  background: rgba($clr-accent, 0.08);
+}
+
+.nav-link--active:hover {
+  color: $clr-accent;
+  background: rgba($clr-accent, 0.1);
+}
+
+@media (max-width: 720px) {
+  .nav-desktop {
+    display: none;
+  }
+}

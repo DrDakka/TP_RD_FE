@@ -1,0 +1,209 @@
+@use '../../../../shared/styles' as *;
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  background: rgba($clr-black, 0);
+  pointer-events: none;
+  transition: background 0.3s ease;
+}
+
+.backdrop--open {
+  background: rgba($clr-black, 0.5);
+  pointer-events: all;
+}
+
+.panel {
+  position: fixed;
+  top: 68px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
+  z-index: 200;
+  width: 95%;
+  max-width: 560px;
+  background: rgba($clr-bg-surface, 0.97);
+  border: 1px solid rgba($clr-white, 0.08);
+  border-radius: 16px;
+  box-shadow:
+    0 20px 60px rgba($clr-black, 0.5),
+    0 0 40px rgba($clr-accent, 0.05);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.panel--open {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: all;
+}
+
+.input-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba($clr-white, 0.06);
+}
+
+.input-icon {
+  color: rgba($clr-accent, 0.6);
+  flex-shrink: 0;
+  display: flex;
+}
+
+.input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  font-family: 'Outfit', sans-serif;
+  font-size: 16px;
+  color: $clr-text-light;
+  caret-color: $clr-accent;
+}
+
+.input::placeholder {
+  color: rgba($clr-slate, 0.35);
+}
+
+.close-btn {
+  display: flex;
+  background: none;
+  border: none;
+  color: rgba($clr-slate, 0.4);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+}
+
+.close-btn:hover {
+  color: rgba($clr-slate, 0.8);
+  background: rgba($clr-white, 0.05);
+}
+
+.body {
+  padding: 16px 20px 20px;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.section:last-child {
+  margin-bottom: 0;
+}
+
+.section__title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba($clr-slate, 0.35);
+  margin-bottom: 10px;
+}
+
+.chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.chip {
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  color: rgba($clr-slate-light, 0.7);
+  background: rgba($clr-white, 0.04);
+  border: 1px solid rgba($clr-white, 0.06);
+  border-radius: 8px;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.chip:hover {
+  background: rgba($clr-accent, 0.08);
+  border-color: rgba($clr-accent, 0.15);
+  color: $clr-accent;
+}
+
+.suggestion-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.suggestion {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: 'Outfit', sans-serif;
+  text-align: left;
+  width: 100%;
+}
+
+.suggestion:hover {
+  background: rgba($clr-white, 0.04);
+}
+
+.suggestion__text {
+  flex: 1;
+  font-size: 14px;
+  color: rgba($clr-slate-light, 0.75);
+}
+
+.suggestion:hover .suggestion__text {
+  color: $clr-text-light;
+}
+
+.suggestion__cat {
+  font-size: 11px;
+  font-family: 'IBM Plex Mono', monospace;
+  color: rgba($clr-accent, 0.4);
+  background: rgba($clr-accent, 0.06);
+  padding: 2px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.3px;
+}
+
+.suggestion__arrow {
+  color: rgba($clr-slate, 0.2);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  display: flex;
+}
+
+.suggestion:hover .suggestion__arrow {
+  opacity: 1;
+}
+
+@media (max-width: 720px) {
+  .panel {
+    top: 60px;
+    width: calc(100% - 16px);
+    max-width: none;
+    border-radius: 14px;
+  }
+}
+
+@media (max-width: 380px) {
+  .panel {
+    top: 56px;
+  }
+}

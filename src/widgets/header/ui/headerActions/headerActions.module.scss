@@ -1,0 +1,81 @@
+@use '../../../../shared/styles' as *;
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+@media (max-width: 720px) {
+  .header-actions {
+    display: none;
+  }
+}
+
+.search-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border-radius: 10px;
+  background: rgba($clr-white, 0.04);
+  border: 1px solid rgba($clr-white, 0.06);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: rgba($clr-slate, 0.5);
+  font-family: 'Outfit', sans-serif;
+}
+
+.search-pill:hover {
+  border-color: rgba($clr-accent, 0.15);
+  background: rgba($clr-white, 0.06);
+}
+
+.search-pill__text {
+  font-size: 13px;
+  color: rgba($clr-slate, 0.4);
+}
+
+.auth-login {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: rgba($clr-slate-light, 0.8);
+  text-decoration: none;
+  padding: 7px 14px;
+  transition: color 0.2s ease;
+}
+
+.auth-login:hover {
+  color: $clr-white;
+}
+
+.auth-signup {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: $clr-bg-deep;
+  text-decoration: none;
+  padding: 8px 20px;
+  border-radius: 10px;
+  background: $gradient-accent;
+  box-shadow:
+    0 0 20px rgba($clr-accent, 0.15),
+    inset 0 1px 0 rgba($clr-white, 0.2);
+  transition: all 0.25s ease;
+}
+
+.auth-signup:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 4px 24px rgba($clr-accent, 0.3),
+    inset 0 1px 0 rgba($clr-white, 0.2);
+}
+
+@media (max-width: 900px) {
+  .search-pill__text {
+    display: none;
+  }
+
+  .search-pill {
+    padding: 7px 10px;
+  }
+}

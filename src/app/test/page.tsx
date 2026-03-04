@@ -1,7 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import { calculateTDEE, calculateBMR, formulas, getAthleteScore } from '@/features/tdee.js';
+import {
+  calculateTDEE,
+  calculateBMR,
+  formulas,
+  getAthleteScore,
+} from '@/features/tdee.js';
 
 type Sex = 'male' | 'female' | 'na';
 type Activity = 'static' | 'mild' | 'moderate' | 'high' | 'exhausting';
@@ -54,16 +59,26 @@ export default function TestPage() {
 
     if (!age || !weight || !height) {
       setError('Заповніть вік, вагу та зріст.');
+
       return;
     }
 
-    const obj = { sex: form.sex, age, weight, height, bfat, activity: form.activity };
+    const obj = {
+      sex: form.sex,
+      age,
+      weight,
+      height,
+      bfat,
+      activity: form.activity,
+    };
 
     try {
       const bmi = formulas.calcBMI(weight, height);
       const mifflinBMR = formulas.mifflin(weight, height, form.sex, age);
-      const katchBMR = bfat != null ? formulas.katchMcArdle(weight, bfat) : null;
-      const athleteScore = bfat != null ? getAthleteScore(bmi, bfat, form.sex) : null;
+      const katchBMR =
+        bfat != null ? formulas.katchMcArdle(weight, bfat) : null;
+      const athleteScore =
+        bfat != null ? getAthleteScore(bmi, bfat, form.sex) : null;
       const bmr = calculateBMR(obj);
       const tdee = calculateTDEE(obj);
 
@@ -74,8 +89,18 @@ export default function TestPage() {
   }
 
   return (
-    <main style={{ maxWidth: 520, margin: '24px auto', padding: '0 16px', fontFamily: 'sans-serif', color: '#111' }}>
-      <h1 style={{ marginBottom: 14, fontSize: 22, color: '#fff' }}>TDEE Calculator — Test</h1>
+    <main
+      style={{
+        maxWidth: 520,
+        margin: '24px auto',
+        padding: '0 16px',
+        fontFamily: 'sans-serif',
+        color: '#111',
+      }}
+    >
+      <h1 style={{ marginBottom: 14, fontSize: 22, color: '#fff' }}>
+        TDEE Calculator — Test
+      </h1>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
         <label>
@@ -94,7 +119,9 @@ export default function TestPage() {
         <label>
           Вік (роки)
           <input
-            type="number" min={1} max={120}
+            type="number"
+            min={1}
+            max={120}
             value={form.age}
             onChange={e => setForm(f => ({ ...f, age: e.target.value }))}
             style={inputStyle}
@@ -104,7 +131,8 @@ export default function TestPage() {
         <label>
           Вага (кг)
           <input
-            type="number" min={1}
+            type="number"
+            min={1}
             value={form.weight}
             onChange={e => setForm(f => ({ ...f, weight: e.target.value }))}
             style={inputStyle}
@@ -114,7 +142,8 @@ export default function TestPage() {
         <label>
           Зріст (см)
           <input
-            type="number" min={1}
+            type="number"
+            min={1}
             value={form.height}
             onChange={e => setForm(f => ({ ...f, height: e.target.value }))}
             style={inputStyle}
@@ -124,7 +153,10 @@ export default function TestPage() {
         <label>
           % жиру (bfat) — <em>опціонально</em>
           <input
-            type="number" min={1} max={70} placeholder="не вказано"
+            type="number"
+            min={1}
+            max={70}
+            placeholder="не вказано"
             value={form.bfat}
             onChange={e => setForm(f => ({ ...f, bfat: e.target.value }))}
             style={inputStyle}
@@ -135,33 +167,70 @@ export default function TestPage() {
           Рівень активності
           <select
             value={form.activity}
-            onChange={e => setForm(f => ({ ...f, activity: e.target.value as Activity }))}
+            onChange={e =>
+              setForm(f => ({ ...f, activity: e.target.value as Activity }))
+            }
             style={inputStyle}
           >
             {(Object.keys(activityLabels) as Activity[]).map(key => (
-              <option key={key} value={key}>{activityLabels[key]}</option>
+              <option key={key} value={key}>
+                {activityLabels[key]}
+              </option>
             ))}
           </select>
         </label>
 
-        <button onClick={calculate} style={btnStyle}>Розрахувати</button>
+        <button onClick={calculate} style={btnStyle}>
+          Розрахувати
+        </button>
       </div>
 
       {error && (
-        <p style={{ marginTop: 20, color: '#c00', background: '#fee', padding: '10px 14px', borderRadius: 8 }}>
+        <p
+          style={{
+            marginTop: 20,
+            color: '#c00',
+            background: '#fee',
+            padding: '10px 14px',
+            borderRadius: 8,
+          }}
+        >
           {error}
         </p>
       )}
 
       {result && (
-        <div style={{ marginTop: 16, background: '#f5f5f5', borderRadius: 12, padding: '14px 18px', color: '#111' }}>
-          <h2 style={{ marginTop: 0, marginBottom: 10, fontSize: 16, color: '#111' }}>Результати</h2>
+        <div
+          style={{
+            marginTop: 16,
+            background: '#f5f5f5',
+            borderRadius: 12,
+            padding: '14px 18px',
+            color: '#111',
+          }}
+        >
+          <h2
+            style={{
+              marginTop: 0,
+              marginBottom: 10,
+              fontSize: 16,
+              color: '#111',
+            }}
+          >
+            Результати
+          </h2>
 
           <Row label="BMI" value={result.bmi.toFixed(2)} />
-          <Row label="BMR Mifflin" value={`${result.mifflinBMR.toFixed(1)} ккал`} />
+          <Row
+            label="BMR Mifflin"
+            value={`${result.mifflinBMR.toFixed(1)} ккал`}
+          />
 
           {result.katchBMR != null && (
-            <Row label="BMR Katch-McArdle" value={`${result.katchBMR.toFixed(1)} ккал`} />
+            <Row
+              label="BMR Katch-McArdle"
+              value={`${result.katchBMR.toFixed(1)} ккал`}
+            />
           )}
 
           {result.athleteScore != null && (
@@ -174,7 +243,11 @@ export default function TestPage() {
 
           <div style={{ borderTop: '1px solid #ddd', margin: '12px 0' }} />
 
-          <Row label="Фінальний BMR" value={`${result.bmr.toFixed(1)} ккал`} bold />
+          <Row
+            label="Фінальний BMR"
+            value={`${result.bmr.toFixed(1)} ккал`}
+            bold
+          />
           <Row label="TDEE" value={`${result.tdee.toFixed(1)} ккал`} bold />
         </div>
       )}
@@ -182,14 +255,43 @@ export default function TestPage() {
   );
 }
 
-function Row({ label, value, hint, bold }: { label: string; value: string; hint?: string; bold?: boolean }) {
+function Row({
+  label,
+  value,
+  hint,
+  bold,
+}: {
+  label: string;
+  value: string;
+  hint?: string;
+  bold?: boolean;
+}) {
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '3px 0' }}>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'baseline',
+        padding: '3px 0',
+      }}
+    >
       <span style={{ color: '#111', fontSize: 13 }}>
         {label}
-        {hint && <span style={{ fontSize: 10, color: '#555', marginLeft: 6 }}>({hint})</span>}
+        {hint && (
+          <span style={{ fontSize: 10, color: '#555', marginLeft: 6 }}>
+            ({hint})
+          </span>
+        )}
       </span>
-      <span style={{ fontWeight: bold ? 700 : 400, fontSize: bold ? 15 : 13, color: '#111' }}>{value}</span>
+      <span
+        style={{
+          fontWeight: bold ? 700 : 400,
+          fontSize: bold ? 15 : 13,
+          color: '#111',
+        }}
+      >
+        {value}
+      </span>
     </div>
   );
 }

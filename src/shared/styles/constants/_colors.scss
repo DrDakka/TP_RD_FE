@@ -1,0 +1,14 @@
+$clr-accent:        #34d399;
+$clr-accent-cyan:   #06b6d4;
+$clr-bg:            rgb(8, 12, 21);
+$clr-bg-surface:    rgb(14, 18, 30);
+$clr-bg-deep:       #0a1628;
+$clr-text-light:    #e2e8f0;
+$clr-text-lightest: #f0fdf4;
+$clr-white:         #fff;
+$clr-black:         #000;
+$clr-slate:         rgb(148, 163, 184);
+$clr-slate-light:   rgb(203, 213, 225);
+
+$gradient-accent: linear-gradient(135deg, $clr-accent, $clr-accent-cyan);
+$gradient-logo:   linear-gradient(135deg, $clr-text-lightest, $clr-accent);

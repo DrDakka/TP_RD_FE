@@ -63,7 +63,7 @@
   background: none;
   border: none;
   outline: none;
-  font-family: 'Outfit', sans-serif;
+  font-family: $font-sans;
   font-size: 16px;
   color: $clr-text-light;
   caret-color: $clr-accent;
@@ -105,7 +105,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: $font-mono;
   font-size: 10px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -120,7 +120,7 @@
 }
 
 .chip {
-  font-family: 'Outfit', sans-serif;
+  font-family: $font-sans;
   font-size: 13px;
   color: rgba($clr-slate-light, 0.7);
   background: rgba($clr-white, 0.04);
@@ -153,7 +153,7 @@
   border: none;
   cursor: pointer;
   transition: all 0.15s ease;
-  font-family: 'Outfit', sans-serif;
+  font-family: $font-sans;
   text-align: left;
   width: 100%;
 }
@@ -174,7 +174,7 @@
 
 .suggestion__cat {
   font-size: 11px;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: $font-mono;
   color: rgba($clr-accent, 0.4);
   background: rgba($clr-accent, 0.06);
   padding: 2px 8px;

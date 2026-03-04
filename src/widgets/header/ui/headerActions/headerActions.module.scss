@@ -23,7 +23,7 @@
   cursor: pointer;
   transition: all 0.2s ease;
   color: rgba($clr-slate, 0.5);
-  font-family: 'Outfit', sans-serif;
+  font-family: $font-sans;
 }
 
 .search-pill:hover {

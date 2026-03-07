@@ -1,9 +1,18 @@
 import Image from 'next/image';
 import styles from './page.module.css';
+import {
+  IconCheck,
+  IconChevron,
+  IconLoad,
+  IconLogo,
+  IconPlus,
+  IconSearch,
+  IconSettings,
+} from '@/shared/ui/icons/icons';
 
 export default function Home() {
   return (
-    <div className={styles.page}>
+    <div>
       <main className={styles.main}>
         <Image
           className={styles.logo}
@@ -60,6 +69,14 @@ export default function Home() {
             Documentation
           </a>
           <span>
+            <IconLogo />
+            <IconLoad />
+            <IconSettings />
+            <IconSearch />
+            <IconCheck />
+            <IconChevron />
+            <IconPlus />
+            <IconPlus cross={true} />
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
             asperiores cum et maiores consequatur sint accusantium ducimus
             debitis, aliquid, corrupti ad, repellat omnis velit rerum impedit

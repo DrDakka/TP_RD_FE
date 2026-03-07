@@ -1,17 +1,11 @@
 import type { Metadata } from 'next';
-import { IBM_Plex_Mono, Outfit } from 'next/font/google';
+import { Manrope } from 'next/font/google';
 import './globals.scss';
-import Header from '@widgets/header/Header';
 
-const outfit = Outfit({
-  subsets: ['latin'],
-  variable: '--font-outfit',
-});
-
-const ibmPlexMono = IBM_Plex_Mono({
-  subsets: ['latin'],
-  weight: ['400', '500'],
-  variable: '--font-mono',
+const manrope = Manrope({
+  subsets: ['latin', 'cyrillic'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-manrope',
 });
 
 export const metadata: Metadata = {
@@ -26,11 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="uk">
-      <body className={`${outfit.variable} ${ibmPlexMono.variable}`}>
-        <Header />
-        {children}
-        <footer></footer>
-      </body>
+      <body className={manrope.variable}>{children}</body>
     </html>
   );
 }

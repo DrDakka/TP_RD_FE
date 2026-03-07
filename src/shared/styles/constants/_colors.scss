@@ -1,14 +1,34 @@
-$clr-accent:        #34d399;
-$clr-accent-cyan:   #06b6d4;
-$clr-bg:            rgb(8, 12, 21);
-$clr-bg-surface:    rgb(14, 18, 30);
-$clr-bg-deep:       #0a1628;
-$clr-text-light:    #e2e8f0;
-$clr-text-lightest: #f0fdf4;
-$clr-white:         #fff;
-$clr-black:         #000;
-$clr-slate:         rgb(148, 163, 184);
-$clr-slate-light:   rgb(203, 213, 225);
+// primary
+$prm-200: #A7E9DB;
+$prm-100: #DDF7F1;
+$prm-500: #16B897;
+$prm-600: #11967C;
+$prm-700: #0E7A66;
 
-$gradient-accent: linear-gradient(135deg, $clr-accent, $clr-accent-cyan);
-$gradient-logo:   linear-gradient(135deg, $clr-text-lightest, $clr-accent);
+//secondary 
+$sec-100: #FDE9D9;
+$sec-500: #F4A261;
+$sec-600: #E38F4E;
+
+//neutral scale
+$ns-000: #FFFFFF;
+$ns-050: #F7FAFC;
+$ns-100: #F0F4F8;
+$ns-200: #E4E7EB;
+$ns-300: #CBD2D9;
+$ns-500: #9AA5B1;
+$ns-700: #52606D;
+$ns-800: #323F4B;
+$ns-900: #1F2933;
+
+//semantic
+$s-scs: #2F9E44;
+$s-wrn: #F59F00;
+$s-dng: #E03131;
+$s-inf: #1971C2;
+
+//macro
+$mc-prt: #6C5CE7;
+$mc-fat: #F4B400;
+$mc-crb: #339AF0;
+$mc-cal: #16B897;

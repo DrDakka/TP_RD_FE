@@ -1,2 +1,3 @@
-@forward 'colors';
+@forward 'colors' as clr-*;
+@forward 'breakpoints' as bp-*;
 @forward 'fonts';

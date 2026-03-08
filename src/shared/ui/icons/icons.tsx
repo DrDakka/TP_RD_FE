@@ -23,24 +23,29 @@ const IconLogo = () => (
     <path
       d="M2.29382 29.0002C9.85212 24.055 25.3291 10.0254 21.2815 0.930664"
       stroke="#0E7A66"
-      stroke-width="1.2"
-      stroke-linecap="round"
+      strokeWidth="1.2"
+      strokeLinecap="round"
     />
     <path
       d="M4.63916 25.877C9.06988 27.0482 17.1494 25.877 23.0136 17.6783C27.1851 11.8463 23.4046 1.28107 21.0589 0.500244"
       stroke="#0E7A66"
-      stroke-linecap="round"
+      strokeLinecap="round"
     />
     <path
       d="M4.83685 25.9412C2.55936 25.4359 -1.06075 16.3733 3.88744 11.6006C9.84551 5.85375 20.9192 5.13499 20.9406 0.51561"
       stroke="#0E7A66"
-      stroke-linecap="round"
+      strokeLinecap="round"
     />
   </svg>
 );
 
 const IconLoad = () => (
-  <svg viewBox="0 0 24 24" fill="none" className={`${s.icon} ${s.loadIcon}`}>
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    className={`${s.icon} ${s.loadIcon}`}
+  >
     <line x1="12" y1="2" x2="12" y2="6" strokeLinecap="round" />
     <line x1="16.2" y1="7.8" x2="19.1" y2="4.9" strokeLinecap="round" />
     <line x1="18" y1="12" x2="22" y2="12" strokeLinecap="round" />

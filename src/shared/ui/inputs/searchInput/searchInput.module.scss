@@ -1,0 +1,32 @@
+@use 'shared/styles/constants/colors' as clr;
+@use 'shared/styles/mixins/typography' as typo;
+
+.search {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  height: 40px;
+  gap: 16px;
+
+  > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2px;
+    height: 100%;
+    max-width: 320px;
+    border-radius: 76px;
+    background-color: clr.$ns-050;
+    border: 1px solid clr.$ns-200;
+
+    > svg {
+      color: clr.$ns-500;
+    }
+
+    > input {
+
+    }
+  }
+}

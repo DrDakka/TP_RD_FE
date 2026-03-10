@@ -1,0 +1,38 @@
+@use 'shared/styles/mixins/typography' as typo;
+@use 'shared/styles/constants/colors' as clr;
+@use 'shared/styles/constants/breakpoints' as bp;
+
+.navbar {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  gap: 16px;
+  align-items: center;
+  justify-content: flex-start;
+
+  > a {
+    @include typo.navLinks;
+    color: clr.$ns-500;
+  }
+
+  @media (min-width: bp.$dsc) {
+    flex-direction: row;
+    gap: 40px;
+  }
+
+  > .link-active {
+    position: relative;
+    color: clr.$prm-700;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      bottom: -6px;
+      left: 0;
+      background-color: clr.$prm-700;
+    }
+  }
+}

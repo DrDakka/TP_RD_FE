@@ -29,7 +29,6 @@ import {
   IconTwitter,
   IconInsta,
   IconYT,
-  IconLogo,
   Button,
 } from '@shared/ui';
 
@@ -63,7 +62,6 @@ export const TestWidget = () => {
     IconTwitter,
     IconInsta,
     IconYT,
-    IconLogo,
   ];
 
   return (

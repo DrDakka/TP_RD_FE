@@ -1,4 +1,4 @@
-@use '../../styles/constants/breakpoints' as bp;
+@use 'shared/styles/constants/breakpoints' as bp;
 
 .icon {
   width: 16px;
@@ -56,20 +56,5 @@
     &:nth-child(8) {
       animation-delay: -0.1s;
     }
-  }
-}
-
-.logoIcon {
-  width: 24px;
-  height: 29px;
-
-  @media (min-width: bp.$tab) {
-    width: 30px;
-    height: 36px;
-  }
-
-  @media (min-width: bp.$dsc) {
-    width: 45px;
-    height: 54px;
   }
 }

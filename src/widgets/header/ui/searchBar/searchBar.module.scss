@@ -1,0 +1,43 @@
+@use 'shared/styles/constants/colors' as clr;
+@use 'shared/styles/constants/breakpoints' as bp;
+@use 'shared/styles/mixins/typography' as typo;
+
+.search-wrapper {
+  display: flex;
+  width: 30px;
+  height: 100%;
+  background-color: clr.$ns-000;
+  border: 2px solid transparent;
+  border-radius: 73px;
+  align-items: center;
+  transition: all 0.3s;
+
+  > input {
+    visibility: hidden;
+    opacity: 0;
+    color: clr.$ns-800;
+    flex-shrink: 1;
+  }
+
+  > svg {
+    color: clr.$ns-800;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+
+  &--expanded {
+    padding: 8px 13px;
+    width: 100%;
+
+    gap: 6px;
+    background-color: clr.$ns-050;
+    border: 2px solid clr.$ns-300;
+
+    > input {
+      display: inline;
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}

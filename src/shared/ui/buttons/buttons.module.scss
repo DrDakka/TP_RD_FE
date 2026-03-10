@@ -1,5 +1,5 @@
-@use '../../styles/constants/colors' as clr;
-@use '../../styles/mixins/typography' as typo;
+@use 'shared/styles/constants/colors' as clr;
+@use 'shared/styles/mixins/typography' as typo;
 
 .btn-base {
   display: flex;

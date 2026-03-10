@@ -1,62 +1,78 @@
-@use '../constants/fonts' as *;
+@use 'shared/styles/constants/fonts' as *;
 
 $reg: 400;
 $med: 500;
-$sb:  600;
-$b:   700;
+$sb: 600;
+$b: 700;
+
+@mixin base {
+  font-family: $font-sans;
+  letter-spacing: 0;
+}
 
 @mixin h1 {
-  font-family: $font-sans;
+  @include base;
+
   font-weight: $sb;
   font-size: 32px;
   line-height: 100%;
-  letter-spacing: 0;
 }
 
+//used 1
 @mixin h2 {
-  font-family: $font-sans;
+  @include base;
+
   font-weight: $sb;
   font-size: 24px;
   line-height: 120%;
-  letter-spacing: 0;
 }
 
 @mixin h3 {
-  font-family: $font-sans;
+  @include base;
+
   font-weight: $sb;
   font-size: 20px;
   line-height: 120%;
-  letter-spacing: 0;
 }
 
+//used 1
 @mixin body-l {
-  font-family: $font-sans;
+  @include base;
+
   font-weight: $reg;
   font-size: 16px;
   line-height: 130%;
-  letter-spacing: 0;
 }
 
 @mixin body-m {
-  font-family: $font-sans;
+  @include base;
+
   font-weight: $reg;
   font-size: 14px;
   line-height: 130%;
-  letter-spacing: 0;
 }
 
 @mixin caption {
-  font-family: $font-sans;
+  @include base;
+
   font-weight: $reg;
   font-size: 12px;
   line-height: 130%;
-  letter-spacing: 0;
 }
 
 @mixin numeric {
-  font-family: $font-sans;
+  @include base;
+
   font-weight: $med;
   font-size: 14px;
   line-height: 130%;
-  letter-spacing: 0;
+}
+
+//used 1
+@mixin navLinks {
+  @include base;
+
+  font-weight: $sb;
+  font-size: 18px;
+  line-height: 120%;
 }

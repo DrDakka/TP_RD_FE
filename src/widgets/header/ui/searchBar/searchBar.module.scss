@@ -26,7 +26,24 @@
     flex-shrink: 0;
   }
 
-  &--expanded {
+  @media (max-width: bp.$dsc) {
+    &--expanded {
+      padding: 8px 13px;
+      width: 100%;
+
+      gap: 6px;
+      background-color: clr.$ns-050;
+      border: 2px solid clr.$ns-300;
+
+      > input {
+        display: inline;
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+
+  @media (min-width: bp.$dsc) {
     padding: 8px 13px;
     width: 100%;
 

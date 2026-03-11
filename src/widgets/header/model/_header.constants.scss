@@ -1,0 +1,41 @@
+@use 'sass:list';
+
+
+$row-max-height: 46px;
+
+$iconsSize: 24px;
+$fullIconSize: $row-max-height;
+$icons-padding: calc(($fullIconSize - $iconsSize) / 2);
+$icons-border-radius: 10px;
+
+$iconsHover: scale(1.1);
+$transform-fast: 0.1s;
+$transform-med: 0.3s;
+$transform-slow: 0.7s;
+
+$logoWidthMob: 116px;
+$logoWidthDesc: 171px;
+
+$logoSvgWidthMob: 26px;
+$logoSvgWidthDsc: 26px;
+$logoSvgHeightMob: 29px;
+$logoSvgHeightDsc: 32px;
+
+$header-padding: 12px;
+$header-gap-mob: 0 16px;
+
+$ui-btns-gap: 10px;
+
+$grid-mob: list.slash(
+  $row-max-height 0px,
+  $fullIconSize $logoWidthMob 1fr $fullIconSize 1px
+    calc($fullIconSize * 2 + $ui-btns-gap)
+);
+$grid-search-mob-expanded: list.slash($row-max-height 0px, 0 0 0 1fr 0 0);
+$grid-rows-mob-expanded: $row-max-height 1fr;
+$grid-desc: list.slash(
+  $row-max-height,
+  $logoWidthDesc 0.6fr 1fr 1px calc($fullIconSize * 2 + $ui-btns-gap)
+);
+
+

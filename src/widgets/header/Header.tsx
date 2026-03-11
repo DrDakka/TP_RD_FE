@@ -1,36 +1,31 @@
 'use client';
 
-import { IconList, IconLogo } from '@shared/ui';
-import { NavBar, UserActions } from './ui';
+import { BurgerButton, Logo, NavBar, UserActions } from './ui';
 import s from './header.module.scss';
-import Link from 'next/link';
 import { SearchBar } from './ui/searchBar/SearchBar';
 import { useHeader } from './model/useHeader';
 import classNames from 'classnames';
 
-// todo:
-// searchbar
-// search dd
-// hover effects
-
 export const Header = () => {
-  const { searchExpanded, query, handler } = useHeader();
+  const { searchExpanded, query, handler, bmExpanded } = useHeader();
+
+  const { menu, ...search } = handler;
 
   return (
     <header
-      className={classNames(s.header, {
-        [s['header--search-expanded']]: searchExpanded,
-      })}
+      className={classNames(
+        s.header,
+        {
+          [s['header--search-expanded']]: searchExpanded,
+        },
+        { [s['header--menu-expanded']]: bmExpanded && !searchExpanded },
+      )}
     >
-      <button className={s.menuBtn} aria-label="Open menu">
-        <IconList />
-      </button>
-      <Link href="/" className={s.container}>
-        <IconLogo />
-        <span>NutriSpace</span>
-      </Link>
+      <BurgerButton handler={menu} expanded={bmExpanded} />
 
-      <SearchBar expanded={searchExpanded} handlers={handler} query={query} />
+      <Logo />
+
+      <SearchBar expanded={searchExpanded} handlers={search} query={query} />
 
       <NavBar />
       <div className={s.spacer} />

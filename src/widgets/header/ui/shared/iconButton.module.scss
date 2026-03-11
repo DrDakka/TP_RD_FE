@@ -1,0 +1,29 @@
+@use '../../model/header.constants' as hc;
+@use 'shared/styles/constants/colors' as clr;
+
+.icon-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  width: hc.$fullIconSize;
+  height: hc.$fullIconSize;
+  box-sizing: border-box;
+  transition: background-color 0.3s opacity 0.3s;
+
+  > svg {
+    width: hc.$iconsSize;
+    height: hc.$iconsSize;
+    transition: transform 0.1s;
+    color: clr.$ns-800;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: clr.$ns-200;
+
+    > svg {
+      transform: scale(1.1);
+    }
+  }
+}

@@ -1,18 +1,18 @@
 @use 'shared/styles/constants/breakpoints' as bp;
 @use 'shared/styles/constants/colors' as clr;
 @use 'shared/styles/mixins/typography' as typo;
-@use '../../model/header.constants'  as hc;
+@use '../../model/header.constants' as hc;
 
 .container {
   display: flex;
-  height: 100%;
   align-items: center;
   gap: 8px;
+  height: 100%;
   flex-shrink: 0;
 
   > svg {
-    width: 24px;
-    height: 29px;
+    width: hc.$logoSvgWidthMob;
+    height: hc.$logoSvgHeightMob;
   }
 
   > span {
@@ -22,10 +22,11 @@
 
   @media (min-width: bp.$dsc) {
     gap: 12px;
+    padding-left: hc.$header-padding;
 
     > svg {
-      width: 26px;
-      height: 32px;
+      width: hc.$logoSvgWidthDsc;
+      height: hc.$logoSvgHeightDsc;
     }
 
     > span {

@@ -4,30 +4,52 @@ import classNames from 'classnames';
 
 type Props = {
   expanded: boolean;
+  scrolled: boolean;
   handlers: {
     query: (e: React.ChangeEvent<HTMLInputElement>) => void;
     expand: () => void;
+    focus: () => void;
   };
   query: string;
+  inputRef: React.RefObject<HTMLInputElement>;
 };
 
-export const SearchBar: React.FC<Props> = ({ expanded, handlers, query }) => {
+export const SearchBar: React.FC<Props> = ({
+  expanded,
+  scrolled,
+  handlers,
+  query,
+  inputRef,
+}) => {
   return (
-    <button
+    <div
       className={classNames(s['search-wrapper'], {
         [s['search-wrapper--expanded']]: expanded,
+        [s['search-wrapper--scrolled']]: scrolled,
       })}
-      onClick={handlers.expand}
-      aria-expanded={expanded}
+      onClick={handlers.focus}
     >
-      <IconSearch />
+      <button
+        className={s['icon-btn']}
+        onClick={e => {
+          e.stopPropagation();
+          handlers.expand();
+        }}
+        aria-expanded={expanded}
+        aria-label="Toggle search"
+      >
+        <IconSearch />
+      </button>
       <input
+        ref={inputRef}
         type="text"
         aria-label="search for foods"
         placeholder="Search for foods"
         value={query}
         onChange={e => handlers.query(e)}
-      ></input>
-    </button>
+        onFocus={handlers.focus}
+        onClick={e => e.stopPropagation()}
+      />
+    </div>
   );
 };

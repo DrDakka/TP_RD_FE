@@ -3,19 +3,21 @@
 
 .icon-button {
   display: flex;
-  align-items: center;
   justify-content: center;
-  border-radius: 10px;
+  align-items: center;
   width: hc.$fullIconSize;
   height: hc.$fullIconSize;
   box-sizing: border-box;
-  transition: background-color 0.3s opacity 0.3s;
+  border-radius: hc.$icons-border-radius;
+  transition:
+    background-color hc.$transform-med,
+    opacity hc.$transform-med;
 
   > svg {
     width: hc.$iconsSize;
     height: hc.$iconsSize;
-    transition: transform 0.1s;
     color: clr.$ns-800;
+    transition: transform hc.$transform-fast;
   }
 
   &:hover,
@@ -23,7 +25,7 @@
     background-color: clr.$ns-200;
 
     > svg {
-      transform: scale(1.1);
+      transform: hc.$iconsHover;
     }
   }
 }

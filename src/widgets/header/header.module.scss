@@ -3,32 +3,28 @@
 @use 'shared/styles/mixins/typography' as typo;
 @use './model/header.constants' as hc;
 
+@mixin frosted {
+  background-color: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(10px);
+}
 
 .header {
   position: sticky;
-  background-color: clr.$ns-000;
-  z-index: 10;
   top: 0;
-  width: 100%;
-  padding: hc.$header-padding;
-  box-sizing: border-box;
+  z-index: 10;
   display: grid;
   grid-template: hc.$grid-mob;
   place-items: center center;
-
-  transition: grid-template-columns 0.7s;
-  gap: 0 16px;
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: calc(46px + 24px);
-    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.08);
-    pointer-events: none;
-  }
+  gap: hc.$header-gap-mob;
+  width: 100%;
+  padding: hc.$header-padding;
+  box-sizing: border-box;
+  @include frosted;
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.08);
+  transition:
+    padding hc.$transform-med,
+    background-color hc.$transform-med,
+    backdrop-filter hc.$transform-med;
 
   > :first-child {
     grid-area: 1 / 1 / 2 / 2;
@@ -40,7 +36,7 @@
 
   > :nth-child(3) {
     grid-area: 1 / 4 / 2 / 5;
-    transition: all 0.3s;
+    transition: all hc.$transform-med;
   }
 
   > :nth-child(4) {
@@ -48,7 +44,9 @@
     top: 100%;
     left: 0;
     right: 0;
+    height: auto;
     background-color: clr.$ns-000;
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.08);
     opacity: 0;
     visibility: hidden;
     transform: translateY(-8px);
@@ -59,10 +57,12 @@
 
     @media (min-width: bp.$dsc) {
       position: static;
+      height: 100%;
+      background-color: transparent;
+      box-shadow: none;
       opacity: 1;
       visibility: visible;
       transform: none;
-      background-color: transparent;
     }
   }
 
@@ -70,20 +70,35 @@
     grid-area: 1 / 5 / 2 / 6;
   }
 
-  :last-child {
+  > :nth-child(6) {
     grid-area: 1 / 6 / 2 / 7;
+  }
+
+  &--scrolled {
+    padding-block: 4px;
+    transition:
+      padding hc.$transform-med,
+      background-color hc.$transform-med,
+      backdrop-filter hc.$transform-med;
+
+    &:hover {
+      padding-block: hc.$header-padding;
+      transition:
+        padding hc.$transform-med,
+        background-color hc.$transform-med,
+        backdrop-filter hc.$transform-med;
+    }
   }
 
   @media (max-width: bp.$dsc) {
     &--search-expanded {
       grid-template: hc.$grid-search-mob-expanded;
-
       column-gap: 0;
 
-      > :not(:nth-child(3)) {
+      > :not(:nth-child(3)):not([data-search-dropdown]) {
         opacity: 0;
         visibility: hidden;
-        transition: all 0.3s;
+        transition: all hc.$transform-med;
       }
     }
 
@@ -98,9 +113,9 @@
 
   @media (min-width: bp.$dsc) {
     grid-template: hc.$grid-desc;
-    gap: 0 16px;
+    padding-inline: max(hc.$header-padding, calc((100% - 1400px) / 2));
 
-    > :first-child {
+> :first-child {
       display: none;
     }
 
@@ -110,27 +125,29 @@
 
     > :nth-child(3) {
       grid-area: 1 / 2 / 2 / 3;
-      transition: all 0.3s;
+      transition: all hc.$transform-med;
     }
 
     > :nth-child(4) {
       grid-area: 1 / 3 / 2 / 4;
+      padding-right: 16px;
     }
 
     > .spacer {
       grid-area: 1 / 4 / 2 / 5;
     }
 
-    :last-child {
+    > :nth-child(6) {
       grid-area: 1 / 5 / 2 / 6;
     }
   }
 }
 
+
 .spacer {
   display: block;
-  height: 100%;
   width: 1px;
+  height: 100%;
   background-color: clr.$ns-200;
   flex-shrink: 0;
 }

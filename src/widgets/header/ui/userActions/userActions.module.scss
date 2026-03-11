@@ -1,9 +1,11 @@
+@use 'shared/styles/constants/colors' as clr;
+@use '../../model/header.constants' as hc;
+
 .wrapper {
   display: flex;
-  width: 100%;
-  height: 100%;
   justify-content: space-between;
   align-items: center;
-  flex-direction: row;
-  transition: opacity 0.3s,
+  width: 100%;
+  height: 100%;
+  transition: opacity hc.$transform-med;
 }

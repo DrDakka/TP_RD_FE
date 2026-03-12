@@ -136,7 +136,7 @@
       position: static;
 
       height: 100%;
-      padding-right: hc.$icons-padding;
+      padding-right: hc.$logo-search-gap - 16px;
 
       opacity: 1;
       visibility: visible;
@@ -160,6 +160,8 @@
     > [data-header-nav] {
       max-width: 600px;
       overflow: hidden;
+
+      padding-right: hc.$icons-padding;
 
       transition:
         max-width hc.$transform-med,

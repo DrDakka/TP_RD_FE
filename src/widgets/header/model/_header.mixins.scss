@@ -31,8 +31,8 @@
   transform: translateY(-8px);
 
   transition:
-    opacity hc.$transform-med,
-    visibility hc.$transform-med,
+    opacity hc.$transform-fast,
+    visibility hc.$transform-fast,
     transform hc.$transform-med;
 }
 

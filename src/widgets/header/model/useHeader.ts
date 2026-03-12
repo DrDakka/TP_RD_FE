@@ -40,7 +40,12 @@ export const useHeader = () => {
   }, [searchExpanded, bmExpanded]);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+      setExpanded(false);
+      inputRef.current?.blur();
+      setBMExpanded(false);
+    };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
 
@@ -49,6 +54,7 @@ export const useHeader = () => {
 
   const handler = {
     query: (e: React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value),
+    clearQuery: () => setQuery(''),
     expand: () => {
       if (searchExpanded) {
         setExpanded(false);

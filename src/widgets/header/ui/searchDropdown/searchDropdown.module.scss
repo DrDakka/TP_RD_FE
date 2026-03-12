@@ -1,28 +1,21 @@
 @use 'shared/styles/constants/colors' as clr;
 @use '../../model/header.constants' as hc;
+@use '../../model/header.mixins' as hm;
 
 .search-dropdown {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
   min-height: 200px;
   padding: 16px;
-  background-color: clr.$ns-000;
-  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.08);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-8px);
+
+  border-top: 1px solid clr.$ns-200;
+  box-shadow: hc.$dropdown-shadow;
   pointer-events: none;
-  transition:
-    opacity hc.$transform-med,
-    visibility hc.$transform-med,
-    transform hc.$transform-med;
+
+  @include hm.dd-hidden;
 
   &--visible {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
     pointer-events: auto;
+
+    @include hm.dd-visible;
+    @include hm.frosted;
   }
 }

@@ -14,7 +14,7 @@ export const NavBar = () => {
     navLinks.find(link => link.href === pathname)?.href ?? null;
 
   return (
-    <nav className={s.navbar} aria-label="Website navigation">
+    <nav data-header-nav className={s.navbar} aria-label="Website navigation">
       {navLinks.map(el => (
         <Link
           key={el.href}

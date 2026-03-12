@@ -1,34 +1,21 @@
 @use 'shared/styles/constants/colors' as clr;
 @use 'shared/styles/constants/breakpoints' as bp;
+@use 'shared/styles/mixins/typography' as typo;
 @use '../../model/header.constants' as hc;
-
-@mixin expanded {
-  gap: 6px;
-  justify-content: flex-start;
-  padding: 8px 13px;
-  width: 100%;
-  background-color: clr.$ns-050;
-  border: 2px solid clr.$ns-300;
-  border-radius: 73px;
-
-  > input {
-    flex: 1;
-    width: auto;
-    overflow: visible;
-    opacity: 1;
-  }
-}
+@use '../../model/header.mixins' as hm;
 
 .search-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
+
   width: hc.$fullIconSize;
   height: 100%;
   box-sizing: border-box;
-  background-color: clr.$ns-000;
+
   border: 2px solid transparent;
   border-radius: hc.$icons-border-radius;
+
   transition: all hc.$transform-med;
 
   &:has(input:focus) {
@@ -39,7 +26,9 @@
     display: flex;
     align-items: center;
     flex-shrink: 0;
+
     padding: 0;
+
     background: none;
     border: none;
     cursor: pointer;
@@ -48,16 +37,21 @@
       width: hc.$iconsSize;
       height: hc.$iconsSize;
       color: clr.$ns-800;
+
       transition: transform hc.$transform-fast;
     }
   }
 
   > input {
+    @include typo.body-l;
+
     flex: 0 0 0;
     width: 0;
     overflow: hidden;
-    opacity: 0;
+
     color: clr.$ns-800;
+    opacity: 0;
+
     transition: opacity hc.$transform-fast ease hc.$transform-med;
   }
 
@@ -72,7 +66,7 @@
     }
 
     &--expanded {
-      @include expanded;
+      @include hm.searchbar-expanded;
 
       &:hover,
       &:focus-within {
@@ -86,16 +80,19 @@
   }
 
   @media (min-width: bp.$dsc) {
-    @include expanded;
-    min-width: 160px;
+    @include hm.searchbar-expanded;
+
+    min-width: hc.$search-min-width-desc;
 
     &:hover:not(:focus-within) {
       border-color: clr.$ns-500;
     }
 
     &--scrolled:not(:focus-within) {
+      height: hc.$row-max-height - 10px;
+
       background-color: transparent;
-      border-color: transparent;
+      border-color: clr.$ns-200;
 
       &:hover {
         border-color: clr.$ns-300;

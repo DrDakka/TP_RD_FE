@@ -1,12 +1,11 @@
 import { TestWidget } from '@/widgets/test/Test';
-import styles from './page.module.css';
 
 export default function Home() {
   return (
     <div>
-      <main className={styles.main}>
+      <main style={{ width: '100%' }}>
         <TestWidget />
-        <p>
+        <p style={{ width: '100%' }}>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
           reprehenderit a nobis consequuntur facilis, tempore ipsum aperiam
           consequatur similique sequi incidunt consectetur illum placeat odit.

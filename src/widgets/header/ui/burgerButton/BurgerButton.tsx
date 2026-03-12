@@ -20,6 +20,7 @@ export const BurgerButton: React.FC<Props> = ({ expanded, handler }) => {
 
   return (
     <button
+      data-header-burger
       className={s['icon-button']}
       aria-label={data.label}
       aria-expanded={data.expanded}

@@ -1,0 +1,43 @@
+@use 'shared/styles/constants/colors' as clr;
+@use './header.constants' as hc;
+
+@mixin frosted {
+  background-color: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(10px);
+}
+
+@mixin searchbar-expanded {
+  gap: 6px;
+  justify-content: flex-start;
+
+  width: 100%;
+  padding: 8px 13px;
+
+  background-color: clr.$ns-050;
+  border: 2px solid clr.$ns-300;
+  border-radius: hc.$search-border-radius;
+
+  > input {
+    flex: 1;
+    width: auto;
+    min-width: 0;
+    opacity: 1;
+  }
+}
+
+@mixin dd-hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+
+  transition:
+    opacity hc.$transform-med,
+    visibility hc.$transform-med,
+    transform hc.$transform-med;
+}
+
+@mixin dd-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}

@@ -27,7 +27,7 @@ export const Header = () => {
         s.header,
         {
           [s['header--search-expanded']]: searchExpanded,
-          [s['header--scrolled']]: scrolled,
+          [s['header--scrolled']]: scrolled && !searchExpanded && !bmExpanded,
         },
         { [s['header--menu-expanded']]: bmExpanded && !searchExpanded },
       )}
@@ -45,7 +45,7 @@ export const Header = () => {
       />
 
       <NavBar />
-      <div className={s.spacer} />
+      <div data-header-spacer />
       <UserActions />
       <SearchDropdown visible={searchExpanded} query={query} />
     </header>

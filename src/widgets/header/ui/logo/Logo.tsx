@@ -4,7 +4,7 @@ import s from './logo.module.scss';
 
 export const Logo = () => {
   return (
-    <Link href="/" className={s.container}>
+    <Link href="/" data-header-logo className={s.container}>
       <IconLogo />
       <span>NutriSpace</span>
     </Link>

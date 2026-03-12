@@ -5,7 +5,11 @@ import b from '../shared/iconButton.module.scss';
 
 export const UserActions = () => {
   return (
-    <nav aria-label="User action navigation" className={s.wrapper}>
+    <nav
+      data-header-actions
+      aria-label="User action navigation"
+      className={s.wrapper}
+    >
       {uaLinks.map(el => (
         <Link
           key={el.href}

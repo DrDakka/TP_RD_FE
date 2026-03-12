@@ -1,4 +1,4 @@
-import { IconSearch } from '@/shared/ui';
+import { IconPlus, IconSearch } from '@/shared/ui';
 import s from './searchBar.module.scss';
 import classNames from 'classnames';
 
@@ -9,6 +9,7 @@ type Props = {
     query: (e: React.ChangeEvent<HTMLInputElement>) => void;
     expand: () => void;
     focus: () => void;
+    clearQuery: () => void;
   };
   query: string;
   inputRef: React.RefObject<HTMLInputElement>;
@@ -23,6 +24,7 @@ export const SearchBar: React.FC<Props> = ({
 }) => {
   return (
     <div
+      data-header-search
       className={classNames(s['search-wrapper'], {
         [s['search-wrapper--expanded']]: expanded,
         [s['search-wrapper--scrolled']]: scrolled,
@@ -33,12 +35,16 @@ export const SearchBar: React.FC<Props> = ({
         className={s['icon-btn']}
         onClick={e => {
           e.stopPropagation();
+          if (expanded || query !== '') {
+            handlers.clearQuery();
+          }
+
           handlers.expand();
         }}
         aria-expanded={expanded}
-        aria-label="Toggle search"
+        aria-label={expanded ? 'Clear query and close search' : 'Open search'}
       >
-        <IconSearch />
+        {expanded ? <IconPlus cross /> : <IconSearch />}
       </button>
       <input
         ref={inputRef}

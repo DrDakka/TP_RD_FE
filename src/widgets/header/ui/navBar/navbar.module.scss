@@ -39,18 +39,7 @@
 
     color: clr.$prm-700;
 
-    &::after {
-      content: '';
 
-      position: absolute;
-      bottom: 0;
-      left: hc.$navlink-padding-x;
-
-      width: calc(100% - hc.$navlink-padding-x * 2);
-      height: 2px;
-
-      background-color: clr.$prm-700;
-    }
   }
 
   @media (min-width: bp.$dsc) {

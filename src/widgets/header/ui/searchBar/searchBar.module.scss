@@ -4,6 +4,15 @@
 @use '../../model/header.constants' as hc;
 @use '../../model/header.mixins' as hm;
 
+@keyframes icon-appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .search-wrapper {
   display: flex;
   align-items: center;
@@ -56,6 +65,18 @@
   }
 
   @media (max-width: bp.$dsc) {
+    transition:
+      width hc.$transform-med,
+      padding hc.$transform-med,
+      background-color hc.$transform-med,
+      gap hc.$transform-med;
+
+    > .icon-btn {
+      opacity: 0;
+      animation: icon-appear hc.$transform-fast forwards;
+      animation-delay: hc.$transform-med;
+    }
+
     &:hover,
     &:focus-within {
       background-color: clr.$ns-200;
@@ -67,6 +88,11 @@
 
     &--expanded {
       @include hm.searchbar-expanded;
+
+      > .icon-btn {
+        animation: none;
+        opacity: 1;
+      }
 
       &:hover,
       &:focus-within {

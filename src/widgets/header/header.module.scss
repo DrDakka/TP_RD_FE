@@ -1,12 +1,13 @@
 @use 'shared/styles/constants/colors' as clr;
 @use 'shared/styles/constants/breakpoints' as bp;
+@use 'shared/styles/constants/zindex' as z;
 @use './model/header.constants' as hc;
 @use './model/header.mixins' as hm;
 
 .header {
   position: sticky;
   top: 0;
-  z-index: hc.$header-z-index;
+  z-index: z.$z-header;
 
   display: grid;
   grid-template: hc.$grid-mob;
@@ -28,7 +29,7 @@
 
     position: absolute;
     inset: 0;
-    z-index: -1;
+    z-index: z.$z-minus;
 
     @include hm.frosted;
 
@@ -91,15 +92,23 @@
   }
 
   @media (max-width: bp.$dsc) {
+    > :not([data-header-search]):not([data-search-dropdown]):not([data-header-nav]) {
+      transition:
+        opacity hc.$transform-fast hc.$transform-fast,
+        visibility hc.$transform-fast hc.$transform-fast;
+    }
+
     &--search-expanded {
       grid-template: hc.$grid-search-mob-expanded;
       column-gap: 0;
 
-      > :not([data-header-search]):not([data-search-dropdown]) {
+      > :not([data-header-search]):not([data-search-dropdown]):not([data-header-nav]) {
         opacity: 0;
         visibility: hidden;
 
-        transition: all hc.$transform-med;
+        transition:
+          opacity hc.$transform-fast,
+          visibility hc.$transform-fast;
       }
     }
 
@@ -125,6 +134,7 @@
     > [data-header-search] {
       grid-area: 1 / 2 / 2 / 3;
 
+      width: calc(100% - hc.$logo-search-gap);
       margin-left: hc.$logo-search-gap;
 
       transition: all hc.$transform-med;

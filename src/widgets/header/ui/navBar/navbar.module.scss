@@ -29,7 +29,7 @@
 
     transition: transform hc.$transform-fast;
 
-    &:hover {
+    &:hover, &:focus {
       transform: hc.$iconsHover;
     }
   }
@@ -38,8 +38,6 @@
     position: relative;
 
     color: clr.$prm-700;
-
-
   }
 
   @media (min-width: bp.$dsc) {

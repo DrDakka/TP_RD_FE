@@ -23,6 +23,7 @@
   &:hover,
   &:focus {
     background-color: clr.$ns-200;
+    box-shadow: hc.$btn-hover-shadow;
 
     > svg {
       transform: hc.$iconsHover;

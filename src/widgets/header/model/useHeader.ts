@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 
 export const useHeader = () => {
   const [searchExpanded, setExpanded] = useState<boolean>(false);
@@ -8,6 +8,48 @@ export const useHeader = () => {
 
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLElement>(null);
+  const lastExpandedAtRef = useRef<number>(0);
+
+  const effectHandler = useMemo(
+    () => ({
+      scroll: () => {
+        setScrolled(window.scrollY > 20);
+        if (performance.now() - lastExpandedAtRef.current > 150) {
+          setExpanded(false);
+          inputRef.current?.blur();
+          setBMExpanded(false);
+        }
+      },
+      touchMove: () => {
+        if (searchExpanded) {
+          setExpanded(false);
+          inputRef.current?.blur();
+        }
+      },
+      keydown: (e: KeyboardEvent) => {
+        if (e.key === 'Escape' && searchExpanded) {
+          setExpanded(false);
+          inputRef.current?.blur();
+        }
+      },
+      outsideClick: (e: MouseEvent) => {
+        if (
+          containerRef.current &&
+          !containerRef.current.contains(e.target as Node)
+        ) {
+          if (searchExpanded) {
+            setExpanded(false);
+            inputRef.current?.blur();
+          }
+
+          if (bmExpanded) {
+            setBMExpanded(false);
+          }
+        }
+      },
+    }),
+    [searchExpanded, bmExpanded],
+  );
 
   useEffect(() => {
     if (searchExpanded) {
@@ -18,39 +60,26 @@ export const useHeader = () => {
   useEffect(() => {
     if (!searchExpanded && !bmExpanded) return;
 
-    const handleOutsideClick = (e: MouseEvent) => {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(e.target as Node)
-      ) {
-        if (searchExpanded) {
-          setExpanded(false);
-          inputRef.current?.blur();
-        }
+    document.addEventListener('mousedown', effectHandler.outsideClick);
+    document.addEventListener('keydown', effectHandler.keydown);
 
-        if (bmExpanded) {
-          setBMExpanded(false);
-        }
-      }
+    return () => {
+      document.removeEventListener('mousedown', effectHandler.outsideClick);
+      document.removeEventListener('keydown', effectHandler.keydown);
     };
-
-    document.addEventListener('mousedown', handleOutsideClick);
-
-    return () => document.removeEventListener('mousedown', handleOutsideClick);
-  }, [searchExpanded, bmExpanded]);
+  }, [effectHandler, searchExpanded, bmExpanded]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-      setExpanded(false);
-      inputRef.current?.blur();
-      setBMExpanded(false);
+    window.addEventListener('scroll', effectHandler.scroll, { passive: true });
+    document.addEventListener('touchmove', effectHandler.touchMove, {
+      passive: true,
+    });
+
+    return () => {
+      window.removeEventListener('scroll', effectHandler.scroll);
+      document.removeEventListener('touchmove', effectHandler.touchMove);
     };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [effectHandler]);
 
   const handler = {
     query: (e: React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value),
@@ -60,10 +89,12 @@ export const useHeader = () => {
         setExpanded(false);
         inputRef.current?.blur();
       } else {
+        lastExpandedAtRef.current = performance.now();
         setExpanded(true);
       }
     },
     focus: () => {
+      lastExpandedAtRef.current = performance.now();
       setExpanded(true);
       inputRef.current?.focus();
     },

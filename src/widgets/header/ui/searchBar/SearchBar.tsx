@@ -48,6 +48,7 @@ export const SearchBar: React.FC<Props> = ({
       </button>
       <input
         ref={inputRef}
+        tabIndex={expanded ? 0 : -1}
         type="text"
         aria-label="search for foods"
         placeholder="Search for foods"

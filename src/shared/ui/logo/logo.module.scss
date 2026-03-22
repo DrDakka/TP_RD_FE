@@ -1,7 +1,6 @@
 @use 'shared/styles/constants/breakpoints' as bp;
 @use 'shared/styles/constants/colors' as clr;
 @use 'shared/styles/mixins/typography' as typo;
-@use '../../model/header.constants' as hc;
 
 .container {
   display: flex;
@@ -13,11 +12,11 @@
   flex-shrink: 0;
   padding-inline: 10px;
 
-  border-radius: hc.$icons-border-radius;
+  border-radius: 6px;
 
   transition:
-    box-shadow hc.$transform-med,
-    background-color hc.$transform-med;
+    box-shadow 0.3s,
+    background-color 0.3s;
 
   &:hover,
   &:focus {
@@ -30,8 +29,8 @@
   }
 
   > svg {
-    width: hc.$logoSvgWidthMob;
-    height: hc.$logoSvgHeightMob;
+    width: 24px;
+    height: 29px;
   }
 
   > span {
@@ -44,8 +43,8 @@
     justify-content: space-between;
 
     > svg {
-      width: hc.$logoSvgWidthDsc;
-      height: hc.$logoSvgHeightDsc;
+      width: 26px;
+      height: 32px;
     }
 
     > span {

@@ -1,6 +1,7 @@
 'use client';
 
-import { BurgerButton, Logo, NavBar, UserActions, SearchDropdown } from './ui';
+import { BurgerButton, NavBar, UserActions, SearchDropdown } from './ui';
+import { Logo } from '@shared/ui';
 import s from './header.module.scss';
 import { SearchBar } from './ui/searchBar/SearchBar';
 import { useHeader } from './model/useHeader';
@@ -34,7 +35,7 @@ export const Header = () => {
     >
       <BurgerButton handler={menu} expanded={bmExpanded} />
 
-      <Logo />
+      <Logo className={s.logo} />
 
       <SearchBar
         expanded={searchExpanded}

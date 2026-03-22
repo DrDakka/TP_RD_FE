@@ -42,7 +42,7 @@
     grid-area: 1 / 1 / 2 / 2;
   }
 
-  > [data-header-logo] {
+  > .logo {
     grid-area: 1 / 2 / 2 / 3;
   }
 
@@ -127,7 +127,7 @@
       display: none;
     }
 
-    > [data-header-logo] {
+    > .logo {
       grid-area: 1 / 1 / 2 / 2;
     }
 

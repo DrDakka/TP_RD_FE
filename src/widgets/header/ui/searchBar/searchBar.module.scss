@@ -110,7 +110,8 @@
 
     min-width: hc.$search-min-width-desc;
 
-    &:hover:not(:focus-within) {
+    &:hover:not(:focus-within),
+    &:focus:not(:focus-within) {
       border-color: clr.$ns-500;
     }
 

@@ -1,4 +1,4 @@
-import { IconPlus, IconSearch } from '@/shared/ui';
+import { IconPlus, IconSearch } from '@shared/ui';
 import s from './searchBar.module.scss';
 import classNames from 'classnames';
 

@@ -1,19 +1,7 @@
 import { IconCart, IconProfile } from '@shared/ui';
+import { navRoutes } from '@shared/config/routes';
 
-const navLinks = [
-  {
-    name: 'Food Library',
-    href: '/catalogue',
-  },
-  {
-    name: 'Meal Plans',
-    href: '/constructor',
-  },
-  {
-    name: 'Science Database',
-    href: '/sci-lib',
-  },
-] as const;
+const navLinks = navRoutes;
 
 const uaLinks = [
   {

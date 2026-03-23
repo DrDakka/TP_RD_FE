@@ -1,0 +1,102 @@
+@use 'shared/styles/constants/breakpoints' as bp;
+@use 'shared/styles/constants/colors' as clr;
+@use 'shared/styles/mixins/typography' as typo;
+@use './model/footer.mixins' as fm;
+@use './model/footer.constants' as fc;
+
+.footer {
+  background-color: clr.$ns-050;
+  border-top: 1px solid clr.$ns-200;
+  padding-block: 40px 24px;
+  padding-inline: fc.$layout-padding;
+
+  @media (min-width: bp.$dsc) {
+    padding-inline: max(
+      fc.$layout-padding,
+      calc((100% - fc.$max-content-width) / 2)
+    );
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template: fc.$grid-mob;
+  gap: fc.$row-gap;
+
+  @media (min-width: bp.$tab) {
+    grid-template: fc.$grid-tab;
+    gap: fc.$row-gap fc.$col-gap-tab;
+
+    > [data-footer-brand]           { grid-area: 1 / 1 / 2 / 2; }
+    > [data-footer-group='nav']     { grid-area: 1 / 2 / 2 / 3; }
+    > [data-footer-group='support'] { grid-area: 1 / 3 / 2 / 4; }
+    > [data-footer-copyright]       { grid-area: 2 / 1 / 3 / 2; }
+    > [data-footer-newsletter]      { grid-area: 2 / 2 / 3 / 4; }
+  }
+
+  @media (min-width: bp.$dsc) {
+    grid-template: fc.$grid-dsc;
+    gap: 0 fc.$col-gap-dsc;
+    align-items: stretch;
+
+    > [data-footer-newsletter] { grid-area: 1 / 4 / 2 / 5; }
+    > [data-footer-copyright]  { grid-column: 1; grid-row: 1; }
+  }
+
+  > [data-footer-group] {
+    position: relative;
+
+    @include fm.sep-h(fc.$sep-row);
+
+    @media (min-width: bp.$tab) {
+      @include fm.sep-v(fc.$sep-col-tab);
+    }
+
+    @media (min-width: bp.$dsc) {
+      @include fm.sep-v(fc.$sep-col-dsc);
+    }
+  }
+
+  > [data-footer-newsletter] {
+    position: relative;
+
+    @include fm.sep-h(fc.$sep-row);
+
+    @media (min-width: bp.$tab) {
+      &::before {
+        display: none;
+      }
+    }
+
+    @media (min-width: bp.$dsc) {
+      @include fm.sep-v(fc.$sep-col-dsc);
+    }
+  }
+
+  > [data-footer-copyright] {
+    position: relative;
+    @include typo.caption;
+    color: clr.$ns-500;
+    text-align: center;
+
+    @include fm.sep-h(fc.$sep-row);
+
+    @media (min-width: bp.$tab) {
+      text-align: left;
+      align-self: end;
+
+      &::before {
+        display: none;
+      }
+    }
+
+    @media (min-width: bp.$dsc) {
+      align-self: end;
+      justify-self: start;
+
+      &::before {
+        display: none;
+      }
+    }
+  }
+}

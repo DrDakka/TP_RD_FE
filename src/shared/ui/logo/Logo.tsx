@@ -4,7 +4,7 @@ import s from './logo.module.scss';
 import classNames from 'classnames';
 
 type LogoProps = {
-  className: string;
+  className?: string;
 };
 
 export const Logo = ({ className }: LogoProps) => {

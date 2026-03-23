@@ -1,0 +1,31 @@
+@use 'shared/styles/constants/colors' as clr;
+
+@mixin sep-h($offset) {
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -#{$offset};
+    bottom: auto;
+    left: 0;
+    right: 0;
+    height: 1px;
+    width: auto;
+    background: clr.$ns-200;
+  }
+}
+
+@mixin sep-v($offset) {
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: -#{$offset};
+    right: auto;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    height: auto;
+    background: clr.$ns-200;
+  }
+}

@@ -1,17 +1,13 @@
-@use 'shared/styles/constants/breakpoints' as bp;
 @use 'shared/styles/constants/colors' as clr;
-@use 'shared/styles/mixins/typography' as typo;
+
+// Only shared semantics: link reset, hover effect.
+// Layout (gap, sizing, typography) is defined by each consumer.
 
 .container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  height: 100%;
-  width: 100%;
-  box-sizing: border-box;
-  flex-shrink: 0;
-  padding-inline: 10px;
-
+  text-decoration: none;
+  width: fit-content;
   border-radius: 6px;
 
   transition:
@@ -26,29 +22,5 @@
       0 0 18px 10px rgba(clr.$prm-500, 0.04),
       0 0 36px 16px rgba(clr.$prm-500, 0.02);
     outline: none;
-  }
-
-  > svg {
-    width: 24px;
-    height: 29px;
-  }
-
-  > span {
-    @include typo.body-l;
-    color: clr.$ns-800;
-  }
-
-  @media (min-width: bp.$dsc) {
-    gap: 12px;
-    justify-content: space-between;
-
-    > svg {
-      width: 26px;
-      height: 32px;
-    }
-
-    > span {
-      @include typo.h2;
-    }
   }
 }

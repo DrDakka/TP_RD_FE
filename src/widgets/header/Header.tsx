@@ -1,9 +1,8 @@
 'use client';
 
-import { BurgerButton, NavBar, UserActions, SearchDropdown } from './ui';
+import { BurgerButton, NavBar, UserActions, SearchDropdown, SearchBar } from './ui';
 import { Logo } from '@shared/ui';
 import s from './header.module.scss';
-import { SearchBar } from './ui/searchBar/SearchBar';
 import { useHeader } from './model/useHeader';
 import classNames from 'classnames';
 import { RefObject } from 'react';
@@ -24,14 +23,11 @@ export const Header = () => {
   return (
     <header
       ref={containerRef as React.RefObject<HTMLElement>}
-      className={classNames(
-        s.header,
-        {
-          [s['header--search-expanded']]: searchExpanded,
-          [s['header--scrolled']]: scrolled && !searchExpanded && !bmExpanded,
-        },
-        { [s['header--menu-expanded']]: bmExpanded && !searchExpanded },
-      )}
+      className={classNames(s.header, {
+        [s['header--search-expanded']]: searchExpanded,
+        [s['header--scrolled']]: scrolled && !searchExpanded && !bmExpanded,
+        [s['header--menu-expanded']]: bmExpanded && !searchExpanded,
+      })}
     >
       <BurgerButton handler={menu} expanded={bmExpanded} />
 

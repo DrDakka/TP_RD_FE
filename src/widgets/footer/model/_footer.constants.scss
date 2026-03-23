@@ -1,0 +1,20 @@
+@use 'sass:list';
+
+$layout-padding: 12px;
+$max-content-width: 1400px;
+
+$col-gap-tab: 48px;
+$col-gap-dsc: 64px;
+$row-gap: 32px;
+
+$sep-row: calc($row-gap / 2);
+$sep-col-tab: calc($col-gap-tab / 2);
+$sep-col-dsc: calc($col-gap-dsc / 2);
+
+$brand-col-tab: 220px;
+$newsletter-col-dsc: 260px;
+
+
+$grid-mob: list.slash(auto auto auto auto auto, 1fr);
+$grid-tab: list.slash(auto auto, $brand-col-tab 1fr 1fr);
+$grid-dsc: list.slash(auto, 1fr auto auto $newsletter-col-dsc);

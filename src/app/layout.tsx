@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="uk">
       <body className={manrope.variable}>
         <Header />
-        {children}
+        <main>{children}</main>
         <Footer />
       </body>
     </html>

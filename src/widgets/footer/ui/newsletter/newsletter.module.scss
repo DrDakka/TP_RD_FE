@@ -1,0 +1,68 @@
+@use 'shared/styles/constants/colors' as clr;
+@use 'shared/styles/mixins/typography' as typo;
+
+.container {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+}
+
+.title {
+  @include typo.body-l;
+  font-weight: 600;
+  color: clr.$ns-800;
+}
+
+.subtitle {
+  @include typo.body-m;
+  color: clr.$ns-700;
+}
+
+.inputRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.emailInput {
+  @include typo.body-m;
+  min-width: 0;
+  padding: 8px 12px;
+  border: 1px solid clr.$ns-300;
+  border-radius: 8px;
+  background: clr.$ns-000;
+  color: clr.$ns-800;
+  outline: none;
+
+  &::placeholder {
+    color: clr.$ns-500;
+  }
+
+  &:disabled {
+    background: clr.$ns-100;
+    cursor: not-allowed;
+  }
+}
+
+.subscribeBtn {
+  @include typo.body-m;
+  font-weight: 600;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  background: clr.$prm-500;
+  color: clr.$ns-000;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+
+  &:hover:not(:disabled) {
+    background: clr.$prm-600;
+  }
+
+  &:disabled {
+    background: clr.$ns-300;
+    cursor: not-allowed;
+  }
+}

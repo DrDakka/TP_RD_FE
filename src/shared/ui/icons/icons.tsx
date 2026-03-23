@@ -257,6 +257,24 @@ const IconCheck = () => (
   </svg>
 );
 
+const IconCheckCircle = () => (
+  <svg
+    className={s.icon}
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle cx="10" cy="10" r="10" fill="#16B897" />
+    <path
+      d="M5.5 10.5L8.5 13.5L14.5 7.5"
+      stroke="white"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
 const IconTrash = () => (
   <svg
     className={s.icon}
@@ -631,9 +649,9 @@ const IconList = () => (
     <path
       d="M3 5H3.01M3 12H3.01M3 19H3.01M8 5H21M8 12H21M8 19H21"
       stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 );
@@ -650,6 +668,7 @@ export {
   IconScale,
   IconSearch,
   IconCheck,
+  IconCheckCircle,
   IconTrash,
   IconEdit,
   IconMinus,

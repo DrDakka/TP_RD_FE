@@ -1,0 +1,31 @@
+@use 'shared/styles/constants/colors' as clr;
+@use 'shared/styles/mixins/typography' as typo;
+
+.container {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+
+// Override shared Logo layout for footer context
+.logo {
+  gap: 10px;
+
+  > svg {
+    width: auto;
+    height: 24px;
+    flex-shrink: 0;
+  }
+
+  > span {
+    @include typo.body-l;
+
+    font-weight: 600;
+    color: clr.$ns-900;
+  }
+}
+
+.tagline {
+  @include typo.body-m;
+  color: clr.$ns-700;
+}

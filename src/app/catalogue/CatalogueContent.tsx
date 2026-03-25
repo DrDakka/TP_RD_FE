@@ -1,18 +1,26 @@
 'use client';
 
+import { CatalogueItem } from '@/shared/api/types';
+import { useFavorite } from '@/features/useFavorite';
+import { ProductCard } from '@/widgets/productCard/ProductCard';
 import { useUrlReducer } from './useUrlReducer';
 import { Tags, PropTags } from '@/shared/api/types/product/enums';
 
-export const CatalogueContent = () => {
+type Props = {
+  items: CatalogueItem[];
+};
+
+const ItemCard = ({ inc }: { inc: CatalogueItem }) => {
+  const { isFavorite, toggle } = useFavorite(inc.id);
+
+  return <ProductCard inc={inc} isFavorite={isFavorite} toggleFav={toggle} />;
+};
+
+export const CatalogueContent = ({ items }: Props) => {
   const [state, dispatch] = useUrlReducer();
 
   return (
     <div>
-      <p>search: {state.search}</p>
-      <p>tag: {state.tag}</p>
-      <p>prop: {state.prop.join(', ')}</p>
-      <p>page: {state.page}</p>
-
       <button onClick={() => dispatch({ type: 'SET_SEARCH', payload: 'test' })}>
         Set search
       </button>
@@ -30,6 +38,11 @@ export const CatalogueContent = () => {
         Next page
       </button>
       <button onClick={() => dispatch({ type: 'RESET_FILTERS' })}>Reset</button>
+      <div>
+        {items.map(item => (
+          <ItemCard key={item.id} inc={item} />
+        ))}
+      </div>
     </div>
   );
 };

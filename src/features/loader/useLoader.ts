@@ -3,19 +3,21 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 const RETRY_ATTEMPTS = 2;
 const RETRY_DELAY_MS = 1000;
 
-type LoadStatus = 'loading' | 'error' | 'idle';
+type LoadStatus = 'loading' | 'error';
 
 const delay = (ms: number) => new Promise(r => setTimeout(r, ms));
 
-const useLoader = <R>(loadFn: (signal: AbortSignal) => Promise<R>) => {
-  const [data, setData] = useState<R | null>(null);
-  const [status, setStatus] = useState<LoadStatus>('loading');
+const useLoader = <R>(
+  loadFn: (signal: AbortSignal) => Promise<R>,
+  enabled = true,
+) => {
+  const [data, setData] = useState<R | LoadStatus>('loading');
   const controllerRef = useRef<AbortController | null>(null);
 
   const load = useCallback(async () => {
     controllerRef.current?.abort();
     controllerRef.current = new AbortController();
-    setStatus('loading');
+    setData('loading');
 
     for (let attempt = 0; attempt <= RETRY_ATTEMPTS; attempt++) {
       try {
@@ -23,7 +25,6 @@ const useLoader = <R>(loadFn: (signal: AbortSignal) => Promise<R>) => {
 
         if (!controllerRef.current.signal.aborted) {
           setData(result);
-          setStatus('idle');
         }
 
         return;
@@ -31,7 +32,7 @@ const useLoader = <R>(loadFn: (signal: AbortSignal) => Promise<R>) => {
         if (e instanceof DOMException && e.name === 'AbortError') return;
 
         if (attempt === RETRY_ATTEMPTS) {
-          setStatus('error');
+          setData('error');
 
           return;
         }
@@ -42,13 +43,19 @@ const useLoader = <R>(loadFn: (signal: AbortSignal) => Promise<R>) => {
   }, [loadFn]);
 
   useEffect(() => {
+    if (!enabled) return;
+
     // eslint-disable-next-line react-hooks/set-state-in-effect
     load();
 
     return () => controllerRef.current?.abort();
-  }, [load]);
+  }, [load, enabled]);
 
-  return { data, status, reload: load };
+  return {
+    data,
+    reload: load,
+    abort: () => controllerRef.current?.abort(),
+  };
 };
 
 export { useLoader, type LoadStatus };

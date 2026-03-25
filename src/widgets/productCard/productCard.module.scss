@@ -1,0 +1,16 @@
+.productCard {
+  display: flex;
+  background-color: #fff;
+
+  &--loading {
+    background-color: black;
+  }
+
+  &--expanded {
+    background-color: green;
+  }
+
+  &--error {
+    background-color: red;
+  }
+}

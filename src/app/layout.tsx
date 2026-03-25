@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Manrope } from 'next/font/google';
 import './globals.scss';
 import { Header, Footer } from '@/widgets';
+import { FavoritesProvider } from './FavoritesProvider';
 
 const manrope = Manrope({
   subsets: ['latin', 'cyrillic'],
@@ -22,9 +23,11 @@ export default function RootLayout({
   return (
     <html lang="uk">
       <body className={manrope.variable}>
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <FavoritesProvider>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </FavoritesProvider>
       </body>
     </html>
   );

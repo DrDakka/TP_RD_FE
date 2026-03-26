@@ -5,9 +5,15 @@ import { Logo } from '@shared/ui';
 import s from './header.module.scss';
 import { useHeader } from './model/useHeader';
 import classNames from 'classnames';
-import { RefObject } from 'react';
+import { RefObject, useEffect } from 'react';
+import { useFavoritesStore } from '@/features/favorites/store';
 
 export const Header = () => {
+  useEffect(() => {
+    const store = useFavoritesStore.getState();
+    store.init().then(() => store.flush());
+  }, []);
+
   const {
     searchExpanded,
     query,

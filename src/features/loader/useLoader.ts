@@ -10,9 +10,11 @@ const delay = (ms: number) => new Promise(r => setTimeout(r, ms));
 const useLoader = <R>(
   loadFn: (signal: AbortSignal) => Promise<R>,
   enabled = true,
+  initialData?: R,
 ) => {
-  const [data, setData] = useState<R | LoadStatus>('loading');
+  const [data, setData] = useState<R | LoadStatus>(initialData ?? 'loading');
   const controllerRef = useRef<AbortController | null>(null);
+  const isFirstRun = useRef(true);
 
   const load = useCallback(async () => {
     controllerRef.current?.abort();
@@ -45,11 +47,19 @@ const useLoader = <R>(
   useEffect(() => {
     if (!enabled) return;
 
+    if (isFirstRun.current && initialData !== undefined) {
+      isFirstRun.current = false;
+
+      return;
+    }
+
+    isFirstRun.current = false;
+
     // eslint-disable-next-line react-hooks/set-state-in-effect
     load();
 
     return () => controllerRef.current?.abort();
-  }, [load, enabled]);
+  }, [load, enabled, initialData]);
 
   return {
     data,

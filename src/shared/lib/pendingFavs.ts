@@ -7,6 +7,7 @@ const read = (key: string): Set<number> => {
   try {
     if (typeof window === 'undefined') return new Set();
     const raw = localStorage.getItem(key);
+
     return raw ? new Set(JSON.parse(raw) as number[]) : new Set();
   } catch {
     return new Set();

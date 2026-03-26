@@ -1,8 +1,13 @@
+const base =
+  typeof window === 'undefined'
+    ? `http://localhost:${process.env.PORT ?? 3000}`
+    : '';
+
 const endpoints = {
-  calc: '/api/norms/calculate',
-  prod: '/api/products',
-  prodBatch: '/api/products/batch',
-} as const;
+  calc: `${base}/api/norms/calculate`,
+  prod: `${base}/api/products`,
+  prodBatch: `${base}/api/products/batch`,
+};
 
 type Endpoint = (typeof endpoints)[keyof typeof endpoints];
 

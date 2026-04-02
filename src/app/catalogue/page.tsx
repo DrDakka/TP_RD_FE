@@ -1,6 +1,8 @@
 import { CatalogueContent } from './CatalogueContent';
 import { api } from '@/shared/api/api';
 
+export const dynamic = 'force-dynamic';
+
 type Props = {
   searchParams: Promise<Record<string, string | string[]>>;
 };

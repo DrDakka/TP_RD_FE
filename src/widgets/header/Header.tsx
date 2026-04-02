@@ -1,6 +1,12 @@
 'use client';
 
-import { BurgerButton, NavBar, UserActions, SearchDropdown, SearchBar } from './ui';
+import {
+  BurgerButton,
+  NavBar,
+  UserActions,
+  SearchDropdown,
+  SearchBar,
+} from './ui';
 import { Logo } from '@shared/ui';
 import s from './header.module.scss';
 import { useHeader } from './model/useHeader';
@@ -11,6 +17,7 @@ import { useFavoritesStore } from '@/features/favorites/store';
 export const Header = () => {
   useEffect(() => {
     const store = useFavoritesStore.getState();
+
     store.init().then(() => store.flush());
   }, []);
 

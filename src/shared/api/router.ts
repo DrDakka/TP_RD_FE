@@ -6,6 +6,10 @@ const endpoints = {
   prodBatch: '/api/products/batch',
 };
 
+const clientEndpoints = {
+  prod: '/api/products',
+};
+
 type Endpoint = (typeof endpoints)[keyof typeof endpoints];
 
-export { endpoints, type Endpoint };
+export { endpoints, clientEndpoints, type Endpoint };

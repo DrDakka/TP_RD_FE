@@ -1,3 +1,5 @@
+@use 'shared/styles/constants' as c;
+
 // ─── Normalize / Reset ────────────────────────────────────────────────────────
 
 *,
@@ -35,6 +37,7 @@ body {
 
 main {
   flex: 1;
+  padding-top: c.$layout-header-height;
 }
 
 img,

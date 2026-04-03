@@ -6,7 +6,7 @@
 @use './model/header.mixins' as hm;
 
 .header {
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: z.$z-header;
 

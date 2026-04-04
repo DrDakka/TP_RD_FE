@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import styles from '@/shared/styles/layout/layout.module.scss';
 import {
   calculateTDEE,
   calculateBMR,
@@ -90,6 +91,7 @@ export default function TestPage() {
 
   return (
     <main
+      className={styles.container}
       style={{
         maxWidth: 520,
         margin: '24px auto',

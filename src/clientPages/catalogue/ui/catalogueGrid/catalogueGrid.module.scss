@@ -1,0 +1,27 @@
+@use 'shared/styles/constants/colors' as clr;
+
+.catalogueGrid {
+  display: grid;
+  position: relative;
+  grid-column: 1fr;
+  width: 100%;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: inherit;
+
+  background-color: rgba(clr.$ns-000, 0.82);
+  backdrop-filter: blur(10px);
+
+  &--error {
+    background-color: rgba(clr.$s-dng, 0.06);
+  }
+}

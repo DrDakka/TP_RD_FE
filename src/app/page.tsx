@@ -1,8 +1,9 @@
 import { TestWidget } from '@/widgets/test/Test';
+import styles from '@/shared/styles/layout/layout.module.scss';
 
 export default function Home() {
   return (
-    <main style={{ width: '100%' }}>
+    <main className={styles.container}>
       <TestWidget />
       <p style={{ width: '100%' }}>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt

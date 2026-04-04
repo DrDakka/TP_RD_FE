@@ -1,2 +1,2 @@
-export { getInit } from './init/getInit';
-export { SearchParamKey } from './constants';
+export { getInit } from './getInit';
+export { redirectRouter } from './redirects';

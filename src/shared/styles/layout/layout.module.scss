@@ -1,0 +1,23 @@
+@use 'shared/styles/constants/breakpoints' as bp;
+
+.container {
+  width: 100%;
+
+  @media (min-width: bp.$main-mob) {
+    padding-inline: bp.$main-margin-mob;
+  }
+
+  @media (min-width: bp.$tab) {
+    padding-inline: bp.$main-margin-tab;
+  }
+
+  @media (min-width: bp.$dsc) {
+    padding-inline: bp.$main-margin-dsc;
+  }
+
+  @media (min-width: bp.$dsc-wide) {
+    max-width: bp.$main-max-width;
+    padding-inline: 0;
+    margin-inline: auto;
+  }
+}

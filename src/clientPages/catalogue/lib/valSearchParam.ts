@@ -1,6 +1,8 @@
+import {
+  type FilterState,
+  SearchParamKey,
+} from '@/clientPages/catalogue/model/types';
 import { PropTags, Tags } from '@/shared/api/types';
-import { SearchParamKey } from '../constants';
-import { FilterState } from '../../model/useUrlReducer';
 
 const VALID_TAGS = new Set<string>(Object.values(Tags));
 const VALID_PROPS = new Set<string>(Object.values(PropTags));

@@ -17,10 +17,10 @@ enum PropTags {
   HF = 'hi-fat',
   HC = 'hi-carb',
   HKCAL = 'hi-cal',
-  LP = 'lo-prot',
-  LF = 'lo-fat',
-  LC = 'lo-carb',
-  LKCAL = 'lo-cal',
+  LP = 'low-prot',
+  LF = 'low-fat',
+  LC = 'low-carb',
+  LKCAL = 'low-cal',
   FBR = 'fiber',
 }
 

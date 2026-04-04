@@ -18,24 +18,28 @@ const modifierOffset: Record<Modifier, number> = {
 };
 
 export async function POST(req: NextRequest) {
-  const body = await req.json() as CalculateNormRequest;
+  const body = (await req.json()) as CalculateNormRequest;
   const { age, sex, height, weight, activity, modifier } = body;
 
   const baseMale = 10 * weight + 6.25 * height - 5 * age + 5;
   const baseFemale = 10 * weight + 6.25 * height - 5 * age - 161;
 
   const bmr =
-    sex === Sex.M ? baseMale :
-    sex === Sex.F ? baseFemale :
-    (baseMale + baseFemale) / 2;
+    sex === Sex.M
+      ? baseMale
+      : sex === Sex.F
+        ? baseFemale
+        : (baseMale + baseFemale) / 2;
 
-  const tdee = Math.round(bmr * activityMultiplier[activity] + modifierOffset[modifier]);
+  const tdee = Math.round(
+    bmr * activityMultiplier[activity] + modifierOffset[modifier],
+  );
   const bmi = parseFloat((weight / Math.pow(height / 100, 2)).toFixed(1));
 
   const macro = {
     cal: tdee,
     prot: Math.round((tdee * 0.25) / 4),
-    fat: Math.round((tdee * 0.30) / 9),
+    fat: Math.round((tdee * 0.3) / 9),
     carb: Math.round((tdee * 0.45) / 4),
   };
 
@@ -45,17 +49,83 @@ export async function POST(req: NextRequest) {
     tdee,
     macro,
     micro: [
-      { name: 'Вітамін A', unit: MeasureUnits.MCG, rec_amount: 900, max: 3000, min: null },
-      { name: 'Вітамін C', unit: MeasureUnits.MG, rec_amount: 90, max: 2000, min: null },
-      { name: 'Вітамін D', unit: MeasureUnits.MCG, rec_amount: 15, max: 100, min: null },
-      { name: 'Вітамін E', unit: MeasureUnits.MG, rec_amount: 15, max: 1000, min: null },
-      { name: 'Вітамін K', unit: MeasureUnits.MCG, rec_amount: 120, max: null, min: null },
-      { name: 'Вітамін B12', unit: MeasureUnits.MCG, rec_amount: 2.4, max: null, min: null },
-      { name: 'Залізо', unit: MeasureUnits.MG, rec_amount: sex === Sex.F ? 18 : 8, max: 45, min: null },
-      { name: 'Кальцій', unit: MeasureUnits.MG, rec_amount: 1000, max: 2500, min: null },
-      { name: 'Магній', unit: MeasureUnits.MG, rec_amount: sex === Sex.F ? 320 : 420, max: 350, min: null },
-      { name: 'Цинк', unit: MeasureUnits.MG, rec_amount: sex === Sex.F ? 8 : 11, max: 40, min: null },
-      { name: 'Омега-3', unit: MeasureUnits.G, rec_amount: 1.6, max: null, min: null },
+      {
+        name: 'Вітамін A',
+        unit: MeasureUnits.MCG,
+        rec_amount: 900,
+        max: 3000,
+        min: null,
+      },
+      {
+        name: 'Вітамін C',
+        unit: MeasureUnits.MG,
+        rec_amount: 90,
+        max: 2000,
+        min: null,
+      },
+      {
+        name: 'Вітамін D',
+        unit: MeasureUnits.MCG,
+        rec_amount: 15,
+        max: 100,
+        min: null,
+      },
+      {
+        name: 'Вітамін E',
+        unit: MeasureUnits.MG,
+        rec_amount: 15,
+        max: 1000,
+        min: null,
+      },
+      {
+        name: 'Вітамін K',
+        unit: MeasureUnits.MCG,
+        rec_amount: 120,
+        max: null,
+        min: null,
+      },
+      {
+        name: 'Вітамін B12',
+        unit: MeasureUnits.MCG,
+        rec_amount: 2.4,
+        max: null,
+        min: null,
+      },
+      {
+        name: 'Залізо',
+        unit: MeasureUnits.MG,
+        rec_amount: sex === Sex.F ? 18 : 8,
+        max: 45,
+        min: null,
+      },
+      {
+        name: 'Кальцій',
+        unit: MeasureUnits.MG,
+        rec_amount: 1000,
+        max: 2500,
+        min: null,
+      },
+      {
+        name: 'Магній',
+        unit: MeasureUnits.MG,
+        rec_amount: sex === Sex.F ? 320 : 420,
+        max: 350,
+        min: null,
+      },
+      {
+        name: 'Цинк',
+        unit: MeasureUnits.MG,
+        rec_amount: sex === Sex.F ? 8 : 11,
+        max: 40,
+        min: null,
+      },
+      {
+        name: 'Омега-3',
+        unit: MeasureUnits.G,
+        rec_amount: 1.6,
+        max: null,
+        min: null,
+      },
     ],
   });
 }

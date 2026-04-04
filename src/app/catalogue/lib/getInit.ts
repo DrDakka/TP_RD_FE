@@ -1,0 +1,34 @@
+import { ValidationError } from '@/shared/errors/ValidationError';
+import { val, createSearchParams } from '@/clientPages/catalogue/lib';
+import { type FilterState } from '@/clientPages/catalogue/model';
+
+type RawSearchParams = Record<string, string | string[] | undefined>;
+
+type ParsedSearchParams = {
+  initialState: Partial<FilterState> | null;
+  query: string;
+};
+
+export const getInit = (params: RawSearchParams): ParsedSearchParams => {
+  const init: ParsedSearchParams = {
+    initialState: null,
+    query: '',
+  };
+
+  if (!params) {
+    return init;
+  }
+
+  if (!val.keys(params)) {
+    throw new ValidationError(`Invalid param keys: ${params}`);
+  }
+
+  if (!val.entr(params)) {
+    throw new ValidationError(`Invalid param values: ${params}`);
+  }
+
+  init.initialState = params;
+  init.query = createSearchParams(init.initialState);
+
+  return init;
+};

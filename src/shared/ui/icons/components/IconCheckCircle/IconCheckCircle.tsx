@@ -1,4 +1,4 @@
-import { Icon } from '../../Icons';
+import { Icon } from '../../icons';
 
 export const IconCheckCircle = () => (
   <Icon viewBox="0 0 20 20">

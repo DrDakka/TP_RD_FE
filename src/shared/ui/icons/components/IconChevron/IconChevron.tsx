@@ -1,4 +1,4 @@
-import { Icon } from '../../Icons';
+import { Icon } from '../../icons';
 
 type ChevronDirection = 'down' | 'up' | 'left' | 'right';
 const chevronRotation: Record<ChevronDirection, number> = {

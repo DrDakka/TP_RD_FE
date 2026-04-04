@@ -1,4 +1,4 @@
-import { Icon } from '../../Icons';
+import { Icon } from '../../icons';
 import styles from './IconLoad.module.scss';
 
 export const IconLoad = () => (

@@ -1,4 +1,4 @@
-import { Icon } from '../../Icons';
+import { Icon } from '../../icons';
 
 export const IconEyeOff = () => (
   <Icon>

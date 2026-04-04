@@ -1,4 +1,4 @@
-import { IconLogo } from '@shared/ui/icons';
+import { IconLogo } from '@/shared/ui/icons';
 import Link from 'next/link';
 import s from './logo.module.scss';
 import classNames from 'classnames';

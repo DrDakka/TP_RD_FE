@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { IconCheckCircle } from '@shared/ui/icons';
+import { IconCheckCircle } from '@/shared/ui/icons';
 import s from './linkGroup.module.scss';
 
 type Props = {

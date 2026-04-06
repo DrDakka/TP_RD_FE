@@ -22,4 +22,9 @@ type FullItem = {
   micro: ProductNutrient[];
 };
 
-export type { ProductNutrient, CatalogueItem, FullItem };
+type TagMeta = {
+  label: string;
+  color: string;
+};
+
+export type { ProductNutrient, CatalogueItem, FullItem, TagMeta };

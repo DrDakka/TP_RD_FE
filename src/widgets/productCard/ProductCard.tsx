@@ -1,36 +1,65 @@
+'use client';
+
 import React from 'react';
 import { CatalogueItem } from '@/shared/api/types';
-import { Macros } from './ui';
-import s from './productCard.module.scss';
+import { NutritionList } from './ui';
+import styles from './productCard.module.scss';
+import { Card, IconHeart, IconLink } from '@/shared/ui';
+import { getTag } from './functions';
+import { Property } from './ui/property';
+import { useFavorite } from '@/features/useFavorite';
 
-type Props = {
+type ProductCardProps = {
   inc: CatalogueItem;
-  isFavorite: boolean;
-  toggleFav: () => void;
 };
 
-export const ProductCard: React.FC<Props> = ({
-  inc,
-  isFavorite,
-  toggleFav,
-}) => {
+export const ProductCard: React.FC<ProductCardProps> = ({ inc }) => {
+  const { isFavorite, toggle } = useFavorite(inc.id);
+  const { label, color } = getTag(inc.tag);
+
   return (
-    <article className={s.productCard}>
-      <h3>{inc.name}</h3>
-      <button
+    <Card className={styles.productCard}>
+      <div className={styles.header}>
+        <h3>{inc.name}</h3>
+        <div className={styles.actions}>
+          <button onClick={toggle}>
+            <IconHeart
+              className={`${styles.heart} ${isFavorite && styles.heartActive}`}
+            />
+          </button>
+          <a href={`/product/${inc.id}`}>
+            <IconLink />
+          </a>
+        </div>
+      </div>
+
+      <div className={styles.kcal}>
+        {inc.cal} kcal <span>/ 100g</span>
+      </div>
+
+      <div
+        className={styles.tag}
+        style={{
+          color: color,
+          backgroundColor: color + '33',
+        }}
+      >
+        {label}
+      </div>
+
+      <div className={styles.property}>
+        {inc.properties.map(property => (
+          <Property key={property} property={property} />
+        ))}
+      </div>
+      {/* <button
         onClick={toggleFav}
         className={isFavorite ? s.fav__active : s.fav}
       >
         {isFavorite ? 'unfav' : 'toFav'}
-      </button>
-      <Macros base={inc} />
-      <span>{inc.tag}</span>
-      <ul>
-        {inc.properties.map(prop => (
-          <li key={prop}>{prop}</li>
-        ))}
-      </ul>
-      <a href={`/product/${inc.id}`}>Подробнее</a>
-    </article>
+      </button> */}
+      <NutritionList base={inc} />
+      {/* <a href={`/product/${inc.id}`}>Подробнее</a> */}
+    </Card>
   );
 };

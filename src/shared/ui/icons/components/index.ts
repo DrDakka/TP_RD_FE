@@ -28,3 +28,4 @@ export * from './IconTwitter';
 export * from './IconYT';
 export * from './IconList';
 export * from './IconLoad';
+export * from './IconLink';

@@ -1,6 +1,80 @@
+@use 'shared/styles/constants/colors' as clr;
+@use 'shared/styles/mixins' as *;
+
 .productCard {
+  max-width: 300px;
+  color: clr.$ns-800;
   display: flex;
-  background-color: #fff;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+  .header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    h3 {
+      @include typo-h3;
+    }
+    .actions {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      .heart {
+        &:hover {
+          fill: currentColor;
+        }
+      }
+      .heartActive{
+        fill: currentColor;
+      }
+    }
+  }
+  .kcal {
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    &::before {
+      content: '';
+      display: block;
+      width: 10px;
+      height: 10px;
+      background-color: clr.$prm-500;
+      border-radius: 10px;
+    }
+    span {
+      font-weight: 400;
+      color: clr.$ns-500;
+    }
+  }
+  .tag {
+    display: inline;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 21px 10px 37px;
+    border-radius: 20px;
+    position: relative;
+    &::after {
+      content: '';
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background-color: currentColor;
+      top: 50%;
+      left: 21px;
+      border-radius: 10px;
+      transform: translateY(-50%);
+
+    }
+  }
+  .property {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    border-bottom: 1px solid clr.$ns-200;
+    padding-bottom: 8px;
+  }
 
   &--loading {
     background-color: black;

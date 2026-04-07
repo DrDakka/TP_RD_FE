@@ -2,11 +2,12 @@
 
 import { type GetProductsResponse } from '@/shared/api/types';
 import { Tags, PropTags } from '@/shared/api/types/product/enums';
-import { useClientCatalogue, type FilterState } from './model';
+import { useClientCatalogue, View, type FilterState } from './model';
 import { defaultState } from './constants';
 import { SearchBar } from './ui/searchBar/SearchBar';
 import { CatalogueGrid } from './ui/catalogueGrid/catalogueGrid';
 import { Filters } from './ui/filters/filters';
+import { useState } from 'react';
 
 type Props = {
   initialState: Partial<FilterState> | null;
@@ -26,9 +27,20 @@ export const CataloguePage: React.FC<Props> = ({
   const { items, count } = data ?? initialData;
   const totalPages = Math.ceil(count / 20);
 
+  const [view, setView] = useState<View>(View.GRID);
+  const onView = (arg: View) => {
+    setView(arg);
+  };
+
   return (
     <div>
-      <SearchBar query={searchInput} onQuery={hndl.query} reset={hndl.reset} />
+      <SearchBar
+        query={searchInput}
+        onQuery={hndl.query}
+        reset={hndl.reset}
+        view={view}
+        onView={onView}
+      />
       <Filters
         tag={state.tag}
         prop={state.prop}

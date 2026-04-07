@@ -1,0 +1,56 @@
+@use 'shared/styles/constants/colors' as clr;
+@use 'shared/styles/mixins/typography' as typo;
+
+.inputWrapper {
+  display: flex;
+  flex: 1 1 160px;
+  min-width: 160px;
+  max-width: 320px;
+  align-items: center;
+
+  height: 100%;
+  padding: 0 12px 0 8px;
+  box-sizing: border-box;
+
+  border: 2px solid clr.$ns-200;
+  border-radius: 73px;
+  transition: border-color 150ms ease;
+
+  &:hover {
+    border-color: clr.$ns-300;
+  }
+  &:focus-within {
+    border-color: clr.$prm-500;
+  }
+}
+
+.input {
+  @include typo.body-l;
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+
+  color: clr.$ns-800;
+  background-color: transparent;
+  border: none;
+  outline: none;
+
+  &::placeholder {
+    color: clr.$ns-500;
+  }
+}
+
+.inputIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 4px;
+
+  background: none;
+  cursor: pointer;
+
+  > svg {
+    color: clr.$ns-700;
+  }
+}

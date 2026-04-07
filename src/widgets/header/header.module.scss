@@ -1,5 +1,6 @@
 @use 'shared/styles/constants/colors' as clr;
 @use 'shared/styles/constants/breakpoints' as bp;
+@use 'shared/styles/mixins/shadowsRound' as sr;
 @use 'shared/styles/constants/zindex' as z;
 @use 'shared/styles/mixins/typography' as typo;
 @use './model/header.constants' as hc;
@@ -19,7 +20,7 @@
   padding: hc.$header-padding;
   box-sizing: border-box;
 
-  box-shadow: hc.$header-shadow;
+  @include sr.shadow-low;
 
   transition:
     padding hc.$transform-med,

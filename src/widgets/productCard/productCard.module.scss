@@ -2,31 +2,22 @@
 @use 'shared/styles/mixins' as *;
 
 .productCard {
-  max-width: 300px;
   color: clr.$ns-800;
-  display: flex;
-  flex-direction: column;
   gap: 8px;
-  align-items: flex-start;
-  .header {
+  h3 {
+    @include typo-h3;
+  }
+  .actions {
     display: flex;
-    justify-content: space-between;
-    width: 100%;
-    h3 {
-      @include typo-h3;
-    }
-    .actions {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      .heart {
-        &:hover {
-          fill: currentColor;
-        }
-      }
-      .heartActive{
+    align-items: flex-start;
+    gap: 14px;
+    .heart {
+      &:hover {
         fill: currentColor;
       }
+    }
+    .heartActive {
+      fill: currentColor;
     }
   }
   .kcal {
@@ -55,6 +46,7 @@
     padding: 10px 21px 10px 37px;
     border-radius: 20px;
     position: relative;
+    justify-self: start;
     &::after {
       content: '';
       position: absolute;
@@ -65,26 +57,91 @@
       left: 21px;
       border-radius: 10px;
       transform: translateY(-50%);
-
     }
   }
   .property {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    border-bottom: 1px solid clr.$ns-200;
-    padding-bottom: 8px;
   }
-
-  &--loading {
-    background-color: black;
+  .line {
+    background-color: clr.$ns-200;
   }
+}
 
-  &--expanded {
-    background-color: green;
+.grid {
+  max-width: 300px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  h3 {
+    grid-column: 1;
   }
+  .actions {
+    grid-column: 2;
+    justify-self: end;
+  }
+  .brand,
+  .kcal,
+  .tag,
+  .property,
+  .line,
+  .nutrition {
+    grid-column: 1 / -1;
+  }
+  .line {
+    height: 1px;
+    width: 100%;
+  }
+}
 
-  &--error {
-    background-color: red;
+.list {
+  display: grid;
+  grid-template-columns: 200px max-content auto 1px 24px;
+  align-items: start;
+  column-gap: 32px;
+  row-gap: 8px;
+  width: 100%;
+  .actions {
+    grid-column: 5;
+    flex-direction: column;
+    grid-row: span 3;
+    width: fit-content;
+  }
+  h3 {
+    grid-column: 1;
+    grid-row: 1;
+    align-items: center;
+    align-self: center;
+  }
+  .brand,
+  .kcal {
+    grid-column: 1;
+  }
+  .tag {
+    grid-column: 2;
+    width: fit-content;
+  }
+  .property {
+    grid-column: 3;
+    align-self: center;
+  }
+  .nutrition {
+    grid-column: 2 / 4;
+    flex-direction: row;
+    width: 100%;
+    gap: 16px;
+  }
+  .nutrition > * {
+    flex: 1;
+  }
+  .tag,
+  .property {
+    grid-row: 1;
+  }
+  .line {
+    width: 1px;
+    height: 100%;
+    grid-column: 4;
+    grid-row: span 3;
   }
 }

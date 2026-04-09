@@ -18,6 +18,13 @@ export default function Home() {
   return (
     <main className={styles.container}>
       <ProductCard inc={inc} />
+      <br />
+      <br />
+      <br />
+      <ProductCard inc={inc} variant="list" />
+      <br />
+      <br />
+      <br />
 
       <TestWidget />
       <p style={{ width: '100%' }}>

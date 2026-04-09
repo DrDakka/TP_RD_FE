@@ -11,27 +11,32 @@ import { useFavorite } from '@/features/useFavorite';
 
 type ProductCardProps = {
   inc: CatalogueItem;
+  variant?: 'grid' | 'list';
 };
 
-export const ProductCard: React.FC<ProductCardProps> = ({ inc }) => {
+export const ProductCard: React.FC<ProductCardProps> = ({
+  inc,
+  variant = 'grid',
+}) => {
   const { isFavorite, toggle } = useFavorite(inc.id);
   const { label, color } = getTag(inc.tag);
 
   return (
-    <Card className={styles.productCard}>
-      <div className={styles.header}>
-        <h3>{inc.name}</h3>
-        <div className={styles.actions}>
-          <button onClick={toggle}>
-            <IconHeart
-              className={`${styles.heart} ${isFavorite && styles.heartActive}`}
-            />
-          </button>
-          <a href={`/product/${inc.id}`}>
-            <IconLink />
-          </a>
-        </div>
+    <Card className={`${styles[variant]} ${styles.productCard}`}>
+      <h3>{inc.name}</h3>
+
+      <div className={styles.actions}>
+        <button onClick={toggle}>
+          <IconHeart
+            className={`${styles.heart} ${isFavorite && styles.heartActive}`}
+          />
+        </button>
+        <a href={`/product/${inc.id}`}>
+          <IconLink />
+        </a>
       </div>
+
+      <div className={styles.brand}>Brand</div>
 
       <div className={styles.kcal}>
         {inc.cal} kcal <span>/ 100g</span>
@@ -52,14 +57,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({ inc }) => {
           <Property key={property} property={property} />
         ))}
       </div>
-      {/* <button
-        onClick={toggleFav}
-        className={isFavorite ? s.fav__active : s.fav}
-      >
-        {isFavorite ? 'unfav' : 'toFav'}
-      </button> */}
-      <NutritionList base={inc} />
-      {/* <a href={`/product/${inc.id}`}>Подробнее</a> */}
+      <span className={styles.line}></span>
+
+      <NutritionList className={styles.nutrition} base={inc} />
     </Card>
   );
 };

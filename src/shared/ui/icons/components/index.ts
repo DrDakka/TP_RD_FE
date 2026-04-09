@@ -30,3 +30,4 @@ export * from './IconList/IconList';
 export * from './IconLoad/IconLoad';
 export * from './IconRefresh/IconRefresh';
 export * from './IconTable/IconTable';
+export * from './IconCheckSquare/IconCheckSquare';

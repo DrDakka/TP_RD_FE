@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { SearchBar } from '@/clientPages/catalogue/ui/searchBar/SearchBar';
+import { SearchBar } from '@/clientPages/catalogue/widgets/searchBar/SearchBar';
 import {
   IconLoad,
   IconSettings,

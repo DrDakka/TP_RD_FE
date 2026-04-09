@@ -1,6 +1,6 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useState } from 'react';
 import s from './searchBar.module.scss';
-import { IconRefresh } from '@/shared/ui';
+import { IconRefresh } from '@/shared';
 import { View } from '../../model';
 import { SearchInput, ToggleView } from './ui';
 
@@ -19,10 +19,21 @@ export const SearchBar: React.FC<Props> = ({
   view,
   onView,
 }) => {
+  const [spinning, setSpinning] = useState(false);
+
+  const handleReset = () => {
+    setSpinning(true);
+    reset();
+  };
+
   return (
     <div className={s.searchBar} data-widget="search-bar">
       <SearchInput query={query} onQuery={onQuery} reset={reset} />
-      <button onClick={reset} className={s.refresh}>
+      <button
+        onClick={handleReset}
+        onAnimationEnd={() => setSpinning(false)}
+        className={`${s.refresh}${spinning ? ` ${s['refresh--spinning']}` : ''}`}
+      >
         <IconRefresh />
       </button>
       <ToggleView view={view} onView={onView} />

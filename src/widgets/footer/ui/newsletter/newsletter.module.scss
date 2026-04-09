@@ -1,3 +1,4 @@
+@use 'shared/styles/constants/border-radius' as br;
 @use 'shared/styles/constants/colors' as clr;
 @use 'shared/styles/mixins/typography' as typo;
 
@@ -30,7 +31,7 @@
   min-width: 0;
   padding: 8px 12px;
   border: 1px solid clr.$ns-300;
-  border-radius: 8px;
+  border-radius: br.$br-s;
   background: clr.$ns-000;
   color: clr.$ns-800;
   outline: none;
@@ -50,7 +51,7 @@
   font-weight: 600;
   padding: 8px 16px;
   border: none;
-  border-radius: 8px;
+  border-radius: br.$br-s;
   background: clr.$prm-500;
   color: clr.$ns-000;
   cursor: pointer;

@@ -3,7 +3,7 @@ import styles from '@/shared/styles/layout/layout.module.scss';
 
 export default function Home() {
   return (
-    <main className={styles.container}>
+    <div className={styles.container}>
       <TestWidget />
       <p style={{ width: '100%' }}>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
@@ -183,6 +183,6 @@ export default function Home() {
         impedit officia atque, ipsum nam asperiores, ea commodi. Corporis.
         Expedita, nesciunt fugiat rerum sit voluptatibus asperiores? Dicta sunt
       </p>
-    </main>
+    </div>
   );
 }

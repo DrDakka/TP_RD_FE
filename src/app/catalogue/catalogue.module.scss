@@ -1,0 +1,20 @@
+@use 'shared/styles/constants/colors' as clr;
+@use 'shared/styles/mixins/typography' as tp;
+
+.page {
+  padding-top: 40px;
+
+  > h1 {
+    @include tp.h1;
+    font-size: 40px;
+    color: clr.$prm-700;
+    margin-bottom: 16px;
+  }
+
+  > span {
+    @include tp.h2;
+    color: clr.$ns-700;
+    display: block;
+    margin-bottom: 40px;
+  }
+}

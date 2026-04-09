@@ -1,3 +1,4 @@
+@use 'shared/styles/constants/border-radius' as br;
 @use 'shared/styles/constants/colors' as clr;
 @use 'typography' as typo;
 
@@ -7,7 +8,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
+  border-radius: br.$br-s;
   gap: 8px;
   transition: background-color 150ms ease, outline-color 150ms ease, color 150ms ease;
 

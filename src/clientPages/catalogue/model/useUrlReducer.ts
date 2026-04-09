@@ -8,7 +8,12 @@ const reducer = (state: FilterState, action: FilterAction): FilterState => {
     case 'SET_SEARCH':
       return { ...state, [SearchParamKey.SEARCH]: action.payload, page: 1 };
     case 'SET_TAG':
-      return { ...state, [SearchParamKey.TAG]: action.payload, page: 1 };
+      return {
+        ...state,
+        [SearchParamKey.TAG]:
+          state[SearchParamKey.TAG] === action.payload ? null : action.payload,
+        page: 1,
+      };
     case 'SET_PROP':
       return { ...state, [SearchParamKey.PROP]: action.payload, page: 1 };
     case 'TOGGLE_PROP':
@@ -24,6 +29,14 @@ const reducer = (state: FilterState, action: FilterAction): FilterState => {
     case 'SET_PAGE':
       return { ...state, [SearchParamKey.PAGE]: action.payload };
     case 'RESET_FILTERS':
+      if (
+        !state[SearchParamKey.SEARCH] &&
+        !state[SearchParamKey.TAG] &&
+        state[SearchParamKey.PROP].length === 0 &&
+        state[SearchParamKey.PAGE] === 1
+      )
+        return state;
+
       return {
         [SearchParamKey.SEARCH]: '',
         [SearchParamKey.TAG]: null,

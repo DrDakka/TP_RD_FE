@@ -1,3 +1,4 @@
+@use 'shared/styles/constants/border-radius' as br;
 @use 'shared/styles/constants/colors' as clr;
 @use 'shared/styles/mixins/buttons' as btn;
 
@@ -6,7 +7,7 @@
   margin-left: auto;
   height: 100%;
   align-items: center;
-  border-radius: 8px;
+  border-radius: br.$br-s;
   gap: 1px;
   border: 1px solid clr.$ns-300;
   background-color: clr.$ns-300;

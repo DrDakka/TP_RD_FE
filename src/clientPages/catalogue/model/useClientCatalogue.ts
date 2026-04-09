@@ -2,8 +2,12 @@
 
 import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { clientApi } from '@/shared/api/clientApi';
-import { GetProductsResponse } from '@/shared/api/types';
+import {
+  clientApi,
+  GetProductsResponse,
+  type Tags,
+  type PropTags,
+} from '@/shared';
 import { useLoader } from '@/features/loader/useLoader';
 import { useUrlReducer } from './useUrlReducer';
 import { type FilterState } from './types';
@@ -70,6 +74,12 @@ export const useClientCatalogue = ({ initialState, initialData }: Args) => {
         300,
       );
     },
+    tag: (arg: Tags) => {
+      dispatch({ type: 'SET_TAG', payload: arg });
+    },
+    propTag: (arg: PropTags) => {
+      dispatch({ type: 'TOGGLE_PROP', payload: arg });
+    },
 
     reset: () => {
       setSearchInput('');
@@ -77,5 +87,10 @@ export const useClientCatalogue = ({ initialState, initialData }: Args) => {
     },
   };
 
-  return { state, dispatch, data, status, hndl, searchInput };
+  const activeFilters = {
+    tag: state.tag,
+    propTag: state.prop,
+  };
+
+  return { state, dispatch, data, status, hndl, searchInput, activeFilters };
 };

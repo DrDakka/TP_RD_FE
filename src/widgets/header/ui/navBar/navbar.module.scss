@@ -1,7 +1,7 @@
 @use 'shared/styles/constants/colors' as clr;
 @use 'shared/styles/constants/breakpoints' as bp;
 @use 'shared/styles/mixins/typography' as typo;
-@use 'shared/styles/mixins/shadowsRound' as sr;
+@use 'shared/styles/constants/shadows' as sh;
 @use '../../model/header.constants' as hc;
 @use '../../model/header.mixins' as hm;
 
@@ -17,7 +17,7 @@
   padding: 20px 5px;
 
   border-top: 1px solid clr.$ns-200;
-  @include sr.shadow-med;
+  box-shadow: sh.$shadow-med;
 
   @include hm.frosted;
 

@@ -34,9 +34,10 @@ import {
   Button,
   IconCheckCircle,
 } from '@shared/ui';
+import { View } from '@/clientPages/catalogue/model';
 
 export const TestWidget = () => {
-  const [view, setView] = useState<'list' | 'grid'>('list');
+  const [view, setView] = useState<View>(View.GRID);
 
   const icons = [
     IconCheckCircle,

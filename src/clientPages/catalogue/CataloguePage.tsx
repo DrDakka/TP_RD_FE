@@ -45,7 +45,7 @@ export const CataloguePage: React.FC<Props> = ({
         propTagHandler={hndl.propTag}
         active={activeFilters}
       />
-      <CatalogueGrid items={items} status={status} />
+      <CatalogueGrid items={items} status={status} display={view} />
 
       <div>
         <button

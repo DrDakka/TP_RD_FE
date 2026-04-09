@@ -22,9 +22,4 @@ type FilterAction =
   | { type: 'SET_PAGE'; payload: number }
   | { type: 'RESET_FILTERS' };
 
-enum View {
-  LIST = 'list',
-  GRID = 'grid',
-}
-
-export { SearchParamKey, type FilterAction, type FilterState, View };
+export { SearchParamKey, type FilterAction, type FilterState };

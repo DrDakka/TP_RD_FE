@@ -2,6 +2,7 @@ import { TestWidget } from '@/widgets/test/Test';
 import styles from '@/shared/styles/layout/layout.module.scss';
 import { ProductCard } from '@/widgets/productCard/ProductCard';
 import { PropTags, Tags } from '@/shared/api/types';
+import { View } from '@/widgets/productCard';
 
 const inc = {
   id: 1,
@@ -22,7 +23,7 @@ export default function Home() {
       <br />
       <br />
       <br />
-      <ProductCard inc={inc} variant="list" />
+      <ProductCard inc={inc} variant={View.LIST} />
       <br />
       <br />
       <br />

@@ -8,15 +8,16 @@ import { Card, IconHeart, IconLink } from '@/shared/ui';
 import { getTag } from './functions';
 import { Property } from './ui/property';
 import { useFavorite } from '@/features/useFavorite';
+import { View } from './model';
 
 type ProductCardProps = {
   inc: CatalogueItem;
-  variant?: 'grid' | 'list';
+  variant?: View;
 };
 
 export const ProductCard: React.FC<ProductCardProps> = ({
   inc,
-  variant = 'grid',
+  variant = View.GRID,
 }) => {
   const { isFavorite, toggle } = useFavorite(inc.id);
   const { label, color } = getTag(inc.tag);

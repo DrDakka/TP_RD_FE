@@ -84,7 +84,7 @@ export const TestWidget = () => {
         <div>
           <span>Icons</span>
           {icons.map((Icon, idx) => (
-            <Icon key={idx} />
+            <Icon key={idx} className={''} />
           ))}
         </div>
         <div>

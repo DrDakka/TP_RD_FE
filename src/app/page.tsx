@@ -16,7 +16,7 @@ const inc = {
 
 export default function Home() {
   return (
-    <main className={styles.container}>
+      <TestWidget />
       <ProductCard inc={inc} />
       <br />
       <br />
@@ -25,8 +25,7 @@ export default function Home() {
       <br />
       <br />
       <br />
-
-      <TestWidget />
+    <div className={styles.container}>
       <p style={{ width: '100%' }}>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
         reprehenderit a nobis consequuntur facilis, tempore ipsum aperiam
@@ -205,6 +204,6 @@ export default function Home() {
         impedit officia atque, ipsum nam asperiores, ea commodi. Corporis.
         Expedita, nesciunt fugiat rerum sit voluptatibus asperiores? Dicta sunt
       </p>
-    </main>
+    </div>
   );
 }

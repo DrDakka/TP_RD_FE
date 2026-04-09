@@ -1,10 +1,11 @@
+@use 'shared/styles/constants/border-radius' as br;
 @use 'sass:list';
 
 $row-max-height: 46px;
 $iconsSize: 24px;
 $fullIconSize: $row-max-height;
 $icons-padding: calc(($fullIconSize - $iconsSize) / 2);
-$icons-border-radius: 6px;
+$icons-border-radius: br.$br-xs;
 
 $logoWidthMob: 136px;
 $logoWidthDesc: 184px;
@@ -17,15 +18,13 @@ $ui-btns-gap: 10px;
 $navbar-gap-desc: 30px;
 $navlink-padding-x: 10px;
 $search-min-width-desc: 160px;
-$search-border-radius: 73px;
+$search-border-radius: br.$br-pill;
 $logo-search-gap: 44px;
 
 $iconsHover: scale(1.1);
 $transform-fast: 0.1s;
 $transform-med: 0.3s;
 
-$header-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.08);
-$dropdown-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.08);
 $btn-hover-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.12);
 
 $grid-mob: list.slash(

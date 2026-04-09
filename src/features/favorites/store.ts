@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { api } from '@/shared/api/api';
+import { api } from '@/shared';
 import { deleteItem, getAllKeys, openDb, putItem } from '@/shared/db/favorites';
 import { getPending, setPending } from '@/shared/lib/pendingFavs';
 

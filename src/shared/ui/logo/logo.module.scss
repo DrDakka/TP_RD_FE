@@ -1,3 +1,4 @@
+@use 'shared/styles/constants/border-radius' as br;
 @use 'shared/styles/constants/colors' as clr;
 
 // Only shared semantics: link reset, hover effect.
@@ -8,7 +9,7 @@
   align-items: center;
   text-decoration: none;
   width: fit-content;
-  border-radius: 6px;
+  border-radius: br.$br-xs;
 
   transition:
     box-shadow 0.3s,

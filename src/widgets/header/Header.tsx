@@ -12,14 +12,21 @@ import s from './header.module.scss';
 import { useHeader } from './model/useHeader';
 import classNames from 'classnames';
 import { RefObject, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { useFavoritesStore } from '@/features/favorites/store';
 
 export const Header = () => {
+  const pathname = usePathname();
+
   useEffect(() => {
     const store = useFavoritesStore.getState();
 
     store.init().then(() => store.flush());
   }, []);
+
+  useEffect(() => {
+    useFavoritesStore.getState().flush();
+  }, [pathname]);
 
   const {
     searchExpanded,

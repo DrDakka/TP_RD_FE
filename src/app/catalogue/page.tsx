@@ -4,6 +4,7 @@ import { ValidationError } from '@/shared/errors/ValidationError';
 import { getInit, redirectRouter } from './lib';
 import { CataloguePage } from '@/clientPages';
 import styles from '@/shared/styles/layout/layout.module.scss';
+import s from './catalogue.module.scss';
 
 export const dynamic = 'force-dynamic';
 
@@ -31,12 +32,12 @@ export default async function Catalogue({ searchParams }: Props) {
   }
 
   return (
-    <main className={styles.container}>
+    <div className={`${styles.container} ${s.page}`}>
       <h1>Food library</h1>
       <span>
         Browse foods, compare nutrition and add them to your daily log
       </span>
       <CataloguePage initialState={initialState} initialData={initialData} />
-    </main>
+    </div>
   );
 }

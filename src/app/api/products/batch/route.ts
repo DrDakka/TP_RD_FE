@@ -1,10 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { mockProducts } from '../../_mock/data';
+
+const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export async function POST(req: NextRequest) {
-  const { ids } = (await req.json()) as { ids: number[] };
+  const body = await req.json();
 
-  const items = mockProducts.filter(p => ids.includes(p.item.id));
+  const res = await fetch(`${BACKEND_URL}/products/batch/`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+    cache: 'no-store',
+  });
 
-  return NextResponse.json(items);
+  if (!res.ok) {
+    return NextResponse.json({ error: res.statusText }, { status: res.status });
+  }
+
+  const data = await res.json();
+
+  return NextResponse.json(data);
 }

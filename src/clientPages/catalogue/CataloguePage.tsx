@@ -1,12 +1,12 @@
 'use client';
 
-import { type GetProductsResponse } from '@/shared/api/types';
-import { Tags, PropTags } from '@/shared/api/types/product/enums';
-import { useClientCatalogue, type FilterState } from './model';
+import { useState } from 'react';
+import { type GetProductsResponse } from '@/shared';
+import { useClientCatalogue, View, type FilterState } from './model';
 import { defaultState } from './constants';
-import { SearchBar } from './ui/searchBar/SearchBar';
+import { SearchBar, Filters } from './widgets';
 import { CatalogueGrid } from './ui/catalogueGrid/catalogueGrid';
-import { Filters } from './ui/filters/filters';
+import s from './cataloguePage.module.scss';
 
 type Props = {
   initialState: Partial<FilterState> | null;
@@ -17,7 +17,7 @@ export const CataloguePage: React.FC<Props> = ({
   initialState,
   initialData,
 }) => {
-  const { state, dispatch, data, status, hndl, searchInput } =
+  const { state, dispatch, data, status, hndl, searchInput, activeFilters } =
     useClientCatalogue({
       initialState: { ...defaultState, ...initialState },
       initialData,
@@ -26,18 +26,24 @@ export const CataloguePage: React.FC<Props> = ({
   const { items, count } = data ?? initialData;
   const totalPages = Math.ceil(count / 20);
 
+  const [view, setView] = useState<View>(View.GRID);
+  const onView = (arg: View) => {
+    setView(arg);
+  };
+
   return (
-    <div>
-      <SearchBar query={searchInput} onQuery={hndl.query} reset={hndl.reset} />
+    <div className={s.container}>
+      <SearchBar
+        query={searchInput}
+        onQuery={hndl.query}
+        reset={hndl.reset}
+        view={view}
+        onView={onView}
+      />
       <Filters
-        tag={state.tag}
-        prop={state.prop}
-        onSetTag={(tag: Tags | null) =>
-          dispatch({ type: 'SET_TAG', payload: tag })
-        }
-        onToggleProp={(prop: PropTags) =>
-          dispatch({ type: 'TOGGLE_PROP', payload: prop })
-        }
+        tagHandler={hndl.tag}
+        propTagHandler={hndl.propTag}
+        active={activeFilters}
       />
       <CatalogueGrid items={items} status={status} />
 

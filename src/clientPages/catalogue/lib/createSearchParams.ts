@@ -21,7 +21,8 @@ const handlers: Handlers = {
     if (inc && inc > 1) params.set(SearchParamKey.PAGE, String(inc));
   },
   [SearchParamKey.PROP]: (inc, params) => {
-    inc?.forEach(p => params.append(SearchParamKey.PROP, String(p)));
+    const arr = Array.isArray(inc) ? inc : inc ? [inc] : [];
+    arr.forEach(p => params.append(SearchParamKey.PROP, String(p)));
   },
 };
 

@@ -1,0 +1,35 @@
+@use 'shared/styles/constants/border-radius' as br;
+@use 'shared/styles/constants/colors' as clr;
+@use 'shared/styles/mixins/typography' as tp;
+@use 'shared/styles/constants/shadows' as sh;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: 80vh;
+  align-self: start;
+  box-sizing: border-box;
+  padding: 32px;
+  gap: 24px;
+  border-radius: br.$br-s;
+  box-shadow: sh.$shadow-deep;
+
+  > h2 {
+    @include tp.h2;
+    font-size: 28px;
+    font-weight: 500;
+    color: clr.$prm-700;
+    flex-shrink: 0;
+  }
+}
+
+.scrollable {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  overflow-y: auto;
+  flex: 1;
+  padding: 4px;
+  scrollbar-gutter: stable;
+}

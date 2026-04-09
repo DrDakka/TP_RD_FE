@@ -1,10 +1,31 @@
 import { TestWidget } from '@/widgets/test/Test';
 import styles from '@/shared/styles/layout/layout.module.scss';
+import { ProductCard } from '@/widgets/productCard/ProductCard';
+import { PropTags, Tags } from '@/shared/api/types';
+
+const inc = {
+  id: 1,
+  name: 'Куряча грудка',
+  cal: 165,
+  prot: 31,
+  fat: 3.6,
+  carb: 0,
+  tag: Tags.PRT,
+  properties: [PropTags.HP, PropTags.LF, PropTags.LC],
+};
 
 export default function Home() {
   return (
-    <div className={styles.container}>
       <TestWidget />
+      <ProductCard inc={inc} />
+      <br />
+      <br />
+      <br />
+      <ProductCard inc={inc} variant="list" />
+      <br />
+      <br />
+      <br />
+    <div className={styles.container}>
       <p style={{ width: '100%' }}>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
         reprehenderit a nobis consequuntur facilis, tempore ipsum aperiam

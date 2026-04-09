@@ -14,4 +14,5 @@ export type {
   PostBatchRequest,
   GetProductsResponse,
 } from './product';
-export { MeasureUnits, PropTags, Tags } from './product';
+
+export { MeasureUnits, PropTags, Tags,  TAG_META, PROP_TAG_META } from './product';

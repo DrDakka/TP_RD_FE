@@ -1,0 +1,19 @@
+.property {
+  display: inline;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 7px 21px 7px 32px;
+  border-radius: 20px;
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: currentColor;
+    top: 50%;
+    left: 21px;
+    border-radius: 10px;
+    transform: translateY(-50%);
+  }
+}

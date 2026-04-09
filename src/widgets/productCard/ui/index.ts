@@ -1,1 +1,1 @@
-export { Macros } from './macros/Macros';
+export { NutritionList } from './nutritionList/NutritionList';

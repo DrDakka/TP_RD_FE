@@ -1,13 +1,12 @@
 'use client';
 
 import React from 'react';
-import { CatalogueItem } from '@/shared/api/types';
 import { NutritionList } from './ui';
 import styles from './productCard.module.scss';
-import { Card, IconHeart, IconLink } from '@/shared/ui';
+import { Card, IconHeart, IconLink, CatalogueItem } from '@/shared';
 import { getTag } from './functions';
 import { Property } from './ui/property';
-import { useFavorite } from '@/features/useFavorite';
+import { useFavorite } from '@/features';
 import { View } from './model';
 
 type ProductCardProps = {

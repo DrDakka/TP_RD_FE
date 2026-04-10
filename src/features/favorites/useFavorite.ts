@@ -1,4 +1,4 @@
-import { useFavoritesStore } from './favorites/store';
+import { useFavoritesStore } from './store';
 
 const useFavorite = (id: number) => {
   const isFavorite = useFavoritesStore(state => state.favorites.has(id));

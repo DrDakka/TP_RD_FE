@@ -92,5 +92,14 @@ export const useClientCatalogue = ({ initialState, initialData }: Args) => {
     propTag: state.prop,
   };
 
-  return { state, dispatch, data, status, hndl, searchInput, activeFilters };
+  return {
+    state,
+    dispatch,
+    data,
+    status,
+    hndl,
+    searchInput,
+    activeFilters,
+    reload,
+  };
 };

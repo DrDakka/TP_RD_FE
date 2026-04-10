@@ -1,9 +1,19 @@
 'use client';
 
 import { useReducer } from 'react';
+import { type PropTags } from '@/shared';
 import { type FilterAction, type FilterState, SearchParamKey } from './types';
 
+const normalizeProp = (prop: unknown): PropTags[] => {
+  if (Array.isArray(prop)) return prop;
+  if (typeof prop === 'string') return [prop as PropTags];
+
+  return [];
+};
+
 const reducer = (state: FilterState, action: FilterAction): FilterState => {
+  const prop = normalizeProp(state[SearchParamKey.PROP]);
+
   switch (action.type) {
     case 'SET_SEARCH':
       return { ...state, [SearchParamKey.SEARCH]: action.payload, page: 1 };
@@ -19,11 +29,9 @@ const reducer = (state: FilterState, action: FilterAction): FilterState => {
     case 'TOGGLE_PROP':
       return {
         ...state,
-        [SearchParamKey.PROP]: state[SearchParamKey.PROP].includes(
-          action.payload,
-        )
-          ? state[SearchParamKey.PROP].filter(p => p !== action.payload)
-          : [...state[SearchParamKey.PROP], action.payload],
+        [SearchParamKey.PROP]: prop.includes(action.payload)
+          ? prop.filter(p => p !== action.payload)
+          : [...prop, action.payload],
         page: 1,
       };
     case 'SET_PAGE':
@@ -32,7 +40,7 @@ const reducer = (state: FilterState, action: FilterAction): FilterState => {
       if (
         !state[SearchParamKey.SEARCH] &&
         !state[SearchParamKey.TAG] &&
-        state[SearchParamKey.PROP].length === 0 &&
+        prop.length === 0 &&
         state[SearchParamKey.PAGE] === 1
       )
         return state;

@@ -4,8 +4,7 @@ import { useState } from 'react';
 import { type GetProductsResponse } from '@/shared';
 import { useClientCatalogue, View, type FilterState } from './model';
 import { defaultState } from './constants';
-import { SearchBar, Filters } from './widgets';
-import { CatalogueGrid } from './ui/catalogueGrid/catalogueGrid';
+import { SearchBar, Filters, CatalogueGrid } from './widgets';
 import s from './cataloguePage.module.scss';
 
 type Props = {
@@ -17,11 +16,19 @@ export const CataloguePage: React.FC<Props> = ({
   initialState,
   initialData,
 }) => {
-  const { state, dispatch, data, status, hndl, searchInput, activeFilters } =
-    useClientCatalogue({
-      initialState: { ...defaultState, ...initialState },
-      initialData,
-    });
+  const {
+    state,
+    dispatch,
+    data,
+    status,
+    hndl,
+    searchInput,
+    activeFilters,
+    reload,
+  } = useClientCatalogue({
+    initialState: { ...defaultState, ...initialState },
+    initialData,
+  });
 
   const { items, count } = data ?? initialData;
   const totalPages = Math.ceil(count / 20);
@@ -45,7 +52,13 @@ export const CataloguePage: React.FC<Props> = ({
         propTagHandler={hndl.propTag}
         active={activeFilters}
       />
-      <CatalogueGrid items={items} status={status} display={view} />
+      <CatalogueGrid
+        items={items}
+        status={status}
+        display={view}
+        count={count}
+        onRetry={reload}
+      />
 
       <div>
         <button

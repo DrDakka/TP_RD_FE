@@ -41,7 +41,7 @@ const api = {
 
     byId: async (id: number, signal?: AbortSignal) => {
       const init: RequestInit = { method: methods.get, signal };
-      const url = `${endpoints.prod}/${id}`;
+      const url = `${endpoints.prod}${id}/`;
 
       return await processFetch<FullItem>(url, init);
     },

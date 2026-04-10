@@ -1,6 +1,5 @@
 import { notFound, redirect } from 'next/navigation';
-import { api } from '@/shared/api/api';
-import { ValidationError } from '@/shared/errors/ValidationError';
+import { ValidationError, api } from '@/shared';
 import { getInit, redirectRouter } from './lib';
 import { CataloguePage } from '@/clientPages';
 import styles from '@/shared/styles/layout/layout.module.scss';

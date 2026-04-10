@@ -4,28 +4,34 @@
 .productCard {
   color: clr.$ns-800;
   gap: 8px;
+
   h3 {
     @include typo-h3;
   }
+
   .actions {
     display: flex;
     align-items: flex-start;
     gap: 14px;
+
     .heart {
       &:hover {
         fill: currentColor;
       }
     }
+
     .heartActive {
       fill: currentColor;
     }
   }
+
   .kcal {
     font-size: 16px;
     font-weight: 600;
     display: flex;
     align-items: center;
     gap: 6px;
+
     &::before {
       content: '';
       display: block;
@@ -34,11 +40,13 @@
       background-color: clr.$prm-500;
       border-radius: 10px;
     }
+
     span {
       font-weight: 400;
       color: clr.$ns-500;
     }
   }
+
   .tag {
     display: inline;
     font-size: 14px;
@@ -47,6 +55,7 @@
     border-radius: 20px;
     position: relative;
     justify-self: start;
+
     &::after {
       content: '';
       position: absolute;
@@ -59,11 +68,13 @@
       transform: translateY(-50%);
     }
   }
+
   .property {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
   }
+
   .line {
     background-color: clr.$ns-200;
   }

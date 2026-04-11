@@ -20,20 +20,22 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
 
   return (
     <div className={styles.wrapper}>
-      <p className={styles.title}>{title}</p>
+      <dl>
+        <dt className={styles.title}>{title}</dt>
 
-      {variant === 'detailed' && goal ? (
-        <div className={styles.info}>
-          <p>
-            <b>{value}</b> / {goal} {unit}
-          </p>
-          <p className={styles.percent}>{Math.round(percent)}%</p>
-        </div>
-      ) : (
-        <p className={styles.progressValue}>
-          {value} {unit}
-        </p>
-      )}
+        {variant === 'detailed' && goal ? (
+          <dd className={styles.info}>
+            <span>
+              <b>{value}</b> / {goal} {unit}
+            </span>
+            <p className={styles.percent}>{Math.round(percent)}%</p>
+          </dd>
+        ) : (
+          <dd className={styles.progressValue}>
+            {value} {unit}
+          </dd>
+        )}
+      </dl>
 
       <div className={styles.progressBar}>
         <div

@@ -1,0 +1,14 @@
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  &.grid {
+    :first-child {
+      flex-basis: 100%;
+      align-self: flex-start;
+    }
+  }
+  &.list {
+    align-items: center;
+  }
+}

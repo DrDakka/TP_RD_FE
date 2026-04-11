@@ -1,0 +1,9 @@
+.heart {
+  &:hover {
+    fill: currentColor;
+  }
+}
+
+.heartActive {
+  fill: currentColor;
+}

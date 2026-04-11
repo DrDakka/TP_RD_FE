@@ -1,158 +1,113 @@
 @use 'shared/styles/constants/colors' as clr;
 @use 'shared/styles/mixins' as *;
+@use 'shared/styles/constants/border-radius' as br;
+@use 'shared/styles/constants/shadows' as sh;
 
 .productCard {
+  background: clr.$ns-000;
+  box-shadow: sh.$shadow-med;
+  padding: 16px;
+  border-radius: br.$br-s;
   color: clr.$ns-800;
-  gap: 8px;
-
-  h3 {
-    @include typo-h3;
-  }
-
-  .actions {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-
-    .heart {
-      &:hover {
-        fill: currentColor;
-      }
+  .linkWrapper {
+    display: grid;
+    gap: 8px;
+    h3 {
+      @include typo-h3;
     }
-
-    .heartActive {
-      fill: currentColor;
-    }
-  }
-
-  .kcal {
-    font-size: 16px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-
-    &::before {
-      content: '';
-      display: block;
-      width: 10px;
-      height: 10px;
-      background-color: clr.$prm-500;
-      border-radius: 10px;
-    }
-
-    span {
+    .kcal {
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
       font-weight: 400;
       color: clr.$ns-500;
+
+      &::before {
+        content: '';
+        display: block;
+        width: 10px;
+        height: 10px;
+        background-color: clr.$prm-500;
+        border-radius: br.$br-pill;
+      }
+
+      dt {
+        font-weight: 600;
+        color: clr.$ns-800;
+      }
+    }
+    .line {
+      background-color: clr.$ns-200;
+    }
+  }
+  &.grid {
+    max-width: 300px;
+    .linkWrapper {
+      grid-template-columns: 1fr auto;
+      h3 {
+        grid-column: 1;
+      }
+      .favorite {
+        grid-column: 2;
+        justify-self: end;
+      }
+      .brand,
+      .kcal,
+      .pills,
+      .line,
+      .nutrition {
+        grid-column: 1 / -1;
+      }
+      .line {
+        height: 1px;
+        width: 100%;
+      }
     }
   }
 
-  .tag {
-    display: inline;
-    font-size: 14px;
-    font-weight: 500;
-    padding: 10px 21px 10px 37px;
-    border-radius: 20px;
-    position: relative;
-    justify-self: start;
-
-    &::after {
-      content: '';
-      position: absolute;
-      width: 8px;
-      height: 8px;
-      background-color: currentColor;
-      top: 50%;
-      left: 21px;
-      border-radius: 10px;
-      transform: translateY(-50%);
+  &.list {
+    .linkWrapper {
+      grid-template-columns: 200px auto 1px 24px;
+      grid-template-rows: auto auto auto;
+      align-items: stretch;
+      gap: 0 32px;
+      h3 {
+        grid-column: 1;
+        grid-row: 1;
+        align-items: center;
+        align-self: center;
+      }
+      .favorite {
+        grid-column: 4;
+        grid-row: span 3;
+        width: fit-content;
+        align-self: start;
+      }
+      .brand,
+      .kcal {
+        grid-column: 1;
+      }
+      .pills {
+        grid-column: 2;
+        grid-row: 1 / 3;
+      }
+      .nutrition {
+        grid-column: 2;
+        grid-row: 3;
+        flex-direction: row;
+        width: 100%;
+        gap: 16px;
+      }
+      .nutrition > * {
+        flex: 1;
+      }
+      .line {
+        width: 1px;
+        grid-column: 3;
+        grid-row: 1 / -1;
+        line-height: 100%;
+      }
     }
-  }
-
-  .property {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .line {
-    background-color: clr.$ns-200;
-  }
-}
-
-.grid {
-  max-width: 300px;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  h3 {
-    grid-column: 1;
-  }
-  .actions {
-    grid-column: 2;
-    justify-self: end;
-  }
-  .brand,
-  .kcal,
-  .tag,
-  .property,
-  .line,
-  .nutrition {
-    grid-column: 1 / -1;
-  }
-  .line {
-    height: 1px;
-    width: 100%;
-  }
-}
-
-.list {
-  display: grid;
-  grid-template-columns: 200px max-content auto 1px 24px;
-  align-items: start;
-  column-gap: 32px;
-  row-gap: 8px;
-  width: 100%;
-  .actions {
-    grid-column: 5;
-    flex-direction: column;
-    grid-row: span 3;
-    width: fit-content;
-  }
-  h3 {
-    grid-column: 1;
-    grid-row: 1;
-    align-items: center;
-    align-self: center;
-  }
-  .brand,
-  .kcal {
-    grid-column: 1;
-  }
-  .tag {
-    grid-column: 2;
-    width: fit-content;
-  }
-  .property {
-    grid-column: 3;
-    align-self: center;
-  }
-  .nutrition {
-    grid-column: 2 / 4;
-    flex-direction: row;
-    width: 100%;
-    gap: 16px;
-  }
-  .nutrition > * {
-    flex: 1;
-  }
-  .tag,
-  .property {
-    grid-row: 1;
-  }
-  .line {
-    width: 1px;
-    height: 100%;
-    grid-column: 4;
-    grid-row: span 3;
   }
 }

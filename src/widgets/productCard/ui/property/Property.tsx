@@ -1,6 +1,6 @@
 import { PropTags } from '@/shared/api/types';
-import styles from './property.module.scss';
 import { getPropTag } from '../../functions';
+import { Tag } from '@/shared';
 
 type PropertyProps = {
   property: PropTags;
@@ -9,15 +9,5 @@ type PropertyProps = {
 export const Property: React.FC<PropertyProps> = ({ property }) => {
   const { label, color } = getPropTag(property);
 
-  return (
-    <div
-      className={styles.property}
-      style={{
-        color: color,
-        backgroundColor: color + '33',
-      }}
-    >
-      {label}
-    </div>
-  );
+  return <Tag title={label} color={color} size="sm" />;
 };

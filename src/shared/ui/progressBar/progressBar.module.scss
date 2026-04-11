@@ -1,23 +1,28 @@
 @use 'shared/styles/constants/colors' as clr;
 
 .wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 6px;
   font-size: 14px;
   color: clr.$ns-800;
-  .title {
-    font-weight: 600;
-  }
-  .info {
-    justify-self: end;
+  dl {
     display: flex;
-    gap: 24px;
-    .percent {
-      font-size: 16px;
+    justify-content: space-between;
+    align-items: center;
+    .title {
       font-weight: 600;
     }
+    .info {
+      display: flex;
+      gap: 24px;
+      .percent {
+        font-size: 16px;
+        font-weight: 600;
+      }
+    }
   }
+
   .progressValue {
     justify-self: end;
   }

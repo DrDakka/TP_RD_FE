@@ -46,7 +46,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   return (
     <li className={`${styles[variant]} ${styles.productCard}`}>
       <Link href={`/product/${inc.id}`} className={styles.linkWrapper}>
-        <h3>{inc.name}</h3>
+        <h3 title={inc.name}>{inc.name}</h3>
 
         <FavoriteButton id={inc.id} className={styles.favorite} />
         <span className={styles.brand}>Brand</span>

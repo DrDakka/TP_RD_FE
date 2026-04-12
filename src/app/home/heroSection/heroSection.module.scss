@@ -1,0 +1,11 @@
+@use 'shared/styles/mixins/breakpoints' as bp;
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  @include bp.tablet {
+    flex-direction: row;
+    gap: 20px;
+  }
+}

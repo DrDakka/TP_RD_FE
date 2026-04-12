@@ -1,0 +1,30 @@
+@use 'shared/styles/mixins/typography' as typo;
+@use 'shared/styles/constants/colors' as clr;
+@use 'shared/styles/mixins/buttons' as btn;
+@use 'shared/styles/mixins/breakpoints' as bp;
+
+.content {
+  flex: 1;
+  @include bp.desktop {
+    flex: 1.17;
+  }
+  .title {
+    @include typo.h1;
+    line-height: 120%;
+    color: clr.$prm-700;
+  }
+  .description {
+    color: clr.$prm-600;
+    margin-top: 12px;
+    margin-bottom: 24px;
+    font-size: 24px;
+  }
+  .button {
+    @include btn.btn-secondary;
+    padding: 11px;
+    color: clr.$prm-600;
+    @include bp.desktop {
+      max-width: 326px;
+    }
+  }
+}

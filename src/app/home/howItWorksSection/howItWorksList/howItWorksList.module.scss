@@ -1,0 +1,15 @@
+@use 'shared/styles/mixins/breakpoints' as bp;
+
+.list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  @include bp.tablet {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @include bp.desktop {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 16px;
+  }
+}

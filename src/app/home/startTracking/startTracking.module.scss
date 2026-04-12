@@ -1,0 +1,34 @@
+@use 'shared/styles/mixins/buttons' as btn;
+@use 'shared/styles/constants/colors' as clr;
+@use 'shared/styles/constants/zindex' as zx;
+@use 'shared/styles/mixins/breakpoints' as bp;
+@use 'shared/styles/constants/breakpoints' as *;
+
+.startTracking {
+  position: fixed;
+  right: 16px;
+  bottom: 50px;
+  @include btn.btn-primary;
+  font-weight: 700;
+  padding: 14px 35px;
+  color: clr.$ns-000;
+  z-index: zx.$z-high;
+  box-shadow: 0 0 10px 0 clr.$prm-500;
+
+  @include bp.tablet {
+    right: 20px;
+  }
+
+  @include bp.desktop {
+    right: calc(50% - ($main-max-width / 2));
+  }
+  
+
+  &::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 10px;
+    background-color: clr.$ns-000;
+  }
+}

@@ -1,0 +1,75 @@
+@use 'shared/styles/mixins/typography' as typo;
+@use 'shared/styles/constants/colors' as clr;
+@use 'shared/styles/mixins/breakpoints' as bp;
+
+.aboutUs {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 12px;
+  @include bp.tablet {
+    gap: 8px 20px;
+    grid-template-columns: 1fr 1fr;
+  }
+  @include bp.desktop {
+    grid-template-columns: 3fr 2fr;
+  }
+  .content {
+    .title {
+      @include typo.h2;
+      color: clr.$prm-700;
+      margin-bottom: 16px;
+      font-size: 32px;
+    }
+    .description {
+      @include bp.tablet {
+        font-size: 14px;
+        @include bp.desktop {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+
+  .imageWrapper {
+    position: relative;
+    width: 100%;
+    height: 105px;
+    align-self: center;
+    @include bp.tablet {
+      height: 211px;
+      grid-row: span 2;
+    }
+    .image {
+      object-fit: contain;
+    }
+  }
+
+  .links {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    
+    .link {
+      @include typo.caption;
+      color: clr.$prm-700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      &:not(:first-child) {
+        &:before {
+          content: '';
+          display: inline-block;
+          width: 4px;
+          height: 4px;
+          background-color: currentColor;
+          border-radius: 10px;
+        }
+      }
+      @include bp.desktop {
+        font-size: 16px;
+      }
+    }
+  }
+}

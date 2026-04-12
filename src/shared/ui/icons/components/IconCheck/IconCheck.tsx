@@ -1,7 +1,11 @@
 import { Icon } from '../../icons';
 
-export const IconCheck = () => (
-  <Icon>
+type IconCheckProps = {
+  className: string;
+};
+
+export const IconCheck: React.FC<IconCheckProps> = ({ className }) => (
+  <Icon className={className}>
     <path
       d="M20 6L9 17L4 12"
       stroke="currentColor"

@@ -1,0 +1,20 @@
+@use 'shared/styles/constants/breakpoints' as bp;
+
+@mixin mobile {
+  @media (min-width: bp.$mob) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: bp.$tab) {
+    @content;
+  }
+}
+
+
+@mixin desktop {
+  @media (min-width: bp.$dsc) {
+    @content;
+  }
+}

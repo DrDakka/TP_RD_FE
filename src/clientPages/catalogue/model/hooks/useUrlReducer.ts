@@ -1,18 +1,10 @@
 'use client';
 
 import { useReducer } from 'react';
-import { type PropTags } from '@/shared';
-import { type FilterAction, type FilterState, SearchParamKey } from './types';
-
-const normalizeProp = (prop: unknown): PropTags[] => {
-  if (Array.isArray(prop)) return prop;
-  if (typeof prop === 'string') return [prop as PropTags];
-
-  return [];
-};
+import { FilterAction, FilterState, SearchParamKey } from './types';
 
 const reducer = (state: FilterState, action: FilterAction): FilterState => {
-  const prop = normalizeProp(state[SearchParamKey.PROP]);
+  const prop = state[SearchParamKey.PROP];
 
   switch (action.type) {
     case 'SET_SEARCH':

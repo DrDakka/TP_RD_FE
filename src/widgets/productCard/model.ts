@@ -1,6 +1,1 @@
-enum View {
-  LIST = 'list',
-  GRID = 'grid',
-}
-
-export { View };
+export { View } from '@/shared';

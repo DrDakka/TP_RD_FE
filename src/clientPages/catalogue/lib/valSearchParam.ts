@@ -1,7 +1,7 @@
 import {
   type FilterState,
   SearchParamKey,
-} from '@/clientPages/catalogue/model/types';
+} from '@/clientPages/catalogue/model/hooks/types';
 import { PropTags, Tags } from '@/shared/api/types';
 
 const VALID_TAGS = new Set<string>(Object.values(Tags));

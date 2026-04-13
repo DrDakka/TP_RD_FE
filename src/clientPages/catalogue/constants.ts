@@ -1,5 +1,5 @@
 import { PropTags } from '@/shared/api/types';
-import { FilterState, SearchParamKey } from './model/types';
+import { FilterState, SearchParamKey } from './model/hooks/types';
 
 const defaultState: FilterState = {
   [SearchParamKey.SEARCH]: '',

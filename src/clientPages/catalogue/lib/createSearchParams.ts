@@ -1,7 +1,7 @@
 import {
   type FilterState,
   SearchParamKey,
-} from '@/clientPages/catalogue/model/types';
+} from '@/clientPages/catalogue/model/hooks/types';
 
 type Handlers = {
   [K in SearchParamKey]: (

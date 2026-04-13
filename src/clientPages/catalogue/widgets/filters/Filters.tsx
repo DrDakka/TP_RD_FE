@@ -9,20 +9,18 @@ import {
 import { DropDown } from './ui';
 
 import s from './filters.module.scss';
+import { FilterState } from '../../model';
 
 type Props = {
   tagHandler: (arg: Tags) => void;
   propTagHandler: (arg: PropTags) => void;
-  active: {
-    tag: Tags | null;
-    propTag: PropTags[];
-  };
+  state: FilterState;
 };
 
 export const Filters: React.FC<Props> = ({
   tagHandler,
   propTagHandler,
-  active,
+  state,
 }) => {
   const tags = Object.keys(uiToApi.tag) as TagUiLabel[];
   const propTags = Object.keys(uiToApi.propTag) as PropTagUiLabel[];
@@ -31,13 +29,8 @@ export const Filters: React.FC<Props> = ({
   const onPropTag = (uiKey: PropTagUiLabel) =>
     propTagHandler(uiToApi.propTag[uiKey]);
 
-  const activeTag = active.tag ? [apiToUi.tag[active.tag]] : [];
-  const propTagArr = Array.isArray(active.propTag)
-    ? active.propTag
-    : active.propTag
-      ? [active.propTag]
-      : [];
-  const activePropTags = propTagArr.map(p => apiToUi.propTag[p]);
+  const activeTag = state.tag ? [apiToUi.tag[state.tag]] : [];
+  const activePropTags = state.prop.map(p => apiToUi.propTag[p]);
 
   return (
     <section className={s.container} data-widget="filters">

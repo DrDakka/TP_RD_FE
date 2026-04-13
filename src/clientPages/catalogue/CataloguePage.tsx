@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from 'react';
 import { type GetProductsResponse } from '@/shared';
-import { useClientCatalogue, View, type FilterState } from './model';
+import { useClientCatalogue, type FilterState } from './model';
 import { defaultState } from './constants';
+import { normalizeProp } from './lib';
 import { SearchBar, Filters, CatalogueGrid } from './widgets';
 import s from './cataloguePage.module.scss';
 
@@ -16,67 +16,48 @@ export const CataloguePage: React.FC<Props> = ({
   initialState,
   initialData,
 }) => {
-  const {
-    state,
-    dispatch,
-    data,
-    status,
-    hndl,
-    searchInput,
-    activeFilters,
-    reload,
-  } = useClientCatalogue({
-    initialState: { ...defaultState, ...initialState },
+  const init = {
+    ...defaultState,
+    ...initialState,
+    prop: normalizeProp(initialState?.prop),
+  };
+  const { state, data, ui, handlers, reload } = useClientCatalogue({
+    initialState: init,
     initialData,
   });
-
-  const { items, count } = data ?? initialData;
-  const totalPages = Math.ceil(count / 20);
-
-  const [view, setView] = useState<View>(View.GRID);
-  const onView = (arg: View) => {
-    setView(arg);
-  };
 
   return (
     <div className={s.container}>
       <SearchBar
-        query={searchInput}
-        onQuery={hndl.query}
-        reset={hndl.reset}
-        view={view}
-        onView={onView}
+        query={data.searchInput}
+        onQuery={handlers.query}
+        reset={handlers.reset}
+        view={ui.view}
+        onView={ui.onView}
       />
       <Filters
-        tagHandler={hndl.tag}
-        propTagHandler={hndl.propTag}
-        active={activeFilters}
+        tagHandler={handlers.tag}
+        propTagHandler={handlers.propTag}
+        state={state}
       />
       <CatalogueGrid
-        items={items}
-        status={status}
-        display={view}
-        count={count}
+        items={data.items}
+        status={data.status}
+        display={ui.view}
+        count={data.count}
         onRetry={reload}
       />
 
       <div>
-        <button
-          disabled={state.page <= 1}
-          onClick={() =>
-            dispatch({ type: 'SET_PAGE', payload: state.page - 1 })
-          }
-        >
+        <button disabled={state.page <= 1} onClick={() => handlers.page(1)}>
           &lt;
         </button>
         <span>
-          {state.page} / {totalPages}
+          {state.page} / {data.totalPages}
         </span>
         <button
-          disabled={state.page >= totalPages}
-          onClick={() =>
-            dispatch({ type: 'SET_PAGE', payload: state.page + 1 })
-          }
+          disabled={state.page >= data.totalPages}
+          onClick={() => handlers.page(1)}
         >
           &gt;
         </button>

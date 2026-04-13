@@ -6,6 +6,11 @@ type HowItWorksCardProps = {
   description: string;
 };
 
+/*
+  plz use grid positioning innstead of wrappers:)
+  It makes code cleaner:)
+*/
+
 export const HowItWorksCard: React.FC<HowItWorksCardProps> = ({
   icon: Icon,
   title,

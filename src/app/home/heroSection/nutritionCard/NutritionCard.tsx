@@ -1,6 +1,11 @@
 import { ProgressBar } from '@/shared';
 import styles from './nutritionCard.module.scss';
 
+/*
+  adding '/' without span l.17 makes structure invalid.
+  It is better to render it as pseudoelement here
+*/
+
 export const NutritionCard = () => {
   return (
     <div className={styles.card}>

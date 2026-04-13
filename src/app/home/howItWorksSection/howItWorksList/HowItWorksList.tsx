@@ -2,6 +2,11 @@ import { HowItWorksCard } from '../howItWorksCard';
 import { data } from './data';
 import styles from './howItWorksList.module.scss';
 
+/* 
+  Solid piece of code, but
+  Index is not a good solution for key:)
+*/
+
 export const HowItWorksList = () => {
   return (
     <ul className={styles.list}>

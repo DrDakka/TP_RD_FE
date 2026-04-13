@@ -15,6 +15,13 @@ type PillsProps = {
   className?: string;
 };
 
+/*
+  Review: 
+    Nicely done!
+    but can you remove main tag wrapper on linne 35-37?:)
+    It's better to have as less DOM-elements as possible:)
+*/
+
 export const Pills: React.FC<PillsProps> = ({
   tag,
   propertyTags,

@@ -7,6 +7,14 @@ type FavoriteButtonProps = {
   className?: string;
 };
 
+/*
+  Review:
+    Nice isolated component
+    One thin moment: you can position element from parent via data-atributes (take a look on header as an example)
+    or via pseudoselectors (not a really good solution)
+    It will eliminate className prop and the element will be cleaner 
+*/
+
 export const FavoriteButton: React.FC<FavoriteButtonProps> = ({
   id,
   className,

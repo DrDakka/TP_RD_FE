@@ -8,6 +8,16 @@ type ProgressBarProps = {
   goal?: number;
   variant?: 'simple' | 'detailed';
 };
+
+/*
+  Review: 
+    Good scalable and semantically correct component
+    Progressbar is not accessible. Please, add Aria-tags
+    role="progressbar"
+    aria-valuenow
+    aria-valuemin
+    aria-valuemax
+*/
 export const ProgressBar: React.FC<ProgressBarProps> = ({
   title,
   value,

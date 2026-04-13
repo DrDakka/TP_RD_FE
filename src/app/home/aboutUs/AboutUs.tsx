@@ -23,12 +23,7 @@ export const AboutUs = () => {
       </div>
 
       <div className={styles.imageWrapper}>
-        <Image
-          src="/about-us.png"
-          alt="aboutUs"
-          fill
-          className={styles.image}
-        />
+        <Image src="/about-us.png" alt="" fill className={styles.image} />
       </div>
 
       <div className={styles.links}>

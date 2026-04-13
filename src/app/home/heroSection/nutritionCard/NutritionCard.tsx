@@ -1,11 +1,6 @@
 import { ProgressBar } from '@/shared';
 import styles from './nutritionCard.module.scss';
 
-/*
-  adding '/' without span l.17 makes structure invalid.
-  It is better to render it as pseudoelement here
-*/
-
 export const NutritionCard = () => {
   return (
     <div className={styles.card}>
@@ -14,7 +9,7 @@ export const NutritionCard = () => {
         <dt>
           <span>1651 </span>kcal
         </dt>
-        /<dd>100g</dd>
+        <dd>100g</dd>
       </dl>
       <div className={styles.nutritions}>
         <ProgressBar title="Protein" value={31} color="#6C5CE7" />

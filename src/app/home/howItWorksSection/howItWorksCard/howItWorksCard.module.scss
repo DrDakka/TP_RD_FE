@@ -4,11 +4,13 @@
 @use 'shared/styles/mixins/typography' as typo;
 
 .card {
-  display: flex;
-  gap: 18px;
+  display: grid;
+  gap: 0 18px;
+  grid-template-columns: min-content 1fr;
   border-radius: br.$br-xxs;
   box-shadow: sh.$shadow-low;
   padding: 13px 19px;
+
   .iconWrapper {
     width: 54px;
     height: 54px;
@@ -18,21 +20,20 @@
     justify-content: center;
     flex-shrink: 0;
     border-radius: br.$br-xxs;
+
+    grid-row: span 2;
     &:first-child {
       color: clr.$prm-700;
     }
   }
-  .content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    .title {
-      @include typo.h3;
-      color: clr.$ns-800;
-    }
-    .description {
-      @include typo.caption;
-      color: clr.$ns-700;
-    }
+  .title {
+    @include typo.h3;
+    color: clr.$ns-800;
+  }
+  .description {
+    grid-column: 2 / -1;
+    align-content: end;
+    @include typo.caption;
+    color: clr.$ns-700;
   }
 }

@@ -5,9 +5,11 @@
 @use 'shared/styles/constants/breakpoints' as *;
 
 .startTracking {
-  position: fixed;
-  right: 16px;
-  bottom: 50px;
+  position: sticky;
+  top: calc(100vh - 80px);
+  width: fit-content;
+  margin-right: 16px;
+  margin-left: auto;
   @include btn.btn-primary;
   font-weight: 700;
   padding: 14px 35px;
@@ -16,11 +18,11 @@
   box-shadow: 0 0 10px 0 clr.$prm-500;
 
   @include bp.tablet {
-    right: 20px;
+    margin-right: 20px;
   }
 
   @include bp.desktop {
-    right: calc(50% - ($main-max-width / 2));
+    margin-right: calc(50% - ($main-max-width / 2));
   }
   
 

@@ -30,6 +30,9 @@
       font-size: 36px;
       color: clr.$prm-700;
     }
+    dd:before {
+      content: '/';
+    }
   }
   .nutritions {
     border-top: 1px solid clr.$ns-200;

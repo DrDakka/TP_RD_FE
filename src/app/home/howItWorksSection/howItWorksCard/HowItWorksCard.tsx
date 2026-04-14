@@ -6,11 +6,6 @@ type HowItWorksCardProps = {
   description: string;
 };
 
-/*
-  plz use grid positioning innstead of wrappers:)
-  It makes code cleaner:)
-*/
-
 export const HowItWorksCard: React.FC<HowItWorksCardProps> = ({
   icon: Icon,
   title,
@@ -21,10 +16,8 @@ export const HowItWorksCard: React.FC<HowItWorksCardProps> = ({
       <div className={styles.iconWrapper}>
         <Icon />
       </div>
-      <div className={styles.content}>
-        <h3 className={styles.title}>{title}</h3>
-        <p className={styles.description}>{description}</p>
-      </div>
+      <h3 className={styles.title}>{title}</h3>
+      <p className={styles.description}>{description}</p>
     </li>
   );
 };

@@ -1,0 +1,36 @@
+@use 'shared/styles/mixins/typography' as typo;
+@use 'shared/styles/mixins/buttons' as btn;
+@use 'shared/styles/constants/colors' as clr;
+@use 'shared/styles/mixins/breakpoints' as bp;
+
+.howItWorks {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  align-items: center;
+  @include bp.desktop {
+    gap: 24px;
+  }
+  .title {
+    @include typo.h2;
+    font-weight: 400;
+  }
+  .button {
+    @include btn.btn-secondary;
+    color: clr.$prm-700;
+    padding: 6px 12px;
+    font-size: 12px;
+    width: fit-content;
+    @include bp.desktop {
+      font-size: 14px;
+    }
+    .check {
+      border-radius: 50px;
+      background-color: clr.$prm-700;
+      color: clr.$prm-100;
+      padding: 2px;
+      width: 18px;
+      height: 18px;
+    }
+  }
+}

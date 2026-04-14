@@ -1,33 +1,34 @@
 import {
+  FreeFilters,
+  StaticFilters,
   type FilterState,
-  SearchParamKey,
 } from '@/clientPages/catalogue/model/hooks/types';
 
 type Handlers = {
-  [K in SearchParamKey]: (
+  [K in keyof FilterState]: (
     inc: FilterState[K] | undefined,
     params: URLSearchParams,
   ) => void;
 };
 
 const handlers: Handlers = {
-  [SearchParamKey.SEARCH]: (inc, params) => {
-    if (inc) params.set(SearchParamKey.SEARCH, inc);
+  [FreeFilters.SEARCH]: (inc, params) => {
+    if (inc) params.set(FreeFilters.SEARCH, inc);
   },
-  [SearchParamKey.TAG]: (inc, params) => {
-    if (inc) params.set(SearchParamKey.TAG, String(inc));
+  [StaticFilters.TAG]: (inc, params) => {
+    if (inc) params.set(StaticFilters.TAG, String(inc));
   },
-  [SearchParamKey.PAGE]: (inc, params) => {
-    if (inc && inc > 1) params.set(SearchParamKey.PAGE, String(inc));
+  [StaticFilters.PAGE]: (inc, params) => {
+    if (inc && inc > 1) params.set(StaticFilters.PAGE, String(inc));
   },
-  [SearchParamKey.PROP]: (inc, params) => {
+  [StaticFilters.PROP]: (inc, params) => {
     const arr = Array.isArray(inc) ? inc : inc ? [inc] : [];
 
-    arr.forEach(p => params.append(SearchParamKey.PROP, String(p)));
+    arr.forEach(p => params.append(StaticFilters.PROP, String(p)));
   },
 };
 
-const applyHandler = <K extends SearchParamKey>(
+const applyHandler = <K extends keyof FilterState>(
   key: K,
   state: Partial<FilterState>,
   params: URLSearchParams,
@@ -38,7 +39,7 @@ const applyHandler = <K extends SearchParamKey>(
 export const createSearchParams = (state: Partial<FilterState>): string => {
   const params = new URLSearchParams();
 
-  (Object.keys(handlers) as SearchParamKey[]).forEach(key =>
+  (Object.keys(handlers) as Array<keyof FilterState>).forEach(key =>
     applyHandler(key, state, params),
   );
 

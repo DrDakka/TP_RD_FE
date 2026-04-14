@@ -1,7 +1,5 @@
 import {
-  PropTags,
   type PropTagUiLabel,
-  Tags,
   type TagUiLabel,
   uiToApi,
   apiToUi,
@@ -9,30 +7,17 @@ import {
 import { DropDown } from './ui';
 
 import s from './filters.module.scss';
-import { FilterState } from '../../model';
+import { FilterState, StaticFiltersMap } from '../../model';
+import { StaticFilters } from '../../model/hooks';
 
 type Props = {
-  tagHandler: (arg: Tags) => void;
-  propTagHandler: (arg: PropTags) => void;
   state: FilterState;
-  getHref: {
-    tag: (arg: Tags) => string;
-    propTag: (arg: PropTags) => string;
-  };
+  staticFilters: StaticFiltersMap;
 };
 
-export const Filters: React.FC<Props> = ({
-  tagHandler,
-  propTagHandler,
-  state,
-  getHref,
-}) => {
+export const Filters: React.FC<Props> = ({ state, staticFilters }) => {
   const tags = Object.keys(uiToApi.tag) as TagUiLabel[];
   const propTags = Object.keys(uiToApi.propTag) as PropTagUiLabel[];
-
-  const onTag = (uiKey: TagUiLabel) => tagHandler(uiToApi.tag[uiKey]);
-  const onPropTag = (uiKey: PropTagUiLabel) =>
-    propTagHandler(uiToApi.propTag[uiKey]);
 
   const activeTag = state.tag ? [apiToUi.tag[state.tag]] : [];
   const activePropTags = state.prop.map(p => apiToUi.propTag[p]);
@@ -46,17 +31,25 @@ export const Filters: React.FC<Props> = ({
           label={'Tags filter'}
           list={tags}
           multiselect={false}
-          onSelect={onTag}
+          onSelect={uiKey =>
+            staticFilters[StaticFilters.TAG](uiToApi.tag[uiKey]).handler()
+          }
           active={activeTag}
-          getHref={uiKey => getHref.tag(uiToApi.tag[uiKey])}
+          getHref={uiKey =>
+            staticFilters[StaticFilters.TAG](uiToApi.tag[uiKey]).href()
+          }
         />
         <DropDown
           label={'Property filter'}
           list={propTags}
           multiselect={true}
-          onSelect={onPropTag}
+          onSelect={uiKey =>
+            staticFilters[StaticFilters.PROP](uiToApi.propTag[uiKey]).handler()
+          }
           active={activePropTags}
-          getHref={uiKey => getHref.propTag(uiToApi.propTag[uiKey])}
+          getHref={uiKey =>
+            staticFilters[StaticFilters.PROP](uiToApi.propTag[uiKey]).href()
+          }
         />
       </div>
     </section>

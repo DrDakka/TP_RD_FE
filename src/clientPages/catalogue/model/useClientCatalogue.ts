@@ -13,7 +13,7 @@ type Args = {
 };
 
 export const useClientCatalogue = ({ initialState, initialData }: Args) => {
-  const { state, searchInput, handlers, restore, getHref } = useFilters({
+  const { state, searchInput, handlers, restore, staticFilters } = useFilters({
     initialState,
   });
 
@@ -32,6 +32,6 @@ export const useClientCatalogue = ({ initialState, initialData }: Args) => {
     ui: { view, onView },
     handlers,
     reload,
-    getHref,
+    staticFilters,
   };
 };

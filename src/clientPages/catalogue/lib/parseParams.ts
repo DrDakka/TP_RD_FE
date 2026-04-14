@@ -1,10 +1,14 @@
 import { PropTags, Tags } from '@/shared';
-import { FilterState, SearchParamKey } from '../model';
+import {
+  FreeFilters,
+  StaticFilters,
+  type FilterState,
+} from '../model/hooks/types';
 
 export const parseParams = (raw: Record<string, string>): FilterState => ({
-  [SearchParamKey.SEARCH]: raw[SearchParamKey.SEARCH] ?? '',
-  [SearchParamKey.TAG]: (raw[SearchParamKey.TAG] as Tags) ?? null,
-  [SearchParamKey.PROP]:
-    (raw[SearchParamKey.PROP]?.split(',') as PropTags[]) ?? [],
-  [SearchParamKey.PAGE]: Number(raw[SearchParamKey.PAGE]) || 1,
+  [FreeFilters.SEARCH]: raw[FreeFilters.SEARCH] ?? '',
+  [StaticFilters.TAG]: (raw[StaticFilters.TAG] as Tags) ?? null,
+  [StaticFilters.PROP]:
+    (raw[StaticFilters.PROP]?.split(',') as PropTags[]) ?? [],
+  [StaticFilters.PAGE]: Number(raw[StaticFilters.PAGE]) || 1,
 });

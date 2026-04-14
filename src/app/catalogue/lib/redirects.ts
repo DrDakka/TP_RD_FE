@@ -1,9 +1,9 @@
-import { SearchParamKey } from '@/clientPages/catalogue/model';
+import { StaticFilters } from '@/clientPages/catalogue/model/hooks';
 
 type RawSearchParams = Record<string, string | string[] | undefined>;
 
-const paramDefaults: Partial<Record<SearchParamKey, string>> = {
-  [SearchParamKey.PAGE]: '1',
+const paramDefaults: Partial<Record<StaticFilters, string>> = {
+  [StaticFilters.PAGE]: '1',
 };
 
 export const redirectRouter = (params: RawSearchParams): boolean =>

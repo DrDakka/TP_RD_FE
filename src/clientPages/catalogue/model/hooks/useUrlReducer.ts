@@ -1,49 +1,58 @@
 'use client';
 
 import { useReducer } from 'react';
-import { FilterAction, FilterState, SearchParamKey } from './types';
+import {
+  Core,
+  FilterAction,
+  FilterState,
+  FreeFilters,
+  StaticFilters,
+} from './types';
 
 const urlReducer = (state: FilterState, action: FilterAction): FilterState => {
-  const prop = state[SearchParamKey.PROP];
+  const prop = state[StaticFilters.PROP];
 
   switch (action.type) {
-    case 'SET_SEARCH':
-      return { ...state, [SearchParamKey.SEARCH]: action.payload, page: 1 };
-    case 'SET_TAG':
+    // Free filters
+    case FreeFilters.SEARCH:
+      return { ...state, [FreeFilters.SEARCH]: action.payload, page: 1 };
+
+    // Static filters
+    case StaticFilters.TAG:
       return {
         ...state,
-        [SearchParamKey.TAG]:
-          state[SearchParamKey.TAG] === action.payload ? null : action.payload,
+        [StaticFilters.TAG]:
+          state[StaticFilters.TAG] === action.payload ? null : action.payload,
         page: 1,
       };
-    case 'SET_PROP':
-      return { ...state, [SearchParamKey.PROP]: action.payload, page: 1 };
-    case 'TOGGLE_PROP':
+    case StaticFilters.PROP:
       return {
         ...state,
-        [SearchParamKey.PROP]: prop.includes(action.payload)
+        [StaticFilters.PROP]: prop.includes(action.payload)
           ? prop.filter(p => p !== action.payload)
           : [...prop, action.payload],
         page: 1,
       };
-    case 'SET_PAGE':
-      return { ...state, [SearchParamKey.PAGE]: action.payload };
-    case 'RESET_FILTERS':
+    case StaticFilters.PAGE:
+      return { ...state, [StaticFilters.PAGE]: action.payload };
+
+    // Core func
+    case Core.RESET:
       if (
-        !state[SearchParamKey.SEARCH] &&
-        !state[SearchParamKey.TAG] &&
+        !state[FreeFilters.SEARCH] &&
+        !state[StaticFilters.TAG] &&
         prop.length === 0 &&
-        state[SearchParamKey.PAGE] === 1
+        state[StaticFilters.PAGE] === 1
       )
         return state;
 
       return {
-        [SearchParamKey.SEARCH]: '',
-        [SearchParamKey.TAG]: null,
-        [SearchParamKey.PROP]: [],
-        [SearchParamKey.PAGE]: 1,
+        [FreeFilters.SEARCH]: '',
+        [StaticFilters.TAG]: null,
+        [StaticFilters.PROP]: [],
+        [StaticFilters.PAGE]: 1,
       };
-    case 'RESTORE':
+    case Core.RESTORE:
       return { ...action.payload };
   }
 };

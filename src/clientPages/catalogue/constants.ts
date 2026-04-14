@@ -1,11 +1,11 @@
 import { PropTags } from '@/shared/api/types';
-import { FilterState, SearchParamKey } from './model/hooks/types';
+import { FreeFilters, StaticFilters, type FilterState } from './model/hooks/types';
 
 const defaultState: FilterState = {
-  [SearchParamKey.SEARCH]: '',
-  [SearchParamKey.TAG]: null,
-  [SearchParamKey.PROP]: [] as PropTags[],
-  [SearchParamKey.PAGE]: 1,
+  [FreeFilters.SEARCH]: '',
+  [StaticFilters.TAG]: null,
+  [StaticFilters.PROP]: [] as PropTags[],
+  [StaticFilters.PAGE]: 1,
 };
 
 export { defaultState };

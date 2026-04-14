@@ -1,17 +1,59 @@
+'use client';
+
 import { ChangeEvent, useRef, useState } from 'react';
 import { useUrlReducer } from './useUrlReducer';
-import { FilterState } from './types';
-import { PropTags, Tags } from '@/shared';
+import {
+  Core,
+  FilterAction,
+  FilterState,
+  FreeFilters,
+  StaticArgMap,
+  StaticFilters,
+  StaticFiltersMap,
+} from './types';
 import { buildFilterUrl } from '../../lib';
 
 type Props = {
   initialState: FilterState;
 };
 
+const MIN_QUERY = 4;
+
 export const useFilters = ({ initialState }: Props) => {
   const [state, dispatch] = useUrlReducer(initialState);
   const [searchInput, setSearchInput] = useState(initialState.search ?? '');
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const freeFilters = {
+    [FreeFilters.SEARCH]: (e: ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+
+      setSearchInput(value);
+
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+      if (value.length < MIN_QUERY && value.length !== 0) return;
+
+      debounceRef.current = setTimeout(
+        () => dispatch({ type: FreeFilters.SEARCH, payload: value }),
+        300,
+      );
+    },
+  };
+
+  const staticFabric = <T extends keyof StaticArgMap>(filter: T) => {
+    return (arg: StaticArgMap[T]) => {
+      const conf = { type: filter, payload: arg } as FilterAction;
+
+      return {
+        handler: () => dispatch(conf),
+        href: () => buildFilterUrl(state, conf),
+      };
+    };
+  };
+
+  const staticFilters = Object.fromEntries(
+    Object.values(StaticFilters).map(filter => [filter, staticFabric(filter)]),
+  ) as StaticFiltersMap;
 
   const handlers = {
     query: (e: ChangeEvent<HTMLInputElement>) => {
@@ -20,46 +62,29 @@ export const useFilters = ({ initialState }: Props) => {
       setSearchInput(value);
 
       if (debounceRef.current) clearTimeout(debounceRef.current);
-      if (value.length < 4 && value.length !== 0) return;
+      if (value.length < MIN_QUERY && value.length !== 0) return;
 
       debounceRef.current = setTimeout(
-        () => dispatch({ type: 'SET_SEARCH', payload: value }),
+        () => dispatch({ type: FreeFilters.SEARCH, payload: value }),
         300,
       );
     },
-    tag: (arg: Tags) => {
-      dispatch({ type: 'SET_TAG', payload: arg });
-    },
-    propTag: (arg: PropTags) => {
-      dispatch({ type: 'TOGGLE_PROP', payload: arg });
-    },
     reset: () => {
       setSearchInput('');
-      dispatch({ type: 'RESET_FILTERS' });
-    },
-    page: (idx: number) => {
-      dispatch({ type: 'SET_PAGE', payload: idx });
-    },
-  };
-
-  const getHref = {
-    tag: (arg: Tags) => {
-      return buildFilterUrl(state, { type: 'SET_TAG', payload: arg });
-    },
-    propTag: (arg: PropTags) => {
-      return buildFilterUrl(state, { type: 'TOGGLE_PROP', payload: arg });
+      dispatch({ type: Core.RESET });
     },
   };
 
   const restore = (state: FilterState) => {
-    dispatch({ type: 'RESTORE', payload: state });
+    dispatch({ type: Core.RESTORE, payload: state });
   };
 
   return {
     state,
     searchInput,
+    freeFilters,
+    staticFilters,
     handlers,
     restore,
-    getHref,
   };
 };

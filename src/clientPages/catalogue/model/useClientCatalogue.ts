@@ -13,11 +13,12 @@ type Args = {
 };
 
 export const useClientCatalogue = ({ initialState, initialData }: Args) => {
-  const { state, searchInput, handlers, restore } = useFilters({
+  const { state, searchInput, handlers, restore, getHref } = useFilters({
     initialState,
   });
 
   usePopstate(restore);
+
   const { data, status, reload } = useData({ state, initialData });
 
   const { items, count } = data ?? initialData;
@@ -31,5 +32,6 @@ export const useClientCatalogue = ({ initialState, initialData }: Args) => {
     ui: { view, onView },
     handlers,
     reload,
+    getHref,
   };
 };

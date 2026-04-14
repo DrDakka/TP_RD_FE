@@ -3,7 +3,7 @@
 import { useReducer } from 'react';
 import { FilterAction, FilterState, SearchParamKey } from './types';
 
-const reducer = (state: FilterState, action: FilterAction): FilterState => {
+const urlReducer = (state: FilterState, action: FilterAction): FilterState => {
   const prop = state[SearchParamKey.PROP];
 
   switch (action.type) {
@@ -48,6 +48,8 @@ const reducer = (state: FilterState, action: FilterAction): FilterState => {
   }
 };
 
-export const useUrlReducer = (initialState: FilterState) => {
-  return useReducer(reducer, initialState);
+const useUrlReducer = (initialState: FilterState) => {
+  return useReducer(urlReducer, initialState);
 };
+
+export { useUrlReducer, urlReducer };

@@ -2,6 +2,7 @@ import { ChangeEvent, useRef, useState } from 'react';
 import { useUrlReducer } from './useUrlReducer';
 import { FilterState } from './types';
 import { PropTags, Tags } from '@/shared';
+import { buildFilterUrl } from '../../lib';
 
 type Props = {
   initialState: FilterState;
@@ -41,6 +42,15 @@ export const useFilters = ({ initialState }: Props) => {
     },
   };
 
+  const getHref = {
+    tag: (arg: Tags) => {
+      return buildFilterUrl(state, { type: 'SET_TAG', payload: arg });
+    },
+    propTag: (arg: PropTags) => {
+      return buildFilterUrl(state, { type: 'TOGGLE_PROP', payload: arg });
+    },
+  };
+
   const restore = (state: FilterState) => {
     dispatch({ type: 'RESTORE', payload: state });
   };
@@ -50,5 +60,6 @@ export const useFilters = ({ initialState }: Props) => {
     searchInput,
     handlers,
     restore,
+    getHref,
   };
 };

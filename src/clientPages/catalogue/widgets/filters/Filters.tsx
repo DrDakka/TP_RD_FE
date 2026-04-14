@@ -15,12 +15,17 @@ type Props = {
   tagHandler: (arg: Tags) => void;
   propTagHandler: (arg: PropTags) => void;
   state: FilterState;
+  getHref: {
+    tag: (arg: Tags) => string;
+    propTag: (arg: PropTags) => string;
+  };
 };
 
 export const Filters: React.FC<Props> = ({
   tagHandler,
   propTagHandler,
   state,
+  getHref,
 }) => {
   const tags = Object.keys(uiToApi.tag) as TagUiLabel[];
   const propTags = Object.keys(uiToApi.propTag) as PropTagUiLabel[];
@@ -43,6 +48,7 @@ export const Filters: React.FC<Props> = ({
           multiselect={false}
           onSelect={onTag}
           active={activeTag}
+          getHref={uiKey => getHref.tag(uiToApi.tag[uiKey])}
         />
         <DropDown
           label={'Property filter'}
@@ -50,6 +56,7 @@ export const Filters: React.FC<Props> = ({
           multiselect={true}
           onSelect={onPropTag}
           active={activePropTags}
+          getHref={uiKey => getHref.propTag(uiToApi.propTag[uiKey])}
         />
       </div>
     </section>

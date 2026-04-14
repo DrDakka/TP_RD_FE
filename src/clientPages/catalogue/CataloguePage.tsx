@@ -22,7 +22,7 @@ export const CataloguePage: React.FC<Props> = ({
     prop: normalizeProp(initialState?.prop),
   };
 
-  const { state, data, ui, handlers, reload } = useClientCatalogue({
+  const { state, data, ui, handlers, reload, getHref } = useClientCatalogue({
     initialState: init,
     initialData,
   });
@@ -42,6 +42,7 @@ export const CataloguePage: React.FC<Props> = ({
         tagHandler={handlers.tag}
         propTagHandler={handlers.propTag}
         state={state}
+        getHref={getHref}
       />
       <CatalogueGrid
         items={data.items}

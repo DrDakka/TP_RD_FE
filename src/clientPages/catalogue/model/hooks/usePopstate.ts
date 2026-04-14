@@ -17,5 +17,5 @@ export const usePopstate = (restore: (state: FilterState) => void) => {
     window.addEventListener('popstate', onPopState);
 
     return () => window.removeEventListener('popstate', onPopState);
-  }, []);
+  }, [restore]);
 };

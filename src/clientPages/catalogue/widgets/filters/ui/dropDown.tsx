@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Link from 'next/link';
 
 import s from './dropDown.module.scss';
 import { IconCheckCircle, IconCheckSquare, IconChevron } from '@/shared';
@@ -10,6 +11,7 @@ type Props<T extends string> = {
   multiselect: boolean;
   onSelect: (arg: T) => void;
   active?: T[];
+  getHref: (arg: T) => string;
 };
 
 export const DropDown = <T extends string>({
@@ -18,6 +20,7 @@ export const DropDown = <T extends string>({
   multiselect,
   onSelect,
   active = [],
+  getHref,
 }: Props<T>) => {
   const [open, setOpen] = useState<boolean>(false);
 
@@ -47,12 +50,14 @@ export const DropDown = <T extends string>({
               aria-selected={act}
               onClick={() => onSelect(el)}
             >
-              <span>{el}</span>
-              {multiselect ? (
-                <IconCheckSquare active={act} />
-              ) : (
-                <IconCheckCircle active={act} />
-              )}
+              <Link href={getHref(el)} onClick={e => e.preventDefault()}>
+                <span>{el}</span>
+                {multiselect ? (
+                  <IconCheckSquare active={act} />
+                ) : (
+                  <IconCheckCircle active={act} />
+                )}
+              </Link>
             </li>
           );
         })}

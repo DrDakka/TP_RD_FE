@@ -1,3 +1,5 @@
+'use client';
+
 import { clientApi, GetProductsResponse } from '@/shared';
 import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useRef } from 'react';
@@ -42,7 +44,12 @@ export const useData = ({ state, initialData }: Props) => {
     const { reload, abort } = refs.current;
     const query = createSearchParams(state);
 
-    window.history.pushState(null, '', `${pathname}?${query}`);
+    const currentQuery = new URLSearchParams(window.location.search).toString();
+
+    if (query !== currentQuery) {
+      window.history.pushState(null, '', `${pathname}?${query}`);
+    }
+
     reload();
 
     return () => abort();

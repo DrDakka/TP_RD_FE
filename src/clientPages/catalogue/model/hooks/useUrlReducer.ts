@@ -43,6 +43,8 @@ const reducer = (state: FilterState, action: FilterAction): FilterState => {
         [SearchParamKey.PROP]: [],
         [SearchParamKey.PAGE]: 1,
       };
+    case 'RESTORE':
+      return { ...action.payload };
   }
 };
 

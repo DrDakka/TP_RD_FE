@@ -21,10 +21,13 @@ export const CataloguePage: React.FC<Props> = ({
     ...initialState,
     prop: normalizeProp(initialState?.prop),
   };
+
   const { state, data, ui, handlers, reload } = useClientCatalogue({
     initialState: init,
     initialData,
   });
+
+  const totalPages = Math.ceil(data.count / 20);
 
   return (
     <div className={s.container}>
@@ -49,15 +52,18 @@ export const CataloguePage: React.FC<Props> = ({
       />
 
       <div>
-        <button disabled={state.page <= 1} onClick={() => handlers.page(1)}>
+        <button
+          disabled={state.page <= 1}
+          onClick={() => handlers.page(state.page - 1)}
+        >
           &lt;
         </button>
         <span>
-          {state.page} / {data.totalPages}
+          {state.page} / {totalPages}
         </span>
         <button
-          disabled={state.page >= data.totalPages}
-          onClick={() => handlers.page(1)}
+          disabled={state.page >= totalPages}
+          onClick={() => handlers.page(state.page + 1)}
         >
           &gt;
         </button>

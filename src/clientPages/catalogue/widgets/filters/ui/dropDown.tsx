@@ -3,6 +3,7 @@ import { useState } from 'react';
 import s from './dropDown.module.scss';
 import { IconCheckCircle, IconCheckSquare, IconChevron } from '@/shared';
 import classNames from 'classnames';
+
 type Props<T extends string> = {
   label: string;
   list: T[];

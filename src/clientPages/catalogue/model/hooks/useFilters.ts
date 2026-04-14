@@ -19,7 +19,6 @@ export const useFilters = ({ initialState }: Props) => {
       setSearchInput(value);
 
       if (debounceRef.current) clearTimeout(debounceRef.current);
-
       if (value.length < 4 && value.length !== 0) return;
 
       debounceRef.current = setTimeout(
@@ -33,7 +32,6 @@ export const useFilters = ({ initialState }: Props) => {
     propTag: (arg: PropTags) => {
       dispatch({ type: 'TOGGLE_PROP', payload: arg });
     },
-
     reset: () => {
       setSearchInput('');
       dispatch({ type: 'RESET_FILTERS' });
@@ -43,9 +41,14 @@ export const useFilters = ({ initialState }: Props) => {
     },
   };
 
+  const restore = (state: FilterState) => {
+    dispatch({ type: 'RESTORE', payload: state });
+  };
+
   return {
     state,
     searchInput,
     handlers,
+    restore,
   };
 };

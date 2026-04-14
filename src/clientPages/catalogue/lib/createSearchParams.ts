@@ -22,6 +22,7 @@ const handlers: Handlers = {
   },
   [SearchParamKey.PROP]: (inc, params) => {
     const arr = Array.isArray(inc) ? inc : inc ? [inc] : [];
+
     arr.forEach(p => params.append(SearchParamKey.PROP, String(p)));
   },
 };

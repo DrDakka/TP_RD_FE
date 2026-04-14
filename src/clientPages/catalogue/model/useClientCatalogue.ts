@@ -5,6 +5,7 @@ import { useData, useFilters } from './hooks';
 import { type FilterState } from './hooks/types';
 import { useState } from 'react';
 import { View } from '@/shared';
+import { usePopstate } from './hooks/usePopstate';
 
 type Args = {
   initialState: FilterState;
@@ -12,22 +13,21 @@ type Args = {
 };
 
 export const useClientCatalogue = ({ initialState, initialData }: Args) => {
-  const { state, searchInput, handlers } = useFilters({ initialState });
+  const { state, searchInput, handlers, restore } = useFilters({
+    initialState,
+  });
 
+  usePopstate(restore);
   const { data, status, reload } = useData({ state, initialData });
 
   const { items, count } = data ?? initialData;
-  const totalPages = Math.ceil(count / 20);
 
   const [view, setView] = useState<View>(View.GRID);
-
-  const onView = (arg: View) => {
-    setView(arg);
-  };
+  const onView = (arg: View) => setView(arg);
 
   return {
     state,
-    data: { items, count, totalPages, status, searchInput },
+    data: { items, count, status, searchInput },
     ui: { view, onView },
     handlers,
     reload,

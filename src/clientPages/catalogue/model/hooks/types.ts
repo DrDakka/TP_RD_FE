@@ -20,6 +20,7 @@ type FilterAction =
   | { type: 'SET_PROP'; payload: PropTags[] }
   | { type: 'TOGGLE_PROP'; payload: PropTags }
   | { type: 'SET_PAGE'; payload: number }
-  | { type: 'RESET_FILTERS' };
+  | { type: 'RESET_FILTERS' }
+  | { type: 'RESTORE'; payload: FilterState };
 
 export { SearchParamKey, type FilterAction, type FilterState };

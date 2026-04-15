@@ -4,9 +4,9 @@ import { createSearchParams } from './createSearchParams';
 
 export const buildFilterUrl = (
   currentState: FilterState,
-  action: FilterAction,
+  actions: FilterAction[],
 ): string => {
-  const nextState = urlReducer(currentState, action);
+  const nextState = actions.reduce(urlReducer, currentState);
   const query = createSearchParams(nextState);
 
   return query ? `/catalogue?${query}` : '/catalogue';

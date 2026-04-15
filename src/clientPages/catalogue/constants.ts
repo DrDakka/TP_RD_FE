@@ -1,5 +1,5 @@
 import { PropTags } from '@/shared/api/types';
-import { FreeFilters, StaticFilters, type FilterState } from './model/hooks/types';
+import { type FilterState, FreeFilters, StaticFilters } from './model';
 
 const defaultState: FilterState = {
   [FreeFilters.SEARCH]: '',

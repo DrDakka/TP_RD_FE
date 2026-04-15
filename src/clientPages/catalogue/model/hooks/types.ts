@@ -1,11 +1,13 @@
 import { PropTags, Tags } from '@/shared/api/types';
 
-// Free - does not have HREF, static - have;
-// Core - reducer actions
+// Free - no href (query, sliders)
+// Static - have href (dropdowns, selects)
+// Core - base reducer actions
 
 enum FreeFilters {
   SEARCH = 'search',
 }
+
 enum StaticFilters {
   TAG = 'tag',
   PROP = 'prop',
@@ -51,20 +53,5 @@ type FilterAction =
     }[keyof ActionMap]
   | Payloadless;
 
-type StaticFilterEntry<T extends keyof StaticArgMap> = (
-  arg: StaticArgMap[T],
-) => { handler: () => void; href: () => string };
-
-type StaticFiltersMap = {
-  [K in keyof StaticArgMap]: StaticFilterEntry<K>;
-};
-
-export {
-  Core,
-  FreeFilters,
-  StaticFilters,
-  type FilterAction,
-  type FilterState,
-  type StaticArgMap,
-  type StaticFiltersMap,
-};
+export { Core, FreeFilters, StaticFilters };
+export type { FilterAction, FilterState, FreeArgMap, StaticArgMap };

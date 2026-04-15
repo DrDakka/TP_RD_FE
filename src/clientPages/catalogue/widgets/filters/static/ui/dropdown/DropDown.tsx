@@ -1,9 +1,10 @@
-import { useState } from 'react';
-import Link from 'next/link';
+'use client';
 
+import { useState } from 'react';
 import s from './dropDown.module.scss';
 import { IconCheckCircle, IconCheckSquare, IconChevron } from '@/shared';
 import classNames from 'classnames';
+import { Item } from './subcomp/Item';
 
 type Props<T extends string> = {
   label: string;
@@ -24,6 +25,8 @@ export const DropDown = <T extends string>({
 }: Props<T>) => {
   const [open, setOpen] = useState<boolean>(false);
 
+  const Icon = multiselect ? IconCheckSquare : IconCheckCircle;
+
   return (
     <div className={s.dropdown}>
       <button
@@ -41,24 +44,15 @@ export const DropDown = <T extends string>({
           const act = active.includes(el);
 
           return (
-            <li
+            <Item
+              el={el}
+              active={act}
               key={el}
-              className={classNames(s.listitem, {
-                [s['listitem--active']]: act,
-              })}
-              role="option"
-              aria-selected={act}
-              onClick={() => onSelect(el)}
+              href={getHref(el)}
+              onSelect={() => onSelect(el)}
             >
-              <Link href={getHref(el)} onClick={e => e.preventDefault()}>
-                <span>{el}</span>
-                {multiselect ? (
-                  <IconCheckSquare active={act} />
-                ) : (
-                  <IconCheckCircle active={act} />
-                )}
-              </Link>
-            </li>
+              <Icon active={act} />
+            </Item>
           );
         })}
       </ul>

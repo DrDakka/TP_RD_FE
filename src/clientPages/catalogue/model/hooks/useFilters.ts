@@ -9,8 +9,8 @@ import {
   FreeFilters,
   StaticArgMap,
   StaticFilters,
-  StaticFiltersMap,
 } from './types';
+import { StaticFiltersMap } from '../../widgets/filters';
 import { buildFilterUrl } from '../../lib';
 
 type Props = {
@@ -24,6 +24,14 @@ export const useFilters = ({ initialState }: Props) => {
   const [searchInput, setSearchInput] = useState(initialState.search ?? '');
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  const pageReset: FilterAction = { type: StaticFilters.PAGE, payload: 1 };
+
+  const commandConfig: Record<keyof StaticArgMap, FilterAction[]> = {
+    [StaticFilters.TAG]: [pageReset],
+    [StaticFilters.PROP]: [pageReset],
+    [StaticFilters.PAGE]: [],
+  };
+
   const freeFilters = {
     [FreeFilters.SEARCH]: (e: ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
@@ -33,20 +41,22 @@ export const useFilters = ({ initialState }: Props) => {
       if (debounceRef.current) clearTimeout(debounceRef.current);
       if (value.length < MIN_QUERY && value.length !== 0) return;
 
-      debounceRef.current = setTimeout(
-        () => dispatch({ type: FreeFilters.SEARCH, payload: value }),
-        300,
-      );
+      debounceRef.current = setTimeout(() => {
+        dispatch({ type: FreeFilters.SEARCH, payload: value });
+        dispatch(pageReset);
+      }, 300);
     },
   };
 
   const staticFabric = <T extends keyof StaticArgMap>(filter: T) => {
     return (arg: StaticArgMap[T]) => {
       const conf = { type: filter, payload: arg } as FilterAction;
+      const sideEffects = commandConfig[filter];
+      const actions = [conf, ...sideEffects];
 
       return {
-        handler: () => dispatch(conf),
-        href: () => buildFilterUrl(state, conf),
+        handler: () => actions.forEach(a => dispatch(a)),
+        href: () => buildFilterUrl(state, actions),
       };
     };
   };
@@ -55,36 +65,24 @@ export const useFilters = ({ initialState }: Props) => {
     Object.values(StaticFilters).map(filter => [filter, staticFabric(filter)]),
   ) as StaticFiltersMap;
 
-  const handlers = {
-    query: (e: ChangeEvent<HTMLInputElement>) => {
-      const value = e.target.value;
-
-      setSearchInput(value);
-
-      if (debounceRef.current) clearTimeout(debounceRef.current);
-      if (value.length < MIN_QUERY && value.length !== 0) return;
-
-      debounceRef.current = setTimeout(
-        () => dispatch({ type: FreeFilters.SEARCH, payload: value }),
-        300,
-      );
-    },
-    reset: () => {
+  const baseActions = {
+    [Core.RESET]: () => {
       setSearchInput('');
       dispatch({ type: Core.RESET });
     },
+    [Core.RESTORE]: (s: FilterState) =>
+      dispatch({ type: Core.RESTORE, payload: s }),
   };
 
-  const restore = (state: FilterState) => {
-    dispatch({ type: Core.RESTORE, payload: state });
+  const filters = {
+    free: freeFilters,
+    static: staticFilters,
+    base: baseActions,
   };
 
   return {
     state,
     searchInput,
-    freeFilters,
-    staticFilters,
-    handlers,
-    restore,
+    filters,
   };
 };

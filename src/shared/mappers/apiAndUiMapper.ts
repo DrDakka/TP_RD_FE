@@ -55,14 +55,6 @@ const propTagUiToApi: Record<PropTagUiLabel, PropTags> = {
   Fiber: PropTags.FBR,
 };
 
-const apiToUi = {
-  tag: tagApiToUi,
-  propTag: propTagApiToUi,
-};
+export { tagApiToUi, propTagApiToUi, tagUiToApi, propTagUiToApi };
 
-const uiToApi = {
-  tag: tagUiToApi,
-  propTag: propTagUiToApi,
-};
-
-export { apiToUi, uiToApi, type TagUiLabel, type PropTagUiLabel };
+export type { TagUiLabel, PropTagUiLabel };

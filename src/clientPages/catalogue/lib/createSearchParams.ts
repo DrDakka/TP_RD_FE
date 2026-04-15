@@ -1,8 +1,5 @@
-import {
-  FreeFilters,
-  StaticFilters,
-  type FilterState,
-} from '@/clientPages/catalogue/model/hooks/types';
+import { type FilterState } from '@/clientPages/catalogue/model/hooks/types';
+import { FreeFilters, StaticFilters } from '@/clientPages/catalogue/model';
 
 type Handlers = {
   [K in keyof FilterState]: (

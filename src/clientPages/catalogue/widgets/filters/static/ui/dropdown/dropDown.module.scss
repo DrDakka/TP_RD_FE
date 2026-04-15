@@ -79,23 +79,4 @@
   }
 }
 
-.listitem {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 
-  margin: 0 8px;
-  box-sizing: border-box;
-  border-radius: br.$br-s;
-  background-color: clr.$ns-100;
-  padding: 0 8px;
-
-  > span {
-    @include tp.body-m;
-    color: clr.$ns-700;
-  }
-
-  > svg > path {
-    color: clr.$ns-700;
-  }
-}

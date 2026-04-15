@@ -1,14 +1,10 @@
 import { PropTags, Tags } from '@/shared';
-import {
-  FreeFilters,
-  StaticFilters,
-  type FilterState,
-} from '../model/hooks/types';
+import { type FilterState } from '../model/hooks/types';
+import { FreeFilters, StaticFilters } from '../model';
 
-export const parseParams = (raw: Record<string, string>): FilterState => ({
-  [FreeFilters.SEARCH]: raw[FreeFilters.SEARCH] ?? '',
-  [StaticFilters.TAG]: (raw[StaticFilters.TAG] as Tags) ?? null,
-  [StaticFilters.PROP]:
-    (raw[StaticFilters.PROP]?.split(',') as PropTags[]) ?? [],
-  [StaticFilters.PAGE]: Number(raw[StaticFilters.PAGE]) || 1,
+export const parseParams = (params: URLSearchParams): FilterState => ({
+  [FreeFilters.SEARCH]: params.get(FreeFilters.SEARCH) ?? '',
+  [StaticFilters.TAG]: (params.get(StaticFilters.TAG) as Tags) ?? null,
+  [StaticFilters.PROP]: params.getAll(StaticFilters.PROP) as PropTags[],
+  [StaticFilters.PAGE]: Number(params.get(StaticFilters.PAGE)) || 1,
 });

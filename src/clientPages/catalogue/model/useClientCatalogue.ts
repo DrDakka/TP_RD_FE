@@ -13,11 +13,11 @@ type Args = {
 };
 
 export const useClientCatalogue = ({ initialState, initialData }: Args) => {
-  const { state, searchInput, handlers, restore, staticFilters } = useFilters({
+  const { state, searchInput, filters } = useFilters({
     initialState,
   });
 
-  usePopstate(restore);
+  usePopstate(filters.base.restore);
 
   const { data, status, reload } = useData({ state, initialData });
 
@@ -30,8 +30,7 @@ export const useClientCatalogue = ({ initialState, initialData }: Args) => {
     state,
     data: { items, count, status, searchInput },
     ui: { view, onView },
-    handlers,
     reload,
-    staticFilters,
+    filters,
   };
 };

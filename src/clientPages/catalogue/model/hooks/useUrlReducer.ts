@@ -13,17 +13,14 @@ const urlReducer = (state: FilterState, action: FilterAction): FilterState => {
   const prop = state[StaticFilters.PROP];
 
   switch (action.type) {
-    // Free filters
     case FreeFilters.SEARCH:
       return { ...state, [FreeFilters.SEARCH]: action.payload, page: 1 };
 
-    // Static filters
     case StaticFilters.TAG:
       return {
         ...state,
         [StaticFilters.TAG]:
           state[StaticFilters.TAG] === action.payload ? null : action.payload,
-        page: 1,
       };
     case StaticFilters.PROP:
       return {
@@ -31,12 +28,10 @@ const urlReducer = (state: FilterState, action: FilterAction): FilterState => {
         [StaticFilters.PROP]: prop.includes(action.payload)
           ? prop.filter(p => p !== action.payload)
           : [...prop, action.payload],
-        page: 1,
       };
     case StaticFilters.PAGE:
       return { ...state, [StaticFilters.PAGE]: action.payload };
 
-    // Core func
     case Core.RESET:
       if (
         !state[FreeFilters.SEARCH] &&

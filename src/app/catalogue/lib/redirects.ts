@@ -1,4 +1,4 @@
-import { StaticFilters } from '@/clientPages/catalogue/model/hooks';
+import { StaticFilters } from '@/clientPages/catalogue/model';
 
 type RawSearchParams = Record<string, string | string[] | undefined>;
 

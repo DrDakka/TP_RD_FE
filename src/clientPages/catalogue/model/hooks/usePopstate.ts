@@ -5,11 +5,7 @@ import { parseParams } from '../../lib';
 export const usePopstate = (restore: (state: FilterState) => void) => {
   useEffect(() => {
     const onPopState = () => {
-      const params = Object.fromEntries(
-        new URLSearchParams(window.location.search),
-      );
-
-      const state = parseParams(params);
+      const state = parseParams(new URLSearchParams(window.location.search));
 
       restore(state);
     };

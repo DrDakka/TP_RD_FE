@@ -1,9 +1,6 @@
-import {
-  FreeFilters,
-  StaticFilters,
-  type FilterState,
-} from '@/clientPages/catalogue/model/hooks/types';
+import { type FilterState } from '@/clientPages/catalogue/model/hooks/types';
 import { PropTags, Tags } from '@/shared/api/types';
+import { FreeFilters, StaticFilters } from '@/clientPages/catalogue/model';
 
 const VALID_TAGS = new Set<string>(Object.values(Tags));
 const VALID_PROPS = new Set<string>(Object.values(PropTags));

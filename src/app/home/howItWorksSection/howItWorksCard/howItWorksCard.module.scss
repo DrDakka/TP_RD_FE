@@ -2,14 +2,14 @@
 @use 'shared/styles/constants/shadows' as sh;
 @use 'shared/styles/constants/colors' as clr;
 @use 'shared/styles/mixins/typography' as typo;
+@use 'shared/styles/mixins/card' as card;
 
 .card {
+  @include card.card(13px 19px);
   display: grid;
   gap: 0 18px;
   grid-template-columns: min-content 1fr;
   border-radius: br.$br-xxs;
-  box-shadow: sh.$shadow-low;
-  padding: 13px 19px;
 
   .iconWrapper {
     width: 54px;

@@ -1,0 +1,10 @@
+@use 'shared/styles/constants/border-radius' as br;
+@use 'shared/styles/constants/shadows' as sh;
+@use 'shared/styles/constants/colors' as clr;
+
+@mixin card($padding: 22px 16px) {
+  padding: $padding;
+  border-radius: br.$br-s;
+  box-shadow: sh.$shadow-low;
+  background-color: clr.$ns-000;
+}

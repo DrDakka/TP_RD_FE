@@ -61,7 +61,7 @@ const useLoader = <R>(
     load();
 
     return () => controllerRef.current?.abort();
-  }, [load, enabled, initialData]);
+  }, [load, enabled]);
 
   return {
     data,

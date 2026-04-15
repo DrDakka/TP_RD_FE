@@ -14,7 +14,7 @@ const urlReducer = (state: FilterState, action: FilterAction): FilterState => {
 
   switch (action.type) {
     case FreeFilters.SEARCH:
-      return { ...state, [FreeFilters.SEARCH]: action.payload, page: 1 };
+      return { ...state, [FreeFilters.SEARCH]: action.payload };
 
     case StaticFilters.TAG:
       return {

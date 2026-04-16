@@ -11,7 +11,9 @@ export const Logo = ({ className }: LogoProps) => {
   return (
     <Link href={'/'} className={classNames(s.container, className)}>
       <IconLogo />
-      <span>NutriSpace</span>
+      <span>
+        <span className={s.logoMod}>Nutri</span>Space
+      </span>
     </Link>
   );
 };

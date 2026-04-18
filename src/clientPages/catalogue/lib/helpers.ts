@@ -14,13 +14,6 @@ export const normalizeProp = (prop: unknown): PropTags[] => {
   return [];
 };
 
-export const parseParams = (params: URLSearchParams): FilterState => ({
-  [FreeFilters.SEARCH]: params.get(FreeFilters.SEARCH) ?? '',
-  [StaticFilters.TAG]: (params.get(StaticFilters.TAG) as Tags) ?? null,
-  [StaticFilters.PROP]: params.getAll(StaticFilters.PROP) as PropTags[],
-  [StaticFilters.PAGE]: Number(params.get(StaticFilters.PAGE)) || 1,
-});
-
 type Handlers = {
   [K in keyof FilterState]: (
     inc: FilterState[K] | undefined,
@@ -45,30 +38,34 @@ const handlers: Handlers = {
   },
 };
 
-const applyHandler = <K extends keyof FilterState>(
-  key: K,
-  state: Partial<FilterState>,
-  params: URLSearchParams,
-) => {
-  handlers[key](state[key], params);
-};
+export const searchParams = {
+  parse: (params: URLSearchParams): FilterState => ({
+    [FreeFilters.SEARCH]: params.get(FreeFilters.SEARCH) ?? '',
+    [StaticFilters.TAG]: (params.get(StaticFilters.TAG) as Tags) ?? null,
+    [StaticFilters.PROP]: params.getAll(StaticFilters.PROP) as PropTags[],
+    [StaticFilters.PAGE]: Number(params.get(StaticFilters.PAGE)) || 1,
+  }),
+  set: <K extends keyof FilterState>(
+    key: K,
+    state: Partial<FilterState>,
+    params: URLSearchParams,
+  ) => {
+    handlers[key](state[key], params);
+  },
+  create: (state: Partial<FilterState>): string => {
+    const params = new URLSearchParams();
 
-export const createSearchParams = (state: Partial<FilterState>): string => {
-  const params = new URLSearchParams();
+    (Object.keys(handlers) as Array<keyof FilterState>).forEach(key =>
+      searchParams.set(key, state, params),
+    );
 
-  (Object.keys(handlers) as Array<keyof FilterState>).forEach(key =>
-    applyHandler(key, state, params),
-  );
+    return params.toString();
+  },
 
-  return params.toString();
-};
+  buildUrl: (currentState: FilterState, actions: FilterAction[]): string => {
+    const nextState = actions.reduce(urlReducer, currentState);
+    const query = searchParams.create(nextState);
 
-export const buildFilterUrl = (
-  currentState: FilterState,
-  actions: FilterAction[],
-): string => {
-  const nextState = actions.reduce(urlReducer, currentState);
-  const query = createSearchParams(nextState);
-
-  return query ? `/catalogue?${query}` : '/catalogue';
+    return query ? `/catalogue?${query}` : '/catalogue';
+  },
 };

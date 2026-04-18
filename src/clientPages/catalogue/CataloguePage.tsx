@@ -32,12 +32,17 @@ export const CataloguePage: React.FC<Props> = ({
     initialData,
   });
 
+  const reset = () => {
+    filters.base[Core.RESET]();
+    apply();
+  };
+
   return (
     <div className={s.container}>
       <SearchBar
         query={data.searchInput}
         onQuery={filters.free[FreeFilters.SEARCH]}
-        reset={filters.base[Core.RESET]}
+        reset={reset}
         view={ui.view}
         onView={ui.onView}
       />

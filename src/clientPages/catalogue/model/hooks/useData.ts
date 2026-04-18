@@ -4,7 +4,7 @@ import { clientApi, GetProductsResponse } from '@/shared';
 import { usePathname } from 'next/navigation';
 import { useCallback } from 'react';
 import { FilterState } from '..';
-import { createSearchParams } from '../../lib';
+import { searchParams } from '../../lib';
 import { useLoader } from '@/features';
 
 type Props = {
@@ -17,14 +17,14 @@ export const useData = ({ state, initialData }: Props) => {
 
   const loadFn = useCallback(
     (signal: AbortSignal) =>
-      clientApi.products.list(createSearchParams(state), signal),
+      clientApi.products.list(searchParams.create(state), signal),
     [state],
   );
 
   const { data, status, reload } = useLoader(loadFn, false, initialData);
 
   const apply = useCallback(() => {
-    const query = createSearchParams(state);
+    const query = searchParams.create(state);
     const currentQuery = new URLSearchParams(window.location.search).toString();
 
     if (query !== currentQuery) {

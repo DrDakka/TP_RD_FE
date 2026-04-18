@@ -11,7 +11,7 @@ import {
   StaticFilters,
 } from './types';
 import { StaticFiltersMap } from '../../widgets/filters';
-import { buildFilterUrl } from '../../lib';
+import { searchParams } from '../../lib';
 
 type Props = {
   initialState: FilterState;
@@ -57,7 +57,7 @@ export const useFilters = ({ initialState }: Props) => {
 
       return {
         handler: () => actions.forEach(a => dispatch(a)),
-        href: () => buildFilterUrl(state, actions),
+        href: () => searchParams.buildUrl(state, actions),
       };
     };
   };

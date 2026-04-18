@@ -1,5 +1,5 @@
 import { ValidationError } from '@/shared/errors/ValidationError';
-import { val, createSearchParams } from '@/clientPages/catalogue/lib';
+import { val, searchParams } from '@/clientPages/catalogue/lib';
 import { type FilterState } from '@/clientPages/catalogue/model';
 
 type RawSearchParams = Record<string, string | string[] | undefined>;
@@ -28,7 +28,7 @@ export const getInit = (params: RawSearchParams): ParsedSearchParams => {
   }
 
   init.initialState = params;
-  init.query = createSearchParams(init.initialState);
+  init.query = searchParams.create(init.initialState);
 
   return init;
 };

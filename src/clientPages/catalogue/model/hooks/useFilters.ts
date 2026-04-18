@@ -51,6 +51,7 @@ export const useFilters = ({ initialState }: Props) => {
   const staticFabric = <T extends keyof StaticArgMap>(filter: T) => {
     return (arg: StaticArgMap[T]) => {
       const conf = { type: filter, payload: arg } as FilterAction;
+
       const sideEffects = commandConfig[filter];
       const actions = [conf, ...sideEffects];
 

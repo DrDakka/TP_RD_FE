@@ -1,5 +1,25 @@
-import { type FilterState } from '@/clientPages/catalogue/model/hooks/types';
-import { FreeFilters, StaticFilters } from '@/clientPages/catalogue/model';
+import { PropTags, Tags } from '@/shared';
+import {
+  FreeFilters,
+  StaticFilters,
+  type FilterState,
+  type FilterAction,
+} from '../model';
+import { urlReducer } from '../model/hooks/useUrlReducer';
+
+export const normalizeProp = (prop: unknown): PropTags[] => {
+  if (Array.isArray(prop)) return prop;
+  if (typeof prop === 'string') return [prop as PropTags];
+
+  return [];
+};
+
+export const parseParams = (params: URLSearchParams): FilterState => ({
+  [FreeFilters.SEARCH]: params.get(FreeFilters.SEARCH) ?? '',
+  [StaticFilters.TAG]: (params.get(StaticFilters.TAG) as Tags) ?? null,
+  [StaticFilters.PROP]: params.getAll(StaticFilters.PROP) as PropTags[],
+  [StaticFilters.PAGE]: Number(params.get(StaticFilters.PAGE)) || 1,
+});
 
 type Handlers = {
   [K in keyof FilterState]: (
@@ -41,4 +61,14 @@ export const createSearchParams = (state: Partial<FilterState>): string => {
   );
 
   return params.toString();
+};
+
+export const buildFilterUrl = (
+  currentState: FilterState,
+  actions: FilterAction[],
+): string => {
+  const nextState = actions.reduce(urlReducer, currentState);
+  const query = createSearchParams(nextState);
+
+  return query ? `/catalogue?${query}` : '/catalogue';
 };

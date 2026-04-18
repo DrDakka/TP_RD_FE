@@ -1,5 +1,7 @@
-export { createSearchParams } from './createSearchParams';
+export {
+  createSearchParams,
+  parseParams,
+  normalizeProp,
+  buildFilterUrl,
+} from './helpers';
 export { val } from './valSearchParam';
-export { normalizeProp } from './normalizeProp';
-export { parseParams } from './parseParams';
-export { buildFilterUrl } from './buildFilterUrl';

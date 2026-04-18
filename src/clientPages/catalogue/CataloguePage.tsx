@@ -27,7 +27,7 @@ export const CataloguePage: React.FC<Props> = ({
     prop: normalizeProp(initialState?.prop),
   };
 
-  const { state, data, ui, reload, filters } = useClientCatalogue({
+  const { state, data, ui, apply, filters } = useClientCatalogue({
     initialState: init,
     initialData,
   });
@@ -41,13 +41,13 @@ export const CataloguePage: React.FC<Props> = ({
         view={ui.view}
         onView={ui.onView}
       />
-      <Filters state={state} staticFilters={filters.static} />
+      <Filters state={state} staticFilters={filters.static} apply={apply} />
       <CatalogueGrid
         items={data.items}
         status={data.status}
         display={ui.view}
         count={data.count}
-        onRetry={reload}
+        onRetry={apply}
       />
     </div>
   );

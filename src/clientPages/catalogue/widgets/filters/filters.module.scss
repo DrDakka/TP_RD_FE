@@ -5,6 +5,7 @@
 
 .container {
   display: flex;
+  position: sticky;
   flex-direction: column;
   width: 100%;
   max-height: 80vh;

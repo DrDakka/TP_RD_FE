@@ -8,6 +8,7 @@ import { uiToApi, apiToUi } from './static/mappers';
 type Props = {
   state: FilterState;
   staticFilters: StaticFiltersMap;
+  apply: () => void;
 };
 
 type FilterFn = (a: string) => { handler(): void; href(): string };
@@ -16,7 +17,7 @@ type ConfigEntries = [
   (typeof staticConfig)[keyof typeof staticConfig],
 ][];
 
-export const Filters: React.FC<Props> = ({ state, staticFilters }) => {
+export const Filters: React.FC<Props> = ({ state, staticFilters, apply }) => {
   const activeMap = {
     [StaticFilters.TAG]: state.tag
       ? [apiToUi[StaticFilters.TAG][state.tag]]
@@ -48,6 +49,7 @@ export const Filters: React.FC<Props> = ({ state, staticFilters }) => {
             active={activeMap[key]}
           />
         ))}
+        <button onClick={apply}>Apply filters</button>
       </div>
     </section>
   );

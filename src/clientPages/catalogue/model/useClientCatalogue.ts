@@ -19,7 +19,7 @@ export const useClientCatalogue = ({ initialState, initialData }: Args) => {
 
   usePopstate(filters.base.restore);
 
-  const { data, status, reload } = useData({ state, initialData });
+  const { data, status, apply } = useData({ state, initialData });
 
   const { items, count } = data ?? initialData;
 
@@ -30,7 +30,7 @@ export const useClientCatalogue = ({ initialState, initialData }: Args) => {
     state,
     data: { items, count, status, searchInput },
     ui: { view, onView },
-    reload,
+    apply,
     filters,
   };
 };

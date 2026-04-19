@@ -3,27 +3,22 @@
 .tag {
   display: inline-flex;
   align-items: center;
+  gap: 8px;
   width: fit-content;
 
   font-weight: 500;
   border-radius: br.$br-pill;
-  position: relative;
   white-space: nowrap;
-  &::before {
-    content: '';
-    position: absolute;
-    background-color: currentColor;
-    top: 50%;
-    left: 21px;
-    border-radius: 10px;
-    transform: translateY(-50%);
-  }
 
   &.lg {
     font-size: 14px;
     line-height: 14px;
-    padding: 12px 21px 12px 37px;
+    padding: 8px 14px;
     &::before {
+      content: '';
+      display: block;
+      background-color: var(--dot-color);;
+      border-radius: 10px;
       width: 8px;
       height: 8px;
     }
@@ -31,10 +26,6 @@
   &.sm {
     font-size: 12px;
     line-height: 12px;
-    padding: 9px 21px 9px 32px;
-    &::before {
-      width: 5px;
-      height: 5px;
-    }
+    padding: 8px 14px;
   }
 }

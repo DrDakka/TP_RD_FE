@@ -1,6 +1,5 @@
 @use 'shared/styles/constants/colors' as clr;
 @use 'shared/styles/mixins' as *;
-@use 'shared/styles/constants/border-radius' as br;
 @use 'shared/styles/mixins/card' as card;
 
 .productCard {
@@ -8,114 +7,77 @@
   color: clr.$ns-800;
   .linkWrapper {
     display: grid;
-    gap: 8px;
-    h3 {
-      @include typo-h3;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .kcal {
-      font-size: 16px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-weight: 400;
-      color: clr.$ns-500;
-
-      &::before {
-        content: '';
-        display: block;
-        width: 10px;
-        height: 10px;
-        background-color: clr.$prm-500;
-        border-radius: br.$br-pill;
-      }
-
-      dt {
-        font-weight: 600;
-        color: clr.$ns-800;
-      }
-    }
     .line {
       background-color: clr.$ns-200;
     }
   }
+
   &.grid {
-    max-width: 300px;
+    max-width: 261px;
     .linkWrapper {
       height: 100%;
-      grid-template-columns: 1fr auto;
-      grid-template-rows: auto auto auto auto auto 1fr;
-      h3 {
-        grid-column: 1;
+      .brand {
+        margin-bottom: 12px;
       }
-      .favorite {
-        grid-column: 2;
-        justify-self: end;
-        align-self: start;
+      .tag {
+        margin-bottom: 6px;
       }
-      .brand,
-      .kcal,
-      .pills,
-      .line,
-      .nutrition {
-        grid-column: 1 / -1;
-      }
-      .nutrition {
-        justify-content: flex-end;
-      }
+      [data-pills] {
+        margin-bottom: 8px;
+      } 
       .line {
         height: 1px;
         width: 100%;
+        margin-bottom: 8px;
+      }
+      [data-kcal] {
+        margin-bottom: 8px;
+      }
+      [data-nutrition-list] {
+        margin-bottom: 48px;
       }
     }
   }
 
   &.list {
     .linkWrapper {
-      grid-template-columns: 200px auto 1px 24px;
+      grid-template-columns: 246px auto auto 1px 32px;
       grid-template-rows: auto auto auto;
+      gap: 0 24px;
       align-items: stretch;
-      gap: 0 32px;
-      h3 {
+      .brand {
         grid-column: 1;
+      }
+      [data-kcal] {
+        grid-column: 1;
+      }
+      .tag {
+        grid-column: 2;
         grid-row: 1;
-        align-items: center;
         align-self: center;
       }
-      .favorite {
-        grid-column: 4;
-        grid-row: span 3;
-        width: fit-content;
-        align-self: start;
+      [data-pills] {
+        grid-column: 3;
+        justify-self: end;
+        grid-row: 1;
       }
-      .brand,
-      .kcal {
-        grid-column: 1;
-      }
-      .pills {
-        grid-column: 2;
-        grid-row: 1 / 3;
-      }
-      .nutrition {
-        grid-column: 2;
-        grid-row: 3;
-        flex-direction: row;
-        width: 100%;
-        gap: 16px;
-      }
-      .nutrition > * {
-        flex: 1;
+      [data-nutrition-list] {
+        grid-column: 2 / 4;
+        grid-row: 2 / -1;
+        margin-top: 8px;
       }
       .line {
+        grid-column: 4;
         width: 1px;
-        grid-column: 3;
         grid-row: 1 / -1;
         line-height: 100%;
+      }
+      [data-actions] {
+        grid-column: 5;
+        flex-direction: column;
+        gap: 31px;
+        justify-content: center;
+        grid-row: 1 / -1;
       }
     }
   }

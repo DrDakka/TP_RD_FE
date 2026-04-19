@@ -1,46 +1,32 @@
-import {
-  Tag,
-  TAG_META,
-  PROP_TAG_META,
-  type Tags,
-  type PropTags,
-} from '@/shared';
+import { Tag, PROP_TAG_META, type PropTags } from '@/shared';
 import styles from './pills.module.scss';
-import { View } from '../../model';
 
 type PillsProps = {
-  tag: Tags;
   propertyTags: PropTags[];
-  variant: View;
-  className?: string;
 };
 
-/*
-  Review: 
-    Nicely done!
-    but can you remove main tag wrapper on linne 35-37?:)
-    It's better to have as less DOM-elements as possible:)
-*/
-
-export const Pills: React.FC<PillsProps> = ({
-  tag,
-  propertyTags,
-  variant,
-  className,
-}) => {
-  const { label, color } = TAG_META[tag];
+export const Pills: React.FC<PillsProps> = ({ propertyTags }) => {
+  const visibleTags = propertyTags.slice(0, 2);
+  const hiddenCount = propertyTags.length - visibleTags.length;
 
   return (
-    <div className={`${styles.pills} ${styles[variant]} ${className}`}>
-      <div>
-        <Tag title={label} color={color} />
-      </div>
+    <div className={styles.pills} data-pills>
+      {visibleTags.map(property => {
+        const { label, color, background } = PROP_TAG_META[property];
 
-      {propertyTags.map(property => {
-        const { label, color } = PROP_TAG_META[property];
-
-        return <Tag key={property} title={label} color={color} size="sm" />;
+        return (
+          <Tag
+            key={property}
+            title={label}
+            color={color}
+            background={background}
+            size="sm"
+          />
+        );
       })}
+      {hiddenCount > 0 && (
+        <span className={styles.counter}>+{hiddenCount}</span>
+      )}
     </div>
   );
 };

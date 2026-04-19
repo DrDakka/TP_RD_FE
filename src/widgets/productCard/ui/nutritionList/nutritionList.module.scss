@@ -1,6 +1,54 @@
 .macrosWrapper {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  gap: 2px;
   width: 100%;
+  .nutrition {
+    .progress {
+      height: 4px;
+      width: 100%;
+      display: block;
+    }
+    .prot {
+      background-color: #6c5ce7;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
+    .carb {
+      background-color: #f4b400;
+    }
+    .fat {
+      background-color: #339af0;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+    .description {
+      font-size: 12px;
+      padding-right: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 2px;
+      &::before {
+        content: '';
+        width: 8px;
+        height: 8px;
+        border-radius: 10px;
+      }
+    }
+    .descriptionProt {
+      &::before {
+        background-color: #6c5ce7;
+      }
+    }
+    .descriptionCarb {
+      &::before {
+        background-color: #f4b400;
+      }
+    }
+    .descriptionFat {
+      &::before {
+        background-color: #339af0;
+      }
+    }
+  }
 }

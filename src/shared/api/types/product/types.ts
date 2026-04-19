@@ -25,6 +25,7 @@ type FullItem = {
 type TagMeta = {
   label: string;
   color: string;
+  background: string;
 };
 
 export type { ProductNutrient, CatalogueItem, FullItem, TagMeta };

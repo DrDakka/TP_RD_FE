@@ -19,7 +19,10 @@ export const Actions: React.FC<ActionsProps> = ({ id, variant }) => {
       }}
       data-actions
     >
-      <button className={`${styles.log} ${styles[variant]}`}>
+      <button
+        className={`${styles.log} ${styles[variant]}`}
+        aria-label="Add to Log"
+      >
         <IconPlus /> {variant === 'grid' && 'Add to Log'}
       </button>
       <button

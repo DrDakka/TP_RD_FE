@@ -1,4 +1,4 @@
-import { DropDown } from './static/ui';
+import { Select } from './static/ui';
 
 import s from './filters.module.scss';
 import { FilterState, StaticFilters } from '../../model';
@@ -31,7 +31,7 @@ export const Filters: React.FC<Props> = ({ state, staticFilters, apply }) => {
       <div className={s.scrollable}>
         <input type="text" disabled placeholder="Category filter"></input>
         {(Object.entries(staticConfig) as ConfigEntries).map(([key, conf]) => (
-          <DropDown
+          <Select
             key={key}
             label={conf.label}
             list={conf.list}

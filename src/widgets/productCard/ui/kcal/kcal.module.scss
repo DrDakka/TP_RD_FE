@@ -1,0 +1,25 @@
+@use 'shared/styles/constants/colors' as clr;
+@use 'shared/styles/constants/border-radius' as br;
+
+.kcal {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 400;
+  color: clr.$ns-500;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    background-color: clr.$prm-500;
+    border-radius: br.$br-pill;
+  }
+
+  dt {
+    font-weight: 600;
+    color: clr.$ns-800;
+  }
+}

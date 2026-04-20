@@ -1,0 +1,48 @@
+@use 'shared/styles/mixins/buttons' as btn;
+@use 'shared/styles/constants/colors' as clr;
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .log {
+    @include btn.btn-primary;
+    color: clr.$ns-000;
+    font-size: 14px;
+    padding: 7px 12px;
+    
+  }
+  .list {
+    padding: 8px 8px;
+    svg {
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+    }
+  }
+  .heart {
+    color: clr.$ns-700;
+    transition: color 0.25s ease, transform 0.15s ease;
+    &:hover {
+      color: clr.$prm-700;
+      transform: scale(1.1);
+    }
+  }
+
+  .heartActive {
+    color: clr.$prm-700;
+    transition: color 0.25s ease, fill 0.25s ease, transform 0.15s ease;
+
+    path {
+      fill: clr.$prm-500;
+      transition: fill 0.25s ease;
+    }
+    &:hover {
+      transform: scale(1.1);
+
+      path {
+        fill: clr.$ns-000;
+      }
+    }
+  }
+}

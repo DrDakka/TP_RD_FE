@@ -1,0 +1,13 @@
+@use 'shared/styles/mixins' as *;
+
+.title {
+  @include typo-h3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  height: 48px;
+}

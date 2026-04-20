@@ -1,12 +1,7 @@
 'use client';
 
 import { type GetProductsResponse } from '@/shared';
-import {
-  useClientCatalogue,
-  type FilterState,
-  Core,
-  FreeFilters,
-} from './model';
+import { useClientCatalogue, type FilterState, FreeFilters } from './model';
 import { defaultState } from './constants';
 import { normalizeProp } from './lib';
 import { SearchBar, Filters, CatalogueGrid } from './widgets';
@@ -27,15 +22,10 @@ export const CataloguePage: React.FC<Props> = ({
     prop: normalizeProp(initialState?.prop),
   };
 
-  const { state, data, ui, apply, filters } = useClientCatalogue({
+  const { state, data, ui, apply, filters, reset } = useClientCatalogue({
     initialState: init,
     initialData,
   });
-
-  const reset = () => {
-    filters.base[Core.RESET]();
-    apply();
-  };
 
   return (
     <div className={s.container}>

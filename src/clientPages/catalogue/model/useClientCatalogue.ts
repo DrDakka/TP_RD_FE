@@ -2,7 +2,7 @@
 
 import { GetProductsResponse } from '@/shared';
 import { useData, useFilters } from './hooks';
-import { type FilterState } from './hooks/types';
+import { Core, type FilterState } from './hooks/types';
 import { useState } from 'react';
 import { View } from '@/shared';
 import { usePopstate } from './hooks/usePopstate';
@@ -26,11 +26,17 @@ export const useClientCatalogue = ({ initialState, initialData }: Args) => {
   const [view, setView] = useState<View>(View.GRID);
   const onView = (arg: View) => setView(arg);
 
+  const reset = () => {
+    filters.base[Core.RESET]();
+    apply();
+  };
+
   return {
     state,
     data: { items, count, status, searchInput },
     ui: { view, onView },
     apply,
+    reset,
     filters,
   };
 };

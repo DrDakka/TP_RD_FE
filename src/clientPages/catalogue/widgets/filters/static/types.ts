@@ -14,11 +14,21 @@ type UiArgMap = {
   [StaticFilters.PROP]: PropTagUiLabel;
 };
 
-type StaticDDEntry<T extends string> = {
+type SelectDDEntry<T extends string> = {
+  type: 'select';
   label: string;
   list: T[];
   multiselect: boolean;
 };
+
+type RangeDDEntry = {
+  type: 'range';
+  label: string;
+  min: number;
+  max: number;
+};
+
+type StaticDDEntry<T extends string> = SelectDDEntry<T> | RangeDDEntry;
 
 type StaticDDs = {
   [K in Exclude<StaticFilters, StaticFilters.PAGE>]: StaticDDEntry<UiArgMap[K]>;

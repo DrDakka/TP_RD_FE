@@ -30,25 +30,31 @@ export const Filters: React.FC<Props> = ({ state, staticFilters, apply }) => {
       <h2>Filters</h2>
       <div className={s.scrollable}>
         <input type="text" disabled placeholder="Category filter"></input>
-        {(Object.entries(staticConfig) as ConfigEntries).map(([key, conf]) => (
-          <Select
-            key={key}
-            label={conf.label}
-            list={conf.list}
-            multiselect={conf.multiselect}
-            onSelect={val =>
-              (staticFilters[key] as FilterFn)(
-                (uiToApi[key] as Record<string, string>)[val],
-              ).handler()
-            }
-            getHref={val =>
-              (staticFilters[key] as FilterFn)(
-                (uiToApi[key] as Record<string, string>)[val],
-              ).href()
-            }
-            active={activeMap[key]}
-          />
-        ))}
+        {(Object.entries(staticConfig) as ConfigEntries).map(([key, conf]) => {
+          if (conf.type === 'select') {
+            return (
+              <Select
+                key={key}
+                label={conf.label}
+                list={conf.list}
+                multiselect={conf.multiselect}
+                onSelect={val =>
+                  (staticFilters[key] as FilterFn)(
+                    (uiToApi[key] as Record<string, string>)[val],
+                  ).handler()
+                }
+                getHref={val =>
+                  (staticFilters[key] as FilterFn)(
+                    (uiToApi[key] as Record<string, string>)[val],
+                  ).href()
+                }
+                active={activeMap[key]}
+              />
+            );
+          }
+
+          return null;
+        })}
         <button onClick={apply}>Apply filters</button>
       </div>
     </section>

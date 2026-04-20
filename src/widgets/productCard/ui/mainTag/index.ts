@@ -1,1 +1,1 @@
-export * from './MainTag.tsx';
+export * from './MainTag';

@@ -23,14 +23,14 @@ export const Actions: React.FC<ActionsProps> = ({ id, variant }) => {
         <IconPlus /> {variant === 'grid' && 'Add to Log'}
       </button>
       <button
-        onPointerDown={() => {
+        onClick={() => {
           toggle();
         }}
         aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
         aria-pressed={isFavorite}
       >
         <IconHeart
-          className={`${styles.heart} ${isFavorite && styles.heartActive}`}
+          className={`${styles.heart} ${isFavorite && styles['heart--active']}`}
         />
       </button>
     </div>

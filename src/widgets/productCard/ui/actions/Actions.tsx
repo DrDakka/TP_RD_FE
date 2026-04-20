@@ -23,7 +23,7 @@ export const Actions: React.FC<ActionsProps> = ({ id, variant }) => {
         <IconPlus /> {variant === 'grid' && 'Add to Log'}
       </button>
       <button
-        onClick={() => {
+        onPointerDown={() => {
           toggle();
         }}
         aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}

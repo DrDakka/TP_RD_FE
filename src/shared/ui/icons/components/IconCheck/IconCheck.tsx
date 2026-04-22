@@ -1,7 +1,7 @@
 import { Icon } from '../../icons';
 
 type IconCheckProps = {
-  className: string;
+  className?: string;
 };
 
 export const IconCheck: React.FC<IconCheckProps> = ({ className }) => (

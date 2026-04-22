@@ -10,6 +10,10 @@
     color: clr.$ns-000;
     font-size: 14px;
     padding: 7px 12px;
+    &--active {
+      @include btn.btn-secondary;
+      color: clr.$prm-700;
+    }
   }
   .list {
     padding: 8px 8px;
@@ -25,7 +29,7 @@
       color 0.25s ease,
       transform 0.15s ease;
     &:hover {
-      color: clr.$prm-700;
+      fill: clr.$prm-200;
       transform: scale(1.1);
     }
 

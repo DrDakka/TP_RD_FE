@@ -9,15 +9,6 @@ type ProgressBarProps = {
   variant?: 'simple' | 'detailed';
 };
 
-/*
-  Review: 
-    Good scalable and semantically correct component
-    Progressbar is not accessible. Please, add Aria-tags
-    role="progressbar"
-    aria-valuenow
-    aria-valuemin
-    aria-valuemax
-*/
 export const ProgressBar: React.FC<ProgressBarProps> = ({
   title,
   value,
@@ -29,7 +20,14 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
   const percent = goal ? Math.min((value / goal) * 100, 100) : 100;
 
   return (
-    <div className={styles.wrapper}>
+    <div
+      className={styles.wrapper}
+      role="progressbar"
+      aria-valuenow={value}
+      aria-valuemin={0}
+      aria-valuemax={goal}
+      aria-label={title}
+    >
       <dl>
         <dt className={styles.title}>{title}</dt>
 

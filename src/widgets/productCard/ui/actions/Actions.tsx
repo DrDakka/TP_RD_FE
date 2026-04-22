@@ -1,6 +1,7 @@
 import { useFavorite } from '@/features';
 import styles from './actions.module.scss';
-import { IconHeart, IconPlus, View } from '@/shared';
+import { IconCheck, IconHeart, IconPlus, View } from '@/shared';
+import { useState } from 'react';
 
 type ActionsProps = {
   id: number;
@@ -9,6 +10,7 @@ type ActionsProps = {
 
 export const Actions: React.FC<ActionsProps> = ({ id, variant }) => {
   const { isFavorite, toggle } = useFavorite(id);
+  const [isLog, setLog] = useState(false);
 
   return (
     <div
@@ -20,10 +22,20 @@ export const Actions: React.FC<ActionsProps> = ({ id, variant }) => {
       data-actions
     >
       <button
-        className={`${styles.log} ${styles[variant]}`}
+        className={`${styles.log} ${styles[variant]} ${isLog ? styles['log--active'] : ''}`}
         aria-label="Add to Log"
+        aria-pressed={isLog}
+        onClick={() => setLog(prev => !prev)}
       >
-        <IconPlus /> {variant === 'grid' && 'Add to Log'}
+        {isLog ? (
+          <>
+            <IconCheck /> {variant === 'grid' && 'Added'}
+          </>
+        ) : (
+          <>
+            <IconPlus /> {variant === 'grid' && 'Add to Log'}
+          </>
+        )}
       </button>
       <button
         onClick={() => {

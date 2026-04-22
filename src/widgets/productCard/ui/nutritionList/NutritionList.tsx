@@ -8,22 +8,50 @@ type Props = {
 export const NutritionList: React.FC<Props> = ({ base }) => {
   return (
     <div className={styles.macrosWrapper} data-nutrition-list>
-      <div className={styles.nutrition} style={{ flex: base.prot }}>
+      <dl
+        className={styles.nutrition}
+        style={{ flex: base.prot }}
+        role="progressbar"
+        aria-valuenow={base.prot}
+        aria-valuemin={0}
+        aria-valuemax={100}
+      >
         <span className={`${styles.progress} ${styles.prot}`}></span>
-        <p className={`${styles.description} ${styles.descriptionProt}`}>
+        <dt className={`${styles.description} ${styles.descriptionProt}`}>
           Protein
-        </p>
-      </div>
-      <div className={styles.nutrition} style={{ flex: base.carb }}>
-        <span className={`${styles.progress} ${styles.carb}`}></span>
-        <p className={`${styles.description} ${styles.descriptionCarb}`}>Fat</p>
-      </div>
-      <div className={styles.nutrition} style={{ flex: base.fat }}>
+        </dt>
+        <dd className={styles.value}>{base.prot} g</dd>
+      </dl>
+
+      <dl
+        className={styles.nutrition}
+        style={{ flex: base.fat }}
+        role="progressbar"
+        aria-valuenow={base.fat}
+        aria-valuemin={0}
+        aria-valuemax={100}
+      >
         <span className={`${styles.progress} ${styles.fat}`}></span>
-        <p className={`${styles.description} ${styles.descriptionFat}`}>
+        <dt className={`${styles.description} ${styles.descriptionFat}`}>
+          Fat
+        </dt>
+        <dd className={styles.value}>{base.fat} g</dd>
+      </dl>
+
+      <dl
+        className={styles.nutrition}
+        style={{ flex: base.carb }}
+        role="progressbar"
+        aria-valuenow={base.carb}
+        aria-valuemin={0}
+        aria-valuemax={100}
+      >
+        <span className={`${styles.progress} ${styles.carb}`}></span>
+        <dt className={`${styles.description} ${styles.descriptionCarb}`}>
           Carbs
-        </p>
-      </div>
+        </dt>
+        <dd className={styles.value}>{base.carb} g</dd>
+      </dl>
     </div>
   );
 };

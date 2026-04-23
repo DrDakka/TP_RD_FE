@@ -1,0 +1,368 @@
+openapi: 3.0.0
+info:
+  title: NutriSpace API
+  version: '1.1'
+
+paths:
+  /api/norms/calculate:
+    post:
+      summary: Receive calculated norms
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CalculateNormRequest'
+      responses:
+        '200':
+          description: Calculated norms
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalculateNormResponse'
+        '400':
+          description: Invalid inputs
+  /api/products:
+    get:
+      summary: List products (summary)
+      parameters:
+        - name: search
+          description: limit symbol amount 40 symbols MAX. Exclude special symbols #${}[]!><?. disallow uppercase symbols in query. Auto-reject with 400 statusCode on any of condition broken.
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: page
+          required: false
+          in: query
+          schema:
+            type: integer
+            minimum: 0
+        - name: tag
+          description: since we have only 1 tag per product, make sense to limit tag by only value
+          required: false
+          in: query
+          schema:
+            $ref: './contracts/enums.yaml#/components/schemas/TAG_ENUM'
+        - name: prop
+          description: since we can have multiple prop tags per product, make sense to allow select of multiple prop tags
+          required: false
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: './contracts/enums.yaml#/components/schemas/PROP_TAG_ENUM'
+      responses:
+        '200':
+          description: Product list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetProductResponse'
+        '400':
+          description: Invalid parameters
+
+  /api/products/{id}:
+    get:
+      summary: Full product details
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Full product with all nutrients
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FullItem'
+        '404':
+          description: Product not found
+
+  /api/products/batch:
+    post:
+      summary: Receive an array of Full products
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostProductsBatchRequest'
+      responses:
+        '200':
+          description: Full product list limited < 40 length. If some item is missing - put null in array instead of item
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FullItem'
+        '400':
+          description: If product list > 40 IDS
+
+
+components:
+  schemas:
+    NUTIENT_INTERFACE:
+      type: object
+      properties:
+        unit:
+          $ref: './contracts/enums.yaml#/components/schemas/MU_ENUM'
+        amount:
+          type: number
+
+    FRACTION_G_INTERFACE:
+      allOf:
+        - $ref: '#/components/schemas/NUTIENT_INTERFACE'
+        - type: object
+          properties:
+            unit:
+              type: string
+              enum: [g]
+              default: g
+
+    FRACTION_MCG_INTERFACE:
+      allOf:
+        - $ref: '#/components/schemas/NUTIENT_INTERFACE'
+        - type: object
+          properties:
+            unit:
+              type: string
+              enum: [mcg]
+              default: mcg
+
+    CALORIES_INTERFACE:
+      allOf:
+        - $ref: '#/components/schemas/NUTIENT_INTERFACE'
+        - type: object
+          properties:
+            unit:
+              type: string
+              enum: [kcal]
+              default: kcal
+
+    FAT_SCHEMA:
+      allOf:
+        - $ref: '#/components/schemas/NUTIENT_INTERFACE'
+        - type: object
+          properties:
+            unit:
+              type: string
+              enum: [g]
+              default: g
+            fractions:
+              type: object
+              properties:
+                fatty_acids_trans:
+                  $ref: '#/components/schemas/FRACTION_G_INTERFACE'
+                fatty_acids_saturated:
+                  $ref: '#/components/schemas/FRACTION_G_INTERFACE'
+                fatty_acids_monounsaturated:
+                  $ref: '#/components/schemas/FRACTION_G_INTERFACE'
+                fatty_acids_polyunsaturated:
+                  $ref: '#/components/schemas/FRACTION_G_INTERFACE'
+
+
+    VITAMIN_A:
+      allOf:
+        - $ref: '#/components/schemas/NUTIENT_INTERFACE'
+        - type: object
+          properties:
+            unit:
+              type: string
+              enum: [mcg, IU]
+              default: mcg
+            fractions:
+              type: object
+              properties:
+                retinol:
+                  $ref: '#/components/schemas/FRACTION_MCG_INTERFACE'
+                carotene_alpha:
+                  $ref: '#/components/schemas/FRACTION_MCG_INTERFACE'
+                carotene_beta:
+                  $ref: '#/components/schemas/FRACTION_MCG_INTERFACE'
+                cryptoxanthin_beta:
+                  $ref: '#/components/schemas/FRACTION_MCG_INTERFACE'
+
+
+
+    VITAMIN_FATSOL:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          $ref: './contracts/enums.yaml#/components/schemas/VITAMIN_FATSOL_ENUM'
+
+
+    NutrientSchema:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/NUTIENT_INTERFACE'
+        - type: object
+          properties:
+            name:
+              type: string
+            rec_amount:
+              type: number
+            max:
+              type: number
+              nullable: true
+            min:
+              type: number
+              nullable: true
+
+
+    ProductNutrient:
+      type: object
+      properties:
+        name:
+          type: string
+        unit:
+          $ref: './contracts/enums.yaml#/components/schemas/MU_ENUM'
+        amount:
+          type: number
+
+    NutrientValue:
+        type: object
+        properties:
+            unit:
+                $ref: './contracts/enums.yaml#/components/schemas/MU_ENUM'
+            amount:
+                type: number
+
+    BaseItem:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: id from DB
+        name:
+          type: string
+        tag:
+          $ref: './contracts/enums.yaml#/components/schemas/TAG_ENUM'
+        properties:
+          type: array
+          items:
+            $ref: './contracts/enums.yaml#/components/schemas/PROP_TAG_ENUM'
+
+    CatalogueItem:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/BaseItem'
+        - type: object
+      properties:
+        nutrients:
+          type: object
+          properties:
+            cal:
+              $ref: '#/components/schemas/CALORIES_INTERFACE'
+              description: KCAL per 100g
+            prot:
+              $ref: '#/components/schemas/FRACTION_G_INTERFACE'
+              description: g per 100g
+            fat:
+              $ref: '#/components/schemas/FRACTION_G_INTERFACE'
+              description: g per 100g
+            carb:
+              $ref: '#/components/schemas/FRACTION_G_INTERFACE'
+              description: g per 100g
+
+    FullItem:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/BaseItem'
+      nutrients:
+        cal:
+          $ref: '#/components/schemas/CALORIES_INTERFACE'
+        fats:
+          $ref: '#/components/schemas/FAT_SCHEMA'
+        micro:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductNutrient'
+
+    PostProductsBatchRequest:
+      type: object
+      properties:
+        ids:
+          type: array
+          items:
+            type: integer
+          maxItems: 40
+    GetProductResponse:
+      type: object
+      properties:
+        count:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CatalogueItem'
+    CalculateNormRequest:
+      type: object
+      properties:
+        age:
+          type: integer
+          minimum: 16
+          maximum: 120
+        sex:
+          type: string
+          nullable: true
+          description: null => n/a
+          enum:
+            - m
+            - f
+        height:
+          type: integer
+          minimum: 145
+          maximum: 220
+        weight:
+          type: integer
+          minimum: 40
+          maximum: 250
+        body_fat:
+          type: integer
+          minimum: 6
+          maximum: 100
+        activity:
+          $ref: './contracts/enums.yaml#/components/schemas/ACTIVITY_ENUM'
+        modifier:
+          $ref: './contracts/enums.yaml#/components/schemas/MODIFIERS_ENUM'
+
+    CalculateNormResponse:
+      type: object
+      properties:
+        bmi:
+          type: number
+          minimum: 13
+          maximum: 70
+        bmr:
+          type: number
+          minimum: 500
+          maximum: 6000
+        tdee:
+          type: integer
+        macro:
+          type: object
+          properties:
+            cal:
+              type: number
+            prot:
+              type: number
+            fat:
+              type: number
+            carb:
+              type: number
+        micro:
+          type: array
+          items:
+            $ref: '#/components/schemas/NutrientSchema'
+    servers:
+      # Added by API Auto Mocking Plugin
+      - description: SwaggerHub API Auto Mocking
+        url: https://virtserver.swaggerhub.com/freelance-87c/NutriSpace/1

@@ -1,0 +1,69 @@
+openapi: 3.0.0
+info:
+  title: NutriSpace API
+  version: '1.1'
+
+components:
+  schemas:
+    MU_ENUM:
+      type: string
+      enum:
+        - g
+        - mg
+        - mcg
+        - KCAL
+        - IU
+        - PH
+        - SP_GR
+    TAG_ENUM:
+      type: string
+      enum:
+        - lo_cal
+        - prot
+        - fat
+        - carb
+        - prot-fat
+        - prot-carb
+        - fat-carb
+        - fat-prot
+        - carb-prot
+        - carb-fat
+        - balanced
+    PROP_TAG_ENUM:
+      type: string
+      enum:
+        - hi-prot
+        - hi-fat
+        - hi-carb
+        - hi-cal
+        - lo-prot
+        - lo-fat
+        - lo-carb
+        - lo-cal
+        - fiber
+    VITAMIN_GROUP_ENUM:
+      type: string
+      enum:
+        - fat-soluble
+        - water-soluble
+    VITAMIN_FATSOL_ENUM:
+      type: string
+      enum:
+        - A
+        - D
+        - E
+        - K
+    ACTIVITY_ENUM:
+      type: string
+      enum:
+        - sedentary
+        - light
+        - moderate
+        - active
+        - intensive
+    MODIFIERS_ENUM:
+      type: string
+      enum:
+        - loss
+        - gain
+        - maint

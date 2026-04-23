@@ -7,7 +7,7 @@ ns_id, parent_id, ns_name, ns_unit, usda_id, usda_name, usda_mu, priority, norma
 "1002", null, "Protein", "g", "1053", "Adjusted Protein", "G", 2, null
 "1003", null, "Fats", "g", "1004", "Total lipid (fat)", "G", 1, null
 "1003", null, "Fats", "g", "1085", "Total fat (NLEA)", "G", 2, null
-"1004", null, "Carbohydrates", "g", "2039","Carbohydrates","G", 1, null
+"1004", null, "Carbohydrates", "g", "2039", "Carbohydrates", "G", 1, null
 "1004", null, "Carbohydrates", "g", "1050", "Carbohydrate, by summation", "G", 2, null
 "1004", null, "Carbohydrates", "g", "1005", "Carbohydrate, by difference", "G", 3, null
 "4001", "1004", "Sugars", "g", "1063", "Sugars, Total", "G", 1, null
@@ -34,87 +34,86 @@ ns_id, parent_id, ns_name, ns_unit, usda_id, usda_name, usda_mu, priority, norma
 "4018", "1004", "Fiber", "g", "2033", "Total dietary fiber (AOAC 2011.25)", "G", 1, null
 "4018", "1004", "Fiber", "g", "1079", "Fiber, total dietary", "G", 2, null
 "4018", "1004", "Fiber", "g", "1006", "Fiber, crude (DO NOT USE - Archived)", "G", 3, null
-"4018", "1004", "Fiber", "g", "1066","Fiber, neutral detergent (DO NOT USE - Archived)","G", 4, null
-"4019", "4018", "Fiber soluble", "g", "1082", "Fiber, soluble","G", 1, null
-"4020", "4018", "Fiber insoluble", "g", "1084","Fiber, insoluble","G", 1, null
-"4020", "4018", "Fiber insoluble", "g", "2034","Insoluble dietary fiber (IDF)","G", 2, null
+"4018", "1004", "Fiber", "g", "1066", "Fiber, neutral detergent (DO NOT USE - Archived)", "G", 4, null
+"4019", "4018", "Fiber soluble", "g", "1082", "Fiber, soluble", "G", 1, null
+"4020", "4018", "Fiber insoluble", "g", "1084", "Fiber, insoluble", "G", 1, null
+"4020", "4018", "Fiber insoluble", "g", "2034", "Insoluble dietary fiber (IDF)", "G", 2, null
 "4021", "4019", "Soluble dietary fiber (SDFP)", "g", "2036", "Soluble dietary fiber (SDFP)", "G", 1, null
 "4022", "4019", "Soluble dietary fiber (SDFS)", "g", "2037", "Soluble dietary fiber (SDFS)", "G", 1, null
 "4023", "4019", "Soluble dietary fiber (SDFP+SDFS)", "g", "2035", "Soluble dietary fiber (SDFP+SDFS)", "G", 1, null
 "4024", "4018", "High Molecular Weight Dietary Fiber", "g", "2038", "High Molecular Weight Dietary Fiber (HMWDF)", "G", 1, null
-"4025", "4018", "Low Molecular Weight Dietary Fiber", "g", "2065", "Low Molecular Weight Dietary Fiber (LMWDF)","G", 1, null
+"4025", "4018", "Low Molecular Weight Dietary Fiber", "g", "2065", "Low Molecular Weight Dietary Fiber (LMWDF)", "G", 1, null
 "4026", "4001", "Sugars added", "g", "1235", "Sugars, added", "G", 1, null
 "4040", "4001", "Sugars intrinsic", "g", "1236", "Sugars, intrinsic", "G", 1, null
-"5001", null, "Vitamin A", "mcg", "1106","Vitamin A, RAE", "UG", 1, null
+"5001", null, "Vitamin A", "mcg", "1106", "Vitamin A, RAE", "UG", 1, null
 "5001", null, "Vitamin A", "mcg", "1104", "Vitamin A, IU", "IU", 3, "value * 0.3"
 "5001", null, "Vitamin A", "mcg", "2067", "Vitamin A", "UG", 2, null
 "5001", null, "Vitamin A", "mcg", "1156", "Vitamin A, RE", "MCG_RE", 4, "value * 0.8"
-"7001", "5001", "Retinol", "mcg", "1105","Retinol","UG", 1, null
+"7001", "5001", "Retinol", "mcg", "1105", "Retinol", "UG", 1, null
 "7002", "5001", "Carotene beta", "mcg", "1107", "Carotene, beta", "UG", 1, null
 "7003", "5001", "Carotene alpha", "mcg", "1108", "Carotene, alpha", "UG", 1, null
 "7004", "5001", "Cryptoxanthin beta", "mcg", "1120", "Cryptoxanthin, beta", "UG", 1, null
 "5002", null, "Vitamin C", "mg", "1162", "Vitamin C, total ascorbic acid", "MG", 1, null
-"5003", "5002", "Vitamin C, reduced ascorbic acid", "mg", "1163", "Vitamin C, reduced ascorbic acid", "MG", 1, null
-"5004", "5002", "Vitamin C, dehydro ascorbic acid", "mg", "1164", "Vitamin C, dehydro ascorbic acid", "MG", 1, null
-"5005", "5002", "Vitamin C, added", "mg", "1241", "Vitamin C, added", "MG", 1, null
-"5006", "5002", "Vitamin C, intrinsic", "mg", "1247", "Vitamin C, intrinsic", "MG", 1, null
-"5006", null, "Vitamin B1, Thiamin", "mg", "1165", "Thiamin", "MG", 1, null
-"5007", "5006", "Vitamin B1, added", "mg", "1243", "Thiamin, added", "MG", 1, null
-"5008", "5006", "Vitamin B1, intrinsic", "mg", "1249", "Thiamin, intrinsic", "MG", 1, null
-"5009", null, "Vitamin B2, Riboflavin", "mg", "1166", "Riboflavin", "MG", 1, null
-"5010", "5009", "Vitamin B2, added", "mg", "1244", "Riboflavin, added", "MG", 1, null
-"5011", "5009", "Vitamin B2, intrinsic", "mg", "1250", "Riboflavin, intrinsic", "MG", 1, null
-"5012", null, "Vitamin B3, Niacin", "mg", "1167", "Niacin", "MG", 1, null
-"5012", null, "Vitamin B3, Niacin", "mg", "1169", "Niacin equivalent N406 +N407", "MG", 2, null
-"5013", "5012", "Vitamin B3, added", "mg", "1245", "Niacin, added", "MG", 1, null
-"5014", "5012", "Vitamin B3, intrinsic", "mg", "1251", "Niacin, intrinsic", "MG", 1, null
-"5015", null, "Vitamin B5, pantothenic acid", "mg", "1170", "Pantothenic acid", "MG", 1, null
-"5016", null, "Vitamin B6", "mg", "1175", "Vitamin B-6", "MG", 1, null
-"5016", null, "Vitamin B6", "mg", "1174", "Vitamin B-6, N411 + N412 +N413", "MG", 2, null
-"5017", "5012", "Vitamin B6, pyridoxine, alcohol form", "mg", "1171", "Vitamin B-6, pyridoxine, alcohol form", "MG", 1, null
-"5018", "5012", "Vitamin B6, pyridoxal, aldehyde form", "mg", "1172", "Vitamin B-6, pyridoxal, aldehyde form", "MG", 1, null
-"5019", "5012", "Vitamin B6, pyridoxamine, amine form", "mg", "1173", "Vitamin B-6, pyridoxamine, amine form", "MG", 1, null
-"5020", null, "Vitamin B7, Biotin", "mg", "1176", "Biotin", "MG", 1, null
-"5020", null, "Vitamin B8, Inositol", "mg", "1181", "Inositol", "MG", 1, null
-"5021", null, "Vitamin B8, Inositol phosphate", "mg", "1182", "Inositol phosphate", "MG", 1, null
-"5022", null, "Vitamin B9", "mcg", "1190", "Folate, DFE", "UG", 1, null
-"5022", null, "Vitamin B9", "mcg", "1177", "Folate, total", "UG", 2, null
-"5023", "5022", "Folic acid", "mcg", "1186", "Folic acid", "UG", 1, null
-"5024", "5022", "Folate, food", "mcg", "1187", "Folate, food", "UG", 1, null
-"5025", "5022", "5-methyl tetrahydrofolate (5-MTHF)", "mcg", "1188", "5-methyl tetrahydrofolate (5-MTHF)", "UG", 1, null
-"5026", null, "Vitamin B12", "mcg", "1178", "Vitamin B-12", "UG", 1, null
-"5027", "5026", "Vitamin B12, added", "mcg", "1246", "Vitamin B-12, added", "UG", 1, null
-"5028", "5026", "Vitamin B12, intrinsic", "mcg", "1252", "Vitamin B-12, intrinsic", "UG", 1, null
-"5029", null, "Choline", "mg", "1180", "Choline, total", "MG", 1, null
-"5030", "5029", "Choline, free", "mg", "1194", "Choline, free", "MG", 1, null
-"5031", "5029", "Choline, from phosphocholine", "mg", "1195", "Choline, from phosphocholine", "MG", 1, null
-"5032", "5029", "Choline, from phosphotidyl choline", "mg", "1196", "Choline, from phosphotidyl choline", "MG", 1, null
-"5033", "5029", "Choline, from glycerophosphocholine", "mg", "1197", "Choline, from glycerophosphocholine", "MG", 1, null
-"5034", "5029", "Choline, from sphingomyelin", "mg", "1199", "Choline, from sphingomyelin", "MG", 1, null
-"5035", null, "Vitamin E", "mg", "1109", "Vitamin E (alpha-tocopherol)", "MG", 1, null
-"5035", null, "Vitamin E", "mg", "1158", "Vitamin E", "MG_ATE", 2, null
-"5035", null, "Vitamin E", "mg", "2068", "Vitamin E", "MG", 3, null
-"5035", null, "Vitamin E", "mg", "1124", "Vitamin E (label)", "IU", 4, "value * 0.67"
-"7010", "5035", "Tocopherol, beta", "mg", "1125", "Tocopherol, beta", "MG", 1, null
-"7011", "5035", "Tocopherol, gamma", "mg", "1126", "Tocopherol, gamma", "MG", 1, null
-"7012", "5035", "Tocopherol, delta", "mg", "1127", "Tocopherol, delta", "MG", 1, null
-"7013", "5035", "Tocotrienol, alpha", "mg", "1128", "Tocotrienol, alpha", "MG", 1, null
-"7014", "5035", "Tocotrienol, beta", "mg", "1129", "Tocotrienol, beta", "MG", 1, null
-"7015", "5035", "Tocotrienol, gamma", "mg", "1130", "Tocotrienol, gamma", "MG", 1, null
-"7016", "5035", "Tocotrienol, delta", "mg", "1131", "Tocotrienol, delta", "MG", 1, null
-"7017", "5035", "Vitamin E, added", "mg", "1242", "Vitamin E, added", "MG", 1, null
-"7018", "5035", "Vitamin E, intrinsic", "mg", "1248", "Vitamin E, intrinsic", "MG", 1, null
-"5036", null, "Vitamin D", "mcg", "1114", "Vitamin D (D2+D3)", "UG", 1, null
-"5036", null, "Vitamin D", "mcg", "1110", "Vitamin D (D2+D3) IU", "IU", 2, "value * 0.025"
-"7019", "5036", "Vitamin D2", "mcg", "1111", "Vitamin D2 (ergocalciferol)", "UG", 1, null
-"7020", "5036", "Vitamin D3", "mcg", "1112", "Vitamin D3 (cholecalciferol)", "UG", 1, null
-"7021", "5036", "Vitamin D4", "mcg", "2059", "Vitamin D4", "UG", 1, null
-"7022", "5036", "25-hydroxycholecalciferol", "mcg", "1113", "25-hydroxycholecalciferol", "UG", 1, null
-"7023", "5036", "25-hydroxyergocalciferol", "mcg", "1115", "25-hydroxyergocalciferol", "UG", 1, null
-"5037", null, "Vitamin K", "mcg", "1185", "Vitamin K (phylloquinone)", "UG", 1, null
-"7024", "5037", "Menaquinone-4 (K2)", "mcg", "1183", "Vitamin K (Menaquinone-4)", "UG", 1, null
-"7025", "5037", "Dihydrophylloquinone", "mcg", "1184", "Vitamin K (Dihydrophylloquinone)", "UG", 1, null
-
+"7005", "5002", "Vitamin C, reduced ascorbic acid", "mg", "1163", "Vitamin C, reduced ascorbic acid", "MG", 1, null
+"7006", "5002", "Vitamin C, dehydro ascorbic acid", "mg", "1164", "Vitamin C, dehydro ascorbic acid", "MG", 1, null
+"7007", "5002", "Vitamin C, added", "mg", "1241", "Vitamin C, added", "MG", 1, null
+"7008", "5002", "Vitamin C, intrinsic", "mg", "1247", "Vitamin C, intrinsic", "MG", 1, null
+"5003", null, "Vitamin B1, Thiamin", "mg", "1165", "Thiamin", "MG", 1, null
+"7009", "5003", "Vitamin B1, added", "mg", "1243", "Thiamin, added", "MG", 1, null
+"7010", "5003", "Vitamin B1, intrinsic", "mg", "1249", "Thiamin, intrinsic", "MG", 1, null
+"5004", null, "Vitamin B2, Riboflavin", "mg", "1166", "Riboflavin", "MG", 1, null
+"7011", "5004", "Vitamin B2, added", "mg", "1244", "Riboflavin, added", "MG", 1, null
+"7012", "5004", "Vitamin B2, intrinsic", "mg", "1250", "Riboflavin, intrinsic", "MG", 1, null
+"5005", null, "Vitamin B3, Niacin", "mg", "1167", "Niacin", "MG", 1, null
+"5005", null, "Vitamin B3, Niacin", "mg", "1169", "Niacin equivalent N406 +N407", "MG", 2, null
+"7013", "5005", "Vitamin B3, added", "mg", "1245", "Niacin, added", "MG", 1, null
+"7014", "5005", "Vitamin B3, intrinsic", "mg", "1251", "Niacin, intrinsic", "MG", 1, null
+"5006", null, "Vitamin B5, Pantothenic acid", "mg", "1170", "Pantothenic acid", "MG", 1, null
+"5007", null, "Vitamin B6", "mg", "1175", "Vitamin B-6", "MG", 1, null
+"5007", null, "Vitamin B6", "mg", "1174", "Vitamin B-6, N411 + N412 +N413", "MG", 2, null
+"7015", "5007", "Vitamin B6, pyridoxine, alcohol form", "mg", "1171", "Vitamin B-6, pyridoxine, alcohol form", "MG", 1, null
+"7016", "5007", "Vitamin B6, pyridoxal, aldehyde form", "mg", "1172", "Vitamin B-6, pyridoxal, aldehyde form", "MG", 1, null
+"7017", "5007", "Vitamin B6, pyridoxamine, amine form", "mg", "1173", "Vitamin B-6, pyridoxamine, amine form", "MG", 1, null
+"5008", null, "Vitamin B7, Biotin", "mcg", "1176", "Biotin", "UG", 1, null
+"5009", null, "Vitamin B8, Inositol", "mg", "1181", "Inositol", "MG", 1, null
+"5010", null, "Inositol phosphate", "mg", "1182", "Inositol phosphate", "MG", 1, null
+"5011", null, "Vitamin B9, Folate", "mcg", "1190", "Folate, DFE", "UG", 1, null
+"5011", null, "Vitamin B9, Folate", "mcg", "1177", "Folate, total", "UG", 2, null
+"7018", "5011", "Folic acid", "mcg", "1186", "Folic acid", "UG", 1, null
+"7019", "5011", "Folate, food", "mcg", "1187", "Folate, food", "UG", 1, null
+"7020", "5011", "5-methyl tetrahydrofolate (5-MTHF)", "mcg", "1188", "5-methyl tetrahydrofolate (5-MTHF)", "UG", 1, null
+"5012", null, "Vitamin B12", "mcg", "1178", "Vitamin B-12", "UG", 1, null
+"7021", "5012", "Vitamin B12, added", "mcg", "1246", "Vitamin B-12, added", "UG", 1, null
+"7022", "5012", "Vitamin B12, intrinsic", "mcg", "1252", "Vitamin B-12, intrinsic", "UG", 1, null
+"5013", null, "Choline", "mg", "1180", "Choline, total", "MG", 1, null
+"7023", "5013", "Choline, free", "mg", "1194", "Choline, free", "MG", 1, null
+"7024", "5013", "Choline, from phosphocholine", "mg", "1195", "Choline, from phosphocholine", "MG", 1, null
+"7025", "5013", "Choline, from phosphotidyl choline", "mg", "1196", "Choline, from phosphotidyl choline", "MG", 1, null
+"7026", "5013", "Choline, from glycerophosphocholine", "mg", "1197", "Choline, from glycerophosphocholine", "MG", 1, null
+"7027", "5013", "Choline, from sphingomyelin", "mg", "1199", "Choline, from sphingomyelin", "MG", 1, null
+"5014", null, "Vitamin E", "mg", "1109", "Vitamin E (alpha-tocopherol)", "MG", 1, null
+"5014", null, "Vitamin E", "mg", "1158", "Vitamin E", "MG_ATE", 2, null
+"5014", null, "Vitamin E", "mg", "2068", "Vitamin E", "MG", 3, null
+"5014", null, "Vitamin E", "mg", "1124", "Vitamin E (label)", "IU", 4, "value * 0.67"
+"7028", "5014", "Tocopherol, beta", "mg", "1125", "Tocopherol, beta", "MG", 1, null
+"7029", "5014", "Tocopherol, gamma", "mg", "1126", "Tocopherol, gamma", "MG", 1, null
+"7030", "5014", "Tocopherol, delta", "mg", "1127", "Tocopherol, delta", "MG", 1, null
+"7031", "5014", "Tocotrienol, alpha", "mg", "1128", "Tocotrienol, alpha", "MG", 1, null
+"7032", "5014", "Tocotrienol, beta", "mg", "1129", "Tocotrienol, beta", "MG", 1, null
+"7033", "5014", "Tocotrienol, gamma", "mg", "1130", "Tocotrienol, gamma", "MG", 1, null
+"7034", "5014", "Tocotrienol, delta", "mg", "1131", "Tocotrienol, delta", "MG", 1, null
+"7035", "5014", "Vitamin E, added", "mg", "1242", "Vitamin E, added", "MG", 1, null
+"7036", "5014", "Vitamin E, intrinsic", "mg", "1248", "Vitamin E, intrinsic", "MG", 1, null
+"5015", null, "Vitamin D", "mcg", "1114", "Vitamin D (D2+D3)", "UG", 1, null
+"5015", null, "Vitamin D", "mcg", "1110", "Vitamin D (D2+D3) IU", "IU", 2, "value * 0.025"
+"7037", "5015", "Vitamin D2", "mcg", "1111", "Vitamin D2 (ergocalciferol)", "UG", 1, null
+"7038", "5015", "Vitamin D3", "mcg", "1112", "Vitamin D3 (cholecalciferol)", "UG", 1, null
+"7039", "5015", "Vitamin D4", "mcg", "2059", "Vitamin D4", "UG", 1, null
+"7040", "5015", "25-hydroxycholecalciferol", "mcg", "1113", "25-hydroxycholecalciferol", "UG", 1, null
+"7041", "5015", "25-hydroxyergocalciferol", "mcg", "1115", "25-hydroxyergocalciferol", "UG", 1, null
+"5016", null, "Vitamin K", "mcg", "1185", "Vitamin K (phylloquinone)", "UG", 1, null
+"7042", "5016", "Menaquinone-4 (K2)", "mcg", "1183", "Vitamin K (Menaquinone-4)", "UG", 1, null
+"7043", "5016", "Dihydrophylloquinone", "mcg", "1184", "Vitamin K (Dihydrophylloquinone)", "UG", 1, null
 "3001", "1003", "Fatty acids trans", "g", "1257", "Fatty acids, total trans", "G", 1, null
 "3002", "1003", "Fatty acids saturated", "g", "1258", "Fatty acids, total saturated", "G", 1, null
 "3003", "1003", "Fatty acids monounsaturated", "g", "1292", "Fatty acids, total monounsaturated", "G", 1, null

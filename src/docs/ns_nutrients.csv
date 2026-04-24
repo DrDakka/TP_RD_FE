@@ -106,7 +106,7 @@ ns_id, parent_id, ns_name, ns_unit, usda_id, usda_name, usda_mu, priority, norma
 "4032", "1004", "Cellulose", "g", "1022", "Cellulose", "G", 1, null
 "4033", "1004", "Hemicellulose", "g", "1021", "Hemicellulose", "G", 1, null
 "4034", "4001", "Ribose", "g", "1081", "Ribose", "G", 1, null
-"4035", "4001", "Mannose", "g", "1399", "Mannnose", "G", 1, null
+"4035", "4001", "Mannose", "g", "1399", "Mannose", "G", 1, null
 "4036", "4001", "Triose", "g", "1400", "Triose", "G", 1, null
 "4037", "4001", "Tetrose", "g", "1401", "Tetrose", "G", 1, null
 "4038", "1004", "Glycogen", "g", "1065", "Glycogen", "G", 1, null

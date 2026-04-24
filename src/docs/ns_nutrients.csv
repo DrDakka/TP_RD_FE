@@ -1,4 +1,21 @@
 ns_id, parent_id, ns_name, ns_unit, usda_id, usda_name, usda_mu, priority, normalize_formula
+
+// ============================================================
+// SEMANTIC ID MAP
+// main: 1xxx
+// prot (amino acids): 2xxx
+// fat: 3xxx
+// carb: 4xxx
+// vit: 5xxx (5100 = water-soluble, 5200 = fat-soluble)
+// mineral: 6xxx (6100 = macro, 6200 = trace, 6300 = heavy metals)
+// fractions: 7xxx
+// other: 8xxx
+// organic acids: 9xxx
+// polyphenols & flavonoids: 10xxx
+// ============================================================
+
+
+# 1xxx — MAIN MACRONUTRIENTS
 "1001", null, "Energy", "kcal", "1008", "Energy", "KCAL", 1, null
 "1001", null, "Energy", "kcal", "1062", "Energy", "kJ", 2, "value * 0.239"
 "1001", null, "Energy", "kcal", "2047", "Energy (Atwater General Factors)", "KCAL", 3, null
@@ -10,114 +27,8 @@ ns_id, parent_id, ns_name, ns_unit, usda_id, usda_name, usda_mu, priority, norma
 "1004", null, "Carbohydrates", "g", "2039", "Carbohydrates", "G", 1, null
 "1004", null, "Carbohydrates", "g", "1050", "Carbohydrate, by summation", "G", 2, null
 "1004", null, "Carbohydrates", "g", "1005", "Carbohydrate, by difference", "G", 3, null
-"4001", "1004", "Sugars", "g", "1063", "Sugars, Total", "G", 1, null
-"4011", "4001", "Sucrose", "g", "1010", "Sucrose", "G", 1, null
-"4012", "4001", "Glucose", "g", "1011", "Glucose", "G", 1, null
-"4013", "4001", "Fructose", "g", "1012", "Fructose", "G", 1, null
-"4014", "4001", "Lactose", "g", "1013", "Lactose", "G", 1, null
-"4015", "4001", "Maltose", "g", "1014", "Maltose", "G", 1, null
-"4016", "1004", "Starch", "g", "1009", "Starch", "G", 1, null
-"4017", "4016", "Amylose", "g", "1015", "Amylose", "G", 1, null
-"4027", "4001", "Arabinose", "g", "1073", "Arabinose", "G", 1, null
-"4028", "4001", "Xylose", "g", "1074", "Xylose", "G", 1, null
-"4029", "4001", "Galactose", "g", "1075", "Galactose", "G", 1, null
-"4030", "4001", "Raffinose", "g", "1076", "Raffinose", "G", 1, null
-"4031", "4001", "Stachyose", "g", "1077", "Stachyose", "G", 1, null
-"4032", "1004", "Cellulose", "g", "1022", "Cellulose", "G", 1, null
-"4033", "1004", "Hemicellulose", "g", "1021", "Hemicellulose", "G", 1, null
-"4034", "4001", "Ribose", "g", "1081", "Ribose", "G", 1, null
-"4035", "4001", "Mannose", "g", "1399", "Mannnose", "G", 1, null
-"4036", "4001", "Triose", "g", "1400", "Triose", "G", 1, null
-"4037", "4001", "Tetrose", "g", "1401", "Tetrose", "G", 1, null
-"4038", "1004", "Glycogen", "g", "1065", "Glycogen", "G", 1, null
-"4039", "1004", "Nonstarch polysaccharides", "g", "1070", "Nonstarch polysaccharides", "G", 1, null
-"4018", "1004", "Fiber", "g", "2033", "Total dietary fiber (AOAC 2011.25)", "G", 1, null
-"4018", "1004", "Fiber", "g", "1079", "Fiber, total dietary", "G", 2, null
-"4018", "1004", "Fiber", "g", "1006", "Fiber, crude (DO NOT USE - Archived)", "G", 3, null
-"4018", "1004", "Fiber", "g", "1066", "Fiber, neutral detergent (DO NOT USE - Archived)", "G", 4, null
-"4019", "4018", "Fiber soluble", "g", "1082", "Fiber, soluble", "G", 1, null
-"4020", "4018", "Fiber insoluble", "g", "1084", "Fiber, insoluble", "G", 1, null
-"4020", "4018", "Fiber insoluble", "g", "2034", "Insoluble dietary fiber (IDF)", "G", 2, null
-"4021", "4019", "Soluble dietary fiber (SDFP)", "g", "2036", "Soluble dietary fiber (SDFP)", "G", 1, null
-"4022", "4019", "Soluble dietary fiber (SDFS)", "g", "2037", "Soluble dietary fiber (SDFS)", "G", 1, null
-"4023", "4019", "Soluble dietary fiber (SDFP+SDFS)", "g", "2035", "Soluble dietary fiber (SDFP+SDFS)", "G", 1, null
-"4024", "4018", "High Molecular Weight Dietary Fiber", "g", "2038", "High Molecular Weight Dietary Fiber (HMWDF)", "G", 1, null
-"4025", "4018", "Low Molecular Weight Dietary Fiber", "g", "2065", "Low Molecular Weight Dietary Fiber (LMWDF)", "G", 1, null
-"4026", "4001", "Sugars added", "g", "1235", "Sugars, added", "G", 1, null
-"4040", "4001", "Sugars intrinsic", "g", "1236", "Sugars, intrinsic", "G", 1, null
-"5001", null, "Vitamin A", "mcg", "1106", "Vitamin A, RAE", "UG", 1, null
-"5001", null, "Vitamin A", "mcg", "1104", "Vitamin A, IU", "IU", 3, "value * 0.3"
-"5001", null, "Vitamin A", "mcg", "2067", "Vitamin A", "UG", 2, null
-"5001", null, "Vitamin A", "mcg", "1156", "Vitamin A, RE", "MCG_RE", 4, "value * 0.8"
-"7001", "5001", "Retinol", "mcg", "1105", "Retinol", "UG", 1, null
-"7002", "5001", "Carotene beta", "mcg", "1107", "Carotene, beta", "UG", 1, null
-"7003", "5001", "Carotene alpha", "mcg", "1108", "Carotene, alpha", "UG", 1, null
-"7004", "5001", "Cryptoxanthin beta", "mcg", "1120", "Cryptoxanthin, beta", "UG", 1, null
-"5002", null, "Vitamin C", "mg", "1162", "Vitamin C, total ascorbic acid", "MG", 1, null
-"7005", "5002", "Vitamin C, reduced ascorbic acid", "mg", "1163", "Vitamin C, reduced ascorbic acid", "MG", 1, null
-"7006", "5002", "Vitamin C, dehydro ascorbic acid", "mg", "1164", "Vitamin C, dehydro ascorbic acid", "MG", 1, null
-"7007", "5002", "Vitamin C, added", "mg", "1241", "Vitamin C, added", "MG", 1, null
-"7008", "5002", "Vitamin C, intrinsic", "mg", "1247", "Vitamin C, intrinsic", "MG", 1, null
-"5003", null, "Vitamin B1, Thiamin", "mg", "1165", "Thiamin", "MG", 1, null
-"7009", "5003", "Vitamin B1, added", "mg", "1243", "Thiamin, added", "MG", 1, null
-"7010", "5003", "Vitamin B1, intrinsic", "mg", "1249", "Thiamin, intrinsic", "MG", 1, null
-"5004", null, "Vitamin B2, Riboflavin", "mg", "1166", "Riboflavin", "MG", 1, null
-"7011", "5004", "Vitamin B2, added", "mg", "1244", "Riboflavin, added", "MG", 1, null
-"7012", "5004", "Vitamin B2, intrinsic", "mg", "1250", "Riboflavin, intrinsic", "MG", 1, null
-"5005", null, "Vitamin B3, Niacin", "mg", "1167", "Niacin", "MG", 1, null
-"5005", null, "Vitamin B3, Niacin", "mg", "1169", "Niacin equivalent N406 +N407", "MG", 2, null
-"7013", "5005", "Vitamin B3, added", "mg", "1245", "Niacin, added", "MG", 1, null
-"7014", "5005", "Vitamin B3, intrinsic", "mg", "1251", "Niacin, intrinsic", "MG", 1, null
-"5006", null, "Vitamin B5, Pantothenic acid", "mg", "1170", "Pantothenic acid", "MG", 1, null
-"5007", null, "Vitamin B6", "mg", "1175", "Vitamin B-6", "MG", 1, null
-"5007", null, "Vitamin B6", "mg", "1174", "Vitamin B-6, N411 + N412 +N413", "MG", 2, null
-"7015", "5007", "Vitamin B6, pyridoxine, alcohol form", "mg", "1171", "Vitamin B-6, pyridoxine, alcohol form", "MG", 1, null
-"7016", "5007", "Vitamin B6, pyridoxal, aldehyde form", "mg", "1172", "Vitamin B-6, pyridoxal, aldehyde form", "MG", 1, null
-"7017", "5007", "Vitamin B6, pyridoxamine, amine form", "mg", "1173", "Vitamin B-6, pyridoxamine, amine form", "MG", 1, null
-"5008", null, "Vitamin B7, Biotin", "mcg", "1176", "Biotin", "UG", 1, null
-"5009", null, "Vitamin B8, Inositol", "mg", "1181", "Inositol", "MG", 1, null
-"5010", null, "Inositol phosphate", "mg", "1182", "Inositol phosphate", "MG", 1, null
-"5011", null, "Vitamin B9, Folate", "mcg", "1190", "Folate, DFE", "UG", 1, null
-"5011", null, "Vitamin B9, Folate", "mcg", "1177", "Folate, total", "UG", 2, null
-"7018", "5011", "Folic acid", "mcg", "1186", "Folic acid", "UG", 1, null
-"7019", "5011", "Folate, food", "mcg", "1187", "Folate, food", "UG", 1, null
-"7020", "5011", "5-methyl tetrahydrofolate (5-MTHF)", "mcg", "1188", "5-methyl tetrahydrofolate (5-MTHF)", "UG", 1, null
-"5012", null, "Vitamin B12", "mcg", "1178", "Vitamin B-12", "UG", 1, null
-"7021", "5012", "Vitamin B12, added", "mcg", "1246", "Vitamin B-12, added", "UG", 1, null
-"7022", "5012", "Vitamin B12, intrinsic", "mcg", "1252", "Vitamin B-12, intrinsic", "UG", 1, null
-"5013", null, "Choline", "mg", "1180", "Choline, total", "MG", 1, null
-"7023", "5013", "Choline, free", "mg", "1194", "Choline, free", "MG", 1, null
-"7024", "5013", "Choline, from phosphocholine", "mg", "1195", "Choline, from phosphocholine", "MG", 1, null
-"7025", "5013", "Choline, from phosphotidyl choline", "mg", "1196", "Choline, from phosphotidyl choline", "MG", 1, null
-"7026", "5013", "Choline, from glycerophosphocholine", "mg", "1197", "Choline, from glycerophosphocholine", "MG", 1, null
-"7027", "5013", "Choline, from sphingomyelin", "mg", "1199", "Choline, from sphingomyelin", "MG", 1, null
-"5014", null, "Vitamin E", "mg", "1109", "Vitamin E (alpha-tocopherol)", "MG", 1, null
-"5014", null, "Vitamin E", "mg", "1158", "Vitamin E", "MG_ATE", 2, null
-"5014", null, "Vitamin E", "mg", "2068", "Vitamin E", "MG", 3, null
-"5014", null, "Vitamin E", "mg", "1124", "Vitamin E (label)", "IU", 4, "value * 0.67"
-"7028", "5014", "Tocopherol, beta", "mg", "1125", "Tocopherol, beta", "MG", 1, null
-"7029", "5014", "Tocopherol, gamma", "mg", "1126", "Tocopherol, gamma", "MG", 1, null
-"7030", "5014", "Tocopherol, delta", "mg", "1127", "Tocopherol, delta", "MG", 1, null
-"7031", "5014", "Tocotrienol, alpha", "mg", "1128", "Tocotrienol, alpha", "MG", 1, null
-"7032", "5014", "Tocotrienol, beta", "mg", "1129", "Tocotrienol, beta", "MG", 1, null
-"7033", "5014", "Tocotrienol, gamma", "mg", "1130", "Tocotrienol, gamma", "MG", 1, null
-"7034", "5014", "Tocotrienol, delta", "mg", "1131", "Tocotrienol, delta", "MG", 1, null
-"7035", "5014", "Vitamin E, added", "mg", "1242", "Vitamin E, added", "MG", 1, null
-"7036", "5014", "Vitamin E, intrinsic", "mg", "1248", "Vitamin E, intrinsic", "MG", 1, null
-"5015", null, "Vitamin D", "mcg", "1114", "Vitamin D (D2+D3)", "UG", 1, null
-"5015", null, "Vitamin D", "mcg", "1110", "Vitamin D (D2+D3) IU", "IU", 2, "value * 0.025"
-"7037", "5015", "Vitamin D2", "mcg", "1111", "Vitamin D2 (ergocalciferol)", "UG", 1, null
-"7038", "5015", "Vitamin D3", "mcg", "1112", "Vitamin D3 (cholecalciferol)", "UG", 1, null
-"7039", "5015", "Vitamin D4", "mcg", "2059", "Vitamin D4", "UG", 1, null
-"7040", "5015", "25-hydroxycholecalciferol", "mcg", "1113", "25-hydroxycholecalciferol", "UG", 1, null
-"7041", "5015", "25-hydroxyergocalciferol", "mcg", "1115", "25-hydroxyergocalciferol", "UG", 1, null
-"5016", null, "Vitamin K", "mcg", "1185", "Vitamin K (phylloquinone)", "UG", 1, null
-"7042", "5016", "Menaquinone-4 (K2)", "mcg", "1183", "Vitamin K (Menaquinone-4)", "UG", 1, null
-"7043", "5016", "Dihydrophylloquinone", "mcg", "1184", "Vitamin K (Dihydrophylloquinone)", "UG", 1, null
-"3001", "1003", "Fatty acids trans", "g", "1257", "Fatty acids, total trans", "G", 1, null
-"3002", "1003", "Fatty acids saturated", "g", "1258", "Fatty acids, total saturated", "G", 1, null
-"3003", "1003", "Fatty acids monounsaturated", "g", "1292", "Fatty acids, total monounsaturated", "G", 1, null
-"3004", "1003", "Fatty acids polyunsaturated", "g", "1293", "Fatty acids, total polyunsaturated", "G", 1, null
+
+# 2xxx — AMINO ACIDS (parent: 1002 Protein)
 "2001", "1002", "Aspartic acid", "g", "1223", "Aspartic acid", "G", 1, null
 "2002", "1002", "Glutamic acid", "g", "1224", "Glutamic acid", "G", 1, null
 "2003", "1002", "Tryptophan", "g", "1210", "Tryptophan", "G", 1, null
@@ -140,51 +51,416 @@ ns_id, parent_id, ns_name, ns_unit, usda_id, usda_name, usda_mu, priority, norma
 "2020", "1002", "Cysteine", "g", "1232", "Cysteine", "G", 1, null
 "2022", "1002", "Hydroxyproline", "g", "1228", "Hydroxyproline", "G", 1, null
 "2023", "1002", "Threonine", "g", "1211", "Threonine", "G", 1, null
+
+
+# 3xxx — FATS (parent: 1003 Fats)
+"3001", "1003", "Fatty acids trans", "g", "1257", "Fatty acids, total trans", "G", 1, null
+"3002", "1003", "Fatty acids saturated", "g", "1258", "Fatty acids, total saturated", "G", 1, null
+"3002", "1003", "Fatty acids saturated", "g", "1326", "Fatty acids, total sat., NLEA", "G", 2, null
+"3003", "1003", "Fatty acids monounsaturated", "g", "1292", "Fatty acids, total monounsaturated", "G", 1, null
+"3003", "1003", "Fatty acids monounsaturated", "g", "1327", "Fatty acids, total monounsat., NLEA", "G", 2, null
+"3004", "1003", "Fatty acids polyunsaturated", "g", "1293", "Fatty acids, total polyunsaturated", "G", 1, null
+"3004", "1003", "Fatty acids polyunsaturated", "g", "1328", "Fatty acids, total polyunsat., NLEA", "G", 2, null
+"3005", "1003", "Cholesterol", "mg", "1253", "Cholesterol", "MG", 1, null
+"3006", "1003", "Phospholipids", "g", "1255", "Phospholipids", "G", 1, null
+"3007", "1003", "Glycolipids", "g", "1256", "Glycolipids", "G", 1, null
+"3008", "1003", "Glycerides", "g", "1254", "Glycerides", "G", 1, null
+"3009", "1003", "Unsaponifiable matter (lipids)", "g", "1290", "Unsaponifiable matter (lipids)", "G", 1, null
+"3010", "3001", "Trans-monoenoic total", "g", "1329", "Fatty acids, total trans-monoenoic", "G", 1, null
+"3011", "3001", "Trans-dienoic total", "g", "1330", "Fatty acids, total trans-dienoic", "G", 1, null
+"3012", "3001", "Trans-polyenoic total", "g", "1331", "Fatty acids, total trans-polyenoic", "G", 1, null
+"3013", "1003", "Wax total", "g", "1302", "Wax Esters(Total Wax)", "G", 1, null
+
+#   PUFA Omega stubs [calculated]
+"3014", "3004", "Omega-3 total", "g", null, null, null, null, null
+"3015", "3004", "Omega-6 total", "g", null, null, null, null, null
+"3016", "3004", "Omega-9 total", "g", null, null, null, null, null
+
+# 4xxx — CARBOHYDRATES (parent: 1004)
+"4001", "1004", "Sugars", "g", "1063", "Sugars, Total", "G", 1, null
+"4011", "4001", "Sucrose", "g", "1010", "Sucrose", "G", 1, null
+"4012", "4001", "Glucose", "g", "1011", "Glucose", "G", 1, null
+"4013", "4001", "Fructose", "g", "1012", "Fructose", "G", 1, null
+"4014", "4001", "Lactose", "g", "1013", "Lactose", "G", 1, null
+"4015", "4001", "Maltose", "g", "1014", "Maltose", "G", 1, null
+"4016", "1004", "Starch", "g", "1009", "Starch", "G", 1, null
+"4017", "4016", "Amylose", "g", "1015", "Amylose", "G", 1, null
+"4018", "1004", "Fiber", "g", "2033", "Total dietary fiber (AOAC 2011.25)", "G", 1, null
+"4018", "1004", "Fiber", "g", "1079", "Fiber, total dietary", "G", 2, null
+"4018", "1004", "Fiber", "g", "1006", "Fiber, crude (DO NOT USE - Archived)", "G", 3, null
+"4018", "1004", "Fiber", "g", "1066", "Fiber, neutral detergent (DO NOT USE - Archived)", "G", 4, null
+"4019", "4018", "Fiber soluble", "g", "1082", "Fiber, soluble", "G", 1, null
+"4020", "4018", "Fiber insoluble", "g", "1084", "Fiber, insoluble", "G", 1, null
+"4020", "4018", "Fiber insoluble", "g", "2034", "Insoluble dietary fiber (IDF)", "G", 2, null
+"4021", "4019", "Soluble dietary fiber (SDFP)", "g", "2036", "Soluble dietary fiber (SDFP)", "G", 1, null
+"4022", "4019", "Soluble dietary fiber (SDFS)", "g", "2037", "Soluble dietary fiber (SDFS)", "G", 1, null
+"4023", "4019", "Soluble dietary fiber (SDFP+SDFS)", "g", "2035", "Soluble dietary fiber (SDFP+SDFS)", "G", 1, null
+"4024", "4018", "High Molecular Weight Dietary Fiber", "g", "2038", "High Molecular Weight Dietary Fiber (HMWDF)", "G", 1, null
+"4025", "4018", "Low Molecular Weight Dietary Fiber", "g", "2065", "Low Molecular Weight Dietary Fiber (LMWDF)", "G", 1, null
+"4026", "4001", "Sugars added", "g", "1235", "Sugars, added", "G", 1, null
+"4027", "4001", "Arabinose", "g", "1073", "Arabinose", "G", 1, null
+"4028", "4001", "Xylose", "g", "1074", "Xylose", "G", 1, null
+"4029", "4001", "Galactose", "g", "1075", "Galactose", "G", 1, null
+"4030", "4001", "Raffinose", "g", "1076", "Raffinose", "G", 1, null
+"4031", "4001", "Stachyose", "g", "1077", "Stachyose", "G", 1, null
+"4032", "1004", "Cellulose", "g", "1022", "Cellulose", "G", 1, null
+"4033", "1004", "Hemicellulose", "g", "1021", "Hemicellulose", "G", 1, null
+"4034", "4001", "Ribose", "g", "1081", "Ribose", "G", 1, null
+"4035", "4001", "Mannose", "g", "1399", "Mannnose", "G", 1, null
+"4036", "4001", "Triose", "g", "1400", "Triose", "G", 1, null
+"4037", "4001", "Tetrose", "g", "1401", "Tetrose", "G", 1, null
+"4038", "1004", "Glycogen", "g", "1065", "Glycogen", "G", 1, null
+"4039", "1004", "Nonstarch polysaccharides", "g", "1070", "Nonstarch polysaccharides", "G", 1, null
+"4040", "4001", "Sugars intrinsic", "g", "1236", "Sugars, intrinsic", "G", 1, null
+"4041", "1004", "Amylopectin", "g", "1016", "Amylopectin", "G", 1, null
+"4042", "1004", "Pectin", "g", "1017", "Pectin", "G", 1, null
+"4043", "1004", "Pentosan", "g", "1019", "Pentosan", "G", 1, null
+"4044", "1004", "Lignin", "g", "1080", "Lignin", "G", 1, null
+"4045", "4001", "Reducing sugars", "g", "1067", "Reducing sugars", "G", 1, null
+"4046", "4001", "Verbascose", "g", "2063", "Verbascose", "G", 1, null
+"4047", "4018", "Inulin", "g", "1403", "Inulin", "G", 1, null
+"4048", "4018", "Beta-glucan", "g", "1068", "Beta-glucans", "G", 1, null
+"4048", "4018", "Beta-glucan", "g", "2058", "Beta-glucan", "G", 2, null
+
+#5xxx — VITAMINS
+
+#   Category stubs [DTO grouping, no sum]
+"5100", null, "Vitamins, water-soluble", null, null, null, null, null, null
+"5200", null, "Vitamins, fat-soluble", null, null, null, null, null, null
+
+#   Fat-soluble (DTO parent: 5200)
+"5001", "5200", "Vitamin A", "mcg", "1106", "Vitamin A, RAE", "UG", 1, null
+"5001", "5200", "Vitamin A", "mcg", "2067", "Vitamin A", "UG", 2, null
+"5001", "5200", "Vitamin A", "mcg", "1104", "Vitamin A, IU", "IU", 3, "value * 0.3"
+"5001", "5200", "Vitamin A", "mcg", "1156", "Vitamin A, RE", "MCG_RE", 4, "value * 0.8"
+"5014", "5200", "Vitamin E", "mg", "1109", "Vitamin E (alpha-tocopherol)", "MG", 1, null
+"5014", "5200", "Vitamin E", "mg", "1158", "Vitamin E", "MG_ATE", 2, null
+"5014", "5200", "Vitamin E", "mg", "2068", "Vitamin E", "MG", 3, null
+"5014", "5200", "Vitamin E", "mg", "1124", "Vitamin E (label)", "IU", 4, "value * 0.67"
+"5014", "5200", "Vitamin E", "mg", "2041", "Tocopherols and tocotrienols", "MG", 5, null
+"5015", "5200", "Vitamin D", "mcg", "1114", "Vitamin D (D2+D3)", "UG", 1, null
+"5015", "5200", "Vitamin D", "mcg", "1110", "Vitamin D (D2+D3) IU", "IU", 2, "value * 0.025"
+"5016", "5200", "Vitamin K", "mcg", "1185", "Vitamin K (phylloquinone)", "UG", 1, null
+
+#   Water-soluble (DTO parent: 5100)
+"5002", "5100", "Vitamin C", "mg", "1162", "Vitamin C, total ascorbic acid", "MG", 1, null
+"5003", "5100", "Vitamin B1, Thiamin", "mg", "1165", "Thiamin", "MG", 1, null
+"5004", "5100", "Vitamin B2, Riboflavin", "mg", "1166", "Riboflavin", "MG", 1, null
+"5005", "5100", "Vitamin B3, Niacin", "mg", "1167", "Niacin", "MG", 1, null
+"5005", "5100", "Vitamin B3, Niacin", "mg", "1169", "Niacin equivalent N406 +N407", "MG", 2, null
+"5006", "5100", "Vitamin B5, Pantothenic acid", "mg", "1170", "Pantothenic acid", "MG", 1, null
+"5007", "5100", "Vitamin B6", "mg", "1175", "Vitamin B-6", "MG", 1, null
+"5007", "5100", "Vitamin B6", "mg", "1174", "Vitamin B-6, N411 + N412 +N413", "MG", 2, null
+"5008", "5100", "Vitamin B7, Biotin", "mcg", "1176", "Biotin", "UG", 1, null
+"5009", "5100", "Vitamin B8, Inositol", "mg", "1181", "Inositol", "MG", 1, null
+"5010", "5100", "Inositol phosphate", "mg", "1182", "Inositol phosphate", "MG", 1, null
+"5011", "5100", "Vitamin B9, Folate", "mcg", "1190", "Folate, DFE", "UG", 1, null
+"5011", "5100", "Vitamin B9, Folate", "mcg", "1177", "Folate, total", "UG", 2, null
+"5012", "5100", "Vitamin B12", "mcg", "1178", "Vitamin B-12", "UG", 1, null
+"5013", "5100", "Choline", "mg", "1180", "Choline, total", "MG", 1, null
+
+# 6xxx — MINERALS
 "6000", null, "Minerals", "mg", "2043", "Minerals", "MG", 1, null
-"6001", "6000", "Chlorine, Cl", "mg", "1088", "Chlorine, Cl", "MG", 1, null
-"6002", "6000", "Magnesium, Mg", "mg", "1090", "Magnesium, Mg", "MG", 1, null
-"6003", "6000", "Phosphorus, P", "mg", "1091", "Phosphorus, P", "MG", 1, null
-"6004", "6000", "Potassium, K", "mg", "1092", "Potassium, K", "MG", 1, null
-"6005", "6000", "Sodium, Na", "mg", "1093", "Sodium, Na", "MG", 1, null
-"6006", "6000", "Sulfur, S", "mg", "1094", "Sulfur, S", "MG", 1, null
-"6007", "6000", "Zinc, Zn", "mg", "1095", "Zinc, Zn", "MG", 1, null
-"6008", "6000", "Chromium, Cr", "mcg", "1096", "Chromium, Cr", "UG", 1, null
-"6009", "6000", "Cobalt, Co", "mcg", "1097", "Cobalt, Co", "UG", 1, null
-"6010", "6000", "Copper, Cu", "mg", "1098", "Copper, Cu", "MG", 1, null
-"6011", "6000", "Fluoride, F", "mcg", "1099", "Fluoride, F", "UG", 1, null
-"6011", "6000", "Fluoride, F", "mcg", "1148", "Fluoride - DO NOT USE; use 313", "UG", 2, null
-"6012", "6000", "Iodine, I", "mcg", "1100", "Iodine, I", "UG", 1, null
-"6013", "6000", "Manganese, Mn", "mg", "1101", "Manganese, Mn", "MG", 1, null
-"6014", "6000", "Molybdenum, Mo", "mcg", "1102", "Molybdenum, Mo", "UG", 1, null
-"6015", "6000", "Selenium, Se", "mcg", "1103", "Selenium, Se", "UG", 1, null
-"6016", "6000", "Aluminum, Al", "mcg", "1132", "Aluminum, Al", "UG", 1, null
-"6017", "6000", "Antimony, Sb", "mcg", "1133", "Antimony, Sb", "UG", 1, null
-"6018", "6000", "Arsenic, As", "mcg", "1134", "Arsenic, As", "UG", 1, null
-"6019", "6000", "Barium, Ba", "mcg", "1135", "Barium, Ba", "UG", 1, null
-"6020", "6000", "Beryllium, Be", "mcg", "1136", "Beryllium, Be", "UG", 1, null
-"6021", "6000", "Boron, B", "mcg", "1137", "Boron, B", "UG", 1, null
-"6022", "6000", "Bromine, Br", "mcg", "1138", "Bromine, Br", "UG", 1, null
-"6023", "6000", "Cadmium, Cd", "mcg", "1139", "Cadmium, Cd", "UG", 1, null
-"6024", "6000", "Gold, Au", "mcg", "1140", "Gold, Au", "UG", 1, null
-"6025", "6000", "Lead, Pb", "mcg", "1143", "Lead, Pb", "UG", 1, null
-"6026", "6000", "Lithium, Li", "mcg", "1144", "Lithium, Li", "UG", 1, null
-"6027", "6000", "Mercury, Hg", "mcg", "1145", "Mercury, Hg", "UG", 1, null
-"6028", "6000", "Nickel, Ni", "mcg", "1146", "Nickel, Ni", "UG", 1, null
-"6029", "6000", "Rubidium, Rb", "mcg", "1147", "Rubidium, Rb", "UG", 1, null
-"6030", "6000", "Silicon, Si", "mcg", "1150", "Silicon, Si", "UG", 1, null
-"6031", "6000", "Silver, Ag", "mcg", "1151", "Silver, Ag", "UG", 1, null
-"6032", "6000", "Strontium, Sr", "mcg", "1152", "Strontium, Sr", "UG", 1, null
-"6033", "6000", "Tin, Sn", "mcg", "1153", "Tin, Sn", "UG", 1, null
-"6034", "6000", "Titanium, Ti", "mcg", "1154", "Titanium, Ti", "UG", 1, null
-"6035", "6000", "Vanadium, V", "mcg", "1155", "Vanadium, V", "UG", 1, null
-"6036", "6000", "Iron, Fe", "mg", "1089", "Iron, Fe", "MG", 1, null
+
+#   Category stubs [DTO grouping]
+"6100", "6000", "Macrominerals", null, null, null, null, null, null
+"6200", "6000", "Trace minerals", null, null, null, null, null, null
+"6300", "6000", "Heavy metals", null, null, null, null, null, null
+
+#   Macrominerals (parent: 6100)
+"6001", "6100", "Chlorine, Cl", "mg", "1088", "Chlorine, Cl", "MG", 1, null
+"6002", "6100", "Magnesium, Mg", "mg", "1090", "Magnesium, Mg", "MG", 1, null
+"6003", "6100", "Phosphorus, P", "mg", "1091", "Phosphorus, P", "MG", 1, null
+"6004", "6100", "Potassium, K", "mg", "1092", "Potassium, K", "MG", 1, null
+"6005", "6100", "Sodium, Na", "mg", "1093", "Sodium, Na", "MG", 1, null
+"6006", "6100", "Sulfur, S", "mg", "1094", "Sulfur, S", "MG", 1, null
+"6036", "6100", "Iron, Fe", "mg", "1089", "Iron, Fe", "MG", 1, null
+"6041", "6100", "Calcium, Ca", "mg", "1087", "Calcium, Ca", "MG", 1, null
+
+#   Trace minerals (parent: 6200)
+"6007", "6200", "Zinc, Zn", "mg", "1095", "Zinc, Zn", "MG", 1, null
+"6008", "6200", "Chromium, Cr", "mcg", "1096", "Chromium, Cr", "UG", 1, null
+"6009", "6200", "Cobalt, Co", "mcg", "1097", "Cobalt, Co", "UG", 1, null
+"6010", "6200", "Copper, Cu", "mg", "1098", "Copper, Cu", "MG", 1, null
+"6011", "6200", "Fluoride, F", "mcg", "1099", "Fluoride, F", "UG", 1, null
+"6011", "6200", "Fluoride, F", "mcg", "1148", "Fluoride - DO NOT USE; use 313", "UG", 2, null
+"6012", "6200", "Iodine, I", "mcg", "1100", "Iodine, I", "UG", 1, null
+"6013", "6200", "Manganese, Mn", "mg", "1101", "Manganese, Mn", "MG", 1, null
+"6014", "6200", "Molybdenum, Mo", "mcg", "1102", "Molybdenum, Mo", "UG", 1, null
+"6015", "6200", "Selenium, Se", "mcg", "1103", "Selenium, Se", "UG", 1, null
+"6021", "6200", "Boron, B", "mcg", "1137", "Boron, B", "UG", 1, null
+"6028", "6200", "Nickel, Ni", "mcg", "1146", "Nickel, Ni", "UG", 1, null
+"6030", "6200", "Silicon, Si", "mcg", "1150", "Silicon, Si", "UG", 1, null
+"6035", "6200", "Vanadium, V", "mcg", "1155", "Vanadium, V", "UG", 1, null
+
+#   Heavy metals (parent: 6300)
+"6016", "6300", "Aluminum, Al", "mcg", "1132", "Aluminum, Al", "UG", 1, null
+"6017", "6300", "Antimony, Sb", "mcg", "1133", "Antimony, Sb", "UG", 1, null
+"6018", "6300", "Arsenic, As", "mcg", "1134", "Arsenic, As", "UG", 1, null
+"6019", "6300", "Barium, Ba", "mcg", "1135", "Barium, Ba", "UG", 1, null
+"6020", "6300", "Beryllium, Be", "mcg", "1136", "Beryllium, Be", "UG", 1, null
+"6022", "6300", "Bromine, Br", "mcg", "1138", "Bromine, Br", "UG", 1, null
+"6023", "6300", "Cadmium, Cd", "mcg", "1139", "Cadmium, Cd", "UG", 1, null
+"6024", "6300", "Gold, Au", "mcg", "1140", "Gold, Au", "UG", 1, null
+"6025", "6300", "Lead, Pb", "mcg", "1143", "Lead, Pb", "UG", 1, null
+"6026", "6300", "Lithium, Li", "mcg", "1144", "Lithium, Li", "UG", 1, null
+"6027", "6300", "Mercury, Hg", "mcg", "1145", "Mercury, Hg", "UG", 1, null
+"6029", "6300", "Rubidium, Rb", "mcg", "1147", "Rubidium, Rb", "UG", 1, null
+"6031", "6300", "Silver, Ag", "mcg", "1151", "Silver, Ag", "UG", 1, null
+"6032", "6300", "Strontium, Sr", "mcg", "1152", "Strontium, Sr", "UG", 1, null
+"6033", "6300", "Tin, Sn", "mcg", "1153", "Tin, Sn", "UG", 1, null
+"6034", "6300", "Titanium, Ti", "mcg", "1154", "Titanium, Ti", "UG", 1, null
+
+#   Mineral fractions
 "6037", "6036", "Iron, heme", "mg", "1141", "Iron, heme", "MG", 1, null
 "6038", "6036", "Iron, non-heme", "mg", "1142", "Iron, non-heme", "MG", 1, null
 "6039", "6036", "Iron, added", "mg", "1238", "Iron, added", "MG", 1, null
 "6040", "6036", "Iron, intrinsic", "mg", "1240", "Iron, intrinsic", "MG", 1, null
-"6041", "6000", "Calcium, Ca", "mg", "1087", "Calcium, Ca", "MG", 1, null
 "6042", "6041", "Calcium, added", "mg", "1237", "Calcium, added", "MG", 1, null
 "6043", "6041", "Calcium, intrinsic", "mg", "1239", "Calcium, intrinsic", "MG", 1, null
+
+# 7xxx — FRACTIONS (various parents)
+
+
+#   Vitamin A fractions (parent: 5001)
+"7001", "5001", "Retinol", "mcg", "1105", "Retinol", "UG", 1, null
+"7002", "5001", "Carotene beta", "mcg", "1107", "Carotene, beta", "UG", 1, null
+"7003", "5001", "Carotene alpha", "mcg", "1108", "Carotene, alpha", "UG", 1, null
+"7004", "5001", "Cryptoxanthin beta", "mcg", "1120", "Cryptoxanthin, beta", "UG", 1, null
+"7045", "5001", "Cryptoxanthin alpha", "mcg", "2032", "Cryptoxanthin, alpha", "UG", 1, null
+"7046", "5001", "cis-beta-Carotene", "mcg", "1159", "cis-beta-Carotene", "UG", 1, null
+"7047", "5001", "trans-beta-Carotene", "mcg", "2028", "trans-beta-Carotene", "UG", 1, null
+"7048", "5001", "Carotene, gamma", "mcg", "1118", "Carotene, gamma", "UG", 1, null
+
+#   Carotene total 7049: use ONLY if 7002, 7003, 7048 are all absent
+"7049", "5001", "Carotene (total)", "mcg", "1157", "Carotene", "MCG_RE", 1, "value * 6"
+
+#    Vitamin C fractions (parent: 5002)
+"7005", "5002", "Vitamin C, reduced ascorbic acid", "mg", "1163", "Vitamin C, reduced ascorbic acid", "MG", 1, null
+"7006", "5002", "Vitamin C, dehydro ascorbic acid", "mg", "1164", "Vitamin C, dehydro ascorbic acid", "MG", 1, null
+"7007", "5002", "Vitamin C, added", "mg", "1241", "Vitamin C, added", "MG", 1, null
+"7008", "5002", "Vitamin C, intrinsic", "mg", "1247", "Vitamin C, intrinsic", "MG", 1, null
+
+#    Vitamin B1 fractions (parent: 5003)
+"7009", "5003", "Vitamin B1, added", "mg", "1243", "Thiamin, added", "MG", 1, null
+"7010", "5003", "Vitamin B1, intrinsic", "mg", "1249", "Thiamin, intrinsic", "MG", 1, null
+
+#    Vitamin B2 fractions (parent: 5004)
+"7011", "5004", "Vitamin B2, added", "mg", "1244", "Riboflavin, added", "MG", 1, null
+"7012", "5004", "Vitamin B2, intrinsic", "mg", "1250", "Riboflavin, intrinsic", "MG", 1, null
+
+#    Vitamin B3 fractions (parent: 5005)
+"7013", "5005", "Vitamin B3, added", "mg", "1245", "Niacin, added", "MG", 1, null
+"7014", "5005", "Vitamin B3, intrinsic", "mg", "1251", "Niacin, intrinsic", "MG", 1, null
+
+#    Vitamin B6 fractions (parent: 5007)
+"7015", "5007", "Vitamin B6, pyridoxine", "mg", "1171", "Vitamin B-6, pyridoxine, alcohol form", "MG", 1, null
+"7016", "5007", "Vitamin B6, pyridoxal", "mg", "1172", "Vitamin B-6, pyridoxal, aldehyde form", "MG", 1, null
+"7017", "5007", "Vitamin B6, pyridoxamine", "mg", "1173", "Vitamin B-6, pyridoxamine, amine form", "MG", 1, null
+
+#    Vitamin B9 fractions (parent: 5011)
+"7018", "5011", "Folic acid", "mcg", "1186", "Folic acid", "UG", 1, null
+"7019", "5011", "Folate, food", "mcg", "1187", "Folate, food", "UG", 1, null
+"7020", "5011", "5-methyl tetrahydrofolate (5-MTHF)", "mcg", "1188", "5-methyl tetrahydrofolate (5-MTHF)", "UG", 1, null
+
+#    Vitamin B12 fractions (parent: 5012)
+"7021", "5012", "Vitamin B12, added", "mcg", "1246", "Vitamin B-12, added", "UG", 1, null
+"7022", "5012", "Vitamin B12, intrinsic", "mcg", "1252", "Vitamin B-12, intrinsic", "UG", 1, null
+
+#    Choline fractions (parent: 5013)
+"7023", "5013", "Choline, free", "mg", "1194", "Choline, free", "MG", 1, null
+"7024", "5013", "Choline, from phosphocholine", "mg", "1195", "Choline, from phosphocholine", "MG", 1, null
+"7025", "5013", "Choline, from phosphotidyl choline", "mg", "1196", "Choline, from phosphotidyl choline", "MG", 1, null
+"7026", "5013", "Choline, from glycerophosphocholine", "mg", "1197", "Choline, from glycerophosphocholine", "MG", 1, null
+"7027", "5013", "Choline, from sphingomyelin", "mg", "1199", "Choline, from sphingomyelin", "MG", 1, null
+"7177", "5013", "Betaine", "mg", "1198", "Betaine", "MG", 1, null
+
+#    Vitamin E fractions (parent: 5014)
+"7175", "5014", "Total Tocopherols", "mg", "2055", "Total Tocopherols", "MG", 1, null
+"7028", "7175", "Tocopherol, beta", "mg", "1125", "Tocopherol, beta", "MG", 1, null
+"7029", "7175", "Tocopherol, gamma", "mg", "1126", "Tocopherol, gamma", "MG", 1, null
+"7030", "7175", "Tocopherol, delta", "mg", "1127", "Tocopherol, delta", "MG", 1, null
+"7176", "5014", "Total Tocotrienols", "mg", "2054", "Total Tocotrienols", "MG", 1, null
+"7031", "7176", "Tocotrienol, alpha", "mg", "1128", "Tocotrienol, alpha", "MG", 1, null
+"7032", "7176", "Tocotrienol, beta", "mg", "1129", "Tocotrienol, beta", "MG", 1, null
+"7033", "7176", "Tocotrienol, gamma", "mg", "1130", "Tocotrienol, gamma", "MG", 1, null
+"7034", "7176", "Tocotrienol, delta", "mg", "1131", "Tocotrienol, delta", "MG", 1, null
+"7035", "5014", "Vitamin E, added", "mg", "1242", "Vitamin E, added", "MG", 1, null
+"7036", "5014", "Vitamin E, intrinsic", "mg", "1248", "Vitamin E, intrinsic", "MG", 1, null
+
+#    Vitamin D fractions (parent: 5015)
+"7037", "5015", "Vitamin D2", "mcg", "1111", "Vitamin D2 (ergocalciferol)", "UG", 1, null
+"7038", "5015", "Vitamin D3", "mcg", "1112", "Vitamin D3 (cholecalciferol)", "UG", 1, null
+"7039", "5015", "Vitamin D4", "mcg", "2059", "Vitamin D4", "UG", 1, null
+"7040", "5015", "25-hydroxycholecalciferol", "mcg", "1113", "25-hydroxycholecalciferol", "UG", 1, null
+"7041", "5015", "25-hydroxyergocalciferol", "mcg", "1115", "25-hydroxyergocalciferol", "UG", 1, null
+
+#    Vitamin K fractions (parent: 5016)
+"7042", "5016", "Menaquinone-4 (K2)", "mcg", "1183", "Vitamin K (Menaquinone-4)", "UG", 1, null
+"7043", "5016", "Dihydrophylloquinone", "mcg", "1184", "Vitamin K (Dihydrophylloquinone)", "UG", 1, null
+
+#   TFA fractions (parent: 3001)
+"7050", "3001", "TFA 14:1 t", "g", "1281", "TFA 14:1 t", "G", 1, null
+"7051", "3001", "TFA 16:1 t", "g", "1303", "TFA 16:1 t", "G", 1, null
+"7052", "3001", "TFA 17:1", "g", "2011", "TFA 17:1 t", "G", 1, null
+"7053", "3001", "TFA 18:1", "g", "1304", "TFA 18:1 t", "G", 1, null
+"7054", "3001", "TFA 18:2 t", "g", "2017", "TFA 18:2 t", "G", 1, null
+"7054", "3001", "TFA 18:2 t", "g", "1306", "TFA 18:2 t not further defined", "G", 2, null
+"7055", "3001", "TFA 18:2 t,t", "g", "1310", "TFA 18:2 t,t", "G", 1, null
+"7056", "3001", "TFA 18:3 t", "g", "2019", "TFA 18:3 t", "G", 1, null
+"7057", "3001", "TFA 20:1 t", "g", "2013", "TFA 20:1 t", "G", 1, null
+"7058", "3001", "TFA 22:1 t", "g", "1305", "TFA 22:1 t", "G", 1, null
+
+#    SFA fractions (parent: 3002)
+"7059", "3002", "SFA 4:0 Butyric acid", "g", "1259", "SFA 4:0", "G", 1, null
+"7060", "3002", "SFA 5:0 Valeric acid", "g", "2003", "SFA 5:0", "G", 1, null
+"7061", "3002", "SFA 6:0 Caproic acid", "g", "1260", "SFA 6:0", "G", 1, null
+"7062", "3002", "SFA 7:0", "g", "2004", "SFA 7:0", "G", 1, null
+"7063", "3002", "SFA 8:0 Caprylic acid", "g", "1261", "SFA 8:0", "G", 1, null
+"7064", "3002", "SFA 9:0 Nonanoic acid", "g", "2005", "SFA 9:0", "G", 1, null
+"7065", "3002", "SFA 10:0 Capric acid", "g", "1262", "SFA 10:0", "G", 1, null
+"7066", "3002", "SFA 11:0 Undecanoic acid", "g", "1335", "SFA 11:0", "G", 1, null
+"7067", "3002", "SFA 12:0 Lauric acid", "g", "1263", "SFA 12:0", "G", 1, null
+"7068", "3002", "SFA 13:0 Tridecanoic acid", "g", "1332", "SFA 13:0", "G", 1, null
+"7069", "3002", "SFA 14:0 Myristic acid", "g", "1264", "SFA 14:0", "G", 1, null
+"7070", "3002", "SFA 15:0 Pentadecanoic acid", "g", "1299", "SFA 15:0", "G", 1, null
+"7071", "3002", "SFA 16:0 Palmitic acid", "g", "1265", "SFA 16:0", "G", 1, null
+"7072", "3002", "SFA 17:0 Heptadecanoic acid", "g", "1300", "SFA 17:0", "G", 1, null
+"7073", "3002", "SFA 18:0 Stearic acid", "g", "1266", "SFA 18:0", "G", 1, null
+"7074", "3002", "SFA 19:0 Nonadecanoic acid", "g", "1322", "SFA 19:0", "G", 1, null
+"7075", "3002", "SFA 20:0 Arachidic acid", "g", "1267", "SFA 20:0", "G", 1, null
+"7076", "3002", "SFA 21:0 Heneicosanoic acid", "g", "2006", "SFA 21:0", "G", 1, null
+"7077", "3002", "SFA 22:0 Behenic acid", "g", "1273", "SFA 22:0", "G", 1, null
+"7078", "3002", "SFA 23:0 Tricosanoic acid", "g", "2007", "SFA 23:0", "G", 1, null
+"7079", "3002", "SFA 24:0 Lignoceric acid", "g", "1301", "SFA 24:0", "G", 1, null
+"7120", "3002", "Other saturated fatty acids", "g", "1318", "Fatty acids, saturated, other", "G", 1, null
+
+#    MUFA fractions (parent: 3003)
+"7080", "3003", "MUFA 12:1 Lauroleic acid", "g", "2008", "MUFA 12:1", "G", 1, null
+"7081", "3003", "MUFA 14:1 Myristoleic acid", "g", "1274", "MUFA 14:1", "G", 1, null
+"7082", "3003", "MUFA 14:1 c cis-Myristoleic acid", "g", "2009", "MUFA 14:1 c", "G", 1, null
+"7083", "3003", "MUFA 15:1", "g", "1333", "MUFA 15:1", "G", 1, null
+"7084", "3003", "MUFA 16:1 Palmitoleic acid", "g", "1275", "MUFA 16:1", "G", 1, null
+"7085", "3003", "MUFA 16:1 c cis-Palmitoleic acid", "g", "1314", "MUFA 16:1 c", "G", 1, null
+"7086", "3003", "MUFA 17:1 Heptadecenoic acid", "g", "1323", "MUFA 17:1", "G", 1, null
+"7087", "3003", "MUFA 17:1 c cis-Heptadecenoic acid", "g", "2010", "MUFA 17:1 c", "G", 1, null
+"7088", "3003", "MUFA 18:1 Oleic acid", "g", "1268", "MUFA 18:1", "G", 1, null
+"7089", "3003", "MUFA 18:1 c cis-Oleic acid", "g", "1315", "MUFA 18:1 c", "G", 1, null
+"7090", "3003", "MUFA 18:1-11 t trans-Vaccenic acid", "g", "1412", "MUFA 18:1-11 t (18:1t n-7)", "G", 1, null
+"7091", "3003", "MUFA 18:1-11 c cis-Vaccenic acid", "g", "1413", "MUFA 18:1-11 c (18:1c n-7)", "G", 1, null
+"7092", "3003", "MUFA 20:1 Eicosenoic acid", "g", "1277", "MUFA 20:1", "G", 1, null
+"7093", "3003", "MUFA 20:1 c cis-Eicosenoic acid", "g", "2012", "MUFA 20:1 c", "G", 1, null
+"7094", "3003", "MUFA 22:1 Erucic acid", "g", "1279", "MUFA 22:1", "G", 1, null
+"7095", "3003", "MUFA 22:1 c cis-Erucic acid", "g", "1317", "MUFA 22:1 c", "G", 1, null
+"7096", "3003", "MUFA 22:1 n-9 Brassidic acid", "g", "2014", "MUFA 22:1 n-9", "G", 1, null
+"7097", "3003", "MUFA 22:1 n-11 Cetoleic acid", "g", "2015", "MUFA 22:1 n-11", "G", 1, null
+"7098", "3003", "MUFA 24:1 c cis-Nervonic acid", "g", "1312", "MUFA 24:1 c", "G", 1, null
+"7121", "3003", "Other monounsaturated fatty acids", "g", "1319", "Fatty acids, monounsat., other", "G", 1, null
+
+#   PUFA fractions (parent: 3004)
+"7099", "3004", "PUFA 16:2 Hexadecadienoic acid", "g", "1324", "PUFA 16:2", "G", 1, null
+"7100", "3004", "PUFA 18:2 n-6 Linoleic acid (Omega-6)", "g", "1316", "PUFA 18:2 n-6 c,c", "G", 1, null
+"7100", "3004", "PUFA 18:2 n-6 Linoleic acid (Omega-6)", "g", "2016", "PUFA 18:2 c", "G", 2, null
+"7100", "3004", "PUFA 18:2 n-6 Linoleic acid (Omega-6)", "g", "1269", "PUFA 18:2", "G", 3, null
+"7101", "3004", "PUFA 18:2 CLAs", "g", "1311", "PUFA 18:2 CLAs", "G", 1, null
+"7102", "3004", "PUFA 18:2 t,c", "g", "1308", "PUFA 18:2 t,c", "G", 1, null
+"7103", "3004", "PUFA 18:2 c,t", "g", "1309", "PUFA 18:2 c,t", "G", 1, null
+"7104", "3004", "PUFA 18:3 n-3 ALA (Omega-3)", "g", "1404", "PUFA 18:3 n-3 c,c,c (ALA)", "G", 1, null
+"7104", "3004", "PUFA 18:3 n-3 ALA (Omega-3)", "g", "2018", "PUFA 18:3 c", "G", 2, null
+"7104", "3004", "PUFA 18:3 n-3 ALA (Omega-3)", "g", "1270", "PUFA 18:3", "G", 3, null
+"7105", "3004", "PUFA 18:3 n-6 GLA (Omega-6)", "g", "1321", "PUFA 18:3 n-6 c,c,c", "G", 1, null
+"7106", "3004", "PUFA 18:4 Stearidonic acid (Omega-3)", "g", "1276", "PUFA 18:4", "G", 1, null
+"7107", "3004", "PUFA 20:2 n-6 (Omega-6)", "g", "1313", "PUFA 20:2 n-6 c,c", "G", 1, null
+"7107", "3004", "PUFA 20:2 n-6 (Omega-6)", "g", "2026", "PUFA 20:2 c", "G", 2, null
+"7108", "3004", "PUFA 20:3 n-3 (Omega-3)", "g", "1405", "PUFA 20:3 n-3", "G", 1, null
+"7108", "3004", "PUFA 20:3 n-3 (Omega-3)", "g", "2020", "PUFA 20:3 c", "G", 2, null
+"7108", "3004", "PUFA 20:3 n-3 (Omega-3)", "g", "1325", "PUFA 20:3", "G", 3, null
+"7109", "3004", "PUFA 20:3 n-6 DGLA (Omega-6)", "g", "1406", "PUFA 20:3 n-6", "G", 1, null
+"7110", "3004", "PUFA 20:3 n-9 Mead acid (Omega-9)", "g", "1414", "PUFA 20:3 n-9", "G", 1, null
+"7111", "3004", "PUFA 20:4 n-6 Arachidonic acid (Omega-6)", "g", "1408", "PUFA 20:4 n-6", "G", 1, null
+"7111", "3004", "PUFA 20:4 n-6 Arachidonic acid (Omega-6)", "g", "2022", "PUFA 20:4c", "G", 2, null
+"7111", "3004", "PUFA 20:4 n-6 Arachidonic acid (Omega-6)", "g", "1271", "PUFA 20:4", "G", 3, null
+"7112", "3004", "PUFA 20:4 n-3 (Omega-3)", "g", "1407", "PUFA 20:4 n-3", "G", 1, null
+"7113", "3004", "PUFA 20:5 n-3 EPA (Omega-3)", "g", "1278", "PUFA 20:5 n-3 (EPA)", "G", 1, null
+"7113", "3004", "PUFA 20:5 n-3 EPA (Omega-3)", "g", "2023", "PUFA 20:5c", "G", 2, null
+"7114", "3004", "PUFA 21:5", "g", "1410", "PUFA 21:5", "G", 1, null
+"7115", "3004", "PUFA 22:2", "g", "1334", "PUFA 22:2", "G", 1, null
+"7116", "3004", "PUFA 22:3", "g", "2021", "PUFA 22:3", "G", 1, null
+"7117", "3004", "PUFA 22:4 Adrenic acid", "g", "1411", "PUFA 22:4", "G", 1, null
+"7118", "3004", "PUFA 22:5 n-3 DPA (Omega-3)", "g", "1280", "PUFA 22:5 n-3 (DPA)", "G", 1, null
+"7118", "3004", "PUFA 22:5 n-3 DPA (Omega-3)", "g", "2024", "PUFA 22:5 c", "G", 2, null
+"7119", "3004", "PUFA 22:6 n-3 DHA (Omega-3)", "g", "1272", "PUFA 22:6 n-3 (DHA)", "G", 1, null
+"7119", "3004", "PUFA 22:6 n-3 DHA (Omega-3)", "g", "2025", "PUFA 22:6 c", "G", 2, null
+"7122", "3004", "Other polyunsaturated fatty acids", "g", "1320", "Fatty acids, polyunsat., other", "G", 1, null
+
+# 8xxx — OTHER
+"8001", null, "Taurine", "g", "1234", "Taurine", "G", 1, null
+"8002", null, "pH", "PH", "1023", "pH", "PH", 1, null
+"8003", null, "Specific Gravity", "SP_GR", "1024", "Specific Gravity", "SP_GR", 1, null
+"8004", null, "Ash", "g", "1007", "Ash", "G", 1, null
+"8005", null, "Water", "g", "1051", "Water", "G", 1, null
+"8006", null, "Alcohol, ethyl", "g", "1018", "Alcohol, ethyl", "G", 1, null
+"8007", null, "Caffeine", "mg", "1057", "Caffeine", "MG", 1, null
+"8008", null, "Theobromine", "mg", "1058", "Theobromine", "MG", 1, null
+"8009", null, "Theophylline", "mg", "1083", "Theophylline", "MG", 1, null
+"8010", null, "Nitrates", "mg", "1059", "Nitrates", "MG", 1, null
+"8011", null, "Nitrites", "mg", "1060", "Nitrites", "MG", 1, null
+"8012", null, "Nitrogen", "g", "1002", "Nitrogen", "G", 1, null
+"8012", null, "Nitrogen", "g", "1052", "Adjusted Nitrogen", "G", 2, null
+
+#    Phytosterols
+"8013", null, "Phytosterols", "mg", "1283", "Phytosterols", "MG", 1, null
+"8014", "8013", "Ergosterol", "mg", "1284", "Ergosterol", "MG", 1, null
+"8015", "8013", "Stigmasterol", "mg", "1285", "Stigmasterol", "MG", 1, null
+"8016", "8013", "Campesterol", "mg", "1286", "Campesterol", "MG", 1, null
+"8017", "8013", "Brassicasterol", "mg", "1287", "Brassicasterol", "MG", 1, null
+"8018", "8013", "Beta-sitosterol", "mg", "1288", "Beta-sitosterol", "MG", 1, null
+"8019", "8013", "Campestanol", "mg", "1289", "Campestanol", "MG", 1, null
+"8020", "8013", "Beta-sitostanol", "mg", "1294", "Beta-sitostanol", "MG", 1, null
+"8021", "8013", "Delta-7-avenasterol", "mg", "1295", "Delta-7-avenasterol", "MG", 1, null
+"8022", "8013", "Delta-5-avenasterol", "mg", "1296", "Delta-5-avenasterol", "MG", 1, null
+"8023", "8013", "Alpha-spinasterol", "mg", "1297", "Alpha-spinasterol", "MG", 1, null
+"8024", "8013", "Phytosterols, other", "mg", "1298", "Phytosterols, other", "MG", 1, null
+"8040", "8013", "Stigmastadiene", "mg", "2053", "Stigmastadiene", "MG", 1, null
+"8041", "8013", "Delta-7-Stigmastenol", "mg", "2052", "Delta-7-Stigmastenol", "MG", 1, null
+"8042", "8013", "Ergosta-7-enol", "mg", "2060", "Ergosta-7-enol", "MG", 1, null
+"8043", "8013", "Ergosta-7,22-dienol", "mg", "2061", "Ergosta-7,22-dienol", "MG", 1, null
+"8044", "8013", "Ergosta-5,7-dienol", "mg", "2062", "Ergosta-5,7-dienol", "MG", 1, null
+
+#   Sugar alcohols
+"8025", null, "Sugar alcohols", "g", "1086", "Total sugar alcohols", "G", 1, null
+"8026", "8025", "Mannitol", "g", "1055", "Mannitol", "G", 1, null
+"8027", "8025", "Sorbitol", "g", "1056", "Sorbitol", "G", 1, null
+"8028", "8025", "Xylitol", "g", "1078", "Xylitol", "G", 1, null
+
+#   Carotenoids without Vitamin A activity [calculated]
+"8029", null, "Carotenoids (non-Vitamin A)", "mcg", null, null, null, null, null
+"8030", "8029", "Zeaxanthin", "mcg", "1119", "Zeaxanthin", "UG", 1, null
+"8031", "8029", "Lutein", "mcg", "1121", "Lutein", "UG", 1, null
+"8032", "8029", "Lycopene", "mcg", "1122", "Lycopene", "UG", 1, null
+"8033", "8029", "Lutein + zeaxanthin", "mcg", "1123", "Lutein + zeaxanthin", "UG", 1, null
+"8034", "8029", "cis-Lycopene", "mcg", "1160", "cis-Lycopene", "UG", 1, null
+"8035", "8029", "cis-Lutein/Zeaxanthin", "mcg", "1161", "cis-Lutein/Zeaxanthin", "UG", 1, null
+"8036", "8029", "trans-Lycopene", "mcg", "2029", "trans-Lycopene", "UG", 1, null
+"8037", "8029", "Phytoene", "mcg", "1116", "Phytoene", "UG", 1, null
+"8038", "8029", "Phytofluene", "mcg", "1117", "Phytofluene", "UG", 1, null
+"8039", "8029", "Other carotenoids", "mcg", "2040", "Other carotenoids", "UG", 1, null
+
+#   ORAC (antioxidant activity metrics)
+"8045", null, "ORAC, Total", "umol_te", "1338", "ORAC, Total", "UMOL_TE", 1, null
+"8046", "8045", "ORAC, Hydrophilic", "umol_te", "1336", "ORAC, Hydrophyllic", "UMOL_TE", 1, null
+"8047", "8045", "ORAC, Lipophilic", "umol_te", "1337", "ORAC, Lipophillic", "UMOL_TE", 1, null
+
+#   Other bioactives
+"8048", null, "Piperine", "g", "1054", "Piperine", "G", 1, null
+"8049", null, "Nitrosamine, total", "mg", "1061", "Nitrosamine,total", "MG", 1, null
+"8050", null, "Glutathione", "mg", "2069", "Glutathione", "MG", 1, null
+"8051", null, "Ergothioneine", "mg", "2057", "Ergothioneine", "MG", 1, null
+
+#   Antioxidants umbrella [DTO only, no sum] ---
+"8052", null, "Antioxidants", null, null, null, null, null, null
+
+# 9xxx — ORGANIC ACIDS
 "9001", null, "Organic acids", "g", "1025", "Organic acids", "G", 1, null
 "9002", "9001", "Vanillic acid", "mg", "1207", "Vanillic acid", "MG", 1, null
 "9003", "9001", "Caffeic acid", "mg", "1201", "Caffeic acid", "MG", 1, null
@@ -216,32 +492,132 @@ ns_id, parent_id, ns_name, ns_unit, usda_id, usda_name, usda_mu, priority, norma
 "9029", "9001", "Ursolic acid", "mg", "1048", "Ursolic acid", "MG", 1, null
 "9030", "9001", "p-Hydroxy benzoic acid", "mg", "1200", "p-Hydroxy benzoic acid", "MG", 1, null
 "9031", "9001", "p-Coumaric acid", "mg", "1202", "p-Coumaric acid", "MG", 1, null
-"8001", null, "Taurine", "g", "1234", "Taurine", "G", 1, null
-"8002", null, "pH", "PH", "1023", "pH", "PH", 1, null
-"8003", null, "Specific Gravity", "SP_GR", "1024", "Specific Gravity", "SP_GR", 1, null
-"8004", null, "Ash", "g", "1007", "Ash", "G", 1, null
-"8005", null, "Water", "g", "1051", "Water", "G", 1, null
-"8006", null, "Alcohol, ethyl", "g", "1018", "Alcohol, ethyl", "G", 1, null
-"8007", null, "Caffeine", "mg", "1057", "Caffeine", "MG", 1, null
-"8008", null, "Theobromine", "mg", "1058", "Theobromine", "MG", 1, null
-"8009", null, "Theophylline", "mg", "1083", "Theophylline", "MG", 1, null
-"8010", null, "Nitrates", "mg", "1059", "Nitrates", "MG", 1, null
-"8011", null, "Nitrites", "mg", "1060", "Nitrites", "MG", 1, null
-"8012", null, "Nitrogen", "g", "1002", "Nitrogen", "G", 1, null
-"8012", null, "Nitrogen", "g", "1052", "Adjusted Nitrogen", "G", 2, null
-"8013", null, "Phytosterols", "mg", "1283", "Phytosterols", "MG", 1, null
-"8014", "8013", "Ergosterol", "mg", "1284", "Ergosterol", "MG", 1, null
-"8015", "8013", "Stigmasterol", "mg", "1285", "Stigmasterol", "MG", 1, null
-"8016", "8013", "Campesterol", "mg", "1286", "Campesterol", "MG", 1, null
-"8017", "8013", "Brassicasterol", "mg", "1287", "Brassicasterol", "MG", 1, null
-"8018", "8013", "Beta-sitosterol", "mg", "1288", "Beta-sitosterol", "MG", 1, null
-"8019", "8013", "Campestanol", "mg", "1289", "Campestanol", "MG", 1, null
-"8020", "8013", "Beta-sitostanol", "mg", "1294", "Beta-sitostanol", "MG", 1, null
-"8021", "8013", "Delta-7-avenasterol", "mg", "1295", "Delta-7-avenasterol", "MG", 1, null
-"8022", "8013", "Delta-5-avenasterol", "mg", "1296", "Delta-5-avenasterol", "MG", 1, null
-"8023", "8013", "Alpha-spinasterol", "mg", "1297", "Alpha-spinasterol", "MG", 1, null
-"8024", "8013", "Phytosterols, other", "mg", "1298", "Phytosterols, other", "MG", 1, null
-"8025", null, "Sugar alcohols", "g", "1086", "Total sugar alcohols", "G", 1, null
-"8026", "8025", "Mannitol", "g", "1055", "Mannitol", "G", 1, null
-"8027", "8025", "Sorbitol", "g", "1056", "Sorbitol", "G", 1, null
-"8028", "8025", "Xylitol", "g", "1078", "Xylitol", "G", 1, null
+
+# 10xxx — POLYPHENOLS & FLAVONOIDS
+"10001", null, "Polyphenols, total", "mg", "1209", "Polyphenols, total", "MG", 1, null
+"10002", null, "Total Phenolics", "mg_gae", "1339", "Total Phenolics", "MG_GAE", 1, null
+"10003", "10001", "Flavonoids, total", "mg", "1347", "Flavonoids, total", "MG", 1, null
+"10091", "10001", "Phenolic acids, total", "mg", "1208", "Phenolic acids, total", "MG", 1, null
+"10090", "10001", "Tyrosol", "mg", "1206", "Tyrosol", "MG", 1, null
+
+#   Isoflavones (parent: 10003)
+"10010", "10003", "Isoflavones", "mg", "1343", "Isoflavones", "MG", 1, null
+"7123", "10010", "Daidzein", "mg", "1340", "Daidzein", "MG", 1, null
+"7124", "10010", "Daidzin", "mg", "2049", "Daidzin", "MG", 1, null
+"7125", "10010", "Genistein", "mg", "1341", "Genistein", "MG", 1, null
+"7126", "10010", "Genistin", "mg", "2050", "Genistin", "MG", 1, null
+"7127", "10010", "Glycitein", "mg", "1342", "Glycitein", "MG", 1, null
+"7128", "10010", "Glycitin", "mg", "2051", "Glycitin", "MG", 1, null
+"7129", "10010", "Biochanin A", "mg", "1344", "Biochanin A", "MG", 1, null
+"7130", "10010", "Formononetin", "mg", "1345", "Formononetin", "MG", 1, null
+"7131", "10010", "Coumestrol", "mg", "1346", "Coumestrol", "MG", 1, null
+
+#    Anthocyanidins (parent: 10003)
+"10020", "10003", "Anthocyanidins", "mg", "1348", "Anthocyanidins", "MG", 1, null
+"7132", "10020", "Cyanidin", "mg", "1349", "Cyanidin", "MG", 1, null
+"7133", "10020", "Delphinidin", "mg", "1357", "Delphinidin", "MG", 1, null
+"7134", "10020", "Malvidin", "mg", "1358", "Malvidin", "MG", 1, null
+"7135", "10020", "Pelargonidin", "mg", "1359", "Pelargonidin", "MG", 1, null
+"7136", "10020", "Peonidin", "mg", "1360", "Peonidin", "MG", 1, null
+"7137", "10020", "Petunidin", "mg", "1361", "Petunidin", "MG", 1, null
+
+#   Procyanidins (parent: 10003)
+"10030", "10003", "Procyanidins, total", "mg", "1369", "Procyanidins, total", "MG", 1, null
+"7138", "10030", "Proanthocyanidin (dimer-A linkage)", "mg", "1350", "Proanthocyanidin (dimer-A linkage)", "MG", 1, null
+"7139", "10030", "Proanthocyanidin monomers", "mg", "1351", "Proanthocyanidin monomers", "MG", 1, null
+"7140", "10030", "Proanthocyanidin dimers", "mg", "1352", "Proanthocyanidin dimers", "MG", 1, null
+"7141", "10030", "Proanthocyanidin trimers", "mg", "1353", "Proanthocyanidin trimers", "MG", 1, null
+"7142", "10030", "Proanthocyanidin 4-6mers", "mg", "1354", "Proanthocyanidin 4-6mers", "MG", 1, null
+"7143", "10030", "Proanthocyanidin 7-10mers", "mg", "1355", "Proanthocyanidin 7-10mers", "MG", 1, null
+"7144", "10030", "Proanthocyanidin polymers (>10mers)", "mg", "1356", "Proanthocyanidin polymers (>10mers)", "MG", 1, null
+
+#   Flavans (parent: 10003)
+"10040", "10003", "Flavans, total", "mg", "1362", "Flavans, total", "MG", 1, null
+"10041", "10040", "Catechins, total", "mg", "1363", "Catechins, total", "MG", 1, null
+"7145", "10041", "Catechin", "mg", "1364", "Catechin", "MG", 1, null
+"7146", "10041", "Epicatechin", "mg", "1366", "Epicatechin", "MG", 1, null
+"7147", "10041", "Epigallocatechin", "mg", "1365", "Epigallocatechin", "MG", 1, null
+"7148", "10041", "Epicatechin-3-gallate", "mg", "1367", "Epicatechin-3-gallate", "MG", 1, null
+"7149", "10041", "Epigallocatechin-3-gallate (EGCG)", "mg", "1368", "Epigallocatechin-3-gallate", "MG", 1, null
+"7150", "10041", "(+)-Gallocatechin", "mg", "1396", "(+) -Gallo catechin", "MG", 1, null
+"7151", "10041", "(+)-Catechin 3-gallate", "mg", "1397", "(+)-Catechin 3-gallate", "MG", 1, null
+"7152", "10041", "(+)-Gallocatechin 3-gallate", "mg", "1398", "(+)-Gallocatechin 3-gallate", "MG", 1, null
+"10050", "10040", "Theaflavins", "mg", "1370", "Theaflavins", "MG", 1, null
+"7153", "10050", "Theaflavin -3,3'-digallate", "mg", "1393", "Theaflavin -3,3' -digallate", "MG", 1, null
+"7154", "10050", "Theaflavin -3'-gallate", "mg", "1394", "Theaflavin -3' -gallate", "MG", 1, null
+"7155", "10050", "Theaflavin -3-gallate", "mg", "1395", "Theaflavin -3 -gallate", "MG", 1, null
+"7156", "10040", "Thearubigins", "mg", "1371", "Thearubigins", "MG", 1, null
+"7157", "10040", "Theogallin", "mg", "1392", "Theogallin", "MG", 1, null
+
+#    Flavanones (parent: 10003)
+"10060", "10003", "Flavanones, total", "mg", "1372", "Flavanones, total", "MG", 1, null
+"7158", "10060", "Eriodictyol", "mg", "1373", "Eriodictyol", "MG", 1, null
+"7159", "10060", "Hesperetin", "mg", "1374", "Hesperetin", "MG", 1, null
+"7160", "10060", "Isosakuranetin", "mg", "1375", "Isosakuranetin", "MG", 1, null
+"7161", "10060", "Liquiritigenin", "mg", "1376", "Liquiritigenin", "MG", 1, null
+"7162", "10060", "Naringenin", "mg", "1377", "Naringenin", "MG", 1, null
+
+#    Flavones (parent: 10003)
+"10070", "10003", "Flavones, total", "mg", "1378", "Flavones, total", "MG", 1, null
+"7163", "10070", "Apigenin", "mg", "1379", "Apigenin", "MG", 1, null
+"7164", "10070", "Chrysoeriol", "mg", "1380", "Chrysoeriol", "MG", 1, null
+"7165", "10070", "Diosmetin", "mg", "1381", "Diosmetin", "MG", 1, null
+"7166", "10070", "Luteolin", "mg", "1382", "Luteolin", "MG", 1, null
+"7167", "10070", "Nobiletin", "mg", "1383", "Nobiletin", "MG", 1, null
+"7168", "10070", "Sinensetin", "mg", "1384", "Sinensetin", "MG", 1, null
+"7169", "10070", "Tangeretin", "mg", "1385", "Tangeretin", "MG", 1, null
+
+#    Flavonols (parent: 10003)
+"10080", "10003", "Flavonols, total", "mg", "1386", "Flavonols, total", "MG", 1, null
+"7170", "10080", "Isorhamnetin", "mg", "1387", "Isorhamnetin", "MG", 1, null
+"7171", "10080", "Kaempferol", "mg", "1388", "Kaempferol", "MG", 1, null
+"7172", "10080", "Limocitrin", "mg", "1389", "Limocitrin", "MG", 1, null
+"7173", "10080", "Myricetin", "mg", "1390", "Myricetin", "MG", 1, null
+"7174", "10080", "Quercetin", "mg", "1391", "Quercetin", "MG", 1, null
+
+
+#   DTO LAYER NOTES
+
+# CATEGORY STUBS (ns_unit = null, usda_id = null):
+# These exist in DB for hierarchy. Values are calculated at migration time.
+
+# 5100 Vitamins water-soluble — DTO grouping ONLY, NO sum
+#       Children: 5002, 5003, 5004, 5005, 5006, 5007, 5008, 5009, 5010, 5011, 5012, 5013
+# 5200 Vitamins fat-soluble — DTO grouping ONLY, NO sum
+#       Children: 5001, 5014, 5015, 5016
+# 6100 Macrominerals — DTO grouping, NO sum (mixed units mg/mcg)
+#       Children: 6001-6006, 6036, 6041
+# 6200 Trace minerals — DTO grouping, NO sum
+#       Children: 6007-6015, 6021, 6028, 6030, 6035
+# 6300 Heavy metals — DTO grouping, NO sum
+#       Children: 6016-6020, 6022-6027, 6029, 6031-6034
+# 8029 Carotenoids non-Vit A — calculated sum
+#       NO SUM 8033 (Lutein+Zeaxanthin) AND 8030+8031 - EQUAL VALUES
+#       NO SUM cis/trans forms with main
+# 8052 Antioxidants — DTO umbrella, NO sum (mixed units mg/mcg)
+#       Groups: 8045 ORAC, 8050 Glutathione, 8051 Ergothioneine
+
+# OMEGA STUBS:
+# 3014 Omega-3 total = sum(7104 ALA + 7106 SDA + 7108 20:3n3 + 7112 20:4n3 + 7113 EPA + 7118 DPA + 7119 DHA), flag: calculated
+# 3015 Omega-6 total = sum(7100 LA + 7105 GLA + 7107 20:2n6 + 7109 DGLA + 7111 AA), flag: calculated
+# 3016 Omega-9 total = sum(7110 Mead acid), flag: calculated
+
+# VITAMIN E NOTES:
+# 5014 = alpha-tocopherol (main value)'
+# 7175 Total Tocopherols: if no USDA value -> sum(5014 + 7028-7030), calculated
+# 7176 Total Tocotrienols: if no USDA value -> sum(7031-7034), calculated
+
+# CAROTENE TOTAL (7049):
+# Use ONLY if 7002, 7003, 7048 is missing
+
+# PHENOLIC ACIDS (10091):
+// DTO может подтянуть из 9xxx: Caffeic (9003), Ellagic (9004),
+// Ferrulic (9005), Gallic (9016), Chlorogenic (9011), Vanillic (9002),
+// p-Coumaric (9031), p-Hydroxy benzoic (9030)
+//
+# ISOFLAVONES (10010):
+# DO NOT SUM glycosides (Daidzin, Genistin, Glycitin)
+# with unglycones (Daidzein, Genistein, Glycitein)
+
+# BETAINE (7177):
+# Choline metabolitic form, DO NOT SUM with choline fractions (7023-7027)

@@ -1,4 +1,4 @@
-import { Select } from './static/ui';
+import { RangeSlider, Select } from './static/ui';
 
 import s from './filters.module.scss';
 import { FilterState, StaticFilters } from '../../model';
@@ -55,6 +55,12 @@ export const Filters: React.FC<Props> = ({ state, staticFilters, apply }) => {
 
           return null;
         })}
+
+        <RangeSlider
+          min={0}
+          max={100}
+          onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`)}
+        />
         <button onClick={apply}>Apply filters</button>
       </div>
     </section>

@@ -1,0 +1,11 @@
+@use 'shared/styles/constants/colors' as clr;
+@use 'shared/styles/constants/border-radius' as br;
+
+.input {
+  max-width: 48px;
+  border: 1px solid clr.$ns-500;
+  color: clr.$ns-900;
+  text-align: center;
+  font-size: 12px;
+  border-radius: br.$br-s;
+}

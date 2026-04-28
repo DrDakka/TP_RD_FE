@@ -1,0 +1,89 @@
+@use 'shared/styles/constants/colors' as clr;
+
+.slider {
+  position: relative;
+  width: 100%;
+  height: 18px;
+  z-index: 1;
+  .track,
+  .range {
+    position: absolute;
+    border-radius: 3px;
+    height: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .track {
+    width: 100%;
+    background-color: clr.$prm-100;
+    z-index: 1;
+  }
+
+  .range {
+    background-color: clr.$prm-500;
+    z-index: 2;
+  }
+
+  .thumb {
+    pointer-events: none;
+    position: absolute;
+    width: 100%;
+    height: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    outline: none;
+    &--left {
+      z-index: 10;
+    }
+    &--right {
+      z-index: 11;
+    }
+  }
+
+  .thumb::-webkit-slider-thumb {
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: all;
+    position: relative;
+  }
+  .thumb--left::-webkit-slider-thumb {
+    background-color: clr.$prm-500;
+    border: 1px solid clr.$prm-200;
+    width: 14px;
+    height: 14px;
+  }
+  .thumb--right::-webkit-slider-thumb {
+    background-color: clr.$ns-000;
+    border: 1px solid clr.$ns-500;
+    width: 18px;
+    height: 18px;
+  }
+
+  .thumb::-moz-range-thumb {
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: all;
+    position: relative;
+  }
+  .thumb--left::-moz-range-thumb {
+    background-color: clr.$prm-500;
+    border: 1px solid clr.$prm-200;
+    width: 14px;
+    height: 14px;
+  }
+  .thumb--right::-moz-range-thumb {
+    background-color: clr.$ns-000;
+    border: 1px solid clr.$ns-500;
+    width: 18px;
+    height: 18px;
+  }
+
+  .thumb,
+  .thumb::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+}

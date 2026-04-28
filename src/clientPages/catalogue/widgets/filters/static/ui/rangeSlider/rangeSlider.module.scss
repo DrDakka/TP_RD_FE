@@ -1,0 +1,38 @@
+@use 'shared/styles/constants/colors' as clr;
+@use 'shared/styles/mixins/buttons' as btn;
+
+.rangeWrapper {
+  position: relative;
+  padding: 16px 10px;
+  display: grid;
+  grid-template-rows: auto 32px;
+  grid-template-columns: auto max-content auto;
+  gap: 12px 8px;
+  [data-slider] {
+    grid-column: 1 / -1;
+  }
+  .reset {
+    @include btn.btn-secondary;
+    font-size: 12px;
+    padding: 0px 8px;
+    color: clr.$prm-500;
+    white-space: nowrap;
+    justify-self: start;
+  }
+  .error {
+    grid-column: 1 / -1;
+    font-size: 10px;
+    color: clr.$s-dng;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    span {
+      border: 1px solid clr.$s-dng;
+      border-radius: 50px;
+      width: 12px;
+      height: 12px;
+      text-align: center;
+      line-height: 10px;
+    }
+  }
+}

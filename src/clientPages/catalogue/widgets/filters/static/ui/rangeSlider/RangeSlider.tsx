@@ -58,6 +58,7 @@ export const RangeSlider: React.FC<RangeSliderProps> = ({
             max={max}
             onChange={setMaxVal}
             onError={setError}
+            isError={!!error}
           />
           {error && (
             <p className={styles.error}>

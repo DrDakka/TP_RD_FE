@@ -5,6 +5,7 @@ type InputProps = {
   value: number;
   onChange: (value: number) => void;
   onError?: (error: string | null) => void;
+  isError?: boolean;
   min: number;
   max: number;
 };
@@ -13,6 +14,7 @@ export const Input: React.FC<InputProps> = ({
   value,
   onChange,
   onError,
+  isError,
   min,
   max,
 }) => {
@@ -79,7 +81,7 @@ export const Input: React.FC<InputProps> = ({
 
   return (
     <input
-      className={styles.input}
+      className={`${styles.input} ${isError && styles.error}`}
       type="text"
       inputMode="numeric"
       value={inputValue}

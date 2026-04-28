@@ -10,17 +10,18 @@
     position: absolute;
     border-radius: 3px;
     height: 2px;
-    background-color: clr.$prm-500;
     top: 50%;
     transform: translateY(-50%);
   }
 
   .track {
     width: 100%;
+    background-color: clr.$prm-100;
     z-index: 1;
   }
 
   .range {
+    background-color: clr.$prm-500;
     z-index: 2;
   }
 

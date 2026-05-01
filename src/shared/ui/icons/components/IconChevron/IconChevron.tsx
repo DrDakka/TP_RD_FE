@@ -10,10 +10,17 @@ const chevronRotation: Record<ChevronDirection, number> = {
 
 type ChevronProps = {
   direction?: ChevronDirection;
+  className?: string;
 };
 
-export const IconChevron: React.FC<ChevronProps> = ({ direction = 'down' }) => (
-  <Icon style={{ transform: `rotate(${chevronRotation[direction]}deg)` }}>
+export const IconChevron: React.FC<ChevronProps> = ({
+  direction = 'down',
+  className,
+}) => (
+  <Icon
+    className={className}
+    style={{ transform: `rotate(${chevronRotation[direction]}deg)` }}
+  >
     <path
       d="M6 9L12 15L18 9"
       stroke="currentColor"

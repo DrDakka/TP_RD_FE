@@ -2,7 +2,7 @@
 @use 'sass:list';
 
 $row-max-height: 46px;
-$iconsSize: 24px;
+$iconsSize: 18px;
 $fullIconSize: $row-max-height;
 $icons-padding: calc(($fullIconSize - $iconsSize) / 2);
 $icons-border-radius: br.$br-xs;

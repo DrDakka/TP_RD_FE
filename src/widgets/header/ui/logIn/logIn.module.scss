@@ -1,0 +1,10 @@
+@use 'shared/styles/mixins/buttons' as btn;
+@use 'shared/styles/constants/colors' as clr;
+
+.login {
+  @include btn.btn-primary;
+  color: clr.$ns-000;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 11px 19px;
+}

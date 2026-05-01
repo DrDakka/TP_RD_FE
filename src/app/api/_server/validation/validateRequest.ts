@@ -10,7 +10,7 @@ import validate from './validators';
 
 async function validateRequest(req: NextRequest) {
   // validate path & method
-  const rawPath = req.nextUrl.pathname.replace('/api/', '');
+  const rawPath = req.nextUrl.pathname.replace('/api/', '').replace(/\/$/, '');
   const endpoint = normalizePath(rawPath);
 
   if (!validate.ep(endpoint)) {

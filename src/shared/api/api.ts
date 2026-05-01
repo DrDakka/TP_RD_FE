@@ -19,7 +19,9 @@ const processFetch = async <T>(url: string, init: RequestInit): Promise<T> => {
   const res = await fetch(fullUrl, init);
 
   if (!res || !res.ok) {
-    throw new Error('Failed to fetch data');
+    const text = await res.text().catch(() => '');
+
+    throw new Error(`${res.status} ${res.statusText}: ${text}`);
   }
 
   return res.json();

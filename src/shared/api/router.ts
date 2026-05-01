@@ -1,7 +1,7 @@
 const endpoints = {
   calc: 'norms/calculate',
 
-  prod: 'products/',
+  prod: 'products',
   prodById: 'products/:id',
   prodBatch: 'products/batch',
 

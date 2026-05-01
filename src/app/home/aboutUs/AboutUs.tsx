@@ -2,13 +2,6 @@ import Link from 'next/link';
 import styles from './aboutUs.module.scss';
 import Image from 'next/image';
 
-/*
-  Solid work!
-  According to WCAG/W3C specification, our image here belonngs to "eye-candy" image
-  So, alt text supposed to be empty alt=""
-  Also, there is a problem - image is not rendering:)
-*/
-
 export const AboutUs = () => {
   return (
     <section className={styles.aboutUs}>

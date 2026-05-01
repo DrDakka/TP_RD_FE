@@ -1,4 +1,3 @@
-
 export * from './IconSettings/IconSettings';
 export * from './IconSearch/IconSearch';
 export * from './IconProfile/IconProfile';
@@ -33,3 +32,4 @@ export * from './IconRefresh/IconRefresh';
 export * from './IconTable/IconTable';
 export * from './IconCheckSquare/IconCheckSquare';
 export * from './IconLink/IconLink';
+export * from './IconLogOut/IconLoOut';

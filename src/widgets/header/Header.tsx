@@ -3,20 +3,23 @@
 import {
   BurgerButton,
   NavBar,
-  UserActions,
   SearchDropdown,
   SearchBar,
+  ProfileMenu,
 } from './ui';
 import { Logo } from '@shared/ui';
 import s from './header.module.scss';
 import { useHeader } from './model/useHeader';
 import classNames from 'classnames';
-import { RefObject, useEffect } from 'react';
+import { RefObject, useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { useFavoritesStore } from '@/features/favorites/store';
+import { LogIn } from './ui/logIn';
+import { Basket } from './ui/basket';
 
 export const Header = () => {
   const pathname = usePathname();
+  const [isLogIn, setIsLogin] = useState(false);
 
   useEffect(() => {
     const store = useFavoritesStore.getState();
@@ -40,12 +43,17 @@ export const Header = () => {
 
   const { menu, ...search } = handler;
 
+  const user = {
+    name: 'John Doe',
+    email: 'john.doe@gmail.com',
+  };
+
   return (
     <header
       ref={containerRef as React.RefObject<HTMLElement>}
       className={classNames(s.header, {
         [s['header--search-expanded']]: searchExpanded,
-        [s['header--scrolled']]: scrolled && !searchExpanded && !bmExpanded,
+        // [s['header--scrolled']]: scrolled && !searchExpanded && !bmExpanded,
         [s['header--menu-expanded']]: bmExpanded && !searchExpanded,
       })}
     >
@@ -63,7 +71,12 @@ export const Header = () => {
 
       <NavBar />
       <div data-header-spacer />
-      <UserActions />
+      <Basket />
+      {isLogIn ? (
+        <ProfileMenu user={user} logIn={() => setIsLogin(false)} />
+      ) : (
+        <LogIn logIn={() => setIsLogin(true)} />
+      )}
       <SearchDropdown visible={searchExpanded} query={query} />
     </header>
   );

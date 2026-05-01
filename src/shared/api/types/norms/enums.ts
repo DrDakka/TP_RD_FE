@@ -1,20 +1,26 @@
-enum Sex {
-  M = 'm',
-  F = 'f',
-}
+const SEX = {
+  M: 'm',
+  F: 'f',
+  NULL: null,
+} as const;
 
-enum Activity {
-  SEDENTARY = 'sedentary',
-  LIGHT = 'light',
-  MODERATE = 'moderate',
-  ACTIVE = 'active',
-  INTENSIVE = 'intensive',
-}
+const ACTIVITY = {
+  SEDENTARY: 'sedentary',
+  LIGHT: 'light',
+  MODERATE: 'moderate',
+  ACTIVE: 'active',
+  INTENSIVE: 'intensive',
+} as const;
 
-enum Modifier {
-  LOSS = 'loss',
-  MAINT = 'maint',
-  GAIN = 'gain',
-}
+const MODIFIER = {
+  LOSS: 'loss',
+  MAINT: 'maint',
+  GAIN: 'gain',
+} as const;
 
-export { Sex, Activity, Modifier };
+type Sex = (typeof SEX)[keyof typeof SEX];
+type Activity = (typeof ACTIVITY)[keyof typeof ACTIVITY];
+type Modifier = (typeof MODIFIER)[keyof typeof MODIFIER];
+
+export { SEX, ACTIVITY, MODIFIER };
+export type { Sex, Activity, Modifier };

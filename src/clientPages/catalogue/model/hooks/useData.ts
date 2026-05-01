@@ -1,6 +1,6 @@
 'use client';
 
-import { clientApi, GetProductsResponse } from '@/shared';
+import { api, GetProductsResponse } from '@/shared';
 import { usePathname } from 'next/navigation';
 import { useCallback } from 'react';
 import { FilterState } from '..';
@@ -17,7 +17,7 @@ export const useData = ({ state, initialData }: Props) => {
 
   const loadFn = useCallback(
     (signal: AbortSignal) =>
-      clientApi.products.list(searchParams.create(state), signal),
+      api.products.list(searchParams.create(state), signal),
     [state],
   );
 

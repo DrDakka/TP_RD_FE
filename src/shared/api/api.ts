@@ -8,8 +8,13 @@ import type {
 } from './types';
 import { headers, methods } from './vocab';
 
+const BASE_URL = process.env.NEXT_PUBLIC_VERCEL_URL ?? 'http://localhost:3000';
+
 const processFetch = async <T>(url: string, init: RequestInit): Promise<T> => {
-  const res = await fetch(url, init);
+  const [path, query] = url.split('?');
+  const normalizedPath = path.endsWith('/') ? path : `${path}/`;
+  const fullUrl = `${BASE_URL}/api/${normalizedPath}${query ? `?${query}` : ''}`;
+  const res = await fetch(fullUrl, init);
 
   if (!res || !res.ok) {
     throw new Error('Failed to fetch data');
@@ -23,7 +28,7 @@ const api = {
     calculate: async (payload: CalculateNormRequest, signal?: AbortSignal) => {
       const init: RequestInit = {
         method: methods.post,
-        headers: headers.appJson,
+        headers: { ...headers.ct.json, ...headers.accept.json },
         body: JSON.stringify(payload),
         signal,
       };
@@ -32,9 +37,9 @@ const api = {
     },
   },
   products: {
-    list: async (query?: string, signal?: AbortSignal) => {
+    list: async (query: string = '', signal?: AbortSignal) => {
       const init: RequestInit = { method: methods.get, signal };
-      const url = query ? `${endpoints.prod}?${query}` : endpoints.prod;
+      const url = `${endpoints.prod}?${query}`;
 
       return await processFetch<GetProductsResponse>(url, init);
     },
@@ -48,7 +53,7 @@ const api = {
     batch: async (payload: PostBatchRequest, signal?: AbortSignal) => {
       const init: RequestInit = {
         method: methods.post,
-        headers: headers.appJson,
+        headers: { ...headers.ct.json, ...headers.accept.json },
         body: JSON.stringify(payload),
         signal,
       };

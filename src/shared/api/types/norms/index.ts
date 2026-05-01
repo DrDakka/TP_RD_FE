@@ -4,4 +4,5 @@ export type {
   CalculateNormRequest,
   CalculateNormResponse,
 } from './types';
-export { Sex, Activity, Modifier } from './enums';
+export { SEX, ACTIVITY, MODIFIER } from './enums';
+export type { Sex, Activity, Modifier } from './enums';

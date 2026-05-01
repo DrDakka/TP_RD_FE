@@ -1,20 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { CalculateNormRequest } from '@/shared/api/types';
-import { Activity, Modifier, Sex } from '@/shared/api/types/norms/enums';
+import { ACTIVITY, MODIFIER, SEX } from '@/shared/api/types/norms/enums';
+import type { Activity, Modifier } from '@/shared/api/types/norms/enums';
 import { MeasureUnits } from '@/shared/api/types/product/enums';
 
 const activityMultiplier: Record<Activity, number> = {
-  [Activity.SEDENTARY]: 1.2,
-  [Activity.LIGHT]: 1.375,
-  [Activity.MODERATE]: 1.55,
-  [Activity.ACTIVE]: 1.725,
-  [Activity.INTENSIVE]: 1.9,
+  [ACTIVITY.SEDENTARY]: 1.2,
+  [ACTIVITY.LIGHT]: 1.375,
+  [ACTIVITY.MODERATE]: 1.55,
+  [ACTIVITY.ACTIVE]: 1.725,
+  [ACTIVITY.INTENSIVE]: 1.9,
 };
 
 const modifierOffset: Record<Modifier, number> = {
-  [Modifier.LOSS]: -500,
-  [Modifier.MAINT]: 0,
-  [Modifier.GAIN]: 300,
+  [MODIFIER.LOSS]: -500,
+  [MODIFIER.MAINT]: 0,
+  [MODIFIER.GAIN]: 300,
 };
 
 export async function POST(req: NextRequest) {
@@ -25,9 +26,9 @@ export async function POST(req: NextRequest) {
   const baseFemale = 10 * weight + 6.25 * height - 5 * age - 161;
 
   const bmr =
-    sex === Sex.M
+    sex === SEX.M
       ? baseMale
-      : sex === Sex.F
+      : sex === SEX.F
         ? baseFemale
         : (baseMale + baseFemale) / 2;
 
@@ -94,7 +95,7 @@ export async function POST(req: NextRequest) {
       {
         name: 'Залізо',
         unit: MeasureUnits.MG,
-        rec_amount: sex === Sex.F ? 18 : 8,
+        rec_amount: sex === SEX.F ? 18 : 8,
         max: 45,
         min: null,
       },
@@ -108,14 +109,14 @@ export async function POST(req: NextRequest) {
       {
         name: 'Магній',
         unit: MeasureUnits.MG,
-        rec_amount: sex === Sex.F ? 320 : 420,
+        rec_amount: sex === SEX.F ? 320 : 420,
         max: 350,
         min: null,
       },
       {
         name: 'Цинк',
         unit: MeasureUnits.MG,
-        rec_amount: sex === Sex.F ? 8 : 11,
+        rec_amount: sex === SEX.F ? 8 : 11,
         max: 40,
         min: null,
       },

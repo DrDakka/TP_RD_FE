@@ -1,15 +1,15 @@
-const base = process.env.NEXT_PUBLIC_API_URL ?? '';
-
 const endpoints = {
-  calc: `${base}/norms/calculate`,
-  prod: `${base}/products/`,
-  prodBatch: '/api/products/batch',
-};
+  calc: 'norms/calculate',
 
-const clientEndpoints = {
-  prod: '/api/products',
-};
+  prod: 'products/',
+  prodById: 'products/:id',
+  prodBatch: 'products/batch',
+
+  me: 'me',
+  login: 'login',
+  logout: 'logout',
+} as const;
 
 type Endpoint = (typeof endpoints)[keyof typeof endpoints];
 
-export { endpoints, clientEndpoints, type Endpoint };
+export { endpoints, type Endpoint };

@@ -4,8 +4,23 @@ const methods = {
   delete: 'DELETE',
 } as const;
 
+const contentTypes = {
+  json: 'application/json',
+  form: 'multipart/form-data',
+} as const;
+
+const headerNames = {
+  ct: 'Content-Type',
+  accept: 'Accept',
+};
+
 const headers = {
-  appJson: { 'Content-Type': 'application/json' },
+  [headerNames.ct]: {
+    json: { [headerNames.ct]: contentTypes.json },
+  },
+  [headerNames.accept]: {
+    json: { [headerNames.accept]: contentTypes.json },
+  },
 } as const;
 
 const httpStatus = {
@@ -16,6 +31,7 @@ const httpStatus = {
   unauthorized: 401,
   forbidden: 403,
   notFound: 404,
+  methodNotAllowed: 405,
   serverError: 500,
 } as const;
 
@@ -30,4 +46,6 @@ export {
   type Header,
   httpStatus,
   type HttpStatus,
+  contentTypes,
+  headerNames,
 };

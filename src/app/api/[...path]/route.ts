@@ -30,7 +30,13 @@ async function handler(req: NextRequest) {
 
     const data = await res.json();
 
-    return NextResponse.json(data, { status: res.status });
+    const response = NextResponse.json(data, { status: res.status });
+
+    res.headers.getSetCookie().forEach(cookie => {
+      response.headers.append('set-cookie', cookie);
+    });
+
+    return response;
   } catch (e) {
     if (e instanceof AppError) {
       return NextResponse.json({ error: e.message }, { status: e.status });

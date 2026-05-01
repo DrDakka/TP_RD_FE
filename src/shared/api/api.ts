@@ -12,7 +12,7 @@ const BASE_URL =
   typeof window !== 'undefined'
     ? ''
     : process.env.VERCEL_URL
-      ? process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
       : 'http://localhost:3000';
 
 const processFetch = async <T>(url: string, init: RequestInit): Promise<T> => {

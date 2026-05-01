@@ -23,7 +23,9 @@ async function validateRequest(req: NextRequest) {
     throw new MethodNotAllowedError();
   }
 
-  const routeConfig = (router[endpoint] as Record<string, RouteConfig>)[method];
+  const routeConfig = (router as Record<string, Record<string, RouteConfig>>)[
+    endpoint
+  ][method];
 
   // validate searchParams
   const spSchema = routeConfig.searchParams;

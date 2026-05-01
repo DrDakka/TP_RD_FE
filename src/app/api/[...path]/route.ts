@@ -5,7 +5,7 @@ import { AppError, UnauthorizedError } from '../_server/errors/errors';
 
 const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export async function server(req: NextRequest) {
+async function handler(req: NextRequest) {
   try {
     const { endpoint, method, queryString, body, auth, headers } =
       await validateRequest(req);
@@ -42,3 +42,5 @@ export async function server(req: NextRequest) {
     );
   }
 }
+
+export { handler as GET, handler as POST, handler as DELETE };

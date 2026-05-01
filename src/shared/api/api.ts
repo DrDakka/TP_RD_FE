@@ -8,17 +8,15 @@ import type {
 } from './types';
 import { headers, methods } from './vocab';
 
-const BASE_URL =
-  typeof window !== 'undefined'
-    ? ''
-    : process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : 'http://localhost:3000';
-
 const processFetch = async <T>(url: string, init: RequestInit): Promise<T> => {
   const [path, query] = url.split('?');
   const normalizedPath = path.endsWith('/') ? path : `${path}/`;
-  const fullUrl = `${BASE_URL}/api/${normalizedPath}${query ? `?${query}` : ''}`;
+  const qs = query ? `?${query}` : '';
+
+  const fullUrl =
+    typeof window === 'undefined'
+      ? `${process.env.NEXT_PUBLIC_API_URL}/${normalizedPath}${qs}`
+      : `/api/${normalizedPath}${qs}`;
   const res = await fetch(fullUrl, init);
 
   if (!res || !res.ok) {

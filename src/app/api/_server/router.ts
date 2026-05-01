@@ -12,7 +12,7 @@ const withoutBody = [hAccept] as const;
 const router = {
   [endpoints.calc]: {
     [methods.post]: {
-      auth: true,
+      auth: false,
       searchParams: null,
       schema: calculateNorms,
       headers: withBody,
@@ -36,7 +36,7 @@ const router = {
   },
   [endpoints.prodBatch]: {
     [methods.post]: {
-      auth: true,
+      auth: false,
       searchParams: null,
       schema: calculateNorms,
       headers: withBody,
@@ -44,7 +44,7 @@ const router = {
   },
   [endpoints.me]: {
     [methods.get]: {
-      auth: true,
+      auth: false,
       searchParams: null,
       schema: null,
       headers: withoutBody,

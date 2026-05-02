@@ -1,4 +1,6 @@
+import { UnauthorizedError } from '@/shared';
 import { NextRequest } from 'next/server';
+import { cookies } from 'next/headers';
 import { randomUUID } from 'node:crypto';
 
 const INTERNAL_SECRET = process.env.INTERNAL_SECRET;
@@ -32,4 +34,15 @@ const defaultHeaders = (
   };
 };
 
-export { getAuthHeaders, defaultHeaders };
+async function requireAuth() {
+  const cookieStore = await cookies();
+
+  if (
+    !cookieStore.get('access_token')?.value ||
+    !cookieStore.get('refresh_token')?.value
+  ) {
+    throw new UnauthorizedError();
+  }
+}
+
+export { getAuthHeaders, defaultHeaders, requireAuth };

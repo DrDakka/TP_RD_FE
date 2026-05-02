@@ -1,20 +1,17 @@
-import {
-  parseSearchParams,
-  productBatchSchema,
-  validateObject,
-} from '@/shared';
+import { calculateNormSchema, validateObject } from '@/shared';
 import { NextRequest, NextResponse } from 'next/server';
-import { proxyErrorHandler } from '../../_server/errors/errorHandler';
 import { backendFetch } from '../../_server/backendFetch';
+import { proxyErrorHandler } from '../../_server/errors/errorHandler';
+import { requireAuth } from '../../_server/utils';
 
-export async function GET(req: NextRequest) {
+export async function POST(req: NextRequest) {
   try {
-    const { searchParams } = new URL(req.url);
-    const parsed = parseSearchParams(searchParams);
+    await requireAuth();
 
-    const validated = validateObject(parsed, productBatchSchema);
+    const body = await req.json();
+    const validated = validateObject(body, calculateNormSchema);
 
-    const res = await backendFetch('/products/batch/', {
+    const res = await backendFetch('/norms/calculate/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(validated),

@@ -1,20 +1,14 @@
-import {
-  parseSearchParams,
-  productBatchSchema,
-  validateObject,
-} from '@/shared';
+import { loginSchema, validateObject } from '@/shared';
 import { NextRequest, NextResponse } from 'next/server';
-import { proxyErrorHandler } from '../../_server/errors/errorHandler';
 import { backendFetch } from '../../_server/backendFetch';
+import { proxyErrorHandler } from '../../_server/errors/errorHandler';
 
-export async function GET(req: NextRequest) {
+export async function POST(req: NextRequest) {
   try {
-    const { searchParams } = new URL(req.url);
-    const parsed = parseSearchParams(searchParams);
+    const body = await req.json();
+    const validated = validateObject(body, loginSchema);
 
-    const validated = validateObject(parsed, productBatchSchema);
-
-    const res = await backendFetch('/products/batch/', {
+    const res = await backendFetch('/auth/login/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(validated),
@@ -28,8 +22,13 @@ export async function GET(req: NextRequest) {
     }
 
     const data = await res.json().catch(() => ({ error: 'Unknown error' }));
+    const response = NextResponse.json(data, { status: res.status });
 
-    return NextResponse.json(data, { status: res.status });
+    res.headers.getSetCookie().forEach(cookie => {
+      response.headers.append('Set-Cookie', cookie);
+    });
+
+    return response;
   } catch (e) {
     return proxyErrorHandler(e);
   }

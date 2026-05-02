@@ -5,11 +5,7 @@ import {
 } from '@/shared';
 import { NextRequest, NextResponse } from 'next/server';
 import { proxyErrorHandler } from '../_server/errors/errorHandler';
-import { defaultHeaders } from '../_server/utils';
-
-const API_URL = process.env.API_URL;
-
-const ABORT_TIMEOUT = 10000;
+import { backendFetch } from '../_server/backendFetch';
 
 export async function GET(req: NextRequest) {
   try {
@@ -18,15 +14,8 @@ export async function GET(req: NextRequest) {
 
     validateObject(parsed, productsSearchSchema);
 
-    const url = `${API_URL}/products/${searchParams.size ? `?${searchParams}` : ''}`;
-
-    const headers = defaultHeaders(req.headers.get('x-forwarded-for') || '');
-
-    const res = await fetch(url, {
-      signal: AbortSignal.timeout(ABORT_TIMEOUT),
-      method: 'GET',
-      headers: headers,
-    });
+    const qs = searchParams.size ? `?${searchParams}` : '';
+    const res = await backendFetch(`/products/${qs}`);
 
     if (res.status >= 500) {
       return NextResponse.json(

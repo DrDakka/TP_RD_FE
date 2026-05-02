@@ -3,10 +3,16 @@ import type {
   FullItem,
   PostBatchRequest,
   GetProductsResponse,
-  CalculateNormRequest,
   CalculateNormResponse,
+  UserProfile,
 } from './types';
 import { headers } from './vocab';
+import type { z } from 'zod';
+import type {
+  calculateNormSchema,
+  loginSchema,
+  registerSchema,
+} from '../schemas';
 
 const processFetch = async <T>(url: string, init: RequestInit): Promise<T> => {
   const [path, query] = url.split('?');
@@ -30,7 +36,10 @@ const processFetch = async <T>(url: string, init: RequestInit): Promise<T> => {
 
 const api = {
   norms: {
-    calculate: async (payload: CalculateNormRequest, signal?: AbortSignal) => {
+    calculate: async (
+      payload: z.infer<typeof calculateNormSchema>,
+      signal?: AbortSignal,
+    ) => {
       const init: RequestInit = {
         method: 'POST',
         headers: { ...headers.ct.json, ...headers.accept.json },
@@ -39,6 +48,44 @@ const api = {
       };
 
       return await processFetch<CalculateNormResponse>(endpoints.calc, init);
+    },
+  },
+  auth: {
+    login: async (
+      payload: z.infer<typeof loginSchema>,
+      signal?: AbortSignal,
+    ) => {
+      const init: RequestInit = {
+        method: 'POST',
+        headers: { ...headers.ct.json, ...headers.accept.json },
+        body: JSON.stringify(payload),
+        signal,
+      };
+
+      return await processFetch<UserProfile>(endpoints.login, init);
+    },
+    register: async (
+      payload: z.infer<typeof registerSchema>,
+      signal?: AbortSignal,
+    ) => {
+      const init: RequestInit = {
+        method: 'POST',
+        headers: { ...headers.ct.json, ...headers.accept.json },
+        body: JSON.stringify(payload),
+        signal,
+      };
+
+      return await processFetch<UserProfile>(endpoints.register, init);
+    },
+    logout: async (signal?: AbortSignal) => {
+      const init: RequestInit = { method: 'GET', signal };
+
+      return await processFetch<void>(endpoints.logout, init);
+    },
+    me: async (signal?: AbortSignal) => {
+      const init: RequestInit = { method: 'GET', signal };
+
+      return await processFetch<UserProfile>(endpoints.me, init);
     },
   },
   products: {

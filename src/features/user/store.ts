@@ -1,0 +1,27 @@
+import { create } from 'zustand';
+import { api } from '@/shared';
+import type { UserProfile } from '@/shared';
+
+type UserStore = {
+  user: UserProfile | null;
+  init: () => Promise<void>;
+  logout: () => Promise<void>;
+};
+
+const useUserStore = create<UserStore>(set => ({
+  user: null,
+
+  init: async () => {
+    const user = await api.auth.me();
+
+    set({ user });
+  },
+
+  logout: async () => {
+    await api.auth.logout();
+
+    set({ user: null });
+  },
+}));
+
+export { useUserStore };

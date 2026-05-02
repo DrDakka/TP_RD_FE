@@ -3,10 +3,16 @@ import type {
   FullItem,
   PostBatchRequest,
   GetProductsResponse,
-  CalculateNormRequest,
   CalculateNormResponse,
+  UserProfile,
 } from './types';
-import { headers, methods } from './vocab';
+import { headers } from './vocab';
+import type { z } from 'zod';
+import type {
+  calculateNormSchema,
+  loginSchema,
+  registerSchema,
+} from '../schemas';
 
 const processFetch = async <T>(url: string, init: RequestInit): Promise<T> => {
   const [path, query] = url.split('?');
@@ -30,9 +36,12 @@ const processFetch = async <T>(url: string, init: RequestInit): Promise<T> => {
 
 const api = {
   norms: {
-    calculate: async (payload: CalculateNormRequest, signal?: AbortSignal) => {
+    calculate: async (
+      payload: z.infer<typeof calculateNormSchema>,
+      signal?: AbortSignal,
+    ) => {
       const init: RequestInit = {
-        method: methods.post,
+        method: 'POST',
         headers: { ...headers.ct.json, ...headers.accept.json },
         body: JSON.stringify(payload),
         signal,
@@ -41,29 +50,63 @@ const api = {
       return await processFetch<CalculateNormResponse>(endpoints.calc, init);
     },
   },
-  products: {
-    list: async (query: string = '', signal?: AbortSignal) => {
-      const init: RequestInit = { method: methods.get, signal };
-      const url = `${endpoints.prod}?${query}`;
-
-      return await processFetch<GetProductsResponse>(url, init);
-    },
-
-    byId: async (id: number, signal?: AbortSignal) => {
-      const init: RequestInit = { method: methods.get, signal };
-      const url = `${endpoints.prod}${id}/`;
-
-      return await processFetch<FullItem>(url, init);
-    },
-    batch: async (payload: PostBatchRequest, signal?: AbortSignal) => {
+  auth: {
+    login: async (
+      payload: z.infer<typeof loginSchema>,
+      signal?: AbortSignal,
+    ) => {
       const init: RequestInit = {
-        method: methods.post,
+        method: 'POST',
         headers: { ...headers.ct.json, ...headers.accept.json },
         body: JSON.stringify(payload),
         signal,
       };
 
-      return await processFetch<FullItem[]>(endpoints.prodBatch, init);
+      return await processFetch<UserProfile>(endpoints.login, init);
+    },
+    register: async (
+      payload: z.infer<typeof registerSchema>,
+      signal?: AbortSignal,
+    ) => {
+      const init: RequestInit = {
+        method: 'POST',
+        headers: { ...headers.ct.json, ...headers.accept.json },
+        body: JSON.stringify(payload),
+        signal,
+      };
+
+      return await processFetch<UserProfile>(endpoints.register, init);
+    },
+    logout: async (signal?: AbortSignal) => {
+      const init: RequestInit = { method: 'GET', signal };
+
+      return await processFetch<void>(endpoints.logout, init);
+    },
+    me: async (signal?: AbortSignal) => {
+      const init: RequestInit = { method: 'GET', signal };
+
+      return await processFetch<UserProfile>(endpoints.me, init);
+    },
+  },
+  products: {
+    list: async (query: string = '', signal?: AbortSignal) => {
+      const init: RequestInit = { method: 'GET', signal };
+      const url = `${endpoints.prod}?${query}`;
+
+      return await processFetch<GetProductsResponse>(url, init);
+    },
+    batch: async (payload: PostBatchRequest, signal?: AbortSignal) => {
+      const init: RequestInit = {
+        method: 'GET',
+        signal,
+      };
+      const params = new URLSearchParams();
+
+      payload.ids.forEach(id => params.append('ids', String(id)));
+
+      const url = `${endpoints.prodBatch}?${params.toString()}`;
+
+      return await processFetch<FullItem[]>(url, init);
     },
   },
 };

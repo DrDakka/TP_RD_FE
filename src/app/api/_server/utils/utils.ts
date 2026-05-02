@@ -1,17 +1,12 @@
+import { UnauthorizedError } from '@/shared';
 import { NextRequest } from 'next/server';
+import { cookies } from 'next/headers';
+import { randomUUID } from 'node:crypto';
 
-const normalizePath = (path: string): string => path.replace(/\/\d+$/, '/:id');
-
-function hasBody(req: NextRequest): boolean {
-  const cl = req.headers.get('content-length');
-  const te = req.headers.get('transfer-encoding');
-
-  return (cl !== null && cl !== '0') || te !== null;
-}
-
+const INTERNAL_SECRET = process.env.INTERNAL_SECRET;
 const AUTH_COOKIES = ['access_token', 'refresh_token'] as const;
 
-function getAuthHeader(
+function getAuthHeaders(
   req: NextRequest,
 ): { Cookie: string } | Record<never, never> {
   const parts = AUTH_COOKIES.map(name => {
@@ -23,4 +18,31 @@ function getAuthHeader(
   return parts.length ? { Cookie: parts.join('; ') } : {};
 }
 
-export { normalizePath, hasBody, getAuthHeader };
+const defaultHeaders = (
+  xForwarded: string,
+  accept: string = 'application/json',
+) => {
+  if (!INTERNAL_SECRET) {
+    throw new Error();
+  }
+
+  return {
+    Accept: accept,
+    'X-Internal-Secret': INTERNAL_SECRET,
+    'X-Forwarded-For': xForwarded,
+    'X-Request-Id': randomUUID(),
+  };
+};
+
+async function requireAuth() {
+  const cookieStore = await cookies();
+
+  if (
+    !cookieStore.get('access_token')?.value ||
+    !cookieStore.get('refresh_token')?.value
+  ) {
+    throw new UnauthorizedError();
+  }
+}
+
+export { getAuthHeaders, defaultHeaders, requireAuth };

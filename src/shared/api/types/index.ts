@@ -23,3 +23,5 @@ export {
   TAG_META,
   PROP_TAG_META,
 } from './product';
+
+export type { UserProfile } from './user';

@@ -5,9 +5,10 @@ const endpoints = {
   prodById: 'products/:id',
   prodBatch: 'products/batch',
 
-  me: 'me',
-  login: 'login',
-  logout: 'logout',
+  me: 'account/me',
+  login: 'auth/login',
+  register: 'auth/register',
+  logout: 'auth/logout',
 } as const;
 
 type Endpoint = (typeof endpoints)[keyof typeof endpoints];

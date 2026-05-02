@@ -6,7 +6,7 @@ import type {
   CalculateNormRequest,
   CalculateNormResponse,
 } from './types';
-import { headers, methods } from './vocab';
+import { headers } from './vocab';
 
 const processFetch = async <T>(url: string, init: RequestInit): Promise<T> => {
   const [path, query] = url.split('?');
@@ -32,7 +32,7 @@ const api = {
   norms: {
     calculate: async (payload: CalculateNormRequest, signal?: AbortSignal) => {
       const init: RequestInit = {
-        method: methods.post,
+        method: 'POST',
         headers: { ...headers.ct.json, ...headers.accept.json },
         body: JSON.stringify(payload),
         signal,
@@ -43,27 +43,23 @@ const api = {
   },
   products: {
     list: async (query: string = '', signal?: AbortSignal) => {
-      const init: RequestInit = { method: methods.get, signal };
+      const init: RequestInit = { method: 'GET', signal };
       const url = `${endpoints.prod}?${query}`;
 
       return await processFetch<GetProductsResponse>(url, init);
     },
-
-    byId: async (id: number, signal?: AbortSignal) => {
-      const init: RequestInit = { method: methods.get, signal };
-      const url = `${endpoints.prod}${id}/`;
-
-      return await processFetch<FullItem>(url, init);
-    },
     batch: async (payload: PostBatchRequest, signal?: AbortSignal) => {
       const init: RequestInit = {
-        method: methods.post,
-        headers: { ...headers.ct.json, ...headers.accept.json },
-        body: JSON.stringify(payload),
+        method: 'GET',
         signal,
       };
+      const params = new URLSearchParams();
 
-      return await processFetch<FullItem[]>(endpoints.prodBatch, init);
+      payload.ids.forEach(id => params.append('ids', String(id)));
+
+      const url = `${endpoints.prodBatch}?${params.toString()}`;
+
+      return await processFetch<FullItem[]>(url, init);
     },
   },
 };

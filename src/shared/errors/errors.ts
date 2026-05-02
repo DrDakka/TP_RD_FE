@@ -42,6 +42,13 @@ class InternalServerError extends AppError {
   }
 }
 
+class ServiceUnavailableError extends AppError {
+  status = 502;
+  constructor(message = 'Service unavailable') {
+    super(message);
+    this.name = 'Service unavailable';
+  }
+}
 export {
   AppError,
   BadRequestError,
@@ -49,4 +56,5 @@ export {
   InternalServerError,
   MethodNotAllowedError,
   UnauthorizedError,
+  ServiceUnavailableError,
 };

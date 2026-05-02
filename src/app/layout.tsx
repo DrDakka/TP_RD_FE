@@ -22,6 +22,7 @@ export default function RootLayout({
   return (
     <html lang="uk">
       <body className={manrope.variable}>
+        <div id="modal-root" />
         <Header />
         <main>{children}</main>
         <Footer />

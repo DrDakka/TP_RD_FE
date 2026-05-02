@@ -11,20 +11,23 @@ import { Logo } from '@shared/ui';
 import s from './header.module.scss';
 import { useHeader } from './model/useHeader';
 import classNames from 'classnames';
-import { RefObject, useEffect, useState } from 'react';
+import { RefObject, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { useFavoritesStore } from '@/features/favorites/store';
+import { useUserStore } from '@/features/user/store';
 import { LogIn } from './ui/logIn';
 import { Basket } from './ui/basket';
 
 export const Header = () => {
   const pathname = usePathname();
-  const [isLogIn, setIsLogin] = useState(false);
+  const user = useUserStore(s => s.user);
 
   useEffect(() => {
-    const store = useFavoritesStore.getState();
+    const favStore = useFavoritesStore.getState();
+    const userStore = useUserStore.getState();
 
-    store.init().then(() => store.flush());
+    favStore.init().then(() => favStore.flush());
+    userStore.init().catch(() => {});
   }, []);
 
   useEffect(() => {
@@ -42,11 +45,6 @@ export const Header = () => {
   } = useHeader();
 
   const { menu, ...search } = handler;
-
-  const user = {
-    name: 'John Doe',
-    email: 'john.doe@gmail.com',
-  };
 
   return (
     <header
@@ -72,10 +70,13 @@ export const Header = () => {
       <NavBar />
       <div data-header-spacer />
       <Basket />
-      {isLogIn ? (
-        <ProfileMenu user={user} logIn={() => setIsLogin(false)} />
+      {user ? (
+        <ProfileMenu
+          user={{ name: user.username, email: user.email }}
+          logIn={() => useUserStore.getState().logout()}
+        />
       ) : (
-        <LogIn logIn={() => setIsLogin(true)} />
+        <LogIn logIn={() => {}} />
       )}
       <SearchDropdown visible={searchExpanded} query={query} />
     </header>

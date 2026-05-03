@@ -79,6 +79,8 @@ export const TestWidget = () => {
         reset={() => undefined}
         view={view}
         onView={setView}
+        filtersExpanded={false}
+        setFiltersExpanded={() => undefined}
       />
       <div style={{ display: 'flex', flexDirection: 'row', gap: '20px' }}>
         <div>

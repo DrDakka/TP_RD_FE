@@ -32,7 +32,7 @@ export const Slider: React.FC<SliderProps> = ({
           onChangeMinValue(value);
         }}
         className={`${styles.thumb} ${styles['thumb--left']}`}
-        style={{ zIndex: minVal > max / 2 ? 10 : 11 }}
+        style={{ zIndex: minVal > max / 2 ? 12 : undefined }}
       />
       <input
         type="range"

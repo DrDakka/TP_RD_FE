@@ -3,7 +3,7 @@
 import { GetProductsResponse } from '@/shared';
 import { useData, useFilters } from './hooks';
 import { Core, type FilterState } from './hooks/types';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { View } from '@/shared';
 import { usePopstate } from './hooks/usePopstate';
 
@@ -25,6 +25,20 @@ export const useClientCatalogue = ({ initialState, initialData }: Args) => {
 
   const [view, setView] = useState<View>(View.GRID);
   const onView = (arg: View) => setView(arg);
+
+  const isFirstSearch = useRef(true);
+
+  useEffect(() => {
+    if (isFirstSearch.current) {
+      isFirstSearch.current = false;
+
+      return;
+    }
+
+    apply();
+    // apply changes with state, but we only want to trigger on search change
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state.search]);
 
   const reset = () => {
     filters.base[Core.RESET]();

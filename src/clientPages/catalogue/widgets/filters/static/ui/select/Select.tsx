@@ -25,34 +25,33 @@ export const Select = <T extends string>({
 
   return (
     <DropDown
-      label={label}
+      label={
+        multiselect
+          ? active.length > 0
+            ? `Selected (${active.length})`
+            : label
+          : active.length === 0
+            ? label
+            : active[0]
+      }
+      isSelected={active.length > 0}
       buttonProps={{
         'aria-haspopup': 'listbox',
       }}
     >
-      {({ className }) => (
-        <ul
-          className={className}
-          role="listbox"
-          {...(multiselect && { 'aria-multiselectable': true })}
-        >
-          {list.map(el => {
-            const act = active.includes(el);
-
-            return (
-              <Item
-                el={el}
-                active={act}
-                key={el}
-                href={getHref(el)}
-                onSelect={() => onSelect(el)}
-              >
-                <Icon active={act} />
-              </Item>
-            );
-          })}
-        </ul>
-      )}
+      <ul role="listbox" {...(multiselect && { 'aria-multiselectable': true })}>
+        {list.map(el => (
+          <Item
+            el={el}
+            active={active.includes(el)}
+            key={el}
+            href={getHref(el)}
+            onSelect={() => onSelect(el)}
+          >
+            <Icon active={active.includes(el)} />
+          </Item>
+        ))}
+      </ul>
     </DropDown>
   );
 };

@@ -16,6 +16,7 @@ type UiArgMap = {
 
 type SelectDDEntry<T extends string> = {
   type: 'select';
+  title: string;
   label: string;
   list: T[];
   multiselect: boolean;
@@ -23,6 +24,7 @@ type SelectDDEntry<T extends string> = {
 
 type RangeDDEntry = {
   type: 'range';
+  title: string;
   label: string;
   min: number;
   max: number;

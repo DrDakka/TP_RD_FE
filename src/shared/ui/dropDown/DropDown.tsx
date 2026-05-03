@@ -7,14 +7,16 @@ import cn from 'classnames';
 
 type DropDownProps = {
   label: string;
-  children: (props: { className: string }) => React.ReactNode;
+  children: React.ReactNode;
   buttonProps?: React.ButtonHTMLAttributes<HTMLButtonElement>;
+  isSelected?: boolean;
 };
 
 export const DropDown: React.FC<DropDownProps> = ({
   label,
   children,
   buttonProps,
+  isSelected,
 }) => {
   const [open, setOpen] = useState<boolean>(false);
 
@@ -22,6 +24,9 @@ export const DropDown: React.FC<DropDownProps> = ({
     <div className={styles.dropdown}>
       <button
         {...buttonProps}
+        className={cn(styles.trigger, {
+          [styles['trigger--selected']]: isSelected,
+        })}
         aria-expanded={open}
         onClick={() => setOpen(prev => !prev)}
         type="button"
@@ -31,11 +36,13 @@ export const DropDown: React.FC<DropDownProps> = ({
         <IconChevron direction={open ? 'up' : 'down'} />
       </button>
 
-      {children({
-        className: cn(styles.wrapper, {
+      <div
+        className={cn(styles.wrapper, {
           [styles['wrapper--active']]: open,
-        }),
-      })}
+        })}
+      >
+        <div className={styles.inner}>{children}</div>
+      </div>
     </div>
   );
 };

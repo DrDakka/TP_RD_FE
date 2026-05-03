@@ -4,6 +4,7 @@
 .rangeWrapper {
   position: relative;
   padding: 16px 10px;
+  contain: layout;
   display: grid;
   grid-template-rows: auto 32px;
   grid-template-columns: auto max-content auto;

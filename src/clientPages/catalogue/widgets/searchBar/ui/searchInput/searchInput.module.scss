@@ -75,7 +75,7 @@
       flex: 1;
     }
 
-    &:focus-within:has(input:focus) {
+    &:focus-within {
       flex: 1 1 40px;
     }
   }

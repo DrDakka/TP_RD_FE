@@ -32,4 +32,6 @@ export * from './IconRefresh/IconRefresh';
 export * from './IconTable/IconTable';
 export * from './IconCheckSquare/IconCheckSquare';
 export * from './IconLink/IconLink';
-export * from './IconLogOut/IconLoOut';
+export * from './IconLogOut/IconLogOut';
+export * from './IconLock/IconLock';
+export * from './IconLetter/IconLetter';

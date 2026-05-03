@@ -86,4 +86,24 @@
     -webkit-appearance: none;
     -webkit-tap-highlight-color: transparent;
   }
+
+  @media (max-width: 1023px) {
+    height: 28px;
+
+    .thumb {
+      height: 28px;
+    }
+
+    .thumb--left::-webkit-slider-thumb,
+    .thumb--left::-moz-range-thumb {
+      width: 22px;
+      height: 22px;
+    }
+
+    .thumb--right::-webkit-slider-thumb,
+    .thumb--right::-moz-range-thumb {
+      width: 28px;
+      height: 28px;
+    }
+  }
 }

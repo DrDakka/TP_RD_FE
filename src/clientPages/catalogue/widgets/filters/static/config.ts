@@ -6,12 +6,14 @@ import { uiToApi } from './mappers';
 const staticConfig: StaticDDs = {
   [StaticFilters.TAG]: {
     type: 'select',
+    title: 'Primary Tag',
     label: 'Tags filter',
     list: Object.keys(uiToApi[StaticFilters.TAG]) as TagUiLabel[],
     multiselect: false,
   },
   [StaticFilters.PROP]: {
     type: 'select',
+    title: 'Property Tags',
     label: 'Property filter',
     list: Object.keys(uiToApi[StaticFilters.PROP]) as PropTagUiLabel[],
     multiselect: true,

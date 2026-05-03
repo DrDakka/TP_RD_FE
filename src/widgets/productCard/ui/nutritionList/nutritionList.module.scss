@@ -2,60 +2,82 @@
 
 .macrosWrapper {
   display: flex;
-  gap: 2px;
+  flex-direction: column;
+  gap: 4px;
   width: 100%;
   color: clr.$ns-800;
-  .nutrition {
-    .progress {
-      height: 4px;
-      width: 100%;
-      display: block;
+}
+
+.bars {
+  display: flex;
+  gap: 2px;
+  height: 4px;
+
+  > span {
+    min-width: 0;
+    height: 4px;
+
+    &:first-child {
+      border-radius: 5px 0 0 5px;
     }
-    .prot {
-      background-color: #6c5ce7;
-      border-top-left-radius: 5px;
-      border-bottom-left-radius: 5px;
-    }
-    .carb {
-      background-color: #f4b400;
-    }
-    .fat {
-      background-color: #339af0;
-      border-top-right-radius: 5px;
-      border-bottom-right-radius: 5px;
-    }
-    .description {
-      font-size: 12px;
-      padding-right: 8px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-top: 2px;
-      &::before {
-        content: '';
-        width: 8px;
-        height: 8px;
-        border-radius: 10px;
-      }
-    }
-    .descriptionProt {
-      &::before {
-        background-color: #6c5ce7;
-      }
-    }
-    .descriptionCarb {
-      &::before {
-        background-color: #f4b400;
-      }
-    }
-    .descriptionFat {
-      &::before {
-        background-color: #339af0;
-      }
-    }
-    .value {
-      font-size: 12px;
-      font-weight: 600;
+
+    &:last-child {
+      border-radius: 0 5px 5px 0;
     }
   }
+}
+
+.prot {
+  background-color: #6c5ce7;
+}
+
+.fat {
+  background-color: #339af0;
+}
+
+.carb {
+  background-color: #f4b400;
+}
+
+.labels {
+  display: flex;
+  gap: 8px;
+}
+
+.nutrition {
+  display: flex;
+  flex-direction: column;
+}
+
+.description {
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+
+  &::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 10px;
+    flex-shrink: 0;
+  }
+}
+
+.descriptionProt::before {
+  background-color: #6c5ce7;
+}
+
+.descriptionFat::before {
+  background-color: #339af0;
+}
+
+.descriptionCarb::before {
+  background-color: #f4b400;
+}
+
+.value {
+  font-size: 12px;
+  font-weight: 600;
 }

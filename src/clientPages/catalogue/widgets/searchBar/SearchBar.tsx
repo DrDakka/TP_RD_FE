@@ -11,6 +11,8 @@ type Props = {
   reset: () => void;
   view: View;
   onView: (v: View) => void;
+  filtersExpanded: boolean;
+  setFiltersExpanded: () => void;
 };
 
 export const SearchBar: React.FC<Props> = ({
@@ -19,11 +21,11 @@ export const SearchBar: React.FC<Props> = ({
   reset,
   view,
   onView,
+  filtersExpanded,
+  setFiltersExpanded,
 }) => {
   const [spinning, setSpinning] = useState(false);
-  const [filterActive, setFilterActive] = useState(false);
   const [searchExpanded, setSearchExpanded] = useState(false);
-
   const handleReset = () => {
     setSpinning(true);
     reset();
@@ -40,9 +42,9 @@ export const SearchBar: React.FC<Props> = ({
       />
       <button
         className={classNames(s.filterBtn, {
-          [s['filterBtn--active']]: filterActive,
+          [s['filterBtn--active']]: filtersExpanded,
         })}
-        onClick={() => setFilterActive(prev => !prev)}
+        onClick={setFiltersExpanded}
       >
         <IconFilter />
       </button>

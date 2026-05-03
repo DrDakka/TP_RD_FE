@@ -1,27 +1,27 @@
-@use 'shared/styles/constants/border-radius' as br;
 @use 'shared/styles/constants/colors' as clr;
+@use 'shared/styles/constants/border-radius' as br;
 @use 'shared/styles/mixins/typography' as tp;
 
-.listitem {
+.item {
   width: 100%;
   padding: 4px 8px;
-  background-color: #fff;
-  > a {
-    @include tp.body-m;
+  box-sizing: border-box;
+  cursor: pointer;
+
+  > div {
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: space-between;
-
-    width: 100%;
-    box-sizing: border-box;
+    gap: 8px;
+    padding: 11px 8px;
     border-radius: br.$br-s;
     background-color: clr.$ns-100;
-    color: clr.$ns-700;
-    padding: 11px 8px;
-  }
 
-  > svg > path {
+    @include tp.body-m;
     color: clr.$ns-700;
+
+    > :last-child {
+      flex-shrink: 0;
+    }
   }
 }

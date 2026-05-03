@@ -2,44 +2,129 @@
 @use 'shared/styles/constants/colors' as clr;
 @use 'shared/styles/mixins/buttons' as btn;
 @use 'shared/styles/constants/shadows' as sh;
+@use 'shared/styles/constants/breakpoints' as bp;
 
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
 
 .searchBar {
   display: flex;
-  width: 100%;
-  height: 64px;
-  padding: 12px 12px;
-  gap: 24px;
   flex-direction: row;
-  align-items: center;
+  height: 63px;
+  width: 100%;
+
+  padding: 12px;
+  gap: 12px;
   border-radius: br.$br-s;
-  
+
   box-shadow: sh.$shadow-deep;
-}
 
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(-360deg); }
-}
-
-.refresh {
-  @include btn.btn-primary;
-  height: 100%;
-  width: 48px;
-
-  background-color: clr.$prm-200;
-
-  &:hover {
-    background-color: clr.$prm-200;
-    outline: 2px solid clr.$prm-700;
+  .filterBtn,
+  .refresh {
+    @include btn.square-base(40px, 40px);
   }
 
-  > svg {
-    color: clr.$prm-700;
+  .filterBtn {
+    @include btn.square-colors(clr.$ns-050, clr.$ns-700);
+
+    &:hover {
+      @include btn.square-effects(sh.$shadow-deep, none);
+    }
   }
 
-  &--spinning > svg {
-    animation: spin 0.4s ease;
+  .filterBtn {
+    margin-left: auto;
+
+    &--active {
+      @include btn.square-colors(clr.$ns-050, clr.$prm-700);
+    }
+  }
+
+  .refresh {
+    @include btn.square-colors(clr.$prm-100, clr.$prm-700);
+
+    &:hover {
+      @include btn.square-colors(clr.$prm-200, clr.$prm-700);
+    }
+
+    &--spinning {
+      @include btn.square-colors(clr.$ns-500, clr.$prm-100);
+      @include btn.square-effects(none, 1.5px solid clr.$ns-700);
+
+      > svg {
+        animation: spin 0.4s ease;
+      }
+    }
+  }
+
+  .input {
+    display: flex;
+    flex-shrink: 1;
+    width: 100%;
+    border-radius: br.$br-s;
+    border: 1px solid clr.$ns-300;
+    gap: 8px;
+    max-width: 140px;
+    order: 4;
+    transition: width 0.3s ease, visibility 0.3s ease;
+
+    &--hidden {
+      visibility: hidden;
+      width: 0;
+      min-width: 0;
+      border: none;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  > :last-child {
+    visibility: hidden;
+    width: 0;
+    order: 5;
+  }
+
+  @media (min-width: bp.$tab) {
+    > :last-child {
+      visibility: visible;
+      flex-grow: 0;
+      width: auto;
+    }
+  }
+
+  @media (min-width: bp.$dsc) {
+    padding: 12px 21px;
+    gap: 16px;
+
+    .filterBtn,
+    .refresh {
+      @include btn.square-base(48px, 40px);
+    }
+
+    .filterBtn {
+      @include btn.square-colors(clr.$prm-100, clr.$prm-700);
+      margin: 0;
+      order: 1;
+    }
+
+    .refresh {
+      order: 2;
+      margin-right: 12px;
+    }
+
+    > [data-widget='search-container'] {
+      order: 3;
+    }
+
+    .input {
+      margin: 0 16px 0 auto;
+      max-width: 200px;
+    }
   }
 }
-

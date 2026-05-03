@@ -1,57 +1,82 @@
 @use 'shared/styles/constants/border-radius' as br;
+@use 'shared/styles/mixins/buttons' as btn;
 @use 'shared/styles/constants/colors' as clr;
 @use 'shared/styles/mixins/typography' as typo;
+@use 'shared/styles/constants/breakpoints' as bp;
+@use 'shared/styles/constants/shadows' as sh;
 
-.inputWrapper {
-  display: flex;
-  flex: 1 1 160px;
-  min-width: 160px;
-  max-width: 320px;
-  align-items: center;
-
-  height: 100%;
-  padding: 0 12px 0 8px;
-  box-sizing: border-box;
-
+@mixin expanded {
   border: 2px solid clr.$ns-200;
   border-radius: br.$br-pill;
-  transition: border-color 150ms ease;
+  flex: 1 1 40px;
 
-  &:hover {
-    border-color: clr.$ns-300;
+  gap: 8px;
+
+  > input {
+    visibility: visible;
+    max-width: 305px;
+    padding-right: 12px;
+    flex: 1;
+
+    &:focus {
+      width: 100%;
+    }
+
+    &::placeholder {
+      color: clr.$ns-500;
+    }
   }
-  &:focus-within {
+
+  > button {
+    @include btn.square-base(24px, 24px);
+    margin-left: 12px;
+
+    &:hover {
+      @include btn.square-effects(none, none);
+    }
+  }
+
+  &:focus-within:has(input:focus) {
     border-color: clr.$prm-500;
   }
 }
 
-.input {
-  @include typo.body-l;
-  flex: 1;
-  min-width: 0;
-  height: 100%;
-
-  color: clr.$ns-800;
-  background-color: transparent;
-  border: none;
-  outline: none;
-
-  &::placeholder {
-    color: clr.$ns-500;
-  }
-}
-
-.inputIcon {
+.inputWrapper {
   display: flex;
+  background-color: clr.$ns-050;
+  border-radius: br.$br-s;
+  transition: all 0.3s ease;
+  flex: 0 0 40px;
   align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  padding: 4px;
 
-  background: none;
-  cursor: pointer;
+  > button {
+    @include btn.square-base(40px, 40px);
+    @include btn.square-colors(transparent, clr.$ns-700);
 
-  > svg {
-    color: clr.$ns-700;
+    &:hover {
+      @include btn.square-effects(sh.$shadow-deep, none);
+    }
+  }
+
+  > input {
+    visibility: hidden;
+    width: 0;
+  }
+
+  &--active {
+    @include expanded;
+  }
+
+  @media (min-width: bp.$dsc) {
+    @include expanded;
+    flex: 0 0 305px;
+
+    > input {
+      flex: 1;
+    }
+
+    &:focus-within:has(input:focus) {
+      flex: 1 1 40px;
+    }
   }
 }

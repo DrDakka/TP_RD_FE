@@ -1,6 +1,42 @@
 @use 'shared/styles/constants/border-radius' as br;
+@use 'shared/styles/constants/breakpoints' as bp;
 @use 'shared/styles/constants/colors' as clr;
 @use 'typography' as typo;
+@use '../constants/shadows' as sh;
+
+@mixin square-base($w, $h) {
+  width: $w;
+  height: $h;
+  border-radius: br.$br-s;
+  transition: all 0.3s ease;
+
+  > svg {
+    margin: auto;
+    pointer-events: none;
+    width: 18px;
+    height: 18px;
+  }
+
+  @media (min-width: bp.$dsc) {
+    > svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
+@mixin square-colors($bgc, $fill) {
+  background-color: $bgc;
+
+  > svg {
+    color: $fill;
+  }
+}
+
+@mixin square-effects($shadow, $border) {
+  box-shadow: $shadow;
+  outline: $border;
+}
 
 @mixin button-base {
   display: flex;
@@ -10,7 +46,10 @@
   justify-content: center;
   border-radius: br.$br-s;
   gap: 8px;
-  transition: background-color 150ms ease, outline-color 150ms ease, color 150ms ease;
+  transition:
+    background-color 150ms ease,
+    outline-color 150ms ease,
+    color 150ms ease;
 
   > span {
     @include typo.body-m;
@@ -21,7 +60,9 @@
   @include button-base;
   background-color: clr.$prm-500;
 
-  > span { color: clr.$ns-000; }
+  > span {
+    color: clr.$ns-000;
+  }
 
   > svg {
     color: clr.$ns-000;
@@ -29,20 +70,30 @@
     --spinner-clr-dim: #{clr.$ns-000};
   }
 
-  &:hover { background-color: clr.$prm-600; }
-  &:focus { outline: 2px solid clr.$prm-200; }
+  &:hover {
+    background-color: clr.$prm-600;
+  }
+  &:focus {
+    outline: 2px solid clr.$prm-200;
+  }
 
   &:disabled {
     background-color: clr.$ns-300;
-    > span { color: clr.$ns-500; }
-    > svg > path { color: clr.$ns-500; }
+    > span {
+      color: clr.$ns-500;
+    }
+    > svg > path {
+      color: clr.$ns-500;
+    }
   }
 }
 
 @mixin btn-primary-dark-text {
   @include btn-primary;
 
-  > span { color: clr.$prm-700; }
+  > span {
+    color: clr.$prm-700;
+  }
 
   > svg {
     color: clr.$prm-700;
@@ -56,7 +107,9 @@
   background-color: clr.$ns-000;
   outline: 1px solid clr.$prm-500;
 
-  > span { color: clr.$prm-500; }
+  > span {
+    color: clr.$prm-500;
+  }
 
   > svg {
     color: clr.$prm-500;
@@ -64,14 +117,22 @@
     --spinner-clr-dim: #{clr.$prm-500};
   }
 
-  &:hover { background-color: clr.$prm-100; }
-  &:focus { outline: 2px solid clr.$prm-200; }
+  &:hover {
+    background-color: clr.$prm-100;
+  }
+  &:focus {
+    outline: 2px solid clr.$prm-200;
+  }
 
   &:disabled {
     background-color: clr.$ns-100;
     outline: 1px solid clr.$ns-300;
-    > span { color: clr.$ns-300; }
-    > svg > path { color: clr.$ns-300; }
+    > span {
+      color: clr.$ns-300;
+    }
+    > svg > path {
+      color: clr.$ns-300;
+    }
   }
 }
 
@@ -80,7 +141,9 @@
   background-color: clr.$ns-000;
   outline: 1px solid clr.$ns-300;
 
-  > span { color: clr.$ns-800; }
+  > span {
+    color: clr.$ns-800;
+  }
 
   > svg {
     color: clr.$ns-800;
@@ -88,12 +151,18 @@
     --spinner-clr-dim: #{clr.$ns-800};
   }
 
-  &:hover { background-color: clr.$ns-100; }
-  &:focus { outline: 2px solid clr.$prm-200; }
+  &:hover {
+    background-color: clr.$ns-100;
+  }
+  &:focus {
+    outline: 2px solid clr.$prm-200;
+  }
 
   &:disabled {
     background-color: clr.$ns-000;
-    > span { color: clr.$ns-300; }
+    > span {
+      color: clr.$ns-300;
+    }
   }
 }
 
@@ -101,7 +170,9 @@
   @include button-base;
   background-color: clr.$s-dng;
 
-  > span { color: clr.$ns-000; }
+  > span {
+    color: clr.$ns-000;
+  }
 
   > svg {
     color: clr.$ns-000;
@@ -109,11 +180,17 @@
     --spinner-clr-dim: #{clr.$ns-000};
   }
 
-  &:hover { background-color: #BA0404; }
-  &:focus { outline: 2px solid #A90606; }
+  &:hover {
+    background-color: #ba0404;
+  }
+  &:focus {
+    outline: 2px solid #a90606;
+  }
 
   &:disabled {
     background-color: clr.$ns-300;
-    > span { color: clr.$ns-500; }
+    > span {
+      color: clr.$ns-500;
+    }
   }
 }

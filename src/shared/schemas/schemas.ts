@@ -32,7 +32,7 @@ const calculateNormSchema = z
     sex: z.enum([SEX.M, SEX.F]).nullable(),
     height_cm: z.coerce.number().int().min(145).max(220),
     weight_kg: z.coerce.number().min(40).max(250),
-    body_fat: z.coerce.number().min(0).max(100).optional(),
+    body_fat_percent: z.coerce.number().min(0).max(100).optional(),
     activity: z.enum(activityValues),
     modifier: z.enum(modifierValues),
   })
@@ -54,4 +54,10 @@ const registerSchema = z
   })
   .strict();
 
-export { productsSearchSchema, productBatchSchema, calculateNormSchema, loginSchema, registerSchema };
+export {
+  productsSearchSchema,
+  productBatchSchema,
+  calculateNormSchema,
+  loginSchema,
+  registerSchema,
+};

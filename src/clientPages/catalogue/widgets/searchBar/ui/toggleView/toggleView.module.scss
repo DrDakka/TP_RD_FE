@@ -4,8 +4,8 @@
 
 .toggleView {
   display: flex;
-  margin-left: auto;
   height: 100%;
+  max-width: 100px;
   align-items: center;
   border-radius: br.$br-s;
   gap: 1px;

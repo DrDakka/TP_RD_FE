@@ -12,9 +12,13 @@ const useUserStore = create<UserStore>(set => ({
   user: null,
 
   init: async () => {
-    const user = await api.auth.me();
+    try {
+      const user = await api.auth.me();
 
-    set({ user });
+      set({ user });
+    } catch {
+      // not authenticated
+    }
   },
 
   logout: async () => {

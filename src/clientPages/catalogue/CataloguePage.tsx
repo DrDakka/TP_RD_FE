@@ -51,7 +51,7 @@ export const CataloguePage: React.FC<Props> = ({
     observer.observe(el);
 
     return () => observer.disconnect();
-  }, []);
+  }, [ui]);
 
   return (
     <div

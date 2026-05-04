@@ -2,7 +2,7 @@
 
 import { api, GetProductsResponse } from '@/shared';
 import { usePathname } from 'next/navigation';
-import { useCallback } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { FilterState } from '..';
 import { searchParams } from '../../lib';
 import { useLoader } from '@/features';
@@ -23,7 +23,7 @@ export const useData = ({ state, initialData }: Props) => {
 
   const { data, status, reload } = useLoader(loadFn, false, initialData);
 
-  const apply = useCallback(() => {
+  const apply = () => {
     const query = searchParams.create(state);
     const currentQuery = new URLSearchParams(window.location.search).toString();
 
@@ -32,7 +32,20 @@ export const useData = ({ state, initialData }: Props) => {
     }
 
     reload();
-  }, [state, pathname, reload]);
+  };
+
+  const isFirstSearch = useRef(true);
+
+  useEffect(() => {
+    if (isFirstSearch.current) {
+      isFirstSearch.current = false;
+
+      return;
+    }
+
+    apply();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state.search]);
 
   return {
     data,

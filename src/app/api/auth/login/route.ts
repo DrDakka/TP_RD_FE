@@ -24,6 +24,9 @@ export async function POST(req: NextRequest) {
     const data = await res.json().catch(() => ({ error: 'Unknown error' }));
     const response = NextResponse.json(data, { status: res.status });
 
+    // eslint-disable-next-line no-console
+    console.log('backend set-cookie:', res.headers.getSetCookie());
+
     res.headers.getSetCookie().forEach(cookie => {
       const sanitized =
         process.env.NODE_ENV === 'development'

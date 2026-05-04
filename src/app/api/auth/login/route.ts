@@ -25,7 +25,16 @@ export async function POST(req: NextRequest) {
     const response = NextResponse.json(data, { status: res.status });
 
     res.headers.getSetCookie().forEach(cookie => {
-      response.headers.append('Set-Cookie', cookie);
+      const sanitized =
+        process.env.NODE_ENV === 'development'
+          ? cookie
+              .split(';')
+              .map(p => p.trim())
+              .filter(p => p.toLowerCase() !== 'secure')
+              .join('; ')
+          : cookie;
+
+      response.headers.append('Set-Cookie', sanitized);
     });
 
     return response;

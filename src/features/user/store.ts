@@ -6,7 +6,7 @@ type UserStore = {
   user: UserProfile | null;
   init: () => Promise<void>;
   logout: () => Promise<void>;
-  setUser: (user: UserProfile) => void;
+  setUser: (user: UserProfile | null) => void;
 };
 
 const useUserStore = create<UserStore>(set => ({

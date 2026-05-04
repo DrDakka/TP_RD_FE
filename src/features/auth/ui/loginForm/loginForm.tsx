@@ -51,12 +51,23 @@ export const LoginForm = () => {
     setIsLoading(true);
 
     try {
-      const user = await api.auth.login(result.data);
+      await api.auth.login(result.data);
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error(e);
+      setIsLoading(false);
+
+      return;
+    }
+
+    try {
+      const user = await api.auth.me();
 
       useUserStore.getState().setUser(user);
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(e);
+      useUserStore.getState().setUser(null);
     } finally {
       setIsLoading(false);
     }

@@ -6,7 +6,7 @@ import type {
   CalculateNormResponse,
   UserProfile,
 } from './types';
-import { headers } from './vocab';
+import { headerNames, headers } from './vocab';
 import type { z } from 'zod';
 import type {
   calculateNormSchema,
@@ -57,7 +57,10 @@ const api = {
     ) => {
       const init: RequestInit = {
         method: 'POST',
-        headers: { ...headers.ct.json, ...headers.accept.json },
+        headers: {
+          ...headers[headerNames.ct].json,
+          ...headers[headerNames.accept].json,
+        },
         body: JSON.stringify(payload),
         signal,
       };
@@ -70,7 +73,10 @@ const api = {
     ) => {
       const init: RequestInit = {
         method: 'POST',
-        headers: { ...headers.ct.json, ...headers.accept.json },
+        headers: {
+          ...headers[headerNames.ct].json,
+          ...headers[headerNames.accept].json,
+        },
         body: JSON.stringify(payload),
         signal,
       };

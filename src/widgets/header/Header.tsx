@@ -34,6 +34,8 @@ export const Header = () => {
     useFavoritesStore.getState().flush();
   }, [pathname]);
 
+  console.log(user);
+
   const {
     searchExpanded,
     query,

@@ -1,0 +1,14 @@
+@use 'shared/styles/mixins/buttons' as btn;
+@use 'shared/styles/constants/colors' as clr;
+
+.apple-button {
+  @include btn.btn-secondary;
+  padding: 13px;
+  svg {
+    stroke: none;
+  }
+  span {
+    font-size: 16px;
+    color: clr.$ns-800;
+  }
+}

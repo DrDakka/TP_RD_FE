@@ -40,4 +40,33 @@
     flex-direction: column;
     gap: 20px;
   }
+  .divider {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    font-size: 14px;
+    color: clr.$ns-700;
+    &::before,
+    &::after {
+      content: '';
+      flex: 1;
+
+      height: 1px;
+      background-color: clr.$ns-300;
+    }
+  }
+  .switchAuth {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    button {
+      color: clr.$prm-700;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
 }

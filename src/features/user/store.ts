@@ -6,6 +6,7 @@ type UserStore = {
   user: UserProfile | null;
   init: () => Promise<void>;
   logout: () => Promise<void>;
+  setUser: (user: UserProfile) => void;
 };
 
 const useUserStore = create<UserStore>(set => ({
@@ -22,6 +23,8 @@ const useUserStore = create<UserStore>(set => ({
 
     set({ user: null });
   },
+
+  setUser: user => set({ user }),
 }));
 
 export { useUserStore };

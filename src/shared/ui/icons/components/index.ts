@@ -35,3 +35,4 @@ export * from './IconLink/IconLink';
 export * from './IconLogOut/IconLogOut';
 export * from './IconLock/IconLock';
 export * from './IconLetter/IconLetter';
+export * from './IconGoogle/IconGoogle';

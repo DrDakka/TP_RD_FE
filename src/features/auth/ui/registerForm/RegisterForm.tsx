@@ -1,4 +1,5 @@
 import {
+  api,
   IconCheck,
   IconEye,
   IconEyeOff,
@@ -13,8 +14,9 @@ import { registerSchema } from '../../module/schema';
 export const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
     if (!formRef.current) return;
@@ -51,7 +53,6 @@ export const RegisterForm = () => {
 
     if (!result.success) {
       const fieldErrors = result.error.flatten().fieldErrors;
-      console.log(fieldErrors)
 
       if (fieldErrors.username) {
         usernameInput.dataset.error = 'true';
@@ -76,7 +77,22 @@ export const RegisterForm = () => {
       return;
     }
 
-    console.log(result.data);
+    setIsLoading(true);
+
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { terms, ...payload } = result.data;
+
+      const user = await api.auth.register(payload);
+
+      // eslint-disable-next-line no-console
+      console.log(user);
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error(e);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -164,7 +180,7 @@ export const RegisterForm = () => {
         </span>
       </label>
 
-      <button className={styles.submit} type="submit">
+      <button className={styles.submit} type="submit" disabled={isLoading}>
         Create Account
       </button>
     </form>

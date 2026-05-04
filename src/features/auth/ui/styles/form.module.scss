@@ -1,6 +1,8 @@
 @use 'shared/styles/mixins/inputs' as inp;
 @use 'shared/styles/mixins/buttons' as btn;
 @use 'shared/styles/constants/colors' as clr;
+@use 'shared/styles/constants/border-radius' as br;
+@use 'shared/styles/mixins/breakpoints' as bp;
 
 .field {
   @include inp.input-with-icon;
@@ -49,8 +51,8 @@
   }
 
   .checkmark {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
 
     flex-shrink: 0;
 
@@ -58,8 +60,9 @@
     align-items: center;
     justify-content: center;
 
-    border: 1px solid clr.$ns-300;
-    // border-radius: br.$br-xs;
+    border: 1px solid clr.$ns-700;
+    border-radius: br.$br-xxs;
+    color: clr.$ns-000;
 
     transition:
       border-color 180ms ease,
@@ -78,8 +81,10 @@
 
   span {
     font-size: 14px;
-    line-height: 1.5;
     color: clr.$ns-700;
+    @include bp.tablet {
+      font-size: 16px;
+    }
 
     a {
       color: clr.$prm-700;

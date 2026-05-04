@@ -26,15 +26,19 @@ export const useClientCatalogue = ({ initialState, initialData }: Args) => {
   const [view, setView] = useState<View>(View.GRID);
   const onView = (arg: View) => setView(arg);
 
-  const pendingReset = useRef(false);
+  const isFirstSearch = useRef(true);
 
   useEffect(() => {
-    if (!pendingReset.current) return;
+    if (isFirstSearch.current) {
+      isFirstSearch.current = false;
 
-    pendingReset.current = false;
+      return;
+    }
+
     apply();
+    // apply changes with state, but we only want to trigger on search change
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state]);
+  }, [state.search]);
 
   const reset = () => {
     filters.base[Core.RESET]();

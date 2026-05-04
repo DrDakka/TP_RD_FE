@@ -42,7 +42,7 @@ export const useClientCatalogue = ({ initialState, initialData }: Args) => {
 
   const reset = () => {
     filters.base[Core.RESET]();
-    apply();
+    pendingReset.current = true;
   };
 
   return {

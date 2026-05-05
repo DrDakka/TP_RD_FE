@@ -2,65 +2,61 @@
 @use 'shared/styles/constants/breakpoints' as bp;
 @use 'shared/styles/mixins/typography' as typo;
 @use 'shared/styles/constants/shadows' as sh;
-@use '../../model/header.constants' as hc;
-@use '../../model/header.mixins' as hm;
+
+@mixin underscore() {
+  position: absolute;
+  content: '';
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  height: 2px;
+  background-color: clr.$prm-700;
+}
 
 .navbar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-
-  width: 100%;
+  display: none;
   height: 100%;
-  margin-left: 0;
-  padding: 20px 5px;
+  width: fit-content;
 
-  border-top: 1px solid clr.$ns-200;
-  box-shadow: sh.$shadow-med;
+  .link {
+    position: relative;
+    @include typo.h2;
+    font-size: 18px;
+    color: clr.$prm-700;
+    transition: color 0.3s;
 
-  @include hm.frosted;
+    &::after {
+      @include underscore;
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
 
-  > a {
-    @include typo.navLinks;
+    &--active,
+    &:hover {
+      &::after {
+        transform: scaleX(1);
+      }
+    }
 
-    padding: hc.$icons-padding hc.$navlink-padding-x;
+    &--idle {
+      color: clr.$ns-700;
 
-    color: clr.$ns-500;
-
-    transition: transform hc.$transform-fast;
-
-    &:hover, &:focus {
-      transform: hc.$iconsHover;
+      &:hover {
+        color: clr.$prm-700;
+      }
     }
   }
 
-  > .link-active {
-    position: relative;
-
-    color: clr.$prm-700;
-  }
-
   @media (min-width: bp.$dsc) {
-    flex-direction: row;
-    justify-content: flex-end;
-    gap: hc.$navbar-gap-desc;
+    display: flex;
+    align-items: center;
 
-    height: 100%;
-    margin-left: hc.$ui-btns-gap;
-    padding: 0;
-
-    background-color: transparent;
-    backdrop-filter: none;
-    border-top: none;
-    box-shadow: none;
+    .link {
+      padding: 20px 12px;
+    }
   }
+}
 
-  @media (min-width: bp.$dsc) and (max-width: bp.$dsc-wide) {
-    gap: hc.$navbar-gap-desc - 20px;
-  }
-
-  @media (min-width: bp.$dsc-wide) {
-    margin-left: hc.$logo-search-gap;
-  }
+.li {
+  display: flex;
 }

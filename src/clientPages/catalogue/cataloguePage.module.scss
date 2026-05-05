@@ -1,5 +1,4 @@
 @use 'shared/styles/constants/breakpoints' as bp;
-@use 'shared/styles/constants/colors' as clr;
 @use 'shared/styles/constants/layout' as lt;
 
 .container {
@@ -10,43 +9,7 @@
   gap: 24px;
 
   .filtersWrapper {
-    > [data-widget='filters'] {
-      position: fixed;
-      left: 0;
-      top: 0;
-      height: 100dvh;
-      transform: translateX(-100%);
-      visibility: hidden;
-      transition: transform 0.3s ease, visibility 0.3s ease;
-      z-index: 100;
-    }
-  }
-
-  @media (max-width: #{bp.$dsc - 1}) {
-    &--filters-open {
-      .filtersWrapper > [data-widget='filters'] {
-        transform: translateX(0);
-        visibility: visible;
-      }
-    }
-  }
-
-  .filtersBackdrop {
     display: none;
-    width: 0;
-    height: 0;
-
-    @media (max-width: #{bp.$dsc - 1}) {
-      display: block;
-      width: auto;
-      height: auto;
-      position: fixed;
-      inset: 0;
-      background-color: rgba(clr.$ns-900, 0.65);
-      backdrop-filter: blur(4px);
-      z-index: 99;
-      cursor: pointer;
-    }
   }
 
   @media (min-width: bp.$dsc) {
@@ -59,16 +22,13 @@
     }
 
     > .filtersWrapper {
+      display: block;
       grid-area: 2 / 1 / 3 / 2;
 
       > [data-widget='filters'] {
         position: sticky;
         top: calc(lt.$header-height + 15px);
         height: calc(100dvh - lt.$header-height - 215px);
-        transform: none;
-        visibility: visible;
-        z-index: auto;
-        transition: none;
       }
     }
 

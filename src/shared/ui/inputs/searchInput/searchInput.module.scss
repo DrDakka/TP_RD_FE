@@ -1,33 +1,90 @@
 @use 'shared/styles/constants/border-radius' as br;
+@use 'shared/styles/mixins/buttons' as btn;
 @use 'shared/styles/constants/colors' as clr;
 @use 'shared/styles/mixins/typography' as typo;
+@use 'shared/styles/constants/breakpoints' as bp;
+@use 'shared/styles/constants/shadows' as sh;
 
-.search {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  height: 40px;
-  gap: 16px;
+@mixin expanded {
+  border: 2px solid clr.$ns-200;
+  border-radius: br.$br-pill;
+  flex: 1 1 40px;
 
-  > div {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 2px;
-    height: 100%;
-    max-width: 320px;
-    border-radius: br.$br-pill;
-    background-color: clr.$ns-050;
-    border: 1px solid clr.$ns-200;
+  gap: 8px;
 
-    > svg {
-      color: clr.$ns-500;
+  > input {
+    visibility: visible;
+    max-width: 305px;
+    padding-right: 12px;
+    flex: 1;
+
+    &:focus {
+      width: 100%;
     }
 
-    > input {
+    &::placeholder {
+      color: clr.$ns-500;
+    }
+  }
 
+  > button {
+    @include btn.square-base(24px, 24px);
+    margin-left: 10px;
+
+    &:hover {
+      @include btn.square-effects(none, none);
+    }
+  }
+
+  &:focus-within:has(input:focus) {
+    border-color: clr.$prm-500;
+  }
+}
+
+.inputWrapper {
+  display: flex;
+  background-color: clr.$ns-050;
+  border-radius: br.$br-s;
+  transition: all 0.3s ease;
+  flex: 0 0 36px;
+  align-items: center;
+
+  > button {
+    @include btn.square-base(40px, 40px);
+    @include btn.square-colors(transparent, clr.$ns-700);
+
+    &:hover {
+      @include btn.square-effects(sh.$shadow-deep, none);
+    }
+  }
+
+  @media (min-width: bp.$tab) {
+    flex: 0 0 40px;
+
+    > button {
+      @include btn.square-base(40px, 40px);
+    }
+  }
+
+  > input {
+    visibility: hidden;
+    width: 0;
+  }
+
+  &--active {
+    @include expanded;
+  }
+
+  @media (min-width: bp.$dsc) {
+    @include expanded;
+    flex: 0 0 305px;
+
+    > input {
+      flex: 1;
+    }
+
+    &:focus-within {
+      flex: 1 1 40px;
     }
   }
 }

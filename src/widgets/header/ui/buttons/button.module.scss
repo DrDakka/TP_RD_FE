@@ -1,0 +1,20 @@
+@use 'shared/styles/constants/colors' as clr;
+@use 'shared/styles/mixins/buttons' as btn;
+@use 'shared/styles/constants/shadows' as sh;
+@use 'shared/styles/constants/breakpoints' as bp;
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include btn.square-base(36px, 36px);
+  @include btn.square-colors(transparent, clr.$ns-800);
+
+  &:hover {
+    @include btn.square-effects(sh.$shadow-deep, none);
+  }
+
+  @media(min-width: bp.$tab) {
+      @include btn.square-base(40px, 40px);
+  }
+}

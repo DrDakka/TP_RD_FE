@@ -10,7 +10,7 @@ export const LogIn: React.FC<LogInProps> = ({ logIn }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div>
+    <>
       <button
         type="button"
         onClick={() => setIsModalOpen(true)}
@@ -21,6 +21,6 @@ export const LogIn: React.FC<LogInProps> = ({ logIn }) => {
       </button>
 
       <AuthModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-    </div>
+    </>
   );
 };

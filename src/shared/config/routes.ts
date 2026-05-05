@@ -1,7 +1,7 @@
 const navRoutes = [
   { name: 'Food Library', href: '/catalogue' },
   { name: 'Meal Plans', href: '/constructor' },
-  { name: 'Science Database', href: '/sci-lib' },
+  { name: 'Science DB', href: '/sci-lib' },
 ] as const;
 
 const supportRoutes = [

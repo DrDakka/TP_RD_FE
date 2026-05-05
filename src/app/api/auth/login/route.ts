@@ -24,8 +24,20 @@ export async function POST(req: NextRequest) {
     const data = await res.json().catch(() => ({ error: 'Unknown error' }));
     const response = NextResponse.json(data, { status: res.status });
 
+    // eslint-disable-next-line no-console
+    console.log('backend set-cookie:', res.headers.getSetCookie());
+
     res.headers.getSetCookie().forEach(cookie => {
-      response.headers.append('Set-Cookie', cookie);
+      const sanitized =
+        process.env.NODE_ENV === 'development'
+          ? cookie
+              .split(';')
+              .map(p => p.trim())
+              .filter(p => p.toLowerCase() !== 'secure')
+              .join('; ')
+          : cookie;
+
+      response.headers.append('Set-Cookie', sanitized);
     });
 
     return response;

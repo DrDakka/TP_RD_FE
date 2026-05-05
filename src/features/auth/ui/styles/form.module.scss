@@ -1,0 +1,118 @@
+@use 'shared/styles/mixins/inputs' as inp;
+@use 'shared/styles/mixins/buttons' as btn;
+@use 'shared/styles/constants/colors' as clr;
+@use 'shared/styles/constants/border-radius' as br;
+@use 'shared/styles/mixins/breakpoints' as bp;
+
+.field {
+  @include inp.input-with-icon;
+  color: clr.$ns-800;
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+
+    padding: 0;
+    margin: -1px;
+
+    overflow: hidden;
+  }
+}
+.password {
+  input {
+    padding-right: 50px;
+  }
+  .eye {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 16px;
+  }
+}
+.submit {
+  @include btn.btn-primary;
+  color: clr.$ns-000;
+  padding: 10px;
+
+}
+
+
+.checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+
+  cursor: pointer;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .checkmark {
+    width: 18px;
+    height: 18px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid clr.$ns-700;
+    border-radius: br.$br-xxs;
+    color: clr.$ns-000;
+
+    transition:
+      border-color 180ms ease,
+      background-color 180ms ease,
+      box-shadow 180ms ease;
+
+    > svg {
+      opacity: 0;
+      transform: scale(0.8);
+
+      transition:
+        opacity 150ms ease,
+        transform 150ms ease;
+    }
+  }
+
+  span {
+    font-size: 14px;
+    color: clr.$ns-700;
+    @include bp.tablet {
+      font-size: 16px;
+    }
+
+    a {
+      color: clr.$prm-700;
+      text-decoration: none;
+
+      transition: color 150ms ease;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &:hover .checkmark {
+    border-color: clr.$prm-500;
+  }
+
+  input:focus-visible + .checkmark {
+    box-shadow: 0 0 0 3px rgba(clr.$prm-500, 0.12);
+  }
+
+  input:checked + .checkmark {
+    background-color: clr.$prm-700;
+    border-color: clr.$prm-700;
+
+    > svg {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}

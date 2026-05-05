@@ -10,6 +10,7 @@ type ModalProps = {
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactNode;
+  className?: string;
   ariaLabelledBy?: string;
 };
 
@@ -17,6 +18,7 @@ export const Modal: React.FC<ModalProps> = ({
   isOpen,
   onClose,
   children,
+  className,
   ariaLabelledBy,
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
@@ -68,7 +70,7 @@ export const Modal: React.FC<ModalProps> = ({
       })}
     >
       <div
-        className={styles['modal-content']}
+        className={`${styles['modal-content']} ${className}`}
         role="dialog"
         aria-modal="true"
         aria-labelledby={ariaLabelledBy}

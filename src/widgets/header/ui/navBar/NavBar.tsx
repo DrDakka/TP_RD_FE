@@ -5,6 +5,8 @@ import { usePathname } from 'next/navigation';
 import s from './navbar.module.scss';
 import classNames from 'classnames';
 import { navRoutes } from '@shared/config/routes';
+import { useFavoritesStore } from '@/features';
+import { useEffect } from 'react';
 
 const navLinks = navRoutes;
 
@@ -14,6 +16,10 @@ export const NavBar = () => {
   const pathname = usePathname();
   const active: NavHref | null =
     navLinks.find(link => link.href === pathname)?.href ?? null;
+
+  useEffect(() => {
+    useFavoritesStore.getState().flush();
+  }, [pathname]);
 
   return (
     <nav data-header-nav className={s.navbar} aria-label="Website navigation">

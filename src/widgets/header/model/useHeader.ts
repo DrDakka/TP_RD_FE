@@ -1,12 +1,10 @@
 import { useFavoritesStore, useUserStore } from '@/features';
-import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 export const useHeader = () => {
   const [searchExpanded, setSearchExpanded] = useState(false);
   const [bmExpanded, setBmExpanded] = useState(false);
   const [query, setQuery] = useState('');
-  const pathname = usePathname();
 
   useEffect(() => {
     const favStore = useFavoritesStore.getState();
@@ -17,10 +15,6 @@ export const useHeader = () => {
   }, []);
 
   const user = useUserStore(s => s.user);
-
-  useEffect(() => {
-    useFavoritesStore.getState().flush();
-  }, [pathname]);
 
   return {
     searchExpanded,

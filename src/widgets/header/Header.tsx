@@ -24,6 +24,7 @@ export const Header = () => {
     user,
   } = useHeader();
 
+  // eslint-disable-next-line no-console
   console.log(user);
 
   return (

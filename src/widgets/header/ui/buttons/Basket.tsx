@@ -1,25 +1,25 @@
-import styles from './basket.module.scss';
-import b from '../shared/iconButton.module.scss';
+import s from './button.module.scss';
+import b from './badge.module.scss';
 import Link from 'next/link';
 import { IconCart } from '@/shared';
 import { useFavoritesStore } from '@/features';
+import classNames from 'classnames';
 
 export const Basket = () => {
   const favCount = useFavoritesStore(state => state.favorites.size);
 
   return (
-    <div className={styles.basket} data-header-basket>
+    <>
       <Link
         href="/account/basket"
         aria-label="Go to basket"
-        className={b['icon-button']}
+        className={classNames(s.button, b.basket)}
       >
         <IconCart />
+        <span className={b.badge} aria-hidden>
+          {favCount > 99 ? '99+' : favCount}
+        </span>
       </Link>
-
-      <span className={styles.badge} aria-hidden>
-        {favCount > 99 ? '99+' : favCount}
-      </span>
-    </div>
+    </>
   );
 };

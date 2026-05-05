@@ -1,0 +1,38 @@
+@use 'shared/styles/constants/colors' as clr;
+@use 'shared/styles/constants/zindex' as z;
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(clr.$ns-900, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: z.$z-header + 1;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+
+  &--visible {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.panel {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 270px;
+  height: 100dvh;
+  background-color: clr.$ns-000;
+  z-index: z.$z-header + 2;
+  box-sizing: border-box;
+
+  transform: translateX(-100%);
+  visibility: hidden;
+  transition: transform 0.3s ease, visibility 0.3s ease;
+
+  &--open {
+    transform: translateX(0);
+    visibility: visible;
+  }
+}

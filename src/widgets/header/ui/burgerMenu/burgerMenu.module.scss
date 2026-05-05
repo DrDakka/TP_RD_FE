@@ -1,0 +1,43 @@
+@use 'shared/styles/constants/breakpoints' as bp;
+@use 'shared/styles/constants/colors' as clr;
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto 1fr;
+  height: 100%;
+  padding: 24px 20px 0;
+
+  :global([data-header-nav]) {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    height: auto;
+    width: 100%;
+    padding-bottom: 4px;
+
+    a {
+      padding: 14px 0;
+      font-size: 18px;
+
+      &::after {
+        width: 100%;
+        left: 0;
+        bottom: 2px;
+        height: 2px;
+      }
+    }
+  }
+
+  > .logo {
+    gap: 8px;
+    align-self: center;
+
+    > span {
+      color: clr.$ns-700;
+      visibility: visible;
+      width: auto;
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import { IconList, IconPlus } from '@shared/ui';
-import s from '../shared/iconButton.module.scss';
+import s from './button.module.scss';
 
 type Props = {
   expanded: boolean;
@@ -21,7 +21,7 @@ export const BurgerButton: React.FC<Props> = ({ expanded, handler }) => {
   return (
     <button
       data-header-burger
-      className={s['icon-button']}
+      className={s.button}
       aria-label={data.label}
       aria-expanded={data.expanded}
       onClick={handler}

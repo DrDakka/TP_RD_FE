@@ -2,9 +2,11 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { navLinks } from '../../model';
 import s from './navbar.module.scss';
 import classNames from 'classnames';
+import { navRoutes } from '@shared/config/routes';
+
+const navLinks = navRoutes;
 
 type NavHref = (typeof navLinks)[number]['href'];
 
@@ -16,15 +18,17 @@ export const NavBar = () => {
   return (
     <nav data-header-nav className={s.navbar} aria-label="Website navigation">
       {navLinks.map(el => (
-        <Link
-          key={el.href}
-          href={el.href}
-          className={classNames({
-            [s['link-active']]: active === el.href || active === null,
-          })}
-        >
-          {el.name}
-        </Link>
+        <li key={el.href} className={s.li}>
+          <Link
+            href={el.href}
+            className={classNames(s.link, {
+              [s['link--active']]: active === el.href,
+              [s['link--idle']]: active !== null && active !== el.href,
+            })}
+          >
+            {el.name}
+          </Link>
+        </li>
       ))}
     </nav>
   );

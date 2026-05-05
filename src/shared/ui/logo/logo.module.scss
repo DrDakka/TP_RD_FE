@@ -1,6 +1,6 @@
 @use 'shared/styles/constants/border-radius' as br;
 @use 'shared/styles/constants/colors' as clr;
-
+@use 'shared/styles/constants/breakpoints' as bp;
 // Only shared semantics: link reset, hover effect.
 // Layout (gap, sizing, typography) is defined by each consumer.
 
@@ -10,9 +10,9 @@
   text-decoration: none;
   width: fit-content;
   border-radius: br.$br-xs;
-  gap: 8px;
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 600;
+  line-height: 120%;
   transition:
     box-shadow 0.3s,
     background-color 0.3s;
@@ -28,5 +28,9 @@
   }
   .logoMod {
     font-weight: 400;
+  }
+
+  @media (min-width: bp.$dsc) {
+    font-size: 20px;
   }
 }

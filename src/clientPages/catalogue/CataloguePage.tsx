@@ -1,6 +1,6 @@
 'use client';
 
-import { type GetProductsResponse } from '@/shared';
+import { type GetProductsResponse, AsidePanel, useMediaQuery } from '@/shared';
 import { useClientCatalogue, type FilterState, FreeFilters } from './model';
 import { defaultState } from './constants';
 import { normalizeProp } from './lib';
@@ -11,6 +11,7 @@ import classNames from 'classnames';
 import { View } from '@/shared';
 
 const TAB_BREAKPOINT = 640;
+const DSC_BREAKPOINT = '(min-width: 1024px)';
 
 type Props = {
   initialState: Partial<FilterState> | null;
@@ -33,7 +34,7 @@ export const CataloguePage: React.FC<Props> = ({
   });
 
   const [filtersExpanded, setFiltersExpanded] = useState(false);
-  const expandFilters = () => setFiltersExpanded(prev => !prev);
+  const isDesktop = useMediaQuery(DSC_BREAKPOINT);
 
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -53,13 +54,29 @@ export const CataloguePage: React.FC<Props> = ({
     return () => observer.disconnect();
   }, []);
 
+  const filtersContent = (
+    <Filters
+      state={state}
+      staticFilters={filters.static}
+      apply={apply}
+      reset={reset}
+      onClose={() => setFiltersExpanded(false)}
+    />
+  );
+
   return (
-    <div
-      ref={containerRef}
-      className={classNames(s.container, {
-        [s['container--filters-open']]: filtersExpanded,
-      })}
-    >
+    <div ref={containerRef} className={classNames(s.container)}>
+      {!isDesktop && (
+        <AsidePanel
+          open={filtersExpanded}
+          onClose={() => {
+            apply();
+            setFiltersExpanded(false);
+          }}
+        >
+          {filtersContent}
+        </AsidePanel>
+      )}
       <SearchBar
         query={data.searchInput}
         onQuery={filters.free[FreeFilters.SEARCH]}
@@ -67,26 +84,10 @@ export const CataloguePage: React.FC<Props> = ({
         view={ui.view}
         onView={ui.onView}
         filtersExpanded={filtersExpanded}
-        setFiltersExpanded={expandFilters}
+        setFiltersExpanded={() => setFiltersExpanded(prev => !prev)}
       />
-      {filtersExpanded && (
-        <div
-          className={s.filtersBackdrop}
-          aria-hidden
-          onClick={() => {
-            apply();
-            setFiltersExpanded(false);
-          }}
-        />
-      )}
       <div className={s.filtersWrapper}>
-        <Filters
-          state={state}
-          staticFilters={filters.static}
-          apply={apply}
-          reset={reset}
-          onClose={() => setFiltersExpanded(false)}
-        />
+        {isDesktop && filtersContent}
       </div>
       <CatalogueGrid
         items={data.items}

@@ -27,7 +27,9 @@ export const Pagination: React.FC<Props> = ({
 
   return (
     <div data-widget="pagination" className={s.container}>
-      <button className={s.loadMore}>load more</button>
+      <button className={s.loadMore} disabled>
+        load more
+      </button>
       <nav className={s.pagination}>
         <ol>
           <li>

@@ -21,6 +21,13 @@
   text-transform: capitalize;
   @include btn.btn-secondary;
 
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    outline-color: clr.$ns-300;
+    color: clr.$ns-500;
+  }
+
   @media (min-width: bp.$dsc) {
     height: 40px;
     margin-bottom: 8px;

@@ -27,8 +27,8 @@
   display: grid;
   position: relative;
   grid-column: 1fr;
-  justify-content: center;
-  align-items: center;
+  justify-content: start;
+  align-items: start;
 
   @media (min-width: bp.$tab) {
     grid-template-columns: repeat(2, 1fr);

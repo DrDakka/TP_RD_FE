@@ -27,7 +27,17 @@ export const getInit = (params: RawSearchParams): ParsedSearchParams => {
     throw new ValidationError(`Invalid param values: ${params}`);
   }
 
-  init.initialState = params;
+  const urlParams = new URLSearchParams();
+
+  Object.entries(params).forEach(([key, value]) => {
+    if (Array.isArray(value)) {
+      value.forEach(v => urlParams.append(key, v));
+    } else if (value !== undefined) {
+      urlParams.set(key, value);
+    }
+  });
+
+  init.initialState = searchParams.parse(urlParams);
   init.query = searchParams.create(init.initialState);
 
   return init;

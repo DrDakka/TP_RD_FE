@@ -1,7 +1,12 @@
 'use client';
 
 import { type GetProductsResponse, AsidePanel, useMediaQuery } from '@/shared';
-import { useClientCatalogue, type FilterState, FreeFilters } from './model';
+import {
+  useClientCatalogue,
+  type FilterState,
+  FreeFilters,
+  StaticFilters,
+} from './model';
 import { defaultState } from './constants';
 import { normalizeProp } from './lib';
 import { SearchBar, Filters, CatalogueGrid } from './widgets';
@@ -9,6 +14,7 @@ import s from './cataloguePage.module.scss';
 import { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { View } from '@/shared';
+import { Pagination } from './widgets/pagination/Pagination';
 
 const TAB_BREAKPOINT = 640;
 const DSC_BREAKPOINT = '(min-width: 1024px)';
@@ -86,9 +92,7 @@ export const CataloguePage: React.FC<Props> = ({
         filtersExpanded={filtersExpanded}
         setFiltersExpanded={() => setFiltersExpanded(prev => !prev)}
       />
-      <div className={s.filtersWrapper}>
-        {isDesktop && filtersContent}
-      </div>
+      <div className={s.filtersWrapper}>{isDesktop && filtersContent}</div>
       <CatalogueGrid
         items={data.items}
         status={data.status}
@@ -96,7 +100,14 @@ export const CataloguePage: React.FC<Props> = ({
         count={data.count}
         onRetry={apply}
       />
-      <div className={s.spacer} aria-hidden />
+
+      <Pagination
+        count={data.count}
+        current={state.page}
+        apply={apply}
+        handler={idx => filters.static[StaticFilters.PAGE](idx).handler()}
+        href={idx => filters.static[StaticFilters.PAGE](idx).href()}
+      />
     </div>
   );
 };

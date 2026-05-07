@@ -1,0 +1,92 @@
+@use 'shared/styles/constants/breakpoints' as bp;
+@use 'shared/styles/mixins/buttons' as btn;
+@use 'shared/styles/constants/colors' as clr;
+@use 'shared/styles/constants/shadows' as sh;
+@use 'shared/styles/mixins/typography' as typo;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loadMore {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+  width: 102px;
+  margin-bottom: 6px;
+  color: clr.$prm-700;
+  text-transform: capitalize;
+  @include btn.btn-secondary;
+
+  @media (min-width: bp.$dsc) {
+    height: 40px;
+    margin-bottom: 8px;
+  }
+}
+
+.pagination {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 100%;
+
+  @media (min-width: bp.$dsc) {
+    height: 56px;
+  }
+
+  > ol {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+
+    @media (min-width: bp.$dsc) {
+      gap: 16px;
+    }
+
+    > li {
+      display: flex;
+
+      &:first-child > a > svg {
+        transform: translateX(-1px);
+      }
+    }
+  }
+}
+
+.button {
+  display: flex;
+  @include typo.h3;
+  color: clr.$ns-600;
+  font-weight: 600;
+  align-items: center;
+  justify-content: center;
+
+  @include btn.square-base(28px, 28px);
+  @include btn.square-colors(clr.$ns-100, clr.$ns-600);
+
+  &:hover {
+    @include btn.square-effects(sh.$shadow-deep, none);
+  }
+
+  @media (min-width: bp.$dsc) {
+    @include btn.square-base(40px, 40px);
+  }
+
+  &--active {
+    color: clr.$ns-000;
+    @include btn.square-colors(clr.$prm-500, clr.$ns-000);
+  }
+}
+
+.back {
+  @include btn.square-colors(clr.$ns-000, clr.$ns-700);
+
+  &--disabled {
+    @include btn.square-colors(clr.$ns-000, clr.$ns-300);
+  }
+}

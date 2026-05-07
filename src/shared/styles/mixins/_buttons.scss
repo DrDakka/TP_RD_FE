@@ -28,7 +28,7 @@
 @mixin square-colors($bgc, $fill) {
   background-color: $bgc;
 
-  > svg {
+  > svg, a {
     color: $fill;
   }
 }

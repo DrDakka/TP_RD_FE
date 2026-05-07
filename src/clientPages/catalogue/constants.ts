@@ -1,6 +1,8 @@
 import { PropTags } from '@/shared/api/types';
 import { type FilterState, FreeFilters, StaticFilters } from './model';
 
+const PAGE_SIZE = 20;
+
 const defaultState: FilterState = {
   [FreeFilters.SEARCH]: '',
   [StaticFilters.TAG]: null,
@@ -8,4 +10,4 @@ const defaultState: FilterState = {
   [StaticFilters.PAGE]: 1,
 };
 
-export { defaultState };
+export { defaultState, PAGE_SIZE };

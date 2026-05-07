@@ -1,6 +1,7 @@
 @use 'shared/styles/constants/border-radius' as br;
 @use 'shared/styles/constants/colors' as clr;
 @use 'shared/styles/mixins/buttons' as btn;
+@use 'shared/styles/mixins/typography' as typo;
 @use 'shared/styles/constants/shadows' as sh;
 @use 'shared/styles/constants/breakpoints' as bp;
 
@@ -72,6 +73,8 @@
     gap: 8px;
     max-width: 140px;
     order: 4;
+    padding: 12px;
+    position: relative;
     transition: width 0.3s ease, visibility 0.3s ease;
 
     &--hidden {
@@ -81,6 +84,54 @@
       border: none;
       margin: 0;
       padding: 0;
+    }
+
+    .sortTrigger {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      @include typo.caption;
+      color: clr.$ns-600;
+      cursor: not-allowed;
+      opacity: 0.5;
+
+      > svg {
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+      }
+    }
+
+    .sortMenu {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: -1px;
+      right: -1px;
+      background: clr.$ns-000;
+      border: 1px solid clr.$ns-300;
+      border-radius: br.$br-s;
+      box-shadow: sh.$shadow-deep;
+      z-index: 10;
+      list-style: none;
+      overflow: hidden;
+    }
+
+    .sortOption {
+      display: block;
+      width: 100%;
+      padding: 8px 12px;
+      text-align: left;
+      @include typo.caption;
+      color: clr.$ns-600;
+
+      &:hover {
+        background: clr.$ns-050;
+      }
+
+      &--active {
+        color: clr.$prm-500;
+      }
     }
   }
 
@@ -125,6 +176,18 @@
     .input {
       margin: 0 16px 0 auto;
       max-width: 200px;
+      padding: 16px;
+
+      .sortTrigger {
+        @include typo.body-m;
+        color: clr.$ns-900;
+      }
+
+      .sortOption {
+        padding: 8px 16px;
+        @include typo.body-m;
+        color: clr.$ns-900;
+      }
     }
   }
 }

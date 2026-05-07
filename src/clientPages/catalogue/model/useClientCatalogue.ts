@@ -2,7 +2,7 @@
 
 import { GetProductsResponse } from '@/shared';
 import { useData, useFilters } from './hooks';
-import { Core, type FilterState } from './hooks/types';
+import { Core, StaticFilters, type FilterState } from './hooks/types';
 import { useEffect, useRef, useState } from 'react';
 import { View } from '@/shared';
 import { usePopstate } from './hooks/usePopstate';
@@ -26,19 +26,24 @@ export const useClientCatalogue = ({ initialState, initialData }: Args) => {
   const [view, setView] = useState<View>(View.GRID);
   const onView = (arg: View) => setView(arg);
 
-  const pendingReset = useRef(false);
+  const pendingApply = useRef(false);
 
   useEffect(() => {
-    if (!pendingReset.current) return;
+    if (!pendingApply.current) return;
 
-    pendingReset.current = false;
+    pendingApply.current = false;
     apply();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state]);
 
   const reset = () => {
     filters.base[Core.RESET]();
-    pendingReset.current = true;
+    pendingApply.current = true;
+  };
+
+  const goToPage = (page: number) => {
+    filters.static[StaticFilters.PAGE](page).handler();
+    pendingApply.current = true;
   };
 
   return {
@@ -47,6 +52,7 @@ export const useClientCatalogue = ({ initialState, initialData }: Args) => {
     ui: { view, onView },
     apply,
     reset,
+    goToPage,
     filters,
   };
 };

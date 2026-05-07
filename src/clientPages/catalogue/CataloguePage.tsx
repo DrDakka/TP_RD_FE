@@ -34,10 +34,11 @@ export const CataloguePage: React.FC<Props> = ({
     prop: normalizeProp(initialState?.prop),
   };
 
-  const { state, data, ui, apply, filters, reset } = useClientCatalogue({
-    initialState: init,
-    initialData,
-  });
+  const { state, data, ui, apply, filters, reset, goToPage } =
+    useClientCatalogue({
+      initialState: init,
+      initialData,
+    });
 
   const [filtersExpanded, setFiltersExpanded] = useState(false);
   const isDesktop = useMediaQuery(DSC_BREAKPOINT);
@@ -104,8 +105,7 @@ export const CataloguePage: React.FC<Props> = ({
       <Pagination
         count={data.count}
         current={state.page}
-        apply={apply}
-        handler={idx => filters.static[StaticFilters.PAGE](idx).handler()}
+        handler={goToPage}
         href={idx => filters.static[StaticFilters.PAGE](idx).href()}
       />
     </div>

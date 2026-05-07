@@ -8,7 +8,6 @@ type Props = {
   handler: (idx: number) => void;
   href: (idx: number) => string;
   current: number;
-  apply: () => void;
 };
 
 export const Pagination: React.FC<Props> = ({
@@ -16,7 +15,6 @@ export const Pagination: React.FC<Props> = ({
   current,
   handler,
   href,
-  apply,
 }) => {
   const lastPage = Math.ceil(count / PAGE_SIZE);
   const pages = Array.from({ length: lastPage }, (_, i) => i + 1);
@@ -47,7 +45,6 @@ export const Pagination: React.FC<Props> = ({
                 }
 
                 handler(current - 1);
-                apply();
               }}
             >
               <IconChevron direction="left" />
@@ -64,7 +61,6 @@ export const Pagination: React.FC<Props> = ({
                   e.preventDefault();
                   if (page !== current) {
                     handler(page);
-                    apply();
                   }
                 }}
               >
@@ -87,7 +83,6 @@ export const Pagination: React.FC<Props> = ({
                 }
 
                 handler(current + 1);
-                apply();
               }}
             >
               <IconChevron direction="right" />

@@ -16,7 +16,7 @@ export const BurgerMenu = ({ open, onClose }: Props) => {
       <div className={s.content}>
         <Logo className={s.logo} />
         <BurgerButton expanded handler={onClose} />
-        <NavBar />
+        <NavBar onNavigate={onClose} />
       </div>
     </AsidePanel>
   );

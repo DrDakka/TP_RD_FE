@@ -135,6 +135,10 @@
     }
   }
 
+  > [data-widget='search-container'] {
+    background-color: clr.$ns-050;
+  }
+
   > :last-child {
     visibility: hidden;
     width: 0;

@@ -61,26 +61,25 @@ export const CataloguePage: React.FC<Props> = ({
     return () => observer.disconnect();
   }, []);
 
+  const closeFilters = () => setFiltersExpanded(false);
+
   const filtersContent = (
     <Filters
       state={state}
       staticFilters={filters.static}
-      apply={apply}
+      apply={() => {
+        apply();
+        closeFilters();
+      }}
       reset={reset}
-      onClose={() => setFiltersExpanded(false)}
+      onClose={closeFilters}
     />
   );
 
   return (
     <div ref={containerRef} className={classNames(s.container)}>
       {!isDesktop && (
-        <AsidePanel
-          open={filtersExpanded}
-          onClose={() => {
-            apply();
-            setFiltersExpanded(false);
-          }}
-        >
+        <AsidePanel open={filtersExpanded} onClose={closeFilters}>
           {filtersContent}
         </AsidePanel>
       )}

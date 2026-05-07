@@ -12,7 +12,11 @@ const navLinks = navRoutes;
 
 type NavHref = (typeof navLinks)[number]['href'];
 
-export const NavBar = () => {
+type Props = {
+  onNavigate?: () => void;
+};
+
+export const NavBar = ({ onNavigate }: Props) => {
   const pathname = usePathname();
   const active: NavHref | null =
     navLinks.find(link => link.href === pathname)?.href ?? null;
@@ -31,6 +35,7 @@ export const NavBar = () => {
               [s['link--active']]: active === el.href,
               [s['link--idle']]: active !== null && active !== el.href,
             })}
+            onClick={onNavigate}
           >
             {el.name}
           </Link>

@@ -5,15 +5,25 @@
 .productCard {
   @include card.card(16px);
   color: clr.$ns-800;
+  display: flex;
+  flex-direction: column;
+
+  > article {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
   .linkWrapper {
     display: grid;
+    flex: 1;
     .line {
       background-color: clr.$ns-200;
     }
   }
 
   &.grid {
-    max-width: 261px;
+    width: 100%;
     .linkWrapper {
       height: 100%;
       .brand {

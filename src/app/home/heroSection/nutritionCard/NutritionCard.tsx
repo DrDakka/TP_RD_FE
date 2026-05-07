@@ -9,7 +9,7 @@ export const NutritionCard = () => {
         <dt>
           <span>1651 </span>kcal
         </dt>
-        <dd>100g</dd>
+        <dd>2350 kcal</dd>
       </dl>
       <div className={styles.nutritions}>
         <ProgressBar title="Protein" value={31} color="#6C5CE7" />

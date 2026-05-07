@@ -1,7 +1,7 @@
 import { PropTags } from '@/shared/api/types';
 import { type FilterState, FreeFilters, StaticFilters } from './model';
 
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 10;
 
 const defaultState: FilterState = {
   [FreeFilters.SEARCH]: '',

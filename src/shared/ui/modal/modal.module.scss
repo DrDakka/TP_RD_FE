@@ -11,22 +11,27 @@
   visibility: hidden;
   pointer-events: none;
 
+  overflow-y: auto;
+
+  padding: 80px 16px;
+
+  background-color: rgba(clr.$ns-900, 0.65);
+  backdrop-filter: blur(4px);
+
   transition:
     opacity 180ms ease,
     visibility 180ms ease;
 
   .modal-content {
-    position: fixed;
+    position: relative;
+    margin: 0 auto;
     max-width: 512px;
     min-width: 328px;
+
     padding: 24px;
-    z-index: z.$z-modal + 1;
-    left: 50%;
-    transform: translate(-50%, -8px) scale(0.98);
     background-color: clr.$ns-000;
     border-radius: br.$br-m;
-    top: 80px;
-
+    
     transition: transform 180ms ease;
 
     @include bp.tablet {
@@ -70,22 +75,10 @@
       }
     }
   }
-  .modal-overlay {
-    width: 100%;
-    height: 100vh;
-    position: fixed;
-    background-color: rgba(clr.$ns-900, 0.65);
-    backdrop-filter: blur(4px);
-    z-index: z.$z-modal;
-  }
 
   &--open {
     opacity: 1;
     visibility: visible;
     pointer-events: all;
-
-    .modal-content {
-      transform: translate(-50%, 0) scale(1);
-    }
   }
 }

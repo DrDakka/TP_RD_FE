@@ -68,6 +68,7 @@ export const Modal: React.FC<ModalProps> = ({
       className={classNames(styles.modal, {
         [styles['modal--open']]: isOpen,
       })}
+      onClick={onClose}
     >
       <div
         className={`${styles['modal-content']} ${className}`}
@@ -76,6 +77,7 @@ export const Modal: React.FC<ModalProps> = ({
         aria-labelledby={ariaLabelledBy}
         tabIndex={-1}
         ref={modalRef}
+        onClick={e => e.stopPropagation()}
       >
         <button
           className={styles.close}
@@ -87,7 +89,7 @@ export const Modal: React.FC<ModalProps> = ({
         </button>
         {children}
       </div>
-      <div onClick={onClose} className={styles['modal-overlay']}></div>
+      {/* <div onClick={onClose} className={styles['modal-overlay']}></div> */}
     </div>,
     modalRoot,
   );

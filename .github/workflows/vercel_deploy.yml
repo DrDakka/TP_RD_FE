@@ -1,0 +1,43 @@
+name: Vercel Deploy Notification
+
+on:
+  deployment_status:
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get commit author
+        run: |
+          AUTHOR=$(git show -s --format='%an' ${{ github.event.deployment.sha }})
+          COMMIT_MSG=$(git show -s --format='%s' ${{ github.event.deployment.sha }})
+
+          echo "AUTHOR=$AUTHOR" >> $GITHUB_ENV
+          echo "COMMIT_MSG=$COMMIT_MSG" >> $GITHUB_ENV
+
+      #SUCCESS
+      - name: Send success Discord message
+        if: github.event.deployment_status.state == 'success'
+        run: |
+          curl -H "Content-Type: application/json" \
+          -X POST \
+          -d "{
+            \"content\": \"✅ Vercel deploy successful!\n\n👤 Author: $AUTHOR\n📝 Commit: $COMMIT_MSG\n🔗 URL: ${{ github.event.deployment_status.target_url }}\"
+          }" \
+          ${{ secrets.DISCORD_WEBHOOK_URL }}
+
+      #FAILURE
+      - name: Send failure Discord message
+        if: github.event.deployment_status.state == 'failure'
+        run: |
+          curl -H "Content-Type: application/json" \
+          -X POST \
+          -d "{
+            \"content\": \"❌ Vercel deploy failed!\n\n👤 Author: $AUTHOR\n📝 Commit: $COMMIT_MSG\n🚨 Check logs in Vercel / GitHub Actions\"
+          }" \
+          ${{ secrets.DISCORD_WEBHOOK_URL }}

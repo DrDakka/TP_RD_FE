@@ -3,7 +3,6 @@
 @use 'shared/styles/mixins/typography' as tp;
 @use 'shared/styles/mixins/buttons' as btn;
 @use 'shared/styles/constants/breakpoints' as bp;
-@use 'shared/styles/constants/layout' as lt;
 
 .backdrop {
   display: grid;

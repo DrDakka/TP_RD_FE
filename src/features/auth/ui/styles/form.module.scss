@@ -1,7 +1,7 @@
+@use 'shared/styles/constants' as *;
 @use 'shared/styles/mixins/inputs' as inp;
 @use 'shared/styles/mixins/buttons' as btn;
 @use 'shared/styles/constants/colors' as clr;
-@use 'shared/styles/constants/border-radius' as br;
 @use 'shared/styles/mixins/breakpoints' as bp;
 
 .field {
@@ -61,7 +61,7 @@
     justify-content: center;
 
     border: 1px solid clr.$ns-700;
-    border-radius: br.$br-xxs;
+    border-radius: $br-xxs;
     color: clr.$ns-000;
 
     transition:

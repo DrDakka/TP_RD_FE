@@ -1,0 +1,25 @@
+// Border Radius
+$br-xxs: 4px;
+$br-xs: 6px;
+$br-s: 8px;
+$br-m: 12px;
+$br-l: 24px;
+$br-pill: 50px;
+
+// Font
+$font-sans: var(--font-manrope), Arial, sans-serif;
+$font-mono: monospace;
+
+// Shadows
+$shadow-low: 0px 2px 8px 0px rgba(0, 0, 0, 0.08);
+$shadow-med: 0px 4px 8px 0px rgba(0, 0, 0, 0.08);
+$shadow-deep: 0px 4px 16px 0px rgba(0, 0, 0, 0.1);
+
+
+// Z-Index
+$z-modal: 20;
+$z-header: 10;
+$z-minus: -1;
+$z-low: 1;
+$z-med: 3;
+$z-high: 6;

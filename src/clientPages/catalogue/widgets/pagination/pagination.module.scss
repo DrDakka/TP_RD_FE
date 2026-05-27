@@ -1,7 +1,7 @@
+@use 'shared/styles/constants' as *;
 @use 'shared/styles/constants/breakpoints' as bp;
 @use 'shared/styles/mixins/buttons' as btn;
 @use 'shared/styles/constants/colors' as clr;
-@use 'shared/styles/constants/shadows' as sh;
 @use 'shared/styles/mixins/typography' as typo;
 
 .container {
@@ -82,7 +82,7 @@
   @include btn.square-colors(clr.$ns-100, clr.$ns-600);
 
   &:hover {
-    @include btn.square-effects(sh.$shadow-deep, none);
+    @include btn.square-effects($shadow-deep, none);
   }
 
   @media (min-width: bp.$dsc) {

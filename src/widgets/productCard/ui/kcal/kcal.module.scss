@@ -1,5 +1,5 @@
+@use 'shared/styles/constants' as *;
 @use 'shared/styles/constants/colors' as clr;
-@use 'shared/styles/constants/border-radius' as br;
 
 .kcal {
   font-size: 16px;
@@ -15,7 +15,7 @@
     width: 10px;
     height: 10px;
     background-color: clr.$prm-500;
-    border-radius: br.$br-pill;
+    border-radius: $br-pill;
   }
 
   dt {

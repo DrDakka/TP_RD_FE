@@ -1,6 +1,6 @@
+@use 'shared/styles/constants' as *;
 @use 'shared/styles/mixins/buttons' as btn;
 @use 'shared/styles/constants/colors' as clr;
-@use 'shared/styles/constants/zindex' as zx;
 @use 'shared/styles/mixins/breakpoints' as bp;
 @use 'shared/styles/constants/breakpoints' as *;
 
@@ -14,7 +14,7 @@
   font-weight: 700;
   padding: 14px 35px;
   color: clr.$ns-000;
-  z-index: zx.$z-high;
+  z-index: $z-high;
   box-shadow: 0 0 10px 0 clr.$prm-500;
 
   @include bp.tablet {

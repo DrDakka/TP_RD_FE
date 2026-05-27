@@ -1,12 +1,12 @@
+@use 'shared/styles/constants' as *;
 @use 'shared/styles/constants/colors' as clr;
-@use 'shared/styles/constants/shadows' as sh;
 
 .search-dropdown {
   min-height: 200px;
   padding: 16px;
 
   border-top: 1px solid clr.$ns-200;
-  box-shadow: sh.$shadow-med;
+  box-shadow: $shadow-med;
   pointer-events: none;
 
   opacity: 0;

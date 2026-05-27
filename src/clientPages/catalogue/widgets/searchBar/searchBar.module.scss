@@ -1,8 +1,7 @@
-@use 'shared/styles/constants/border-radius' as br;
+@use 'shared/styles/constants' as *;
 @use 'shared/styles/constants/colors' as clr;
 @use 'shared/styles/mixins/buttons' as btn;
 @use 'shared/styles/mixins/typography' as typo;
-@use 'shared/styles/constants/shadows' as sh;
 @use 'shared/styles/constants/breakpoints' as bp;
 
 @keyframes spin {
@@ -22,9 +21,9 @@
 
   padding: 12px;
   gap: 12px;
-  border-radius: br.$br-s;
+  border-radius: $br-s;
 
-  box-shadow: sh.$shadow-deep;
+  box-shadow: $shadow-deep;
 
   .filterBtn,
   .refresh {
@@ -35,7 +34,7 @@
     @include btn.square-colors(clr.$ns-050, clr.$ns-700);
 
     &:hover {
-      @include btn.square-effects(sh.$shadow-deep, none);
+      @include btn.square-effects($shadow-deep, none);
     }
   }
 
@@ -68,7 +67,7 @@
     display: flex;
     flex-shrink: 1;
     width: 100%;
-    border-radius: br.$br-s;
+    border-radius: $br-s;
     border: 1px solid clr.$ns-300;
     gap: 8px;
     max-width: 140px;
@@ -110,8 +109,8 @@
       right: -1px;
       background: clr.$ns-000;
       border: 1px solid clr.$ns-300;
-      border-radius: br.$br-s;
-      box-shadow: sh.$shadow-deep;
+      border-radius: $br-s;
+      box-shadow: $shadow-deep;
       z-index: 10;
       list-style: none;
       overflow: hidden;

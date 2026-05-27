@@ -1,8 +1,6 @@
+@use 'shared/styles/constants' as *;
 @use 'shared/styles/constants/colors' as clr;
 @use 'shared/styles/constants/breakpoints' as bp;
-@use 'shared/styles/constants/border-radius' as br;
-@use 'shared/styles/constants/shadows' as sh;
-@use 'shared/styles/constants/zindex' as z;
 @use 'shared/styles/mixins/typography' as typo;
 @use 'shared/styles/mixins/buttons' as btn;
 
@@ -26,10 +24,10 @@
   @include positioning(bp.$main-margin-mob);
 
   height: 70px;
-  z-index: z.$z-header;
+  z-index: $z-header;
 
-  box-shadow: sh.$shadow-low;
-  border-radius: br.$br-s;
+  box-shadow: $shadow-low;
+  border-radius: $br-s;
   gap: 16px;
 
   @include frosted;

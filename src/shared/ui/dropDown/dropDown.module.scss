@@ -1,6 +1,5 @@
-@use 'shared/styles/constants/border-radius' as br;
+@use 'shared/styles/constants' as *;
 @use 'shared/styles/constants/colors' as clr;
-@use 'shared/styles/constants/shadows' as sh;
 @use 'shared/styles/mixins/typography' as tp;
 
 .dropdown {
@@ -17,7 +16,7 @@
   box-sizing: border-box;
   justify-content: space-between;
   height: 40px;
-  border-radius: br.$br-s;
+  border-radius: $br-s;
   width: 100%;
   padding: 0 16px;
 
@@ -40,7 +39,7 @@
   grid-template-rows: 0fr;
   overflow: hidden;
 
-  border-radius: br.$br-m;
+  border-radius: $br-m;
   outline: 1px solid transparent;
   box-shadow: none;
   margin-top: 0;
@@ -54,7 +53,7 @@
     grid-template-rows: 1fr;
     margin-top: 4px;
     outline: 1px solid clr.$ns-300;
-    box-shadow: sh.$shadow-low;
+    box-shadow: $shadow-low;
 
     transition:
       grid-template-rows 0.3s ease,

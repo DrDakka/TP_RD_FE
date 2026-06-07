@@ -1,6 +1,6 @@
+@use 'shared/styles/constants' as *;
 @use 'shared/styles/constants/colors' as clr;
 @use 'shared/styles/mixins/buttons' as btn;
-@use 'shared/styles/constants/shadows' as sh;
 @use 'shared/styles/constants/breakpoints' as bp;
 
 .button {
@@ -11,7 +11,7 @@
   @include btn.square-colors(transparent, clr.$ns-800);
 
   &:hover {
-    @include btn.square-effects(sh.$shadow-deep, none);
+    @include btn.square-effects($shadow-deep, none);
   }
 
   @media(min-width: bp.$tab) {

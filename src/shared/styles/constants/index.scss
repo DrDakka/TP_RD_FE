@@ -1,7 +1,3 @@
 @forward 'colors' as clr-*;
 @forward 'breakpoints' as bp-*;
-@forward 'fonts';
-@forward 'layout' as layout-*;
-@forward 'shadows' as sh-*;
-@forward 'border-radius' as br-*;
-@forward 'zindex' as zx-*;
+@forward 'variables';

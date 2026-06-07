@@ -1,10 +1,8 @@
-@use 'shared/styles/constants/border-radius' as br;
+@use 'shared/styles/constants' as *;
 @use 'shared/styles/constants/colors' as clr;
 @use 'shared/styles/mixins/typography' as tp;
 @use 'shared/styles/mixins/buttons' as btn;
-@use 'shared/styles/constants/shadows' as sh;
 @use 'shared/styles/constants/breakpoints' as bp;
-@use 'shared/styles/constants/layout' as lt;
 
 .backdrop {
   display: grid;
@@ -15,7 +13,7 @@
   box-sizing: border-box;
   padding: 24px 16px 24px 20px;
   gap: 24px;
-  border-radius: br.$br-s;
+  border-radius: $br-s;
   overflow: hidden;
 
   > h2 {
@@ -28,7 +26,7 @@
 
   @media (min-width: bp.$dsc) {
     width: 100%;
-    box-shadow: sh.$shadow-deep;
+    box-shadow: $shadow-deep;
 
     > h2 {
       grid-area: 1 / 1 / 2 / 3;
@@ -41,7 +39,7 @@
   @include btn.square-base(34px, 34px);
   @include btn.square-colors(clr.$ns-000, clr.$prm-700);
   &:hover {
-    @include btn.square-effects(sh.$shadow-deep, none);
+    @include btn.square-effects($shadow-deep, none);
   }
 
   @media (min-width: bp.$dsc) {

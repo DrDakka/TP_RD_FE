@@ -1,0 +1,26 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Design/Variable/How To Use" />
+
+# SCSS Variables
+
+Variables are defined in `src/shared/styles/constants/_variables.scss` and are re-exported from `src/shared/styles/constants/index.scss`.
+
+Use the constants barrel in SCSS modules:
+
+```scss
+@use 'shared/styles/constants' as *;
+
+.card {
+  color: $clr-ns-900;
+  background-color: $clr-ns-000;
+  border-radius: $br-m;
+  box-shadow: $shadow-low;
+  z-index: $z-low;
+  font-family: $font-sans;
+}
+```
+
+Colors are forwarded with the `clr-` prefix from `src/shared/styles/constants/index.scss`, so `$prm-500` becomes `$clr-prm-500` when using the constants barrel.
+
+Keep using the existing variable names from the constants barrel. Do not import private partials like `_variables.scss` or `_colors.scss` directly in components.

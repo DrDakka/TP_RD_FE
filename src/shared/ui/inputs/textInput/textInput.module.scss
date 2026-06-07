@@ -1,4 +1,4 @@
-@use 'shared/styles/constants/border-radius' as br;
+@use 'shared/styles/constants' as *;
 @use 'shared/styles/constants/colors' as clr;
 @use 'shared/styles/mixins/typography' as typo;
 
@@ -8,7 +8,7 @@
   gap: 8px;
   padding: 10px 12px;
   border: 2px solid clr.$ns-300;
-  border-radius: br.$br-s;
+  border-radius: $br-s;
   background-color: clr.$ns-000;
   box-sizing: border-box;
   transition: border-color 150ms ease, background-color 150ms ease;
@@ -29,7 +29,7 @@
 
   &--search {
     flex: 1;
-    border-radius: br.$br-pill;
+    border-radius: $br-pill;
     background-color: clr.$ns-100;
     border-color: clr.$ns-200;
   }

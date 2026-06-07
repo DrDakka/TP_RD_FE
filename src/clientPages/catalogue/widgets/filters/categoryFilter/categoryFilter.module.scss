@@ -1,5 +1,5 @@
+@use 'shared/styles/constants' as *;
 @use 'shared/styles/constants/colors' as clr;
-@use 'shared/styles/constants/border-radius' as br;
 @use 'shared/styles/mixins/typography' as tp;
 
 .item {
@@ -14,7 +14,7 @@
     justify-content: space-between;
     gap: 8px;
     padding: 11px 8px;
-    border-radius: br.$br-s;
+    border-radius: $br-s;
     background-color: clr.$ns-100;
 
     @include tp.body-m;

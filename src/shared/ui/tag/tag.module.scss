@@ -1,4 +1,4 @@
-@use 'shared/styles/constants/border-radius' as br;
+@use 'shared/styles/constants' as *;
 
 .tag {
   display: inline-flex;
@@ -7,7 +7,7 @@
   width: fit-content;
 
   font-weight: 500;
-  border-radius: br.$br-pill;
+  border-radius: $br-pill;
   white-space: nowrap;
 
   &.lg {

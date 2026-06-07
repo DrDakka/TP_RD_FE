@@ -1,14 +1,13 @@
-@use 'shared/styles/constants/border-radius' as br;
+@use 'shared/styles/constants' as *;
 @use 'shared/styles/mixins/buttons' as btn;
 @use 'shared/styles/constants/colors' as clr;
 @use 'shared/styles/mixins/typography' as typo;
 @use 'shared/styles/constants/breakpoints' as bp;
-@use 'shared/styles/constants/shadows' as sh;
 
 @mixin expanded {
   background-color: clr.$ns-050;
   border: 2px solid clr.$ns-200;
-  border-radius: br.$br-pill;
+  border-radius: $br-pill;
   flex: 1 1 40px;
 
   gap: 8px;
@@ -44,7 +43,7 @@
 
 .inputWrapper {
   display: flex;
-  border-radius: br.$br-s;
+  border-radius: $br-s;
   transition: all 0.3s ease;
   flex: 0 0 36px;
   align-items: center;
@@ -54,7 +53,7 @@
     @include btn.square-colors(transparent, clr.$ns-700);
 
     &:hover {
-      @include btn.square-effects(sh.$shadow-deep, none);
+      @include btn.square-effects($shadow-deep, none);
     }
   }
 

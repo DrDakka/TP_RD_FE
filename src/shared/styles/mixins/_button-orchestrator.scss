@@ -1,0 +1,51 @@
+@use '../constants/button-vars' as bv;
+@use '../constants/colors' as clr;
+@use 'typography' as typo;
+
+// 1. Міксин для розмірів 
+@mixin button-size($size) {
+  @if not map-has-key(bv.$sizes, $size) { @error "Invalid size: '#{$size}'"; }
+  $s: map-get(bv.$sizes, $size);
+  padding: map-get($s, padding);
+  font-size: map-get($s, font-size);
+  border-radius: map-get($s, radius);
+}
+
+// 2. Міксин для кольорів та станів 
+@mixin button-colors($variant) {
+  @if not map-has-key(bv.$variants, $variant) { @error "Invalid variant: '#{$variant}'"; }
+  $v: map-get(bv.$variants, $variant);
+  
+  background-color: map-get($v, bg);
+  border: map-get($v, border);
+  color: map-get($v, color);
+  
+  > span { color: map-get($v, color); }
+  > svg { 
+    color: map-get($v, color); 
+    --spinner-clr: #{map-get($v, spinner)}; 
+  }
+
+  &:hover { background-color: map-get($v, hover); }
+  &:focus { outline: 2px solid clr.$prm-200; }
+  &:disabled {
+    background-color: clr.$ns-300;
+    > span { color: clr.$ns-500; }
+    > svg { color: clr.$ns-500; }
+  }
+}
+
+// 3. Оркестратор 
+@mixin button($size, $variant) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 150ms ease;
+  
+  @include button-size($size);
+  @include button-colors($variant);
+  
+  > span { @include typo.body-m; }
+}

@@ -1,0 +1,64 @@
+@use 'border-radius' as br;
+@use 'colors' as clr;
+
+// --- 1. Атомарні змінні для Розмірів ---
+$btn-pad-xs: 4px 8px;
+$btn-pad-s:  6px 12px;
+$btn-pad-m:  8px 16px;
+$btn-pad-l:  12px 20px;
+$btn-pad-xl: 16px 24px;
+
+$btn-fs-xs: 12px;
+$btn-fs-s:  13px;
+$btn-fs-m:  14px;
+$btn-fs-l:  16px;
+$btn-fs-xl: 18px;
+
+$btn-radius-xxs: br.$br-xxs;
+$btn-radius-xs:  br.$br-xs;
+$btn-radius-s:   br.$br-s;
+$btn-radius-m:   br.$br-m;
+$btn-radius-l:   br.$br-l;
+
+// --- 2. Атомарні змінні для Кольорів та Станів ---
+$btn-bg-primary:     clr.$prm-500;
+$btn-text-primary:   clr.$ns-000;
+$btn-hover-primary:  clr.$prm-600;
+
+$btn-bg-secondary:   clr.$ns-000;
+$btn-text-secondary: clr.$prm-500;
+$btn-hover-secondary: clr.$prm-100;
+$btn-border-secondary: 1px solid clr.$prm-500;
+
+$btn-bg-ghost:       transparent;
+$btn-text-ghost:     clr.$ns-800;
+$btn-hover-ghost:    clr.$ns-100;
+$btn-border-ghost:   1px solid clr.$ns-300;
+
+$btn-bg-destructive: clr.$s-dng;
+$btn-text-destructive: clr.$ns-000;
+$btn-hover-destructive: #ba0404;
+
+// --- 3. Мапи  ---
+$sizes: (
+  'xs': (padding: $btn-pad-xs, font-size: $btn-fs-xs, radius: $btn-radius-xxs),
+  's':  (padding: $btn-pad-s, font-size: $btn-fs-s, radius: $btn-radius-xs),
+  'm':  (padding: $btn-pad-m, font-size: $btn-fs-m, radius: $btn-radius-s),
+  'l':  (padding: $btn-pad-l, font-size: $btn-fs-l, radius: $btn-radius-m),
+  'xl': (padding: $btn-pad-xl, font-size: $btn-fs-xl, radius: $btn-radius-l)
+);
+
+$variants: (
+  'primary': (
+    bg: $btn-bg-primary, color: $btn-text-primary, hover: $btn-hover-primary, border: none, spinner: $btn-text-primary
+  ),
+  'secondary': (
+    bg: $btn-bg-secondary, color: $btn-text-secondary, hover: $btn-hover-secondary, border: $btn-border-secondary, spinner: $btn-text-secondary
+  ),
+  'ghost': (
+    bg: $btn-bg-ghost, color: $btn-text-ghost, hover: $btn-hover-ghost, border: $btn-border-ghost, spinner: $btn-text-ghost
+  ),
+  'destructive': (
+    bg: $btn-bg-destructive, color: $btn-text-destructive, hover: $btn-hover-destructive, border: none, spinner: $btn-text-destructive
+  )
+);
